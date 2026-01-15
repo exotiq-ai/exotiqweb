@@ -19,21 +19,21 @@ const Typography: React.FC<TypographyProps> = ({
   children
 }) => {
   const variantClasses = {
-    h1: 'font-space font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl',
-    h2: 'font-space font-bold text-3xl sm:text-4xl md:text-5xl',
-    h3: 'font-space font-semibold text-2xl sm:text-3xl md:text-4xl',
-    h4: 'font-space font-semibold text-xl sm:text-2xl md:text-3xl',
-    h5: 'font-space font-semibold text-lg sm:text-xl md:text-2xl',
-    h6: 'font-space font-semibold text-base sm:text-lg md:text-xl',
-    body: 'font-inter text-base sm:text-lg',
-    'body-sm': 'font-inter text-sm sm:text-base',
-    caption: 'font-inter text-xs sm:text-sm',
-    label: 'font-inter font-medium text-sm sm:text-base uppercase tracking-wide'
+    h1: 'font-dfaalt font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl',
+    h2: 'font-dfaalt font-bold text-3xl sm:text-4xl md:text-5xl',
+    h3: 'font-dfaalt font-semibold text-2xl sm:text-3xl md:text-4xl',
+    h4: 'font-dfaalt font-semibold text-xl sm:text-2xl md:text-3xl',
+    h5: 'font-dfaalt font-semibold text-lg sm:text-xl md:text-2xl',
+    h6: 'font-dfaalt font-semibold text-base sm:text-lg md:text-xl',
+    body: 'font-montserrat text-base sm:text-lg',
+    'body-sm': 'font-montserrat text-sm sm:text-base',
+    caption: 'font-montserrat text-xs sm:text-sm',
+    label: 'font-montserrat font-medium text-sm sm:text-base uppercase tracking-wide'
   };
   
   const colorClasses = {
     default: 'text-gray-900 dark:text-white',
-    primary: 'text-primary-600 dark:text-primary-400',
+    primary: 'text-primary-500 dark:text-primary-400',
     accent: 'text-accent-600 dark:text-accent-400',
     muted: 'text-gray-600 dark:text-gray-400',
     success: 'text-success-600 dark:text-success-400',

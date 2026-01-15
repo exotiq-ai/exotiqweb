@@ -22,7 +22,7 @@ const ScrollProgressIndicator: React.FC = () => {
   return (
     <div className="fixed top-0 left-0 right-0 h-0.5 bg-transparent z-[100] pointer-events-none">
       <div
-        className="h-full bg-gradient-to-r from-primary-600 via-accent-600 to-primary-600 transition-all duration-150 ease-out shadow-lg"
+        className="h-full bg-gradient-to-r from-primary-500 via-accent-600 to-primary-500 transition-all duration-150 ease-out shadow-lg"
         style={{ width: `${progress * 100}%` }}
       />
     </div>

@@ -508,14 +508,14 @@ export default function ChatBotTest() {
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-primary-600 to-accent-600 p-6 text-white">
+        <div className="bg-gradient-to-r from-primary-500 to-accent-600 p-6 text-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-xl">
                 <Brain className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="font-space font-bold text-2xl">ChatBot AI Integration Test</h2>
+                <h2 className="font-dfaalt font-bold text-2xl">ChatBot AI Integration Test</h2>
                 <p className="opacity-90">Comprehensive OpenAI functionality verification</p>
               </div>
             </div>
@@ -540,7 +540,7 @@ export default function ChatBotTest() {
                 suite.tests.some(t => t.status === 'warning') ? 'warning' : 'pending'
               )}`}>
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-space font-semibold text-lg">{suite.name}</h3>
+                  <h3 className="font-dfaalt font-semibold text-lg">{suite.name}</h3>
                   <div className="flex items-center space-x-2">
                     {suite.status === 'running' && <Loader className="w-4 h-4 animate-spin text-blue-500" />}
                     <span className="text-sm font-medium">
@@ -554,10 +554,10 @@ export default function ChatBotTest() {
                     <div key={test.name} className="flex items-center justify-between p-3 bg-white dark:bg-dark-700 rounded-lg">
                       <div className="flex items-center space-x-3">
                         {getStatusIcon(test.status)}
-                        <span className="font-inter font-medium">{test.name}</span>
+                        <span className="font-montserrat font-medium">{test.name}</span>
                       </div>
                       <div className="text-right">
-                        <div className="font-inter text-sm">{test.message}</div>
+                        <div className="font-montserrat text-sm">{test.message}</div>
                         {test.duration && (
                           <div className="text-xs text-gray-500">{test.duration}ms</div>
                         )}
@@ -586,7 +586,7 @@ export default function ChatBotTest() {
               <button
                 onClick={runTests}
                 disabled={isRunning}
-                className="px-6 py-2 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 text-white rounded-lg transition-colors flex items-center space-x-2"
+                className="px-6 py-2 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-400 text-white rounded-lg transition-colors flex items-center space-x-2"
               >
                 {isRunning ? (
                   <>

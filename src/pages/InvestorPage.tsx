@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  TrendingUp, 
-  Users, 
-  DollarSign, 
-  Target, 
+import {
+  TrendingUp,
+  Users,
+  DollarSign,
+  Target,
   Calendar,
   Download,
   Lock,
@@ -121,7 +121,7 @@ export default function InvestorPage() {
 
       logger.info('Investor submission successful', { investorId: result.investorId });
       setEmailSent(true);
-      
+
       // Simulate email verification after 3 seconds (for demo purposes)
       setTimeout(() => {
         setIsUnlocked(true);
@@ -155,10 +155,10 @@ export default function InvestorPage() {
           <div className="flex items-center justify-center w-16 h-16 bg-accent-600 rounded-full mx-auto mb-6">
             <CheckCircle className="w-8 h-8 text-white" />
           </div>
-          <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-4">
+          <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-4">
             Thank You!
           </h3>
-          <p className="font-inter text-gray-600 dark:text-gray-300 mb-8">
+          <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-8">
             Thank you from the Exotiq team, we'll be in touch to schedule your access to Exotiq's Data Room.
           </p>
           <button
@@ -189,59 +189,59 @@ export default function InvestorPage() {
             ])
           ]}
         />
-        
+
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-br from-dark-900 to-dark-800 text-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
             <div className="flex items-center justify-center w-20 h-20 bg-accent-600 rounded-xl mx-auto mb-6">
               <Building className="w-10 h-10 text-white" />
             </div>
-            <h1 className="font-space font-bold text-5xl md:text-6xl mb-6">
+            <h1 className="font-dfaalt font-bold text-5xl md:text-6xl mb-6">
               Investor Portal
             </h1>
-            <p className="font-inter text-xl text-gray-300 mb-8">
+            <p className="font-montserrat text-xl text-gray-300 mb-8">
               Access detailed financials, market analysis, and investment opportunities in the future of fleet management.
             </p>
             <div className="flex items-center justify-center space-x-2 text-accent-400 mb-8">
               <Lock className="w-5 h-5" />
-              <span className="font-inter">Qualified Investors Only</span>
+              <span className="font-montserrat">Qualified Investors Only</span>
             </div>
           </div>
         </section>
 
         {/* Executive Summary - Simplified */}
         <section className="py-20 bg-gray-50 dark:bg-dark-800">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
             <div className="text-center mb-12">
-              <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-6">
+              <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-6">
                 Why Exotiq
               </h2>
             </div>
 
             <div className="space-y-6">
-              <div className="bg-white dark:bg-dark-700 p-8 rounded-xl border-l-4 border-primary-600">
-                <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-3">
+              <div className="bg-white dark:bg-dark-700 p-8 rounded-xl border-l-4 border-primary-500">
+                <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-3">
                   Real Traction
                 </h3>
-                <p className="font-inter text-lg text-gray-700 dark:text-gray-200">
-                  20+ operators already using the platform. $12K MRR from beta customers. 85% activation rate—nearly 3x industry average.
+                <p className="font-montserrat text-lg text-gray-700 dark:text-gray-200">
+                  20+ operators already using the platform. $12K MRR from beta customers. 85% activation rate, nearly 3x industry average.
                 </p>
               </div>
 
               <div className="bg-white dark:bg-dark-700 p-8 rounded-xl border-l-4 border-accent-600">
-                <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-3">
+                <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-3">
                   Proven ROI
                 </h3>
-                <p className="font-inter text-lg text-gray-700 dark:text-gray-200">
+                <p className="font-montserrat text-lg text-gray-700 dark:text-gray-200">
                   Operators save 15+ hours per week and increase revenue by 15-25% through automated pricing and operations.
                 </p>
               </div>
 
               <div className="bg-white dark:bg-dark-700 p-8 rounded-xl border-l-4 border-success-600">
-                <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-3">
+                <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-3">
                   Built Different
                 </h3>
-                <p className="font-inter text-lg text-gray-700 dark:text-gray-200">
+                <p className="font-montserrat text-lg text-gray-700 dark:text-gray-200">
                   Founded by former Turo hosts who scaled from 2 to 30 vehicles. We've lived the pain and built the solution.
                 </p>
               </div>
@@ -249,10 +249,10 @@ export default function InvestorPage() {
 
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-white dark:bg-dark-700 p-6 rounded-xl">
-                <div className="flex items-center justify-center w-12 h-12 bg-primary-600 rounded-lg mb-4">
+                <div className="flex items-center justify-center w-12 h-12 bg-primary-500 rounded-lg mb-4">
                   <TrendingUp className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-2">
+                <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-2">
                   Early Traction & Validation
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -278,10 +278,10 @@ export default function InvestorPage() {
                 <div className="flex items-center justify-center w-12 h-12 bg-success-600 rounded-lg mb-4">
                   <TrendingUp className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-2">
+                <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-2">
                   Guaranteed ROI Model
                 </h3>
-                <p className="font-inter text-gray-600 dark:text-gray-300">
+                <p className="font-montserrat text-gray-600 dark:text-gray-300">
                   25% savings on platform fees plus 15-25% maintenance cost reduction equals immediate value proposition.
                 </p>
               </div>
@@ -289,10 +289,10 @@ export default function InvestorPage() {
                 <div className="flex items-center justify-center w-12 h-12 bg-accent-600 rounded-lg mb-4">
                   <Shield className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-2">
+                <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-2">
                   Purpose-Built Competitive Moat
                 </h3>
-                <p className="font-inter text-gray-600 dark:text-gray-300 mb-3">
+                <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-3">
                   While generic fleet management tools exist, none are purpose-built for P2P hosts' unique challenges: multi-platform management, peer-to-peer insurance compliance, and hyperlocal market pricing. Our founder insight + proprietary data network = 2-3 year head start on competition.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
@@ -317,7 +317,7 @@ export default function InvestorPage() {
             </div>
 
             <div className="mt-12 text-center">
-              <p className="font-inter text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-4">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-4">
                 Want to see the full pitch deck and financial projections? Request access below.
               </p>
               <a
@@ -335,9 +335,9 @@ export default function InvestorPage() {
 
         {/* Business Model Clarity Section */}
         <section className="py-20 bg-gray-50 dark:bg-dark-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
             <div className="text-center mb-12">
-              <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-4">
+              <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-4">
                 Revenue Model & Unit Economics
               </h2>
             </div>
@@ -345,38 +345,38 @@ export default function InvestorPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
               {/* Column 1: Traditional Fleet Operators */}
               <div className="bg-white dark:bg-dark-700 p-8 rounded-xl">
-                <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-4">
+                <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-4">
                   For Traditional Fleet Operators
                 </h3>
-                <h4 className="font-space font-semibold text-xl text-primary-600 dark:text-primary-400 mb-3">
+                <h4 className="font-dfaalt font-semibold text-xl text-primary-500 dark:text-primary-400 mb-3">
                   Pure SaaS Business Model
                 </h4>
-                <p className="font-inter text-gray-600 dark:text-gray-300 mb-4">
+                <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-4">
                   Operators pay $49-$199/mo subscription based on fleet size.
                 </p>
-                <p className="font-inter text-gray-600 dark:text-gray-300">
-                  We don't take booking commissions—operators keep 100% of rental revenue.
+                <p className="font-montserrat text-gray-600 dark:text-gray-300">
+                  We don't take booking commissions - operators keep 100% of rental revenue.
                 </p>
-                <p className="font-inter text-gray-600 dark:text-gray-300 mt-4 font-semibold">
+                <p className="font-montserrat text-gray-600 dark:text-gray-300 mt-4 font-semibold">
                   This aligns our incentives: we win when they grow.
                 </p>
               </div>
 
               {/* Column 2: P2P Hosts */}
               <div className="bg-white dark:bg-dark-700 p-8 rounded-xl">
-                <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-4">
+                <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-4">
                   For P2P Hosts
                 </h3>
-                <h4 className="font-space font-semibold text-xl text-accent-600 dark:text-accent-400 mb-3">
+                <h4 className="font-dfaalt font-semibold text-xl text-accent-600 dark:text-accent-400 mb-3">
                   Hybrid SaaS + Transaction Model
                 </h4>
-                <p className="font-inter text-gray-600 dark:text-gray-300 mb-4">
+                <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-4">
                   Low monthly SaaS fee + 2% transaction fee on direct bookings.
                 </p>
-                <p className="font-inter text-gray-600 dark:text-gray-300 mb-4">
+                <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-4">
                   (Compare to Turo's 25-35% platform fees)
                 </p>
-                <p className="font-inter text-gray-600 dark:text-gray-300 font-semibold">
+                <p className="font-montserrat text-gray-600 dark:text-gray-300 font-semibold">
                   Projected blended ARPU: $475/month at scale.
                 </p>
               </div>
@@ -384,29 +384,29 @@ export default function InvestorPage() {
 
             {/* Key Metrics Box */}
             <div className="bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-xl p-8">
-              <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-6 text-center">
+              <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-6 text-center">
                 Unit Economics at Scale
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
                 <div>
-                  <div className="text-2xl font-space font-bold text-primary-600 dark:text-primary-400 mb-2">$450</div>
-                  <div className="font-inter text-sm text-gray-600 dark:text-gray-400">CAC</div>
+                  <div className="text-2xl font-dfaalt font-bold text-primary-500 dark:text-primary-400 mb-2">$450</div>
+                  <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">CAC</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-space font-bold text-primary-600 dark:text-primary-400 mb-2">$8,500</div>
-                  <div className="font-inter text-sm text-gray-600 dark:text-gray-400">LTV</div>
+                  <div className="text-2xl font-dfaalt font-bold text-primary-500 dark:text-primary-400 mb-2">$8,500</div>
+                  <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">LTV</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-space font-bold text-success-600 dark:text-success-400 mb-2">18.9:1</div>
-                  <div className="font-inter text-sm text-gray-600 dark:text-gray-400">LTV:CAC</div>
+                  <div className="text-2xl font-dfaalt font-bold text-success-600 dark:text-success-400 mb-2">18.9:1</div>
+                  <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">LTV:CAC</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-space font-bold text-success-600 dark:text-success-400 mb-2">87%</div>
-                  <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Gross Margin</div>
+                  <div className="text-2xl font-dfaalt font-bold text-success-600 dark:text-success-400 mb-2">87%</div>
+                  <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">Gross Margin</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-space font-bold text-success-600 dark:text-success-400 mb-2">&lt;3%</div>
-                  <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Monthly Churn</div>
+                  <div className="text-2xl font-dfaalt font-bold text-success-600 dark:text-success-400 mb-2">&lt;3%</div>
+                  <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">Monthly Churn</div>
                 </div>
               </div>
             </div>
@@ -415,9 +415,9 @@ export default function InvestorPage() {
 
         {/* Go-to-Market Strategy Section */}
         <section className="py-20 bg-white dark:bg-dark-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
             <div className="text-center mb-12">
-              <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-4">
+              <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-4">
                 Path to 100K Hosts: Our 4-Phase Growth Plan
               </h2>
             </div>
@@ -426,10 +426,10 @@ export default function InvestorPage() {
               {/* Phase 1 */}
               <div className="bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 p-6 rounded-xl border border-primary-200 dark:border-primary-800">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
-                  <h3 className="font-space font-bold text-xl text-gray-900 dark:text-white">Phase 1 (2024-Q4)</h3>
+                  <div className="w-10 h-10 bg-primary-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                  <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white">Phase 1 (2024-Q4)</h3>
                 </div>
-                <p className="font-space font-semibold text-gray-900 dark:text-white mb-3">Validate & Refine</p>
+                <p className="font-dfaalt font-semibold text-gray-900 dark:text-white mb-3">Validate & Refine</p>
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <li>• 100 beta hosts across 5 major markets</li>
                   <li>• Validate product-market fit</li>
@@ -442,9 +442,9 @@ export default function InvestorPage() {
               <div className="bg-gradient-to-br from-accent-50 to-success-50 dark:from-accent-900/20 dark:to-success-900/20 p-6 rounded-xl border border-accent-200 dark:border-accent-800">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-10 h-10 bg-accent-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
-                  <h3 className="font-space font-bold text-xl text-gray-900 dark:text-white">Phase 2 (2025)</h3>
+                  <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white">Phase 2 (2025)</h3>
                 </div>
-                <p className="font-space font-semibold text-gray-900 dark:text-white mb-3">Community-Led Growth</p>
+                <p className="font-dfaalt font-semibold text-gray-900 dark:text-white mb-3">Community-Led Growth</p>
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <li>• 1,000 hosts via Turo Power Host community</li>
                   <li>• Launch host referral program (20% revenue share for 12 months)</li>
@@ -457,9 +457,9 @@ export default function InvestorPage() {
               <div className="bg-gradient-to-br from-success-50 to-warning-50 dark:from-success-900/20 dark:to-warning-900/20 p-6 rounded-xl border border-success-200 dark:border-success-800">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-10 h-10 bg-success-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
-                  <h3 className="font-space font-bold text-xl text-gray-900 dark:text-white">Phase 3 (2026)</h3>
+                  <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white">Phase 3 (2026)</h3>
                 </div>
-                <p className="font-space font-semibold text-gray-900 dark:text-white mb-3">Strategic Partnerships</p>
+                <p className="font-dfaalt font-semibold text-gray-900 dark:text-white mb-3">Strategic Partnerships</p>
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <li>• 10,000 hosts through insurance provider partnerships</li>
                   <li>• White-label solution for rental associations</li>
@@ -472,9 +472,9 @@ export default function InvestorPage() {
               <div className="bg-gradient-to-br from-warning-50 to-primary-50 dark:from-warning-900/20 dark:to-primary-900/20 p-6 rounded-xl border border-warning-200 dark:border-warning-800">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-10 h-10 bg-warning-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
-                  <h3 className="font-space font-bold text-xl text-gray-900 dark:text-white">Phase 4 (2027+)</h3>
+                  <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white">Phase 4 (2027+)</h3>
                 </div>
-                <p className="font-space font-semibold text-gray-900 dark:text-white mb-3">Market Expansion</p>
+                <p className="font-dfaalt font-semibold text-gray-900 dark:text-white mb-3">Market Expansion</p>
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <li>• International expansion (Canada, UK, Australia)</li>
                   <li>• Enterprise solution for traditional rental agencies</li>
@@ -488,22 +488,22 @@ export default function InvestorPage() {
 
         {/* Access Form */}
         <section className="py-20 bg-white dark:bg-dark-900">
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
             {!emailSent ? (
               <div className="bg-gray-50 dark:bg-dark-800 p-8 rounded-2xl">
-                <h2 className="font-space font-bold text-3xl text-gray-900 dark:text-white mb-6 text-center">
+                <h2 className="font-dfaalt font-bold text-3xl text-gray-900 dark:text-white mb-6 text-center">
                   Investor Qualification
                 </h2>
-                <p className="font-inter text-gray-600 dark:text-gray-300 mb-8 text-center">
-                  Please provide your information to access our investor materials. 
+                <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-8 text-center">
+                  Please provide your information to access our investor materials.
                   You'll receive an email verification link to unlock the portal.
                 </p>
-                
+
                 <form onSubmit={handleFormSubmit} className="space-y-4" autoComplete="on">
                   {/* Name & Email Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="firstName" className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
+                      <label htmlFor="firstName" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
                         Full Name *
                       </label>
                       <input
@@ -519,7 +519,7 @@ export default function InvestorPage() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
+                      <label htmlFor="email" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
                         Email *
                       </label>
                       <input
@@ -538,7 +538,7 @@ export default function InvestorPage() {
 
                   {/* Company */}
                   <div>
-                    <label htmlFor="companyName" className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
+                    <label htmlFor="companyName" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
                       Company/Fund Name *
                     </label>
                     <input
@@ -557,7 +557,7 @@ export default function InvestorPage() {
                   {/* Investment Range & Type */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="investmentAmountRange" className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
+                      <label htmlFor="investmentAmountRange" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
                         Investment Range *
                       </label>
                       <select
@@ -576,7 +576,7 @@ export default function InvestorPage() {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="investmentType" className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
+                      <label htmlFor="investmentType" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
                         Investor Type *
                       </label>
                       <select
@@ -600,7 +600,7 @@ export default function InvestorPage() {
                   {/* Timeline & Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="investmentTimeline" className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
+                      <label htmlFor="investmentTimeline" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
                         Investment Timeline *
                       </label>
                       <select
@@ -619,7 +619,7 @@ export default function InvestorPage() {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
+                      <label htmlFor="phone" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-1.5 text-sm">
                         Phone Number
                       </label>
                       <input
@@ -636,7 +636,7 @@ export default function InvestorPage() {
                   </div>
 
                   <div>
-                    <label className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Additional Notes
                     </label>
                     <textarea
@@ -679,11 +679,11 @@ export default function InvestorPage() {
                 <div className="flex items-center justify-center w-16 h-16 bg-accent-600 rounded-full mx-auto mb-4">
                   <Mail className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-4">
+                <h2 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-4">
                   Verification Email Sent
                 </h2>
-                <p className="font-inter text-gray-600 dark:text-gray-300 mb-6">
-                  We've sent a verification link to <strong>{formData.email}</strong>. 
+                <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-6">
+                  We've sent a verification link to <strong>{formData.email}</strong>.
                   Please check your email and click the link to access the investor portal.
                 </p>
                 <button
@@ -705,23 +705,23 @@ export default function InvestorPage() {
     <div className="pt-16">
       {/* Welcome Header */}
       <section className="py-12 bg-gradient-to-br from-accent-600 to-accent-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="flex items-center justify-between">
             <div>
               <div className="flex items-center space-x-2 mb-2">
                 <Unlock className="w-6 h-6 text-accent-200" />
-                <span className="font-inter text-accent-200">Verified Investor Portal</span>
+                <span className="font-montserrat text-accent-200">Verified Investor Portal</span>
               </div>
-              <h1 className="font-space font-bold text-4xl mb-2">
+              <h1 className="font-dfaalt font-bold text-4xl mb-2">
                 Welcome, {formData.firstName} {formData.lastName}
               </h1>
-              <p className="font-inter text-accent-100">
+              <p className="font-montserrat text-accent-100">
                 {formData.companyName} • {formData.investmentType}
               </p>
             </div>
             <div className="text-right">
-              <div className="font-inter text-sm text-accent-200 mb-1">Last Updated</div>
-              <div className="font-inter font-semibold">January 2025</div>
+              <div className="font-montserrat text-sm text-accent-200 mb-1">Last Updated</div>
+              <div className="font-montserrat font-semibold">January 2025</div>
             </div>
           </div>
         </div>
@@ -729,45 +729,45 @@ export default function InvestorPage() {
 
       {/* Executive Summary */}
       <section className="py-16 bg-white dark:bg-dark-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="text-center mb-12">
-            <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-4">
+            <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-4">
               Investment Opportunity
             </h2>
-            <p className="font-inter text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="font-montserrat text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Exotiq is raising $1.5M to build the future of fleet management and capture a $500M+ market opportunity.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
             <div className="text-center">
-              <div className="text-4xl font-space font-bold text-accent-600 mb-2">$1.5M</div>
-              <div className="font-inter text-gray-600 dark:text-gray-400">Raising</div>
+              <div className="text-4xl font-dfaalt font-bold text-accent-600 mb-2">$1.5M</div>
+              <div className="font-montserrat text-gray-600 dark:text-gray-400">Raising</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-space font-bold text-accent-600 mb-2">$2.8B</div>
-              <div className="font-inter text-gray-600 dark:text-gray-400">Market by 2027</div>
+              <div className="text-4xl font-dfaalt font-bold text-accent-600 mb-2">$2.8B</div>
+              <div className="font-montserrat text-gray-600 dark:text-gray-400">Market by 2027</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-space font-bold text-accent-600 mb-2">40%</div>
-              <div className="font-inter text-gray-600 dark:text-gray-400">YoY Growth</div>
+              <div className="text-4xl font-dfaalt font-bold text-accent-600 mb-2">40%</div>
+              <div className="font-montserrat text-gray-600 dark:text-gray-400">YoY Growth</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-space font-bold text-accent-600 mb-2">100K+</div>
-              <div className="font-inter text-gray-600 dark:text-gray-400">Target Hosts</div>
+              <div className="text-4xl font-dfaalt font-bold text-accent-600 mb-2">100K+</div>
+              <div className="font-montserrat text-gray-600 dark:text-gray-400">Target Hosts</div>
             </div>
           </div>
 
           {/* Key Investment Highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl">
-              <div className="flex items-center justify-center w-12 h-12 bg-primary-600 rounded-lg mb-4">
+              <div className="flex items-center justify-center w-12 h-12 bg-primary-500 rounded-lg mb-4">
                 <Target className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-2">
+              <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-2">
                 Proven Market Need
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300">
                 Built by former Turo hosts who experienced the pain firsthand. 20+ beta signups before product launch.
               </p>
             </div>
@@ -775,10 +775,10 @@ export default function InvestorPage() {
               <div className="flex items-center justify-center w-12 h-12 bg-success-600 rounded-lg mb-4">
                 <TrendingUp className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-2">
+              <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-2">
                 Guaranteed ROI Model
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300">
                 25% savings on platform fees plus 15 to 25% maintenance cost reduction equals immediate value proposition.
               </p>
             </div>
@@ -786,10 +786,10 @@ export default function InvestorPage() {
               <div className="flex items-center justify-center w-12 h-12 bg-accent-600 rounded-lg mb-4">
                 <Zap className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-2">
+              <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-2">
                 First-Mover Advantage
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300">
                 No direct competitors in car-sharing specific fleet management. Capturing market before incumbents adapt.
               </p>
             </div>
@@ -799,80 +799,80 @@ export default function InvestorPage() {
 
       {/* Financial Projections */}
       <section className="py-16 bg-gray-50 dark:bg-dark-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-12 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
+          <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-12 text-center">
             Financial Projections
           </h2>
 
           {/* Revenue Model */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             <div>
-              <h3 className="font-space font-semibold text-2xl text-gray-900 dark:text-white mb-6">
+              <h3 className="font-dfaalt font-semibold text-2xl text-gray-900 dark:text-white mb-6">
                 SaaS Pricing Tiers
               </h3>
               <div className="space-y-4">
                 <div className="bg-white dark:bg-dark-700 p-4 rounded-lg flex justify-between items-center">
                   <div>
-                    <div className="font-space font-semibold text-gray-900 dark:text-white">Starter</div>
-                    <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Up to 5 vehicles</div>
+                    <div className="font-dfaalt font-semibold text-gray-900 dark:text-white">Starter</div>
+                    <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">Up to 5 vehicles</div>
                   </div>
-                  <div className="font-space font-bold text-xl text-primary-600">$49/mo</div>
+                  <div className="font-dfaalt font-bold text-xl text-primary-500">$49/mo</div>
                 </div>
                 <div className="bg-white dark:bg-dark-700 p-4 rounded-lg flex justify-between items-center">
                   <div>
-                    <div className="font-space font-semibold text-gray-900 dark:text-white">Growth</div>
-                    <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Up to 20 vehicles</div>
+                    <div className="font-dfaalt font-semibold text-gray-900 dark:text-white">Growth</div>
+                    <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">Up to 20 vehicles</div>
                   </div>
-                  <div className="font-space font-bold text-xl text-accent-600">$99/mo</div>
+                  <div className="font-dfaalt font-bold text-xl text-accent-600">$99/mo</div>
                 </div>
                 <div className="bg-white dark:bg-dark-700 p-4 rounded-lg flex justify-between items-center">
                   <div>
-                    <div className="font-space font-semibold text-gray-900 dark:text-white">Scale</div>
-                    <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Up to 50 vehicles</div>
+                    <div className="font-dfaalt font-semibold text-gray-900 dark:text-white">Scale</div>
+                    <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">Up to 50 vehicles</div>
                   </div>
-                  <div className="font-space font-bold text-xl text-success-600">$199/mo</div>
+                  <div className="font-dfaalt font-bold text-xl text-success-600">$199/mo</div>
                 </div>
                 <div className="bg-white dark:bg-dark-700 p-4 rounded-lg flex justify-between items-center">
                   <div>
-                    <div className="font-space font-semibold text-gray-900 dark:text-white">Enterprise</div>
-                    <div className="font-inter text-sm text-gray-600 dark:text-gray-400">50+ vehicles</div>
+                    <div className="font-dfaalt font-semibold text-gray-900 dark:text-white">Enterprise</div>
+                    <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">50+ vehicles</div>
                   </div>
-                  <div className="font-space font-bold text-xl text-warning-600">Custom</div>
+                  <div className="font-dfaalt font-bold text-xl text-warning-600">Custom</div>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3 className="font-space font-semibold text-2xl text-gray-900 dark:text-white mb-6">
+              <h3 className="font-dfaalt font-semibold text-2xl text-gray-900 dark:text-white mb-6">
                 Revenue Streams
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                  <div className="w-4 h-4 bg-primary-600 rounded-full"></div>
+                  <div className="w-4 h-4 bg-primary-500 rounded-full"></div>
                   <div>
-                    <div className="font-inter font-medium text-gray-900 dark:text-white">SaaS Subscriptions (70%)</div>
-                    <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Monthly recurring revenue</div>
+                    <div className="font-montserrat font-medium text-gray-900 dark:text-white">SaaS Subscriptions (70%)</div>
+                    <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">Monthly recurring revenue</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-4 h-4 bg-accent-600 rounded-full"></div>
                   <div>
-                    <div className="font-inter font-medium text-gray-900 dark:text-white">Transaction Fees (20%)</div>
-                    <div className="font-inter text-sm text-gray-600 dark:text-gray-400">2% on direct bookings</div>
+                    <div className="font-montserrat font-medium text-gray-900 dark:text-white">Transaction Fees (20%)</div>
+                    <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">2% on direct bookings</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-4 h-4 bg-success-600 rounded-full"></div>
                   <div>
-                    <div className="font-inter font-medium text-gray-900 dark:text-white">Merchant Services (7%)</div>
-                    <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Payment processing</div>
+                    <div className="font-montserrat font-medium text-gray-900 dark:text-white">Merchant Services (7%)</div>
+                    <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">Payment processing</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-4 h-4 bg-warning-600 rounded-full"></div>
                   <div>
-                    <div className="font-inter font-medium text-gray-900 dark:text-white">Premium Add-ons (3%)</div>
-                    <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Book, Pulse, Vault modules</div>
+                    <div className="font-montserrat font-medium text-gray-900 dark:text-white">Premium Add-ons (3%)</div>
+                    <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">Book, Pulse, Vault modules</div>
                   </div>
                 </div>
               </div>
@@ -881,20 +881,20 @@ export default function InvestorPage() {
 
           {/* Growth Projections */}
           <div className="bg-white dark:bg-dark-700 p-8 rounded-2xl">
-            <h3 className="font-space font-semibold text-2xl text-gray-900 dark:text-white mb-6 text-center">
+            <h3 className="font-dfaalt font-semibold text-2xl text-gray-900 dark:text-white mb-6 text-center">
               3-Year Growth Projection
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-gray-200 dark:border-dark-600">
-                    <th className="font-space font-semibold text-left py-3 text-gray-900 dark:text-white">Metric</th>
-                    <th className="font-space font-semibold text-center py-3 text-gray-900 dark:text-white">Year 1</th>
-                    <th className="font-space font-semibold text-center py-3 text-gray-900 dark:text-white">Year 2</th>
-                    <th className="font-space font-semibold text-center py-3 text-gray-900 dark:text-white">Year 3</th>
+                    <th className="font-dfaalt font-semibold text-left py-3 text-gray-900 dark:text-white">Metric</th>
+                    <th className="font-dfaalt font-semibold text-center py-3 text-gray-900 dark:text-white">Year 1</th>
+                    <th className="font-dfaalt font-semibold text-center py-3 text-gray-900 dark:text-white">Year 2</th>
+                    <th className="font-dfaalt font-semibold text-center py-3 text-gray-900 dark:text-white">Year 3</th>
                   </tr>
                 </thead>
-                <tbody className="font-inter">
+                <tbody className="font-montserrat">
                   <tr className="border-b border-gray-100 dark:border-dark-600">
                     <td className="py-3 text-gray-900 dark:text-white">Active Customers</td>
                     <td className="py-3 text-center text-gray-600 dark:text-gray-300">50</td>
@@ -928,8 +928,8 @@ export default function InvestorPage() {
 
       {/* Team Section */}
       <section className="py-16 bg-white dark:bg-dark-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-12 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
+          <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-12 text-center">
             Leadership Team
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
@@ -944,16 +944,16 @@ export default function InvestorPage() {
                 <div className="w-24 h-24 bg-gray-200 dark:bg-dark-700 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <member.icon className="w-8 h-8 text-gray-400" />
                 </div>
-                <div className="font-space font-semibold text-lg text-gray-900 dark:text-white mb-1">
+                <div className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-1">
                   {member.name}
                 </div>
-                <div className="font-inter text-sm text-gray-600 dark:text-gray-400">
+                <div className="font-montserrat text-sm text-gray-600 dark:text-gray-400">
                   {member.role}
                 </div>
               </div>
             ))}
           </div>
-          <p className="font-inter text-center text-gray-500 dark:text-gray-400 mt-8">
+          <p className="font-montserrat text-center text-gray-500 dark:text-gray-400 mt-8">
             Detailed team bios and credentials available in pitch deck
           </p>
         </div>
@@ -961,21 +961,21 @@ export default function InvestorPage() {
 
       {/* Competitive Analysis */}
       <section className="py-16 bg-gray-50 dark:bg-dark-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-12 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
+          <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-12 text-center">
             Competitive Advantage
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full bg-white dark:bg-dark-700 rounded-2xl overflow-hidden">
               <thead className="bg-accent-600 text-white">
                 <tr>
-                  <th className="font-space font-semibold text-left p-6">Feature</th>
-                  <th className="font-space font-semibold text-center p-6">Exotiq</th>
-                  <th className="font-space font-semibold text-center p-6">Generic Fleet Tools</th>
-                  <th className="font-space font-semibold text-center p-6">Spreadsheets</th>
+                  <th className="font-dfaalt font-semibold text-left p-6">Feature</th>
+                  <th className="font-dfaalt font-semibold text-center p-6">Exotiq</th>
+                  <th className="font-dfaalt font-semibold text-center p-6">Generic Fleet Tools</th>
+                  <th className="font-dfaalt font-semibold text-center p-6">Spreadsheets</th>
                 </tr>
               </thead>
-              <tbody className="font-inter">
+              <tbody className="font-montserrat">
                 <tr className="border-b border-gray-200 dark:border-dark-600">
                   <td className="p-6 font-medium text-gray-900 dark:text-white">Car-sharing Platform Integration</td>
                   <td className="p-6 text-center"><CheckCircle className="w-6 h-6 text-success-600 mx-auto" /></td>
@@ -1020,12 +1020,12 @@ export default function InvestorPage() {
 
       {/* Pitch Deck Section */}
       <section className="py-16 bg-white dark:bg-dark-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
+          <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-6">
             Pitch Deck & Materials
           </h2>
-          <p className="font-inter text-lg text-gray-600 dark:text-gray-300 mb-12">
-            Access our complete investor materials including detailed financial projections, 
+          <p className="font-montserrat text-lg text-gray-600 dark:text-gray-300 mb-12">
+            Access our complete investor materials including detailed financial projections,
             market analysis, and product roadmap.
           </p>
 
@@ -1034,43 +1034,43 @@ export default function InvestorPage() {
               <div className="flex items-center justify-center w-16 h-16 bg-accent-600 rounded-xl mx-auto mb-4">
                 <FileText className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-4">
+              <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-4">
                 Investor Pitch Deck
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300 mb-6">
-                Complete 15-slide presentation covering market opportunity, product demo, 
+              <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-6">
+                Complete 15-slide presentation covering market opportunity, product demo,
                 financial projections, and team credentials.
               </p>
-              <button 
+              <button
                 onClick={() => window.open('https://invest.exotiq.ai/expanded', '_blank')}
                 className="font-poppins font-bold text-sm uppercase tracking-wide px-6 py-3 bg-accent-600 hover:bg-accent-700 text-white rounded-lg transition-colors flex items-center space-x-2 mx-auto"
               >
                 <Download className="w-4 h-4" />
                 <span>Download PDF</span>
               </button>
-              <p className="font-inter text-xs text-gray-500 dark:text-gray-400 mt-2">
+              <p className="font-montserrat text-xs text-gray-500 dark:text-gray-400 mt-2">
                 Available when ready
               </p>
             </div>
 
             <div className="bg-gray-50 dark:bg-dark-800 p-8 rounded-xl">
-              <div className="flex items-center justify-center w-16 h-16 bg-primary-600 rounded-xl mx-auto mb-4">
+              <div className="flex items-center justify-center w-16 h-16 bg-primary-500 rounded-xl mx-auto mb-4">
                 <BarChart3 className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-4">
+              <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-4">
                 Financial Model
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300 mb-6">
-                Detailed 5-year financial projections including revenue forecasts, 
+              <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-6">
+                Detailed 5-year financial projections including revenue forecasts,
                 unit economics, and sensitivity analysis.
               </p>
-              <button 
-                className="font-poppins font-bold text-sm uppercase tracking-wide px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors flex items-center space-x-2 mx-auto"
+              <button
+                className="font-poppins font-bold text-sm uppercase tracking-wide px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors flex items-center space-x-2 mx-auto"
               >
                 <ExternalLink className="w-4 h-4" />
                 <span>Data Room Request</span>
               </button>
-              <p className="font-inter text-xs text-gray-500 dark:text-gray-400 mt-2">
+              <p className="font-montserrat text-xs text-gray-500 dark:text-gray-400 mt-2">
                 Google Sheets access
               </p>
             </div>
@@ -1080,22 +1080,22 @@ export default function InvestorPage() {
 
       {/* Next Steps */}
       <section className="py-16 bg-gradient-to-br from-accent-600 to-accent-800 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-space font-bold text-4xl mb-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
+          <h2 className="font-dfaalt font-bold text-4xl mb-6">
             Ready to Invest?
           </h2>
-          <p className="font-inter text-xl mb-8 opacity-90">
+          <p className="font-montserrat text-xl mb-8 opacity-90">
             Join us in building the future of fleet management. Let's schedule a call to discuss your investment.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
+            <button
               onClick={() => window.open('https://calendly.com/hello-exotiq/30min?back=1&month=2025-08', '_blank')}
               className="font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 bg-white text-accent-600 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center min-h-[44px] touch-manipulation"
             >
               <Calendar className="w-5 h-5" />
               <span>Schedule Call</span>
             </button>
-            <Link 
+            <Link
               to="/contact"
               className="font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-accent-600 rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center min-h-[44px] touch-manipulation"
             >
@@ -1103,7 +1103,7 @@ export default function InvestorPage() {
               <span>Send Questions</span>
             </Link>
           </div>
-          <p className="font-inter text-sm opacity-75 mt-6">
+          <p className="font-montserrat text-sm opacity-75 mt-6">
             Confidential and proprietary information. For qualified investors only.
           </p>
         </div>

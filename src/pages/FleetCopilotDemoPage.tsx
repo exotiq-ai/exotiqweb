@@ -35,7 +35,7 @@ export default function FleetCopilotDemoPage() {
       />
 
       {/* Header */}
-      <section className="py-12 bg-gradient-to-br from-accent-600 to-primary-600 text-white relative overflow-hidden">
+      <section className="py-12 bg-gradient-to-br from-accent-600 to-primary-500 text-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -43,24 +43,24 @@ export default function FleetCopilotDemoPage() {
           }}></div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 relative z-10">
           {/* Back Button */}
           <Link 
             to="/"
             className="inline-flex items-center space-x-2 text-white/80 hover:text-white transition-colors mb-8 group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="font-inter">Back to Home</span>
+            <span className="font-montserrat">Back to Home</span>
           </Link>
 
           <div className="text-center">
             <div className="flex items-center justify-center w-24 h-24 bg-white/20 backdrop-blur-sm rounded-2xl mx-auto mb-8 animate-pulse-subtle">
               <Bot className="w-12 h-12 text-white" />
             </div>
-            <h1 className="font-space font-bold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+            <h1 className="font-dfaalt font-bold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
               Meet FleetCopilot™
             </h1>
-            <p className="font-inter text-xl md:text-2xl opacity-90 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="font-montserrat text-xl md:text-2xl opacity-90 mb-8 max-w-3xl mx-auto leading-relaxed">
               Your AI assistant for fleet management. Try a live conversation about pricing, 
               maintenance, scaling, or any fleet operation challenge.
             </p>
@@ -69,18 +69,18 @@ export default function FleetCopilotDemoPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300 group">
                 <Phone className="w-8 h-8 text-white mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                <div className="font-inter font-semibold text-base mb-2">Natural Voice Conversations</div>
-                <div className="font-inter text-sm opacity-80">Speak naturally with your AI assistant</div>
+                <div className="font-montserrat font-semibold text-base mb-2">Natural Voice Conversations</div>
+                <div className="font-montserrat text-sm opacity-80">Speak naturally with your AI assistant</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300 group">
                 <Zap className="w-8 h-8 text-white mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                <div className="font-inter font-semibold text-base mb-2">Fleet Management Expertise</div>
-                <div className="font-inter text-sm opacity-80">Built specifically for rental operators</div>
+                <div className="font-montserrat font-semibold text-base mb-2">Fleet Management Expertise</div>
+                <div className="font-montserrat text-sm opacity-80">Built specifically for rental operators</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300 group">
                 <MessageSquare className="w-8 h-8 text-white mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                <div className="font-inter font-semibold text-base mb-2">Real-time Assistance</div>
-                <div className="font-inter text-sm opacity-80">Get instant answers to your questions</div>
+                <div className="font-montserrat font-semibold text-base mb-2">Real-time Assistance</div>
+                <div className="font-montserrat text-sm opacity-80">Get instant answers to your questions</div>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function FleetCopilotDemoPage() {
 
       {/* Demo Section */}
       <section className="py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="bg-white dark:bg-dark-800 rounded-3xl shadow-2xl p-8 md:p-16 border border-gray-200 dark:border-dark-700 relative overflow-hidden">
             {/* Subtle background pattern */}
             <div className="absolute inset-0 opacity-5">
@@ -103,10 +103,10 @@ export default function FleetCopilotDemoPage() {
                 <Mic className="w-4 h-4 mr-2" />
                 Live AI Demo
               </div>
-              <h2 className="font-space font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-6">
+              <h2 className="font-dfaalt font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-6">
                 Start a Conversation with FleetCopilot™
               </h2>
-              <p className="font-inter text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+              <p className="font-montserrat text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
                 Click the phone icon below to start a live conversation. Ask about pricing strategies, 
                 maintenance schedules, scaling challenges, or any fleet management topic.
               </p>
@@ -114,20 +114,20 @@ export default function FleetCopilotDemoPage() {
               {/* Conversation starters */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
                 <div className="bg-gray-50 dark:bg-dark-700 p-4 rounded-lg border border-gray-200 dark:border-dark-600">
-                  <div className="font-inter font-semibold text-sm text-gray-900 dark:text-white mb-1">Pricing</div>
-                  <div className="font-inter text-xs text-gray-600 dark:text-gray-400">"How should I price my Tesla?"</div>
+                  <div className="font-montserrat font-semibold text-sm text-gray-900 dark:text-white mb-1">Pricing</div>
+                  <div className="font-montserrat text-xs text-gray-600 dark:text-gray-400">"How should I price my Tesla?"</div>
                 </div>
                 <div className="bg-gray-50 dark:bg-dark-700 p-4 rounded-lg border border-gray-200 dark:border-dark-600">
-                  <div className="font-inter font-semibold text-sm text-gray-900 dark:text-white mb-1">🔧 Maintenance</div>
-                  <div className="font-inter text-xs text-gray-600 dark:text-gray-400">"When should I service my fleet?"</div>
+                  <div className="font-montserrat font-semibold text-sm text-gray-900 dark:text-white mb-1">🔧 Maintenance</div>
+                  <div className="font-montserrat text-xs text-gray-600 dark:text-gray-400">"When should I service my fleet?"</div>
                 </div>
                 <div className="bg-gray-50 dark:bg-dark-700 p-4 rounded-lg border border-gray-200 dark:border-dark-600">
-                  <div className="font-inter font-semibold text-sm text-gray-900 dark:text-white mb-1">📈 Scaling</div>
-                  <div className="font-inter text-xs text-gray-600 dark:text-gray-400">"How do I grow to 20 cars?"</div>
+                  <div className="font-montserrat font-semibold text-sm text-gray-900 dark:text-white mb-1">📈 Scaling</div>
+                  <div className="font-montserrat text-xs text-gray-600 dark:text-gray-400">"How do I grow to 20 cars?"</div>
                 </div>
                 <div className="bg-gray-50 dark:bg-dark-700 p-4 rounded-lg border border-gray-200 dark:border-dark-600">
-                  <div className="font-inter font-semibold text-sm text-gray-900 dark:text-white mb-1">💡 Strategy</div>
-                  <div className="font-inter text-xs text-gray-600 dark:text-gray-400">"What's the best platform mix?"</div>
+                  <div className="font-montserrat font-semibold text-sm text-gray-900 dark:text-white mb-1">💡 Strategy</div>
+                  <div className="font-montserrat text-xs text-gray-600 dark:text-gray-400">"What's the best platform mix?"</div>
                 </div>
               </div>
             </div>
@@ -142,21 +142,21 @@ export default function FleetCopilotDemoPage() {
             {/* Demo info */}
             <div className="bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-2xl p-6 relative z-10">
               <div className="text-center">
-                <h3 className="font-space font-semibold text-lg text-gray-900 dark:text-white mb-3">
+                <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-3">
                   💡 Demo Tips
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
-                    <span className="font-inter text-gray-700 dark:text-gray-300">Speak naturally and clearly</span>
+                    <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
+                    <span className="font-montserrat text-gray-700 dark:text-gray-300">Speak naturally and clearly</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-accent-600 rounded-full"></div>
-                    <span className="font-inter text-gray-700 dark:text-gray-300">Ask specific fleet questions</span>
+                    <span className="font-montserrat text-gray-700 dark:text-gray-300">Ask specific fleet questions</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-success-600 rounded-full"></div>
-                    <span className="font-inter text-gray-700 dark:text-gray-300">Try different scenarios</span>
+                    <span className="font-montserrat text-gray-700 dark:text-gray-300">Try different scenarios</span>
                   </div>
                 </div>
               </div>
@@ -167,16 +167,16 @@ export default function FleetCopilotDemoPage() {
 
       {/* About FleetCopilot */}
       <section className="py-20 bg-gray-50 dark:bg-dark-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-accent-100 dark:bg-accent-900/30 rounded-full text-accent-700 dark:text-accent-300 font-semibold text-sm mb-6">
               <Bot className="w-4 h-4 mr-2" />
               Powered by Advanced AI
             </div>
-            <h2 className="font-space font-bold text-3xl md:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6">
+            <h2 className="font-dfaalt font-bold text-3xl md:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6">
               FleetCopilot™ in the Exotiq Platform
             </h2>
-            <p className="font-inter text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+            <p className="font-montserrat text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
               FleetCopilot™ is integrated throughout the Exotiq platform, providing intelligent 
               assistance for every aspect of your fleet management operation.
             </p>
@@ -184,30 +184,30 @@ export default function FleetCopilotDemoPage() {
 
           {/* Key Benefits */}
           <div className="bg-white dark:bg-dark-700 rounded-3xl p-8 md:p-12 mb-16 shadow-xl border border-gray-200 dark:border-dark-600">
-            <h3 className="font-space font-bold text-2xl md:text-3xl text-gray-900 dark:text-white mb-8 text-center">
+            <h3 className="font-dfaalt font-bold text-2xl md:text-3xl text-gray-900 dark:text-white mb-8 text-center">
               Why FleetCopilot™ Changes Everything
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h4 className="font-space font-semibold text-lg text-gray-900 dark:text-white mb-4">Time Savings</h4>
+                <h4 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-4">Time Savings</h4>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-success-600 mt-1 flex-shrink-0" />
-                  <span className="font-inter text-gray-700 dark:text-gray-300">Saves 15+ hours per week on routine tasks</span>
+                  <span className="font-montserrat text-gray-700 dark:text-gray-300">Saves 15+ hours per week on routine tasks</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-success-600 mt-1 flex-shrink-0" />
-                  <span className="font-inter text-gray-700 dark:text-gray-300">Increases revenue through optimized pricing</span>
+                  <span className="font-montserrat text-gray-700 dark:text-gray-300">Increases revenue through optimized pricing</span>
                 </div>
               </div>
               <div className="space-y-4">
-                <h4 className="font-space font-semibold text-lg text-gray-900 dark:text-white mb-4">Cost Reduction</h4>
+                <h4 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-4">Cost Reduction</h4>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-success-600 mt-1 flex-shrink-0" />
-                  <span className="font-inter text-gray-700 dark:text-gray-300">Prevents costly maintenance emergencies</span>
+                  <span className="font-montserrat text-gray-700 dark:text-gray-300">Prevents costly maintenance emergencies</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-success-600 mt-1 flex-shrink-0" />
-                  <span className="font-inter text-gray-700 dark:text-gray-300">Provides 24/7 guest support coverage</span>
+                  <span className="font-montserrat text-gray-700 dark:text-gray-300">Provides 24/7 guest support coverage</span>
                 </div>
               </div>
             </div>
@@ -216,12 +216,12 @@ export default function FleetCopilotDemoPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="text-center">
               <div className="flex items-center justify-center w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-2xl mx-auto mb-6 hover:scale-110 transition-transform">
-                <Phone className="w-8 h-8 text-primary-600" />
+                <Phone className="w-8 h-8 text-primary-500" />
               </div>
-              <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-3">
+              <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-3">
                 Guest Communication
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300 leading-relaxed">
                 Handles guest inquiries via phone and text with human-like intelligence
               </p>
             </div>
@@ -229,10 +229,10 @@ export default function FleetCopilotDemoPage() {
               <div className="flex items-center justify-center w-20 h-20 bg-accent-100 dark:bg-accent-900/30 rounded-2xl mx-auto mb-6 hover:scale-110 transition-transform">
                 <Zap className="w-8 h-8 text-accent-600" />
               </div>
-              <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-3">
+              <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-3">
                 Smart Automation
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300 leading-relaxed">
                 Automatically optimizes pricing and schedules maintenance based on data
               </p>
             </div>
@@ -240,10 +240,10 @@ export default function FleetCopilotDemoPage() {
               <div className="flex items-center justify-center w-20 h-20 bg-success-100 dark:bg-success-900/30 rounded-2xl mx-auto mb-6 hover:scale-110 transition-transform">
                 <MessageSquare className="w-8 h-8 text-success-600" />
               </div>
-              <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-3">
+              <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-3">
                 24/7 Monitoring
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300 leading-relaxed">
                 Continuously monitors your fleet and alerts you to opportunities
               </p>
             </div>
@@ -252,32 +252,32 @@ export default function FleetCopilotDemoPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-600 to-accent-600 text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-space font-bold text-3xl md:text-4xl lg:text-5xl mb-8">
+      <section className="py-20 bg-gradient-to-br from-primary-500 to-accent-600 text-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
+          <h2 className="font-dfaalt font-bold text-3xl md:text-4xl lg:text-5xl mb-8">
             Ready to Get FleetCopilot™ for Your Fleet?
           </h2>
-          <p className="font-inter text-xl md:text-2xl mb-10 opacity-90 max-w-4xl mx-auto leading-relaxed">
+          <p className="font-montserrat text-xl md:text-2xl mb-10 opacity-90 max-w-4xl mx-auto leading-relaxed">
             Experience the full Exotiq platform with FleetCopilot™ integrated into every aspect 
             of your fleet management workflow.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
               to="/survey"
-              className="font-poppins font-bold text-sm uppercase tracking-wide px-10 py-5 bg-white text-primary-600 hover:bg-gray-100 rounded-xl transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center min-h-[44px] touch-manipulation shadow-lg"
+              className="font-poppins font-bold text-sm uppercase tracking-wide px-10 py-5 bg-white text-primary-500 hover:bg-gray-100 rounded-xl transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center min-h-[44px] touch-manipulation shadow-lg"
             >
               <Zap className="w-5 h-5" />
               <span>Join Beta Program</span>
             </Link>
             <Link
               to="/features"
-              className="font-poppins font-bold text-sm uppercase tracking-wide px-10 py-5 border-2 border-white text-white hover:bg-white hover:text-primary-600 rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation"
+              className="font-poppins font-bold text-sm uppercase tracking-wide px-10 py-5 border-2 border-white text-white hover:bg-white hover:text-primary-500 rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation"
             >
               <ArrowRight className="w-5 h-5" />
               Explore Platform
             </Link>
           </div>
-          <p className="font-inter text-sm opacity-75 mt-8">
+          <p className="font-montserrat text-sm opacity-75 mt-8">
             Experience the future of fleet management with AI-powered automation
           </p>
         </div>

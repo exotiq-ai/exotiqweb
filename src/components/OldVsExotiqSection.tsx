@@ -15,10 +15,10 @@ const OldVsExotiqSection: React.FC = () => {
           <Zap className="w-4 h-4 mr-2" />
           The Transformation
         </div>
-        <h2 className={`font-space font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-white mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '100ms' }}>
+        <h2 className={`font-dfaalt font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-white mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '100ms' }}>
           Manual Chaos vs. Automated Excellence
         </h2>
-        <p className={`font-inter text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '200ms' }}>
+        <p className={`font-montserrat text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '200ms' }}>
           Every hour spent on manual tasks is revenue lost. See the transformation.
         </p>
       </div>
@@ -43,8 +43,8 @@ const OldVsExotiqSection: React.FC = () => {
                   <TrendingDown className="w-7 h-7 text-gray-600 dark:text-gray-400" />
                 </div>
                 <div>
-                  <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white">The Old Way</h3>
-                  <p className="font-inter text-sm text-gray-500 dark:text-gray-400">Manual & Inefficient</p>
+                  <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white">The Old Way</h3>
+                  <p className="font-montserrat text-sm text-gray-500 dark:text-gray-400">Manual & Inefficient</p>
                 </div>
               </div>
               <div className="space-y-5">
@@ -64,8 +64,8 @@ const OldVsExotiqSection: React.FC = () => {
                       <X className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                     </div>
                     <div>
-                      <p className="font-inter font-semibold text-gray-900 dark:text-white">{item.text}</p>
-                      <p className="font-inter text-sm text-gray-600 dark:text-gray-400">{item.desc}</p>
+                      <p className="font-montserrat font-semibold text-gray-900 dark:text-white">{item.text}</p>
+                      <p className="font-montserrat text-sm text-gray-600 dark:text-gray-400">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -83,8 +83,8 @@ const OldVsExotiqSection: React.FC = () => {
                   <Zap className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white">The Exotiq Way</h3>
-                  <p className="font-inter text-sm text-accent-700 dark:text-accent-300 font-semibold">AI-Powered Excellence</p>
+                  <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white">The Exotiq Way</h3>
+                  <p className="font-montserrat text-sm text-accent-700 dark:text-accent-300 font-semibold">AI-Powered Excellence</p>
                 </div>
               </div>
               <div className="space-y-5">
@@ -110,10 +110,10 @@ const OldVsExotiqSection: React.FC = () => {
                       <CheckCircle2 className="w-4 h-4 text-white" />
                     </div>
                     <div>
-                      <p className={`font-inter font-semibold ${
+                      <p className={`font-montserrat font-semibold ${
                         item.highlight ? 'text-accent-900 dark:text-accent-100 text-lg' : 'text-gray-900 dark:text-white'
                       }`}>{item.text}</p>
-                      <p className="font-inter text-sm text-gray-700 dark:text-gray-300">{item.desc}</p>
+                      <p className="font-montserrat text-sm text-gray-700 dark:text-gray-300">{item.desc}</p>
                     </div>
                   </div>
                 ))}

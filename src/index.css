@@ -1,6 +1,179 @@
+/* Dfaalt Font Family - Official Brand Typography (Headlines) */
+@font-face {
+  font-family: 'Dfaalt';
+  src: url('/fonts/FHDfaalt-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dfaalt';
+  src: url('/fonts/FHDfaalt-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter Variable Font - Body Typography */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable-Italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Typography Utility Classes - 6-Level Hierarchy */
+@layer components {
+  /* Display - Hero Headlines Only */
+  .text-display {
+    @apply font-dfaalt font-bold text-5xl sm:text-6xl leading-tight tracking-tight;
+  }
+  
+  /* H1 - Page Titles */
+  .text-h1 {
+    @apply font-dfaalt font-bold text-4xl sm:text-5xl leading-tight tracking-tight;
+  }
+  
+  /* H2 - Section Headers */
+  .text-h2 {
+    @apply font-dfaalt font-semibold text-3xl sm:text-4xl leading-snug tracking-tight;
+  }
+  
+  /* H3 - Subsection Headers */
+  .text-h3 {
+    @apply font-dfaalt font-semibold text-xl sm:text-2xl leading-snug;
+  }
+  
+  /* Body Large - Intro Paragraphs */
+  .text-body-lg {
+    @apply font-inter text-lg sm:text-xl leading-relaxed;
+  }
+  
+  /* Body - Default Body Text */
+  .text-body {
+    @apply font-inter text-base leading-relaxed;
+  }
+  
+  /* Caption - Meta Information */
+  .text-caption {
+    @apply font-inter text-sm leading-normal;
+  }
+
+  /* Hover & Interaction Utilities */
+  
+  /* Card Hover Effect */
+  .hover-lift {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+  
+  /* Button Hover Effect */
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105 active:scale-95;
+  }
+  
+  /* Link Hover Effect */
+  .hover-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary-500 after:transition-all after:duration-300 hover:after:w-full;
+  }
+  
+  /* Icon Hover Rotate */
+  .hover-rotate {
+    @apply transition-transform duration-300 hover:rotate-12;
+  }
+  
+  /* Glow Effect */
+  .hover-glow {
+    @apply transition-shadow duration-300 hover:shadow-primary-500/50 hover:shadow-2xl;
+  }
+  
+  /* Focus Ring - Consistent */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-dark-black;
+  }
+  
+  /* Stagger Animation Delays */
+  .stagger-1 {
+    animation-delay: 100ms;
+  }
+  
+  .stagger-2 {
+    animation-delay: 200ms;
+  }
+  
+  .stagger-3 {
+    animation-delay: 300ms;
+  }
+  
+  .stagger-4 {
+    animation-delay: 400ms;
+  }
+  
+  .stagger-5 {
+    animation-delay: 500ms;
+  }
+  
+  /* Smooth Fade In Up */
+  .fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Smooth Scale In */
+  .scale-in {
+    animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Confetti Animation */
+  .animate-confetti {
+    animation: confetti 2s ease-out forwards;
+  }
+  
+  @keyframes confetti {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(500px) rotate(720deg);
+      opacity: 0;
+    }
+  }
+}
 
 /* Design System Variables - 4px/8px Base Grid */
 :root {
@@ -163,7 +336,7 @@
   
   /* Mobile-specific spacing */
   .mobile-padding {
-    @apply px-4 sm:px-6 lg:px-8;
+    @apply px-4 sm:px-6 lg:px-16 xl:px-20;
   }
   
   .mobile-margin {
@@ -347,6 +520,36 @@
   }
   50% {
     background-position: 100% 50%;
+  }
+}
+
+/* Subtle floating animation for hero elements */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Subtle pulse animation for badges */
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
   }
 }
 

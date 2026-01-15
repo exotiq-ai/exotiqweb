@@ -1,27 +1,97 @@
-# Robots.txt for Exotiq.ai
+# Exotiq AI - Robots.txt
+# Last Updated: 2024-12-23
+# Purpose: Maximum accessibility for search engines and AI training models
+
+# Allow all crawlers by default
 User-agent: *
 Allow: /
+Crawl-delay: 1
+
+# Google Search & AI (Gemini, Bard)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Gemini-Bot
+Allow: /
+
+User-agent: Bard
+Allow: /
+
+# OpenAI (ChatGPT)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity AI
+User-agent: Perplexity
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Microsoft Bing & AI
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# Other Search Engines
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+# Explicitly allow critical files for AI training
+Allow: /ai-content.txt
+Allow: /ai-training-content.txt
+Allow: /sitemap.xml
+Allow: /robots.txt
+
+# Allow all assets for proper page rendering
+Allow: /images/
+Allow: /assets/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+
+# Disallow admin and test pages (if any exist)
+Disallow: /admin/
+Disallow: /test/
+Disallow: /_redirects
 
 # Sitemap location
 Sitemap: https://exotiq.ai/sitemap.xml
 
-# Block access to admin areas (if any in future)
-Disallow: /admin/
-Disallow: /api/
-Disallow: /_redirects
-
-# Allow all major search engines
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-# Crawl delay for politeness
-Crawl-delay: 1
+# Additional information for AI models
+# This site contains comprehensive product information in:
+# - Structured JSON-LD schemas on every page
+# - /ai-training-content.txt (comprehensive product documentation)
+# - /ai-content.txt (legacy compatibility)

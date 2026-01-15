@@ -1,11 +1,11 @@
 // Browser Compatibility & Feature Detection
 // Ensures optimal experience across all browsers and devices
 
-(function() {
+(function () {
     'use strict';
-    
+
     console.log('🔍 Browser Compatibility Check Starting...');
-    
+
     // Browser detection
     const browserInfo = {
         userAgent: navigator.userAgent,
@@ -17,14 +17,14 @@
         isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
         isAndroid: /Android/.test(navigator.userAgent)
     };
-    
+
     console.log('Browser Info:', browserInfo);
-    
+
     // Feature detection
     const features = {
-        localStorage: typeof(Storage) !== "undefined",
-        sessionStorage: typeof(Storage) !== "undefined",
-        webWorkers: typeof(Worker) !== "undefined",
+        localStorage: typeof (Storage) !== "undefined",
+        sessionStorage: typeof (Storage) !== "undefined",
+        webWorkers: typeof (Worker) !== "undefined",
         serviceWorkers: 'serviceWorker' in navigator,
         pushNotifications: 'PushManager' in window,
         geolocation: 'geolocation' in navigator,
@@ -41,20 +41,20 @@
         mutationObserver: 'MutationObserver' in window,
         fetch: 'fetch' in window,
         promises: 'Promise' in window,
-        asyncAwait: (async function(){}).constructor === Function,
+        asyncAwait: (async function () { }).constructor === Function,
         es6Modules: 'noModule' in HTMLScriptElement.prototype,
         webComponents: 'customElements' in window
     };
-    
+
     console.log('Feature Support:', features);
-    
+
     // Browser-specific optimizations
     if (browserInfo.isSafari) {
         console.log('🍎 Safari optimizations applied');
-        
+
         // Fix Safari-specific issues
         document.documentElement.style.setProperty('--safari-fix', '1');
-        
+
         // Prevent zoom on input focus
         const inputs = document.querySelectorAll('input, textarea, select');
         inputs.forEach(input => {
@@ -62,16 +62,16 @@
                 input.style.fontSize = '16px';
             }
         });
-        
+
         // Fix smooth scrolling
         if (!CSS.supports('scroll-behavior', 'smooth')) {
             document.documentElement.style.scrollBehavior = 'auto';
         }
     }
-    
+
     if (browserInfo.isChrome) {
         console.log('🌐 Chrome optimizations applied');
-        
+
         // Chrome-specific performance optimizations
         if ('requestIdleCallback' in window) {
             window.requestIdleCallback(() => {
@@ -79,38 +79,44 @@
             });
         }
     }
-    
+
     if (browserInfo.isFirefox) {
         console.log('🦊 Firefox optimizations applied');
-        
+
         // Firefox-specific fixes
         document.documentElement.style.setProperty('--firefox-fix', '1');
     }
-    
+
     if (browserInfo.isEdge) {
         console.log('🔷 Edge optimizations applied');
-        
+
         // Edge-specific optimizations
         document.documentElement.style.setProperty('--edge-fix', '1');
     }
-    
+
     // Mobile-specific optimizations
     if (browserInfo.isMobile) {
         console.log('📱 Mobile optimizations applied');
-        
+
         // Prevent double-tap zoom
         let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
+        document.addEventListener('touchend', function (event) {
             const now = (new Date()).getTime();
             if (now - lastTouchEnd <= 300) {
                 event.preventDefault();
             }
             lastTouchEnd = now;
         }, false);
-        
-        // Improve touch scrolling
-        document.body.style.touchAction = 'manipulation';
-        
+
+        // Improve touch scrolling (wait for body to be available)
+        if (document.body) {
+            document.body.style.touchAction = 'manipulation';
+        } else {
+            document.addEventListener('DOMContentLoaded', () => {
+                document.body.style.touchAction = 'manipulation';
+            });
+        }
+
         // Fix viewport height on mobile
         const setVH = () => {
             const vh = window.innerHeight * 0.01;
@@ -120,31 +126,37 @@
         window.addEventListener('resize', setVH);
         window.addEventListener('orientationchange', setVH);
     }
-    
+
     // iOS-specific optimizations
     if (browserInfo.isIOS) {
         console.log('📱 iOS optimizations applied');
-        
+
         // Fix iOS Safari viewport issues
         const meta = document.querySelector('meta[name="viewport"]');
         if (meta) {
             meta.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover';
         }
-        
+
         // Fix iOS scroll bounce
-        document.body.style.webkitOverflowScrolling = 'touch';
-        
+        if (document.body) {
+            document.body.style.webkitOverflowScrolling = 'touch';
+        } else {
+            document.addEventListener('DOMContentLoaded', () => {
+                document.body.style.webkitOverflowScrolling = 'touch';
+            });
+        }
+
         // Fix iOS input zoom
         const inputs = document.querySelectorAll('input, textarea, select');
         inputs.forEach(input => {
             input.style.fontSize = '16px';
         });
     }
-    
+
     // Android-specific optimizations
     if (browserInfo.isAndroid) {
         console.log('🤖 Android optimizations applied');
-        
+
         // Fix Android keyboard issues
         window.addEventListener('resize', () => {
             setTimeout(() => {
@@ -155,11 +167,11 @@
             }, 300);
         });
     }
-    
+
     // Performance optimizations
     if (features.intersectionObserver) {
         console.log('⚡ Intersection Observer available - enabling lazy loading');
-        
+
         // Enable lazy loading for images
         const images = document.querySelectorAll('img[data-src]');
         const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -172,34 +184,34 @@
                 }
             });
         });
-        
+
         images.forEach(img => imageObserver.observe(img));
     }
-    
+
     // Error handling for unsupported features
     if (!features.localStorage) {
         console.warn('⚠️ localStorage not supported - using fallback');
         window.localStorage = {
             getItem: () => null,
-            setItem: () => {},
-            removeItem: () => {},
-            clear: () => {}
+            setItem: () => { },
+            removeItem: () => { },
+            clear: () => { }
         };
     }
-    
+
     if (!features.fetch) {
         console.warn('⚠️ Fetch not supported - using XMLHttpRequest fallback');
-        window.fetch = function(url, options) {
+        window.fetch = function (url, options) {
             return new Promise((resolve, reject) => {
                 const xhr = new XMLHttpRequest();
                 xhr.open(options?.method || 'GET', url);
-                
+
                 if (options?.headers) {
                     Object.keys(options.headers).forEach(key => {
                         xhr.setRequestHeader(key, options.headers[key]);
                     });
                 }
-                
+
                 xhr.onload = () => {
                     resolve({
                         ok: xhr.status >= 200 && xhr.status < 300,
@@ -208,29 +220,29 @@
                         text: () => Promise.resolve(xhr.responseText)
                     });
                 };
-                
+
                 xhr.onerror = () => reject(new Error('Network error'));
                 xhr.send(options?.body);
             });
         };
     }
-    
+
     // CSS feature detection and fallbacks
     if (!features.flexbox) {
         console.warn('⚠️ Flexbox not supported - applying fallbacks');
         document.documentElement.classList.add('no-flexbox');
     }
-    
+
     if (!features.grid) {
         console.warn('⚠️ CSS Grid not supported - applying fallbacks');
         document.documentElement.classList.add('no-grid');
     }
-    
+
     if (!features.customProperties) {
         console.warn('⚠️ CSS Custom Properties not supported - applying fallbacks');
         document.documentElement.classList.add('no-custom-properties');
     }
-    
+
     // Global compatibility object
     window.exotiqCompatibility = {
         browser: browserInfo,
@@ -239,7 +251,7 @@
         getBrowserInfo: () => browserInfo,
         getFeatureSupport: () => features
     };
-    
+
     // Performance monitoring
     if ('performance' in window) {
         window.addEventListener('load', () => {
@@ -254,10 +266,10 @@
             }, 0);
         });
     }
-    
+
     console.log('✅ Browser compatibility check complete');
     console.log('🌐 Exotiq.ai optimized for:', Object.keys(browserInfo).filter(key => browserInfo[key]).join(', '));
-    
+
 })();
 
 

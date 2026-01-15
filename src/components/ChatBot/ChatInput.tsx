@@ -44,7 +44,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
         <button
           onClick={handleSendMessage}
           disabled={!inputValue.trim() || isLoading}
-          className="px-4 py-3 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 text-white rounded-xl transition-colors disabled:cursor-not-allowed flex items-center justify-center min-w-[48px] min-h-[48px] touch-manipulation"
+          className="px-4 py-3 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-400 text-white rounded-xl transition-colors disabled:cursor-not-allowed flex items-center justify-center min-w-[48px] min-h-[48px] touch-manipulation"
         >
           {isLoading ? (
             <Loader className="w-5 h-5 animate-spin" />

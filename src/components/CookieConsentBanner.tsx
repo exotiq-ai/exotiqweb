@@ -267,8 +267,8 @@ export default function CookieConsentBanner() {
             <div className="flex items-start space-x-4 flex-1">
               <Cookie className="w-6 h-6 text-accent-400 flex-shrink-0 mt-1" />
               <div className="flex-1">
-                <h3 className="font-space font-bold text-lg mb-2">We use cookies to enhance your experience</h3>
-                <p className="font-inter text-sm opacity-90 leading-relaxed">
+                <h3 className="font-dfaalt font-bold text-lg mb-2">We use cookies to enhance your experience</h3>
+                <p className="font-montserrat text-sm opacity-90 leading-relaxed">
                   We use essential cookies for functionality and optional cookies for analytics and marketing. 
                   You can customize your preferences anytime.
                 </p>
@@ -290,7 +290,7 @@ export default function CookieConsentBanner() {
               </button>
               <button
                 onClick={acceptAll}
-                className="font-poppins font-bold text-xs uppercase tracking-wide px-4 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors min-h-[44px]"
+                className="font-poppins font-bold text-xs uppercase tracking-wide px-4 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors min-h-[44px]"
               >
                 Accept All
               </button>
@@ -307,10 +307,10 @@ export default function CookieConsentBanner() {
             <div className="p-6 sm:p-8 border-b border-gray-200 dark:border-dark-700">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-2">
+                  <h2 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-2">
                     Cookie Preferences
                   </h2>
-                  <p className="font-inter text-gray-600 dark:text-gray-300">
+                  <p className="font-montserrat text-gray-600 dark:text-gray-300">
                     Choose which types of cookies you'd like to allow. Essential cookies cannot be disabled.
                   </p>
                 </div>
@@ -330,10 +330,10 @@ export default function CookieConsentBanner() {
                   <div key={category.id} className="border border-gray-200 dark:border-dark-600 rounded-xl p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex-1">
-                        <h3 className="font-space font-bold text-lg text-gray-900 dark:text-white mb-1">
+                        <h3 className="font-dfaalt font-bold text-lg text-gray-900 dark:text-white mb-1">
                           {category.title}
                         </h3>
-                        <p className="font-inter text-gray-600 dark:text-gray-300 text-sm">
+                        <p className="font-montserrat text-gray-600 dark:text-gray-300 text-sm">
                           {category.description}
                         </p>
                       </div>
@@ -341,7 +341,7 @@ export default function CookieConsentBanner() {
                         onClick={() => togglePreference(category.id)}
                         disabled={category.required}
                         className={`relative w-12 h-6 rounded-full transition-colors min-w-[48px] ${
-                          preferences[category.id] ? 'bg-primary-600' : 'bg-gray-300 dark:bg-dark-600'
+                          preferences[category.id] ? 'bg-primary-500' : 'bg-gray-300 dark:bg-dark-600'
                         } ${category.required ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:opacity-80'}`}
                       >
                         <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${
@@ -375,7 +375,7 @@ export default function CookieConsentBanner() {
               </button>
               <button
                 onClick={saveCustomPreferences}
-                className="font-poppins font-bold text-sm uppercase tracking-wide px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors flex items-center space-x-2 min-h-[44px]"
+                className="font-poppins font-bold text-sm uppercase tracking-wide px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors flex items-center space-x-2 min-h-[44px]"
               >
                 <Check className="w-4 h-4" />
                 <span>Save Preferences</span>
@@ -389,7 +389,7 @@ export default function CookieConsentBanner() {
       {showStatus && (
         <div className="fixed top-6 right-6 bg-success-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center space-x-2 transform transition-transform duration-300">
           <Check className="w-5 h-5" />
-          <span className="font-inter font-medium">{statusMessage}</span>
+          <span className="font-montserrat font-medium">{statusMessage}</span>
         </div>
       )}
     </>

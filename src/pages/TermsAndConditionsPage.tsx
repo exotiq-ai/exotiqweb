@@ -41,12 +41,12 @@ export default function TermsAndConditionsPage() {
       />
       
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-600 to-accent-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-space font-bold text-5xl md:text-6xl mb-6">
+      <section className="py-20 bg-gradient-to-br from-primary-500 to-accent-600 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
+          <h1 className="font-dfaalt font-bold text-5xl md:text-6xl mb-6">
             Terms and Conditions
           </h1>
-          <p className="font-inter text-xl opacity-90">
+          <p className="font-montserrat text-xl opacity-90">
             Legal terms and conditions for using Exotiq.ai services
           </p>
         </div>
@@ -54,7 +54,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Content Section */}
       <section className="py-20 bg-white dark:bg-dark-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           {/* Document Header */}
           <div className="bg-gray-50 dark:bg-dark-800 p-6 sm:p-8 rounded-2xl mb-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
@@ -72,7 +72,7 @@ export default function TermsAndConditionsPage() {
               </div>
               <div>
                 <span className="font-semibold text-gray-900 dark:text-white">Contact Email:</span>
-                <a href="mailto:hello@exotiq.ai" className="text-primary-600 hover:text-primary-700 ml-2">
+                <a href="mailto:hello@exotiq.ai" className="text-primary-500 hover:text-primary-600 ml-2">
                   hello@exotiq.ai
                 </a>
               </div>
@@ -80,7 +80,7 @@ export default function TermsAndConditionsPage() {
           </div>
 
           {/* Terms Content */}
-          <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-space prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:font-inter prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-li:font-inter prose-li:text-gray-600 dark:prose-li:text-gray-300 prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-strong:text-gray-900 dark:prose-strong:text-white">
+          <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-dfaalt prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:font-montserrat prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-li:font-montserrat prose-li:text-gray-600 dark:prose-li:text-gray-300 prose-a:text-primary-500 hover:prose-a:text-primary-600 prose-strong:text-gray-900 dark:prose-strong:text-white">
             
             <h2 id="introduction">1. Introduction and Acceptance</h2>
             <p>
@@ -89,11 +89,11 @@ export default function TermsAndConditionsPage() {
               and G & G Holdings MT LLC governing your access to and use of our website, applications, products, and services 
               (collectively, the "Services").
             </p>
-            <div className="bg-primary-50 dark:bg-primary-900/20 border-l-4 border-primary-600 p-4 my-6">
+            <div className="bg-primary-50 dark:bg-primary-900/20 border-l-4 border-primary-500 p-4 my-6">
               <p className="font-semibold text-primary-800 dark:text-primary-200 mb-2">
                 Important Notice
               </p>
-              <p className="text-primary-700 dark:text-primary-300 mb-0">
+              <p className="text-primary-600 dark:text-primary-300 mb-0">
                 By accessing or using our Services, you acknowledge that you have read, understood, and agree to be legally 
                 bound by these Terms and our Privacy Policy, which is incorporated herein by reference.
               </p>
@@ -362,11 +362,11 @@ export default function TermsAndConditionsPage() {
               <p className="font-semibold text-primary-800 dark:text-primary-200 mb-4">
                 For questions about these Terms or our Services, please contact us:
               </p>
-              <div className="space-y-2 text-primary-700 dark:text-primary-300">
+              <div className="space-y-2 text-primary-600 dark:text-primary-300">
                 <p><strong>G & G Holdings MT LLC</strong></p>
                 <p>1001 S Main St #XXX<br />Kalispell, MT 59901</p>
-                <p>📧 Email: <a href="mailto:hello@exotiq.ai" className="text-primary-600 hover:text-primary-700">hello@exotiq.ai</a></p>
-                <p>🌐 Website: <a href="https://exotiq.ai" className="text-primary-600 hover:text-primary-700">https://exotiq.ai</a></p>
+                <p>📧 Email: <a href="mailto:hello@exotiq.ai" className="text-primary-500 hover:text-primary-600">hello@exotiq.ai</a></p>
+                <p>🌐 Website: <a href="https://exotiq.ai" className="text-primary-500 hover:text-primary-600">https://exotiq.ai</a></p>
               </div>
             </div>
 

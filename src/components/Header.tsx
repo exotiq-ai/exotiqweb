@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
 import MobileNavigation from './MobileNavigation';
 import ThemeAwareLogo from './ThemeAwareLogo';
 import { useStickyHeader } from '../hooks/useScrollAnimation';
@@ -9,12 +7,12 @@ import ScrollProgressIndicator from './ScrollProgressIndicator';
 
 export default function Header() {
   const [, setIsMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const { isSticky } = useStickyHeader(50);
 
   const navigation = [
     { name: 'Platform', href: '/features' },
+    { name: 'Pricing', href: '/pricing' },
     { name: 'About', href: '/about' },
     { name: 'Survey', href: '/survey' },
     { name: 'Investors', href: '/investors' },
@@ -47,8 +45,8 @@ export default function Header() {
             : 'bg-white/90 dark:bg-dark-black/90 border-b border-gray-200/30 dark:border-white/5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex justify-between items-center transition-all duration-500 ease-out ${isSticky ? 'h-14' : 'h-16'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
+          <div className={`flex justify-between items-center transition-all duration-500 ease-out ${isSticky ? 'h-16' : 'h-18'}`}>
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 group">
               <ThemeAwareLogo size="header" />
@@ -60,18 +58,18 @@ export default function Header() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`relative font-inter font-medium transition-all duration-250 ease-out group py-2 ${
+                  className={`relative font-montserrat font-medium transition-all duration-250 ease-out group py-2 ${
                     isActive(item.href)
-                      ? 'text-primary-600 dark:text-primary-400'
-                      : 'text-gray-700 hover:text-primary-600 dark:text-gray-200 dark:hover:text-primary-400'
+                      ? 'text-primary-500 dark:text-primary-500'
+                      : 'text-gray-700 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-500'
                   }`}
                 >
                   <span className="relative z-10 transition-transform duration-250 inline-block group-hover:-translate-y-0.5">
                     {item.name}
                   </span>
-                  {/* Sophisticated underline animation */}
+                  {/* Sophisticated underline animation - Gulf Blue */}
                   <span 
-                    className={`absolute bottom-0 left-0 h-0.5 rounded-full bg-gradient-to-r from-primary-600 to-primary-500 dark:from-primary-400 dark:to-primary-300 transition-all duration-300 ease-out ${
+                    className={`absolute bottom-0 left-0 h-0.5 rounded-full bg-primary-500 transition-all duration-300 ease-out ${
                       isActive(item.href) ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'
                     }`}
                   />
@@ -81,22 +79,11 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Theme Toggle & CTA - Premium Style */}
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={toggleTheme}
-                className="group p-2.5 rounded-xl bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-all duration-250 min-h-[44px] min-w-[44px] flex items-center justify-center hover:scale-105 active:scale-95"
-                aria-label="Toggle theme"
-              >
-                {theme === 'light' ? (
-                  <Moon className="w-5 h-5 text-gray-700 dark:text-gray-200 transition-transform duration-250 group-hover:rotate-12" />
-                ) : (
-                  <Sun className="w-5 h-5 text-gray-700 dark:text-gray-200 transition-transform duration-250 group-hover:rotate-12" />
-                )}
-              </button>
+            {/* CTA - Premium Style */}
+            <div className="flex items-center">
               <button
                 onClick={scrollToBeta}
-                className="group relative font-inter font-semibold text-sm px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-xl transition-all duration-250 hover:scale-[1.02] active:scale-[0.98] min-h-[44px] flex items-center justify-center shadow-lg hover:shadow-xl overflow-hidden"
+                className="group relative font-dfaalt font-semibold text-sm px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-250 hover:scale-[1.02] active:scale-[0.98] min-h-[44px] flex items-center justify-center shadow-lg hover:shadow-xl overflow-hidden"
               >
                 <span className="absolute inset-0 bg-white/20 scale-0 group-active:scale-100 transition-transform duration-500 rounded-xl"></span>
                 <span className="relative z-10">Join Beta</span>

@@ -98,7 +98,7 @@ export default function SurveyPage() {
   // If no survey type or invalid survey, show survey selection
   if (!currentSurvey) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20">
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 dark:from-dark-900 dark:to-dark-800">
         <SEOHead
           title="Fleet Management Survey - Help Shape Exotiq.ai"
           description="Share your fleet management experience and help shape Exotiq.ai's development. Choose from surveys for small fleets (1-5 vehicles), scaling operations (6-50 vehicles), or exotic/luxury fleets."
@@ -110,13 +110,21 @@ export default function SurveyPage() {
           ])}
         />
         
-        <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 pt-24 pb-16 sm:pt-28 sm:pb-20">
           <div className="text-center mb-8 sm:mb-12">
-            <h1 className="font-space font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight">
-              Help Shape Exotiq
+            {/* Incentive Badge */}
+            <div className="inline-flex items-center px-4 py-2 bg-accent-500/20 dark:bg-accent-500/30 rounded-full text-accent-600 dark:text-accent-400 font-semibold text-sm mb-6 border border-accent-500/30">
+              <span>🎁 Get $25 + Priority Beta Access</span>
+            </div>
+            
+            <h1 className="font-dfaalt font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight">
+              Join the Founder's Circle
             </h1>
-            <p className="font-inter text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Your experience matters. Help us build the perfect fleet management platform by sharing your insights.
+            <p className="font-montserrat text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
+              Share your fleet management experience and help shape the platform built for operators like you.
+            </p>
+            <p className="font-montserrat text-sm text-gray-500 dark:text-gray-400">
+              ⏱️ Takes only 5 minutes • Qualified operators receive a $25 gift card
             </p>
           </div>
 
@@ -125,7 +133,7 @@ export default function SurveyPage() {
               <Link
                 key={key}
                 to={`/survey?type=${key}`}
-                className="group bg-white dark:bg-dark-800 p-8 rounded-2xl border border-gray-200 dark:border-dark-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200 hover:shadow-xl hover:scale-[1.02] flex flex-col"
+                className="group bg-white dark:bg-dark-800 p-8 rounded-2xl border border-gray-200 dark:border-dark-700 hover:border-primary-300 dark:hover:border-primary-500 transition-all duration-200 hover:shadow-xl hover:scale-[1.02] flex flex-col"
               >
                 <div className="text-center flex-1 flex flex-col">
                   {/* Consistent 64x64px icon container */}
@@ -136,17 +144,17 @@ export default function SurveyPage() {
                   </div>
                   
                   {/* Consistent h3 hierarchy */}
-                  <h3 className="font-space font-bold text-xl text-gray-900 dark:text-white mb-3 leading-tight">
+                  <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white mb-3 leading-tight">
                     {survey.title}
                   </h3>
                   
                   {/* Description with consistent spacing */}
-                  <p className="font-inter text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-1">
+                  <p className="font-montserrat text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-1">
                     {survey.description}
                   </p>
                   
                   {/* CTA with consistent sizing */}
-                  <div className="flex items-center justify-center text-primary-600 dark:text-primary-400 group-hover:text-primary-700 dark:group-hover:text-primary-300 font-semibold">
+                  <div className="flex items-center justify-center text-primary-500 dark:text-primary-400 group-hover:text-primary-600 dark:group-hover:text-primary-300 font-semibold">
                     <span className="text-base">Start Survey</span>
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>

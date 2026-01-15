@@ -2,23 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
-  ChevronDown,
   Calendar,
   Sparkles,
   Award,
   DollarSign,
   Zap
 } from 'lucide-react';
-import BetaSignupForm from '../components/BetaSignupForm';
 import SkeletonLoader from '../components/SkeletonLoader';
-import { MobileContainer, MobileGrid, MobileCard, MobileSection } from '../components/MobileOptimizations';
+import { MobileContainer, MobileSection } from '../components/MobileOptimizations';
 import SEOHead from '../components/SEOHead';
 import { organizationSchema, softwareApplicationSchema, faqSchema } from '../data/structuredData';
 
-// Import the new section components
+// Import section components
 import HomeHeroSection from '../components/HomeHeroSection';
 import FleetCopilotSection from '../components/FleetCopilotSection';
-import OldVsExotiqSection from '../components/OldVsExotiqSection';
+import ExoticFleetsSection from '../components/ExoticFleetsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import PlatformModulesSection from '../components/PlatformModulesSection';
 import StickyCTABar from '../components/StickyCTABar';
@@ -26,7 +24,7 @@ import StickyCTABar from '../components/StickyCTABar';
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('pricing');
+  const [activeTab, setActiveTab] = useState('motoriq');
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -38,28 +36,24 @@ export default function HomePage() {
     const timer = setTimeout(() => {
       setIsLoading(false);
       setIsVisible(true);
-    }, 500);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, []);
-
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   if (isLoading) {
     return (
       <div className="pt-16">
         {/* Hero Skeleton */}
-        <section className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-dark-800">
+        <section className="min-h-screen flex items-center justify-center bg-dark-900">
           <MobileContainer>
             <div className="text-center">
-              <SkeletonLoader className="h-6 sm:h-8 w-48 sm:w-64 mx-auto mb-4 sm:mb-6" />
-              <SkeletonLoader className="h-12 sm:h-16 w-full max-w-2xl sm:max-w-4xl mx-auto mb-3 sm:mb-4" />
-              <SkeletonLoader className="h-12 sm:h-16 w-full max-w-2xl sm:max-w-4xl mx-auto mb-6 sm:mb-8" />
-              <SkeletonLoader className="h-4 sm:h-6 w-64 sm:w-96 mx-auto mb-6 sm:mb-8" />
-              <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
-                <SkeletonLoader className="h-12 w-full sm:w-32" />
+              <SkeletonLoader className="h-8 w-64 mx-auto mb-6" />
+              <SkeletonLoader className="h-16 w-full max-w-4xl mx-auto mb-4" />
+              <SkeletonLoader className="h-6 w-96 mx-auto mb-8" />
+              <div className="flex justify-center space-x-4">
+                <SkeletonLoader className="h-12 w-40" />
+                <SkeletonLoader className="h-12 w-32" />
               </div>
             </div>
           </MobileContainer>
@@ -71,100 +65,155 @@ export default function HomePage() {
   return (
     <div className="pt-16">
       <SEOHead
-        title="Exotiq.ai - AI-Powered Fleet Management for Vehicle Rental Operations"
-        description="Exotiq.ai: AI-powered fleet management for P2P hosts and rental operators. Automate pricing, maintenance, and operations. Keep 100% of your direct booking revenue. Join 20+ operators in early access."
-        keywords="fleet management software, Turo hosting tools, vehicle rental automation, AI pricing optimization, car sharing platform, fleet analytics, rental business software, automotive SaaS, peer-to-peer car sharing, fleet operations, Exotiq, fleet management system"
+        title="Exotiq.ai - AI-Powered Fleet Management for Exotic Car Rental Operations"
+        description="Exotiq.ai: AI-powered fleet management for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Trusted by operators managing $120M+ in fleet assets."
+        keywords="exotic car fleet management, luxury rental software, AI pricing optimization, Turo host tools, fleet analytics, rental business automation, exotic car rental platform"
         url="https://exotiq.ai"
         image="https://exotiq.ai/og-image.jpg"
         structuredData={[organizationSchema, softwareApplicationSchema, faqSchema]}
       />
       
-      {/* Hero Section */}
-      <HomeHeroSection isVisible={isVisible} scrollToSection={scrollToSection} />
+      {/* 1. Hero Section - Dark gradient with dashboard screenshot */}
+      <HomeHeroSection isVisible={isVisible} />
 
-      {/* FleetCopilot™ AI Assistant Section */}
+      {/* 2. FleetCopilot™ AI Section - Product differentiator */}
       <FleetCopilotSection />
 
-      {/* Old Way vs. Exotiq Way Section */}
-      <OldVsExotiqSection />
+      {/* 3. Built for Exotic Fleets - McLaren imagery section */}
+      <ExoticFleetsSection />
 
-      {/* Testimonials Section */}
-      <TestimonialsSection />
-
-      {/* Platform Modules Section with Tabbed Interface */}
+      {/* 4. Platform Modules Section - Tabbed interface */}
       <PlatformModulesSection activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Survey Incentive Section */}
-      <MobileSection className="bg-gradient-to-br from-accent-50 to-warning-50 dark:from-accent-900/20 dark:to-warning-900/20">
+      {/* 5. ROI Calculator CTA Section - Moved lower */}
+      <MobileSection className="py-12 sm:py-14 bg-gradient-to-b from-dark-900 to-dark-black">
         <MobileContainer>
-          <div className="text-center">
-            <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-accent-600/20 rounded-full text-accent-700 dark:text-accent-300 font-semibold text-xs sm:text-sm mb-4 sm:mb-6 animate-pulse-subtle">
-              <Sparkles className="w-3 sm:w-4 h-3 sm:h-4 mr-2" />
-              Help Build Exotiq — Get Rewarded
-            </div>
-            <h2 className="font-space font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-white mb-8 animate-slide-up">
-              Help Shape Exotiq — Get Rewarded
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-4 sm:mb-6">
+              See How Much You Could Save
             </h2>
-            <p className="font-inter text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8 animate-slide-up px-2" style={{ animationDelay: '100ms' }}>
-              Take our quick 2-minute survey and receive:
+            <p className="font-inter text-lg sm:text-xl text-gray-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
+              Use our interactive ROI calculator to see your potential revenue increase and payback period
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8 max-w-4xl mx-auto">
-              <div className="bg-white dark:bg-dark-700 p-4 sm:p-6 rounded-xl shadow-lg animate-slide-up" style={{ animationDelay: '200ms' }}>
-                <div className="flex items-center justify-center w-12 h-12 bg-success-600 rounded-lg mx-auto mb-3">
-                  <DollarSign className="w-6 h-6 text-white" />
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+              <Link 
+                to="/pricing"
+                className="inline-flex items-center justify-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-xl font-dfaalt font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl hover:shadow-primary-500/25"
+              >
+                <DollarSign className="w-5 h-5" />
+                Calculate Your ROI
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <a
+                href="https://calendly.com/hello-exotiq/15-minute-meeting"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 px-8 py-4 rounded-xl font-dfaalt font-semibold text-lg transition-all duration-300"
+              >
+                <Calendar className="w-5 h-5" />
+                Book a Demo
+              </a>
+            </div>
+            <p className="font-inter text-sm text-gray-500 mt-6">
+              14-day free trial • No credit card required • See results in 48 hours
+            </p>
+          </div>
+        </MobileContainer>
+      </MobileSection>
+
+      {/* 6. Testimonials Section - Clean 4-card grid */}
+      <TestimonialsSection />
+
+      {/* 7. Founder's Circle Section */}
+      <MobileSection className="relative bg-white dark:bg-dark-900 overflow-hidden py-12 lg:py-14">
+        {/* Top Border Accent */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500"></div>
+        
+        <MobileContainer>
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center px-4 py-2 bg-accent-100 dark:bg-accent-500/20 rounded-full text-accent-700 dark:text-accent-400 font-semibold text-sm mb-6 border border-accent-200 dark:border-accent-500/30">
+              <Sparkles className="w-4 h-4 mr-2" />
+              Exclusive Founder Opportunity
+            </div>
+            
+            <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-white mb-6">
+              Join the Founder's Circle
+            </h2>
+            
+            <p className="font-inter text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+              An exclusive opportunity for industry leaders to shape the next generation of fleet technology.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl">
+                <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <DollarSign className="w-6 h-6 text-green-500" />
                 </div>
-                <h3 className="font-space font-semibold text-lg text-gray-900 dark:text-white mb-2">$25 Amazon Gift Card</h3>
-                <p className="font-inter text-sm text-gray-600 dark:text-gray-300">(for qualified operators)</p>
+                <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">
+                  $25 Gift Card
+                </h3>
+                <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
+                  For qualified operators
+                </p>
               </div>
-              <div className="bg-white dark:bg-dark-700 p-4 sm:p-6 rounded-xl shadow-lg animate-slide-up" style={{ animationDelay: '300ms' }}>
-                <div className="flex items-center justify-center w-12 h-12 bg-primary-600 rounded-lg mx-auto mb-3">
-                  <Zap className="w-6 h-6 text-white" />
+              
+              <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl">
+                <div className="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Zap className="w-6 h-6 text-primary-500" />
                 </div>
-                <h3 className="font-space font-semibold text-lg text-gray-900 dark:text-white mb-2">Early Beta Access</h3>
-                <p className="font-inter text-sm text-gray-600 dark:text-gray-300">Be first to try Exotiq</p>
+                <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">
+                  Priority Beta Access
+                </h3>
+                <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
+                  First access to the platform
+                </p>
               </div>
-              <div className="bg-white dark:bg-dark-700 p-4 sm:p-6 rounded-xl shadow-lg animate-slide-up" style={{ animationDelay: '400ms' }}>
-                <div className="flex items-center justify-center w-12 h-12 bg-accent-600 rounded-lg mx-auto mb-3">
-                  <Award className="w-6 h-6 text-white" />
+              
+              <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl">
+                <div className="w-12 h-12 bg-accent-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-6 h-6 text-accent-500" />
                 </div>
-                <h3 className="font-space font-semibold text-lg text-gray-900 dark:text-white mb-2">Lifetime Discounted Pricing</h3>
-                <p className="font-inter text-sm text-gray-600 dark:text-gray-300">Exclusive founder rates</p>
+                <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">
+                  Lifetime Founder Pricing
+                </h3>
+                <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
+                  Exclusive founding member rates
+                </p>
               </div>
             </div>
+            
             <Link
               to="/survey"
-              className="inline-flex items-center font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 bg-accent-600 hover:bg-accent-700 text-white rounded-lg transition-all duration-200 hover:scale-105 space-x-2 animate-slide-up min-h-[48px]"
-              style={{ animationDelay: '600ms' }}
+              className="inline-flex items-center font-dfaalt font-semibold px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white rounded-xl transition-all duration-300 hover:scale-105"
             >
-              <span>Take Survey & Get Rewarded</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Join the Founder's Circle</span>
+              <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </div>
         </MobileContainer>
       </MobileSection>
 
-      {/* Contact Section */}
-      <MobileSection className="bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+      {/* 8. Final CTA Section */}
+      <MobileSection className="bg-gradient-to-br from-primary-500 to-primary-700 text-white py-12 lg:py-14">
         <MobileContainer>
-          <div className="text-center">
-            <h2 className="font-space font-bold text-3xl sm:text-4xl md:text-5xl mb-6">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl md:text-5xl mb-6">
               Ready to Transform Your Fleet?
             </h2>
-            <p className="font-inter text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-              Join the growing community of operators who are scaling smarter with Exotiq. 
-              Let's discuss how our platform can accelerate your growth.
+            <p className="font-inter text-xl mb-8 text-white/90 leading-relaxed">
+              Join the growing community of operators who are scaling smarter with Exotiq.
             </p>
             <a
               href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 bg-white text-primary-600 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105 space-x-2 min-h-[48px] touch-manipulation"
+              className="inline-flex items-center font-dfaalt font-semibold px-8 py-4 bg-white text-primary-600 hover:bg-gray-100 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
             >
-              <Calendar className="w-5 h-5" />
-              <span>Book a Call</span>
+              <Calendar className="w-5 h-5 mr-2" />
+              <span>Book a 15-Min Call</span>
             </a>
-            <p className="font-inter text-sm opacity-75 mt-6">
-              15-minute strategy session. No commitment required.
+            <p className="font-inter text-sm text-white/70 mt-6">
+              No commitment required. Let's explore if Exotiq is right for you.
             </p>
           </div>
         </MobileContainer>

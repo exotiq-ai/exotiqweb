@@ -1,188 +1,111 @@
-import React, { ButtonHTMLAttributes, ReactNode } from 'react';
-import { cn } from '../../lib/utils';
+import React from 'react';
+import { LucideIcon } from 'lucide-react';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Button visual variant */
-  variant?: 'primary' | 'secondary' | 'accent' | 'platinum' | 'ghost' | 'glass';
-  /** Button size */
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  /** Full width button */
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  icon?: LucideIcon;
+  iconPosition?: 'left' | 'right';
   fullWidth?: boolean;
-  /** Loading state */
-  isLoading?: boolean;
-  /** Icon before text */
-  leftIcon?: ReactNode;
-  /** Icon after text */
-  rightIcon?: ReactNode;
-  /** Children content */
-  children: ReactNode;
+  loading?: boolean;
+  children: React.ReactNode;
 }
 
-/**
- * Premium Button Component
- * 
- * Luxury-refined button with glass morphism, subtle animations, and premium feel.
- * Follows Apple/Porsche design principles: restrained, confident, sophisticated.
- */
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       variant = 'primary',
       size = 'md',
+      icon: Icon,
+      iconPosition = 'right',
       fullWidth = false,
-      isLoading = false,
-      leftIcon,
-      rightIcon,
-      className,
-      children,
+      loading = false,
       disabled,
+      className = '',
+      children,
       ...props
     },
     ref
   ) => {
-    // Base styles - always applied
-    const baseStyles = [
-      // Layout & Spacing
-      'relative inline-flex items-center justify-center',
-      'font-inter font-medium',
-      'transition-all duration-250 ease-out',
-      'overflow-hidden',
-      'touch-manipulation',
-      
-      // Focus states
-      'focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-      
-      // Disabled state
-      'disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none',
-      
-      // Prevent text selection
-      'select-none',
-    ];
-
-    // Size variants
-    const sizeVariants = {
-      sm: [
-        'px-6 py-2.5',
-        'text-sm',
-        'rounded-lg',
-        'min-h-[40px]',
-        'gap-2',
-      ],
-      md: [
-        'px-8 py-3.5',
-        'text-base',
-        'rounded-xl',
-        'min-h-[48px]',
-        'gap-2.5',
-      ],
-      lg: [
-        'px-10 py-4',
-        'text-lg',
-        'rounded-xl',
-        'min-h-[52px]',
-        'gap-3',
-      ],
-      xl: [
-        'px-12 py-5',
-        'text-xl',
-        'rounded-2xl',
-        'min-h-[56px]',
-        'gap-3',
-      ],
-    };
+    // Base styles - consistent across all variants
+    const baseStyles = `
+      group relative inline-flex items-center justify-center
+      font-dfaalt font-semibold
+      rounded-xl
+      transition-all duration-300 ease-out
+      focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-dark-black
+      disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+      overflow-hidden
+    `;
 
     // Variant styles
     const variantStyles = {
-      primary: [
-        'bg-primary-600 text-white',
-        'hover:bg-primary-700',
-        'active:bg-primary-800',
-        'shadow-lg hover:shadow-xl',
-        'focus-visible:ring-primary-500',
-        'hover:scale-[1.02]',
-        'active:scale-[0.98]',
-      ],
-      secondary: [
-        'bg-white dark:bg-dark-800',
-        'text-gray-900 dark:text-white',
-        'border-2 border-gray-300 dark:border-dark-600',
-        'hover:border-gray-400 dark:hover:border-dark-500',
-        'hover:bg-gray-50 dark:hover:bg-dark-700',
-        'active:bg-gray-100 dark:active:bg-dark-600',
-        'shadow-md hover:shadow-lg',
-        'focus-visible:ring-gray-500',
-        'hover:scale-[1.02]',
-        'active:scale-[0.98]',
-      ],
-      accent: [
-        'bg-accent-500 text-white',
-        'hover:bg-accent-600',
-        'active:bg-accent-700',
-        'shadow-lg hover:shadow-xl',
-        'focus-visible:ring-accent-400',
-        'hover:scale-[1.02]',
-        'active:scale-[0.98]',
-      ],
-      platinum: [
-        'bg-platinum-200 text-gray-900',
-        'hover:bg-platinum-300',
-        'active:bg-platinum-400',
-        'shadow-md hover:shadow-lg',
-        'focus-visible:ring-platinum-400',
-        'hover:scale-[1.02]',
-        'active:scale-[0.98]',
-      ],
-      ghost: [
-        'bg-transparent',
-        'text-gray-700 dark:text-gray-200',
-        'hover:bg-gray-100 dark:hover:bg-dark-800',
-        'active:bg-gray-200 dark:active:bg-dark-700',
-        'focus-visible:ring-gray-500',
-        'hover:scale-[1.02]',
-        'active:scale-[0.98]',
-      ],
-      glass: [
-        'bg-white/10 dark:bg-white/5',
-        'text-white',
-        'backdrop-blur-md',
-        'border border-white/20',
-        'hover:bg-white/20 dark:hover:bg-white/10',
-        'hover:border-white/30',
-        'active:bg-white/30 dark:active:bg-white/15',
-        'shadow-lg hover:shadow-xl',
-        'focus-visible:ring-white/50',
-        'hover:scale-[1.02]',
-        'active:scale-[0.98]',
-      ],
+      primary: `
+        bg-primary-500 hover:bg-primary-600 active:bg-primary-700
+        text-white
+        shadow-lg hover:shadow-xl
+        hover:scale-[1.02] active:scale-[0.98]
+      `,
+      secondary: `
+        border-2 border-primary-500
+        text-primary-500 hover:text-white
+        bg-transparent hover:bg-primary-500
+        shadow-md hover:shadow-lg
+        hover:scale-[1.02] active:scale-[0.98]
+      `,
+      tertiary: `
+        text-primary-500 hover:text-primary-600 active:text-primary-700
+        underline-offset-4 hover:underline
+        hover:translate-x-1
+      `,
     };
 
-    // Ripple effect overlay
-    const rippleEffect = (
-      <span 
-        className="absolute inset-0 bg-white/20 scale-0 group-active:scale-100 transition-transform duration-500 rounded-inherit"
-        aria-hidden="true"
-      />
-    );
+    // Size styles
+    const sizeStyles = {
+      sm: 'px-4 py-2 text-sm min-h-[40px]',
+      md: 'px-6 py-3 text-base min-h-[48px]',
+      lg: 'px-8 py-4 text-lg min-h-[56px]',
+    };
+
+    // Width styles
+    const widthStyles = fullWidth ? 'w-full' : '';
+
+    // Loading styles
+    const loadingStyles = loading ? 'cursor-wait' : '';
+
+    const combinedClassName = `
+      ${baseStyles}
+      ${variantStyles[variant]}
+      ${sizeStyles[size]}
+      ${widthStyles}
+      ${loadingStyles}
+      ${className}
+    `.replace(/\s+/g, ' ').trim();
 
     return (
       <button
         ref={ref}
-        disabled={disabled || isLoading}
-        className={cn(
-          baseStyles,
-          sizeVariants[size],
-          variantStyles[variant],
-          fullWidth && 'w-full',
-          'group',
-          className
-        )}
+        className={combinedClassName}
+        disabled={disabled || loading}
         {...props}
       >
-        {rippleEffect}
-        
-        {/* Content wrapper for z-index above ripple */}
-        <span className="relative z-10 flex items-center justify-center gap-inherit">
-          {isLoading ? (
+        {/* Ripple effect for primary buttons */}
+        {variant === 'primary' && (
+          <span className="absolute inset-0 bg-white/20 scale-0 group-active:scale-100 transition-transform duration-500 rounded-xl" />
+        )}
+
+        {/* Gradient overlay for primary buttons on hover */}
+        {variant === 'primary' && (
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        )}
+
+        {/* Content wrapper */}
+        <span className="relative z-10 flex items-center justify-center space-x-2">
+          {/* Loading spinner */}
+          {loading && (
             <svg
               className="animate-spin h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
@@ -203,18 +126,19 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               />
             </svg>
-          ) : leftIcon ? (
-            <span className="flex-shrink-0 transition-transform duration-250 group-hover:scale-110">
-              {leftIcon}
-            </span>
-          ) : null}
-          
-          <span className="leading-none">{children}</span>
-          
-          {rightIcon && !isLoading && (
-            <span className="flex-shrink-0 transition-transform duration-250 group-hover:translate-x-0.5">
-              {rightIcon}
-            </span>
+          )}
+
+          {/* Icon left */}
+          {Icon && iconPosition === 'left' && !loading && (
+            <Icon className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+          )}
+
+          {/* Button text */}
+          <span>{children}</span>
+
+          {/* Icon right */}
+          {Icon && iconPosition === 'right' && !loading && (
+            <Icon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           )}
         </span>
       </button>

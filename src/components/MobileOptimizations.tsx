@@ -3,7 +3,7 @@ import React from 'react';
 // Mobile-specific utility components for better UX
 
 export const MobileContainer = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-  <div className={`px-4 sm:px-6 lg:px-8 ${className}`}>
+  <div className={`px-4 sm:px-6 lg:px-16 xl:px-20 ${className}`}>
     {children}
   </div>
 );
@@ -38,9 +38,9 @@ export const TouchFriendlyButton = ({
   };
   
   const variantClasses = {
-    primary: 'bg-primary-600 hover:bg-primary-700 text-white',
+    primary: 'bg-primary-500 hover:bg-primary-600 text-white',
     secondary: 'bg-accent-600 hover:bg-accent-700 text-white',
-    outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white'
+    outline: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white'
   };
   
   return (

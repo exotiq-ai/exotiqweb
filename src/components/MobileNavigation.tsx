@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Moon, Sun, Home, Brain, BarChart3, Users, Mail, TrendingUp, Building } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
+import { Menu, X, Home, Brain, BarChart3, Users, Mail, TrendingUp, Building } from 'lucide-react';
 import ThemeAwareLogo from './ThemeAwareLogo';
 
 export default function MobileNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
   const navigation = [
@@ -58,21 +56,10 @@ export default function MobileNavigation() {
           </Link>
 
           {/* Mobile Controls */}
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-              aria-label="Toggle theme"
-            >
-              {theme === 'light' ? (
-                <Moon className="w-5 h-5 text-gray-700 dark:text-gray-200" />
-              ) : (
-                <Sun className="w-5 h-5 text-gray-700 dark:text-gray-200" />
-              )}
-            </button>
+          <div className="flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="p-2 rounded-lg bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors min-h-[48px] min-w-[48px] flex items-center justify-center"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
@@ -108,14 +95,14 @@ export default function MobileNavigation() {
                   onClick={() => setIsMenuOpen(false)}
                   className={`
                     flex items-center gap-4 px-5 py-4 rounded-xl 
-                    font-inter font-medium text-base
+                    font-montserrat font-medium text-base
                     transition-all duration-200 
-                    min-h-[56px] w-full
+                    min-h-[60px] w-full
                     active:scale-[0.98]
                     touch-manipulation
                     ${
                       isActive(item.href)
-                        ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 shadow-sm'
+                        ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-500 dark:text-primary-400 shadow-sm'
                         : 'text-gray-900 dark:text-gray-100 active:bg-gray-100 dark:active:bg-dark-800'
                     }
                   `}
@@ -129,14 +116,14 @@ export default function MobileNavigation() {
               {/* CTA Button */}
               <button
                 onClick={scrollToBeta}
-                className="w-full font-inter font-semibold text-base px-6 py-4 bg-primary-600 active:bg-primary-700 text-white rounded-xl transition-all duration-200 active:scale-[0.98] min-h-[56px] shadow-lg touch-manipulation"
+                className="w-full font-montserrat font-semibold text-base px-6 py-4 bg-primary-500 active:bg-primary-600 text-white rounded-xl transition-all duration-200 active:scale-[0.98] min-h-[56px] shadow-lg touch-manipulation"
               >
                 Join Beta
               </button>
 
               {/* Additional Info */}
               <div className="mt-8 pt-6 border-t border-gray-200 dark:border-dark-700">
-                <p className="font-inter text-sm text-gray-600 dark:text-gray-300 text-center leading-relaxed">
+                <p className="font-montserrat text-sm text-gray-600 dark:text-gray-300 text-center leading-relaxed">
                   Built by automotive enthusiasts,<br />
                   for automotive enthusiasts.
                 </p>

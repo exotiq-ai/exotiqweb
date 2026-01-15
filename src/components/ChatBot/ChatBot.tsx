@@ -422,7 +422,7 @@ export default function FleetCopilot({ isOpen, onToggle, sessionId, isReturningU
           : 'w-96 h-[600px] rounded-2xl'
       }`}>
         {/* Header */}
-        <div className={`bg-gradient-to-r from-primary-600 to-accent-600 text-white ${
+        <div className={`bg-gradient-to-r from-primary-500 to-accent-600 text-white ${
           isMobile ? 'p-4 pt-6' : 'p-4'
         }`}>
           <div className="flex items-center justify-between">
@@ -431,7 +431,7 @@ export default function FleetCopilot({ isOpen, onToggle, sessionId, isReturningU
                 <Bot className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-space font-bold text-lg">FleetCopilot</h3>
+                <h3 className="font-dfaalt font-bold text-lg">FleetCopilot</h3>
                 <p className="text-sm opacity-90">AI Fleet Assistant</p>
               </div>
             </div>

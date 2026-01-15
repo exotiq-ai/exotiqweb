@@ -88,14 +88,14 @@ export default function BetaSignupForm() {
         <div className="flex items-center justify-center w-12 sm:w-16 h-12 sm:h-16 bg-success-600 rounded-full mx-auto mb-4">
           <CheckCircle className="w-6 sm:w-8 h-6 sm:h-8 text-white" />
         </div>
-        <h3 className="font-space font-bold text-xl sm:text-2xl text-white mb-4">
+        <h3 className="font-dfaalt font-bold text-xl sm:text-2xl text-white mb-4">
           Welcome to the Beta!
         </h3>
-        <p className="font-inter text-base sm:text-lg opacity-90 mb-6">
+        <p className="font-montserrat text-base sm:text-lg opacity-90 mb-6">
           Thanks {formData.fullName}! We've secured your spot and you'll receive an email with next steps within 24 hours.
         </p>
         <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-          <p className="font-inter text-sm opacity-75">
+          <p className="font-montserrat text-sm opacity-75">
             🎉 You're now #79 on our exclusive beta list
           </p>
         </div>
@@ -108,7 +108,7 @@ export default function BetaSignupForm() {
       {error && (
         <div className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg flex items-center space-x-2">
           <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
-          <span className="font-inter text-red-400 text-sm">{error}</span>
+          <span className="font-montserrat text-red-400 text-sm">{error}</span>
         </div>
       )}
       
@@ -121,17 +121,17 @@ export default function BetaSignupForm() {
             value={formData.fullName}
             onChange={handleInputChange}
             placeholder=" "
-            className={`peer font-inter w-full px-4 pt-6 pb-2 pr-12 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 ${
+            className={`peer font-montserrat w-full px-4 pt-6 pb-2 pr-12 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 ${
               validFields.fullName ? 'border-success-500 dark:border-success-500' :
               validationErrors.fullName ? 'border-red-500 dark:border-red-500' : 
               'border-gray-300 dark:border-dark-600'
-            } focus:border-accent-500 dark:focus:border-accent-500 focus:outline-none transition-all duration-250 text-base min-h-[56px]`}
+            } focus:border-primary-500 dark:focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-all duration-250 text-base min-h-[56px]`}
             required
             disabled={isSubmitting}
           />
           <label 
             htmlFor="fullName"
-            className="absolute left-4 top-1/2 -translate-y-1/2 font-inter text-gray-500 dark:text-gray-400 transition-all duration-250 pointer-events-none peer-focus:top-3 peer-focus:text-xs peer-focus:text-accent-600 dark:peer-focus:text-accent-400 peer-[:not(:placeholder-shown)]:top-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 dark:peer-[:not(:placeholder-shown)]:text-gray-400"
+            className="absolute left-4 top-1/2 -translate-y-1/2 font-montserrat text-gray-500 dark:text-gray-400 transition-all duration-250 pointer-events-none peer-focus:top-3 peer-focus:text-xs peer-focus:text-primary-600 dark:peer-focus:text-primary-400 peer-[:not(:placeholder-shown)]:top-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 dark:peer-[:not(:placeholder-shown)]:text-gray-400"
           >
             Full Name
           </label>
@@ -153,17 +153,17 @@ export default function BetaSignupForm() {
             value={formData.email}
             onChange={handleInputChange}
             placeholder=" "
-            className={`peer font-inter w-full px-4 pt-6 pb-2 pr-12 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 ${
+            className={`peer font-montserrat w-full px-4 pt-6 pb-2 pr-12 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 ${
               validFields.email ? 'border-success-500 dark:border-success-500' :
               validationErrors.email ? 'border-red-500 dark:border-red-500' : 
               'border-gray-300 dark:border-dark-600'
-            } focus:border-accent-500 dark:focus:border-accent-500 focus:outline-none transition-all duration-250 text-base min-h-[56px]`}
+            } focus:border-primary-500 dark:focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-all duration-250 text-base min-h-[56px]`}
             required
             disabled={isSubmitting}
           />
           <label 
             htmlFor="email"
-            className="absolute left-4 top-1/2 -translate-y-1/2 font-inter text-gray-500 dark:text-gray-400 transition-all duration-250 pointer-events-none peer-focus:top-3 peer-focus:text-xs peer-focus:text-accent-600 dark:peer-focus:text-accent-400 peer-[:not(:placeholder-shown)]:top-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 dark:peer-[:not(:placeholder-shown)]:text-gray-400"
+            className="absolute left-4 top-1/2 -translate-y-1/2 font-montserrat text-gray-500 dark:text-gray-400 transition-all duration-250 pointer-events-none peer-focus:top-3 peer-focus:text-xs peer-focus:text-primary-600 dark:peer-focus:text-primary-400 peer-[:not(:placeholder-shown)]:top-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 dark:peer-[:not(:placeholder-shown)]:text-gray-400"
           >
             Email Address
           </label>
@@ -185,7 +185,7 @@ export default function BetaSignupForm() {
             name="fleetSize"
             value={formData.fleetSize}
             onChange={handleInputChange}
-            className="font-inter w-full px-4 pt-6 pb-2 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-dark-600 focus:border-accent-500 dark:focus:border-accent-500 focus:outline-none transition-all duration-250 text-base min-h-[56px] appearance-none cursor-pointer"
+            className="font-montserrat w-full px-4 pt-6 pb-2 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-dark-600 focus:border-accent-500 dark:focus:border-accent-500 focus:outline-none transition-all duration-250 text-base min-h-[56px] appearance-none cursor-pointer"
             required
             disabled={isSubmitting}
           >
@@ -196,7 +196,7 @@ export default function BetaSignupForm() {
             <option value="50+">50+ vehicles</option>
           </select>
           <label 
-            className="absolute left-4 top-3 font-inter text-xs text-gray-600 dark:text-gray-400 pointer-events-none"
+            className="absolute left-4 top-3 font-montserrat text-xs text-gray-600 dark:text-gray-400 pointer-events-none"
           >
             Fleet Size
           </label>
@@ -216,12 +216,12 @@ export default function BetaSignupForm() {
             value={formData.currentPlatform}
             onChange={handleInputChange}
             placeholder=" "
-            className="peer font-inter w-full px-4 pt-6 pb-2 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-dark-600 focus:border-accent-500 dark:focus:border-accent-500 focus:outline-none transition-all duration-250 text-base min-h-[56px]"
+            className="peer font-montserrat w-full px-4 pt-6 pb-2 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-dark-600 focus:border-accent-500 dark:focus:border-accent-500 focus:outline-none transition-all duration-250 text-base min-h-[56px]"
             disabled={isSubmitting}
           />
           <label 
             htmlFor="currentPlatform"
-            className="absolute left-4 top-1/2 -translate-y-1/2 font-inter text-gray-500 dark:text-gray-400 transition-all duration-250 pointer-events-none peer-focus:top-3 peer-focus:text-xs peer-focus:text-accent-600 dark:peer-focus:text-accent-400 peer-[:not(:placeholder-shown)]:top-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 dark:peer-[:not(:placeholder-shown)]:text-gray-400"
+            className="absolute left-4 top-1/2 -translate-y-1/2 font-montserrat text-gray-500 dark:text-gray-400 transition-all duration-250 pointer-events-none peer-focus:top-3 peer-focus:text-xs peer-focus:text-primary-600 dark:peer-focus:text-primary-400 peer-[:not(:placeholder-shown)]:top-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 dark:peer-[:not(:placeholder-shown)]:text-gray-400"
           >
             Current Platform (Optional)
           </label>
@@ -236,12 +236,12 @@ export default function BetaSignupForm() {
           onChange={handleInputChange}
           placeholder=" "
           rows={4}
-          className="peer font-inter w-full px-4 pt-6 pb-3 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-dark-600 focus:border-accent-500 dark:focus:border-accent-500 focus:outline-none transition-all duration-250 resize-none text-base"
+          className="peer font-montserrat w-full px-4 pt-6 pb-3 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-dark-600 focus:border-accent-500 dark:focus:border-accent-500 focus:outline-none transition-all duration-250 resize-none text-base"
           disabled={isSubmitting}
         />
         <label 
           htmlFor="challenge"
-          className="absolute left-4 top-3 font-inter text-xs text-gray-600 dark:text-gray-400 transition-all duration-250 pointer-events-none peer-focus:text-accent-600 dark:peer-focus:text-accent-400"
+          className="absolute left-4 top-3 font-montserrat text-xs text-gray-600 dark:text-gray-400 transition-all duration-250 pointer-events-none peer-focus:text-primary-600 dark:peer-focus:text-primary-400"
         >
           Your Biggest Challenge (Optional)
         </label>
@@ -251,7 +251,7 @@ export default function BetaSignupForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="group relative w-full font-inter font-semibold text-base px-8 py-4 bg-accent-600 hover:bg-accent-700 disabled:bg-accent-400 text-white rounded-xl transition-all duration-250 hover:scale-[1.02] active:scale-[0.98] disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center space-x-2.5 min-h-[56px] shadow-xl hover:shadow-2xl overflow-hidden"
+        className="group relative w-full font-montserrat font-semibold text-base px-8 py-4 bg-accent-600 hover:bg-accent-700 disabled:bg-accent-400 text-white rounded-xl transition-all duration-250 hover:scale-[1.02] active:scale-[0.98] disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center space-x-2.5 min-h-[56px] shadow-xl hover:shadow-2xl overflow-hidden"
       >
         <span className="absolute inset-0 bg-white/20 scale-0 group-active:scale-100 transition-transform duration-500 rounded-xl"></span>
         <span className="relative z-10 flex items-center space-x-2.5">
@@ -270,7 +270,7 @@ export default function BetaSignupForm() {
       </button>
       
       {/* Social Proof Below Form */}
-      <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-4 font-inter">
+      <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-4 font-montserrat">
         Join <span className="font-semibold text-accent-600 dark:text-accent-400">79+ operators</span> already in our exclusive beta
       </p>
     </form>

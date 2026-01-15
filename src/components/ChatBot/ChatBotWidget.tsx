@@ -47,7 +47,7 @@ export default function ChatBotWidget() {
         }`}>
           <button
             onClick={toggleChatBot}
-            className={`group relative flex items-center justify-center bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 touch-manipulation ${
+            className={`group relative flex items-center justify-center bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-600 hover:to-accent-700 text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 touch-manipulation ${
               isMobile ? 'w-14 h-14' : 'w-16 h-16'
             } ${
               showPulse ? 'animate-pulse' : ''
@@ -59,8 +59,8 @@ export default function ChatBotWidget() {
             {/* Pulse rings */}
             {showPulse && (
               <>
-                <div className="absolute inset-0 rounded-full bg-primary-600 animate-ping opacity-20"></div>
-                <div className="absolute inset-0 rounded-full bg-primary-600 animate-ping opacity-10" style={{ animationDelay: '0.5s' }}></div>
+                <div className="absolute inset-0 rounded-full bg-primary-500 animate-ping opacity-20"></div>
+                <div className="absolute inset-0 rounded-full bg-primary-500 animate-ping opacity-10" style={{ animationDelay: '0.5s' }}></div>
               </>
             )}
             

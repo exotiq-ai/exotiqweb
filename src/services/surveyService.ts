@@ -1,5 +1,4 @@
 // Survey service for handling survey submissions
-import { submitSurveyToSupabase, SurveySubmission as SupabaseSubmission } from './supabaseClient';
 import logger from '../utils/logger';
 
 export interface SurveySubmission {
@@ -89,7 +88,7 @@ export class SurveyService {
     }
   }
 
-  // Submit survey (tries Supabase directly, falls back to localStorage)
+  // Submit survey (tries Supabase directly via dynamic import, falls back to localStorage)
   static async submitSurvey(data: SurveySubmission): Promise<boolean> {
     logger.debug('Starting survey submission', { sessionId: data.sessionId, surveyType: data.surveyType });
     
@@ -98,8 +97,10 @@ export class SurveyService {
     logger.debug('Survey saved to localStorage', { sessionId: data.sessionId });
 
     try {
-      // Try to submit directly to Supabase
-      const supabaseData: SupabaseSubmission = {
+      // Dynamically import Supabase client to avoid module resolution issues at build time
+      const { submitSurveyToSupabase } = await import('./supabaseClient');
+      
+      const supabaseData = {
         survey_type: data.surveyType,
         responses: data.responses,
         submitted_at: data.timestamp,
@@ -129,4 +130,4 @@ export class SurveyService {
     localStorage.removeItem('survey_submissions');
     logger.info('Local survey submissions cleared');
   }
-} 
+}

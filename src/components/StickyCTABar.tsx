@@ -52,7 +52,7 @@ export default function StickyCTABar() {
           href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 bg-primary-600 active:bg-primary-700 text-white rounded-xl font-inter font-semibold text-sm transition-all duration-200 active:scale-[0.98] min-h-[52px] shadow-lg touch-manipulation"
+          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 bg-primary-500 active:bg-primary-600 text-white rounded-xl font-montserrat font-semibold text-sm transition-all duration-200 active:scale-[0.98] min-h-[52px] shadow-lg touch-manipulation"
         >
           <Calendar className="w-4 h-4" />
           <span>Book Demo</span>
@@ -61,7 +61,7 @@ export default function StickyCTABar() {
         {/* Secondary CTA */}
         <Link
           to="/survey"
-          className="flex items-center justify-center gap-2 px-5 py-3 bg-accent-600 active:bg-accent-700 text-white rounded-xl font-inter font-semibold text-sm transition-all duration-200 active:scale-[0.98] min-h-[52px] shadow-lg touch-manipulation"
+          className="flex items-center justify-center gap-2 px-5 py-3 bg-accent-600 active:bg-accent-700 text-white rounded-xl font-montserrat font-semibold text-sm transition-all duration-200 active:scale-[0.98] min-h-[52px] shadow-lg touch-manipulation"
         >
           <Sparkles className="w-4 h-4" />
           <span>Join Beta</span>

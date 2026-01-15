@@ -92,21 +92,21 @@ export default function CookiePolicyPage() {
       />
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-600 to-accent-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-br from-primary-500 to-accent-600 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
           <div className="flex items-center justify-center w-20 h-20 bg-white/20 rounded-xl mx-auto mb-6">
             <Cookie className="w-10 h-10" />
           </div>
-          <h1 className="font-space font-bold text-5xl md:text-6xl mb-6">
+          <h1 className="font-dfaalt font-bold text-5xl md:text-6xl mb-6">
             🍪 Cookie Policy
           </h1>
-          <p className="font-inter text-xl opacity-90 mb-8">
+          <p className="font-montserrat text-xl opacity-90 mb-8">
             Exotiq.ai Cookie Usage & Privacy Controls
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => setShowModal(true)}
-              className="font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 bg-white text-primary-600 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center"
+              className="font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 bg-white text-primary-500 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center"
             >
               <Settings className="w-5 h-5" />
               <span>🛠️ Manage Cookie Preferences</span>
@@ -117,12 +117,12 @@ export default function CookiePolicyPage() {
 
       {/* Introduction */}
       <section className="py-20 bg-white dark:bg-dark-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="bg-gray-50 dark:bg-dark-800 p-8 rounded-2xl mb-12">
-            <h2 className="font-space font-bold text-3xl text-gray-900 dark:text-white mb-6">
+            <h2 className="font-dfaalt font-bold text-3xl text-gray-900 dark:text-white mb-6">
               About Cookies
             </h2>
-            <p className="font-inter text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+            <p className="font-montserrat text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
               Cookies are small text files that websites store on your device to enhance your browsing experience. 
               Exotiq.ai uses cookies to provide essential functionality, improve our services, and understand how 
               you interact with our platform.
@@ -134,7 +134,7 @@ export default function CookiePolicyPage() {
               </div>
               <div>
                 <span className="font-semibold text-gray-900 dark:text-white">Contact:</span>
-                <a href="mailto:privacy@exotiq.ai" className="text-primary-600 hover:text-primary-700 ml-2">
+                <a href="mailto:privacy@exotiq.ai" className="text-primary-500 hover:text-primary-600 ml-2">
                   privacy@exotiq.ai
                 </a>
               </div>
@@ -145,12 +145,12 @@ export default function CookiePolicyPage() {
 
       {/* Cookie Categories */}
       <section className="py-20 bg-gray-50 dark:bg-dark-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="text-center mb-16">
-            <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-6">
+            <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-6">
               Types of Cookies We Use
             </h2>
-            <p className="font-inter text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="font-montserrat text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               We categorize cookies based on their purpose and give you control over optional cookies.
             </p>
           </div>
@@ -164,10 +164,10 @@ export default function CookiePolicyPage() {
                       <category.icon className={`w-6 h-6 text-${category.color}-600`} />
                     </div>
                     <div>
-                      <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white">
+                      <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white">
                         {category.category} Cookies
                       </h3>
-                      <p className="font-inter text-gray-600 dark:text-gray-300">
+                      <p className="font-montserrat text-gray-600 dark:text-gray-300">
                         {category.description}
                       </p>
                     </div>
@@ -189,19 +189,19 @@ export default function CookiePolicyPage() {
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-gray-200 dark:border-dark-600">
-                        <th className="text-left py-3 font-space font-semibold text-gray-900 dark:text-white">Cookie Name</th>
-                        <th className="text-left py-3 font-space font-semibold text-gray-900 dark:text-white">Purpose</th>
-                        <th className="text-left py-3 font-space font-semibold text-gray-900 dark:text-white">Duration</th>
-                        <th className="text-left py-3 font-space font-semibold text-gray-900 dark:text-white">Provider</th>
+                        <th className="text-left py-3 font-dfaalt font-semibold text-gray-900 dark:text-white">Cookie Name</th>
+                        <th className="text-left py-3 font-dfaalt font-semibold text-gray-900 dark:text-white">Purpose</th>
+                        <th className="text-left py-3 font-dfaalt font-semibold text-gray-900 dark:text-white">Duration</th>
+                        <th className="text-left py-3 font-dfaalt font-semibold text-gray-900 dark:text-white">Provider</th>
                       </tr>
                     </thead>
                     <tbody>
                       {category.cookies.map((cookie, cookieIndex) => (
                         <tr key={cookieIndex} className="border-b border-gray-100 dark:border-dark-600 hover:bg-gray-50 dark:hover:bg-dark-600">
                           <td className="py-4 font-mono text-sm text-gray-900 dark:text-white">{cookie.name}</td>
-                          <td className="py-4 font-inter text-gray-600 dark:text-gray-300">{cookie.purpose}</td>
-                          <td className="py-4 font-inter text-gray-600 dark:text-gray-300">{cookie.duration}</td>
-                          <td className="py-4 font-inter text-gray-600 dark:text-gray-300">{cookie.provider}</td>
+                          <td className="py-4 font-montserrat text-gray-600 dark:text-gray-300">{cookie.purpose}</td>
+                          <td className="py-4 font-montserrat text-gray-600 dark:text-gray-300">{cookie.duration}</td>
+                          <td className="py-4 font-montserrat text-gray-600 dark:text-gray-300">{cookie.provider}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -215,22 +215,22 @@ export default function CookiePolicyPage() {
 
       {/* Managing Cookies */}
       <section className="py-20 bg-white dark:bg-dark-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-12 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
+          <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-12 text-center">
             Managing Your Cookie Preferences
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-primary-50 dark:bg-primary-900/20 p-8 rounded-2xl">
-              <h3 className="font-space font-bold text-xl text-gray-900 dark:text-white mb-4">
+              <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white mb-4">
                 Exotiq.ai Cookie Settings
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300 mb-6">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-6">
                 You can manage your cookie preferences at any time using our cookie settings panel.
               </p>
               <button
                 onClick={() => setShowModal(true)}
-                className="font-poppins font-bold text-sm uppercase tracking-wide px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2"
+                className="font-poppins font-bold text-sm uppercase tracking-wide px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2"
               >
                 <Settings className="w-4 h-4" />
                 <span>Manage Preferences</span>
@@ -238,13 +238,13 @@ export default function CookiePolicyPage() {
             </div>
 
             <div className="bg-gray-50 dark:bg-dark-800 p-8 rounded-2xl">
-              <h3 className="font-space font-bold text-xl text-gray-900 dark:text-white mb-4">
+              <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white mb-4">
                 Browser Settings
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300 mb-4">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-4">
                 You can also control cookies through your browser:
               </p>
-              <ul className="space-y-2 text-sm font-inter text-gray-600 dark:text-gray-300">
+              <ul className="space-y-2 text-sm font-montserrat text-gray-600 dark:text-gray-300">
                 <li><strong>Chrome:</strong> Settings → Privacy and Security → Cookies</li>
                 <li><strong>Firefox:</strong> Preferences → Privacy & Security</li>
                 <li><strong>Safari:</strong> Preferences → Privacy</li>
@@ -257,14 +257,14 @@ export default function CookiePolicyPage() {
 
       {/* Third-Party Services */}
       <section className="py-20 bg-gray-50 dark:bg-dark-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-12 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
+          <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-12 text-center">
             Third-Party Cookie Services
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white dark:bg-dark-700 p-8 rounded-2xl">
-              <h3 className="font-space font-bold text-xl text-gray-900 dark:text-white mb-6">
+              <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white mb-6">
                 Analytics Partners
               </h3>
               <div className="space-y-4">
@@ -274,9 +274,9 @@ export default function CookiePolicyPage() {
                   { name: 'Hotjar', privacy: 'https://www.hotjar.com/legal/policies/privacy/', optout: 'https://www.hotjar.com/legal/compliance/opt-out' }
                 ].map((service, index) => (
                   <div key={index} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-dark-600 rounded-lg">
-                    <span className="font-inter font-semibold text-gray-900 dark:text-white">{service.name}</span>
+                    <span className="font-montserrat font-semibold text-gray-900 dark:text-white">{service.name}</span>
                     <div className="flex space-x-2">
-                      <a href={service.privacy} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 text-sm flex items-center space-x-1">
+                      <a href={service.privacy} target="_blank" rel="noopener noreferrer" className="text-primary-500 hover:text-primary-600 text-sm flex items-center space-x-1">
                         <span>Privacy</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
@@ -291,7 +291,7 @@ export default function CookiePolicyPage() {
             </div>
 
             <div className="bg-white dark:bg-dark-700 p-8 rounded-2xl">
-              <h3 className="font-space font-bold text-xl text-gray-900 dark:text-white mb-6">
+              <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white mb-6">
                 Advertising Partners
               </h3>
               <div className="space-y-4">
@@ -301,9 +301,9 @@ export default function CookiePolicyPage() {
                   { name: 'LinkedIn', privacy: 'https://www.linkedin.com/legal/privacy-policy', optout: 'https://www.linkedin.com/psettings/guest-controls' }
                 ].map((service, index) => (
                   <div key={index} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-dark-600 rounded-lg">
-                    <span className="font-inter font-semibold text-gray-900 dark:text-white">{service.name}</span>
+                    <span className="font-montserrat font-semibold text-gray-900 dark:text-white">{service.name}</span>
                     <div className="flex space-x-2">
-                      <a href={service.privacy} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 text-sm flex items-center space-x-1">
+                      <a href={service.privacy} target="_blank" rel="noopener noreferrer" className="text-primary-500 hover:text-primary-600 text-sm flex items-center space-x-1">
                         <span>Privacy</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
@@ -322,32 +322,32 @@ export default function CookiePolicyPage() {
 
       {/* Contact */}
       <section className="py-20 bg-white dark:bg-dark-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-space font-bold text-4xl text-gray-900 dark:text-white mb-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
+          <h2 className="font-dfaalt font-bold text-4xl text-gray-900 dark:text-white mb-6">
             Questions About Cookies?
           </h2>
-          <p className="font-inter text-xl text-gray-600 dark:text-gray-300 mb-8">
+          <p className="font-montserrat text-xl text-gray-600 dark:text-gray-300 mb-8">
             Contact us if you have questions about our cookie usage or privacy practices.
           </p>
           <div className="bg-gray-50 dark:bg-dark-800 p-8 rounded-2xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div>
-                <h3 className="font-space font-semibold text-lg text-gray-900 dark:text-white mb-2">Email</h3>
-                <a href="mailto:privacy@exotiq.ai" className="font-inter text-primary-600 hover:text-primary-700">
+                <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">Email</h3>
+                <a href="mailto:privacy@exotiq.ai" className="font-montserrat text-primary-500 hover:text-primary-600">
                   privacy@exotiq.ai
                 </a>
               </div>
               <div>
-                <h3 className="font-space font-semibold text-lg text-gray-900 dark:text-white mb-2">Address</h3>
-                <p className="font-inter text-gray-600 dark:text-gray-300 text-sm">
+                <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">Address</h3>
+                <p className="font-montserrat text-gray-600 dark:text-gray-300 text-sm">
                   G & G Holdings MT LLC<br />
                   1001 S Main St #XXX<br />
                   Kalispell, MT 59901
                 </p>
               </div>
               <div>
-                <h3 className="font-space font-semibold text-lg text-gray-900 dark:text-white mb-2">DPO</h3>
-                <a href="mailto:dpo@exotiq.ai" className="font-inter text-primary-600 hover:text-primary-700">
+                <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">DPO</h3>
+                <a href="mailto:dpo@exotiq.ai" className="font-montserrat text-primary-500 hover:text-primary-600">
                   dpo@exotiq.ai
                 </a>
               </div>

@@ -11,36 +11,17 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    try {
-      // Check localStorage first, then system preference
-      const saved = localStorage.getItem('theme') as Theme;
-      if (saved) return saved;
-    } catch (error) {
-      // localStorage blocked, fall back to system preference
-      logger.warn('localStorage blocked, using system preference');
-    }
-    
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
+  // Always force dark theme - brand identity requires dark-first approach
+  const [theme] = useState<Theme>('dark');
 
   useEffect(() => {
-    try {
-      localStorage.setItem('theme', theme);
-    } catch (error) {
-      // localStorage blocked, continue without saving
-      logger.warn('localStorage blocked, theme preference not saved');
-    }
-    
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [theme]);
+    // Always apply dark theme class
+    document.documentElement.classList.add('dark');
+  }, []);
 
+  // No-op function to maintain compatibility with existing code
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+    // Theme is locked to dark mode
   };
 
   return (

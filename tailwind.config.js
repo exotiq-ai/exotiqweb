@@ -28,37 +28,40 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'space': ['Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        // Official Brand Typography - DriveExotiq Brand Guidelines
+        'dfaalt': ['Dfaalt', 'Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'], // Display & Headers
+        'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'], // Body copy (upgraded from Montserrat)
+        'montserrat': ['Inter', 'Montserrat', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'], // Legacy alias -> Inter
         'mono': ['JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', 'monospace'],
-        // Deprecated: Poppins removed for cleaner hierarchy
+        // Legacy fallbacks
+        'space': ['Dfaalt', 'Space Grotesk', 'sans-serif'],
       },
       colors: {
-        // Sophisticated Deep Blue - Premium Primary
+        // Gulf Blue - Official Brand Primary (DriveExotiq Brand Guidelines)
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#1e40af',  // Main primary - deeper, sophisticated
-          700: '#1a3a99',
-          800: '#162f7f',
-          900: '#0f1f4d',
+          50: '#e8f7fc',
+          100: '#d1eff9',
+          200: '#a3dff3',
+          300: '#75cfed',
+          400: '#47bfe7',
+          500: '#6EC1E4',  // Main Gulf Blue - #6EC1E4 (official brand color)
+          600: '#58a8cd',
+          700: '#4a8fb0',
+          800: '#3c7693',
+          900: '#2e5d76',
         },
-        // Champagne Gold - Luxury Accent
+        // Performance Orange - Official Brand Secondary (DriveExotiq Brand Guidelines)
         accent: {
-          50: '#faf8f5',
-          100: '#f5f1ea',
-          200: '#ebe3d5',
-          300: '#dfd4bf',
-          400: '#d3c5aa',
-          500: '#c5a572',  // Main accent - champagne gold
-          600: '#b8935d',
-          700: '#9a7a4d',
-          800: '#7d633e',
-          900: '#5f4c2f',
+          50: '#fff4ed',
+          100: '#ffe9db',
+          200: '#ffd3b7',
+          300: '#ffbd93',
+          400: '#ffa76f',
+          500: '#F15A29',  // Main Performance Orange - #F15A29 (official brand color)
+          600: '#e04815',
+          700: '#c43d12',
+          800: '#a8320f',
+          900: '#8c270c',
         },
         // Platinum - Subtle Metallic Accent
         platinum: {
@@ -93,7 +96,7 @@ export default {
           500: '#ef4444',
           600: '#dc2626',
         },
-        // True Black for Premium Dark Mode
+        // Deep Black & Jet Grey - Official Brand Foundation (DriveExotiq Brand Guidelines)
         dark: {
           50: '#fafafa',
           100: '#f5f5f5',
@@ -104,16 +107,36 @@ export default {
           600: '#525252',
           700: '#404040',
           800: '#262626',
-          900: '#171717',
+          900: '#1B1B1B',  // Jet Grey - #1B1B1B (official brand color)
           950: '#0a0a0a',
-          black: '#000000',
+          black: '#000000', // Deep Black - #000000 (official brand color)
+        },
+        // Supporting Colors - Official Brand (DriveExotiq Brand Guidelines)
+        silver: {
+          50: '#fafafa',
+          100: '#f5f5f5',
+          200: '#C0C0C0',  // Metallic Silver - #C0C0C0 (official brand color)
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#3A3A3A',  // Graphite - #3A3A3A (official brand color)
+          800: '#262626',
+          900: '#171717',
+        },
+        midnight: {
+          900: '#0A1929',  // Midnight Blue - #0A1929 (official brand alternative accent)
         }
       },
       spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
-        '112': '28rem',
-        '128': '32rem',
+        // 8px base system for consistent spacing
+        // Default Tailwind already provides: 1(4px), 2(8px), 4(16px), 6(24px), 8(32px), 12(48px), 16(64px)
+        // Adding custom values for specific needs
+        '18': '4.5rem',   // 72px
+        '20': '5rem',     // 80px
+        '88': '22rem',    // 352px
+        '112': '28rem',   // 448px
+        '128': '32rem',   // 512px
       },
       animation: {
         'fade-in': 'fadeIn 0.35s cubic-bezier(0.0, 0.0, 0.2, 1)',

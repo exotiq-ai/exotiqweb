@@ -52,8 +52,8 @@ const ToastComponent: React.FC<ToastProps> = ({ toast, onClose }) => {
     info: {
       bg: 'bg-primary-50 dark:bg-primary-900/30',
       border: 'border-primary-200 dark:border-primary-800',
-      text: 'text-primary-700 dark:text-primary-300',
-      icon: 'text-primary-600 dark:text-primary-400',
+      text: 'text-primary-600 dark:text-primary-300',
+      icon: 'text-primary-500 dark:text-primary-400',
     },
     warning: {
       bg: 'bg-warning-50 dark:bg-warning-900/30',
@@ -73,7 +73,7 @@ const ToastComponent: React.FC<ToastProps> = ({ toast, onClose }) => {
       }`}
     >
       <Icon className={`w-5 h-5 ${colorScheme.icon} flex-shrink-0 mt-0.5`} />
-      <p className={`flex-1 font-inter text-sm ${colorScheme.text}`}>{toast.message}</p>
+      <p className={`flex-1 font-montserrat text-sm ${colorScheme.text}`}>{toast.message}</p>
       <button
         onClick={() => {
           setIsVisible(false);

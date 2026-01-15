@@ -14,7 +14,7 @@ const SurveyIcons: React.FC<SurveyIconsProps> = ({ type }) => {
 
   const Icon = iconMap[type as keyof typeof iconMap] || Users;
 
-  return <Icon className="w-8 h-8 text-primary-600" />;
+  return <Icon className="w-8 h-8 text-primary-500" />;
 };
 
 export default SurveyIcons;

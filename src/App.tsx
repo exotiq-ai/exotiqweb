@@ -20,7 +20,8 @@ const FeaturesPage = React.lazy(() => import('./pages/FeaturesPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 const SurveyPage = React.lazy(() => import('./pages/SurveyPage'));
-const InvestorPage = React.lazy(() => import('./pages/InvestorPage'));
+const PricingPage = React.lazy(() => import('./pages/PricingPage'));
+const InvestorPage = React.lazy(() => import('./pages/InvestorPageNew'));
 const TestPage = React.lazy(() => import('./pages/TestPage'));
 const GTMTestPage = React.lazy(() => import('./pages/GTMTestPage'));
 const SimpleGTMTest = React.lazy(() => import('./pages/SimpleGTMTest'));
@@ -92,6 +93,7 @@ export default function App() {
                       <Route path="/" element={<HomePage />} />
                       <Route path="/about" element={<AboutPage />} />
                       <Route path="/features" element={<FeaturesPage />} />
+                      <Route path="/pricing" element={<PricingPage />} />
                       <Route path="/contact" element={<ContactPage />} />
                       <Route path="/survey" element={<SurveyPage />} />
                       <Route path="/investors" element={<InvestorPage />} />

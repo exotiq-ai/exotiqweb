@@ -62,7 +62,7 @@ export default function SurveyDebug() {
   return (
     <div className="fixed bottom-4 left-4 z-50">
       <div className="bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 rounded-lg shadow-lg p-4 max-w-md">
-        <h3 className="font-space font-bold text-lg text-gray-900 dark:text-white mb-3">
+        <h3 className="font-dfaalt font-bold text-lg text-gray-900 dark:text-white mb-3">
           Survey Debug (Dev Only)
         </h3>
         
@@ -80,7 +80,7 @@ export default function SurveyDebug() {
           )}
           <button
             onClick={loadSubmissions}
-            className="w-full px-3 py-2 bg-primary-600 text-white rounded text-sm hover:bg-primary-700"
+            className="w-full px-3 py-2 bg-primary-500 text-white rounded text-sm hover:bg-primary-600"
           >
             Load Submissions ({SurveyService.getSubmissionCount()})
           </button>
@@ -103,7 +103,7 @@ export default function SurveyDebug() {
                 <div>Time: {new Date(submission.timestamp).toLocaleString()}</div>
                 <div>Questions: {Object.keys(submission.responses).length}</div>
                 <details className="mt-1">
-                  <summary className="cursor-pointer text-primary-600">View Responses</summary>
+                  <summary className="cursor-pointer text-primary-500">View Responses</summary>
                   <pre className="mt-1 text-xs overflow-x-auto">
                     {JSON.stringify(submission.responses, null, 2)}
                   </pre>

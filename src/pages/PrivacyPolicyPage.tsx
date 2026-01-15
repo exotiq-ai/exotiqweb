@@ -42,20 +42,20 @@ export default function PrivacyPolicyPage() {
       />
       
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-success-600 to-primary-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-br from-success-600 to-primary-500 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
           <div className="flex items-center justify-center w-20 h-20 bg-white/20 rounded-xl mx-auto mb-6">
             <Lock className="w-10 h-10 text-white" />
           </div>
-          <h1 className="font-space font-bold text-5xl md:text-6xl mb-6">
+          <h1 className="font-dfaalt font-bold text-5xl md:text-6xl mb-6">
             Privacy Policy
           </h1>
-          <p className="font-inter text-xl opacity-90 mb-8">
+          <p className="font-montserrat text-xl opacity-90 mb-8">
             Your privacy is our priority
           </p>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 inline-block">
-            <div className="font-space font-semibold text-lg mb-2">G & G Holdings MT LLC</div>
-            <div className="font-inter text-sm opacity-90">
+            <div className="font-dfaalt font-semibold text-lg mb-2">G & G Holdings MT LLC</div>
+            <div className="font-montserrat text-sm opacity-90">
               Effective Date: January 2025 | Last Updated: January 2025
             </div>
           </div>
@@ -64,10 +64,10 @@ export default function PrivacyPolicyPage() {
 
       {/* Table of Contents */}
       <section className="py-12 bg-gray-50 dark:bg-dark-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="bg-white dark:bg-dark-700 p-8 rounded-2xl shadow-lg">
-            <h2 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-6 flex items-center">
-              <FileText className="w-6 h-6 mr-3 text-primary-600" />
+            <h2 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-6 flex items-center">
+              <FileText className="w-6 h-6 mr-3 text-primary-500" />
               Table of Contents
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -91,7 +91,7 @@ export default function PrivacyPolicyPage() {
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  className="block p-3 bg-gray-50 dark:bg-dark-800 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg border border-gray-200 dark:border-dark-600 hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-200 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 text-sm font-medium"
+                  className="block p-3 bg-gray-50 dark:bg-dark-800 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg border border-gray-200 dark:border-dark-600 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 text-sm font-medium"
                 >
                   {item.title}
                 </a>
@@ -103,24 +103,24 @@ export default function PrivacyPolicyPage() {
 
       {/* Main Content */}
       <section className="py-20 bg-white dark:bg-dark-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-space prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:font-inter prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-li:font-inter prose-li:text-gray-600 dark:prose-li:text-gray-300 prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-strong:text-gray-900 dark:prose-strong:text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
+          <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-dfaalt prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:font-montserrat prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-li:font-montserrat prose-li:text-gray-600 dark:prose-li:text-gray-300 prose-a:text-primary-500 hover:prose-a:text-primary-600 prose-strong:text-gray-900 dark:prose-strong:text-white">
             
             {/* Section 1: Introduction */}
             <section id="introduction">
               <h2 className="flex items-center">
-                <Shield className="w-8 h-8 mr-3 text-primary-600" />
+                <Shield className="w-8 h-8 mr-3 text-primary-500" />
                 1. Introduction
               </h2>
               <p>
                 G & G Holdings MT LLC ("Exotiq.ai," "Company," "we," "us," or "our") is committed to protecting your privacy and personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website, applications, products, and services (collectively, the "Services").
               </p>
               
-              <div className="bg-primary-50 dark:bg-primary-900/20 border-l-4 border-primary-600 p-6 my-6">
+              <div className="bg-primary-50 dark:bg-primary-900/20 border-l-4 border-primary-500 p-6 my-6">
                 <p className="font-semibold text-primary-800 dark:text-primary-200 mb-2">
                   Important Notice
                 </p>
-                <p className="text-primary-700 dark:text-primary-300 mb-0">
+                <p className="text-primary-600 dark:text-primary-300 mb-0">
                   By using our Services, you consent to the practices described in this Privacy Policy.
                 </p>
               </div>
@@ -168,14 +168,14 @@ export default function PrivacyPolicyPage() {
               
               <div className="overflow-x-auto my-8">
                 <table className="w-full border-collapse bg-white dark:bg-dark-700 rounded-lg overflow-hidden shadow-lg">
-                  <thead className="bg-primary-600 text-white">
+                  <thead className="bg-primary-500 text-white">
                     <tr>
-                      <th className="p-4 text-left font-space font-semibold">Data Type</th>
-                      <th className="p-4 text-left font-space font-semibold">Examples</th>
-                      <th className="p-4 text-left font-space font-semibold">Purpose</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Data Type</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Examples</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Purpose</th>
                     </tr>
                   </thead>
-                  <tbody className="font-inter">
+                  <tbody className="font-montserrat">
                     <tr className="border-b border-gray-200 dark:border-dark-600 hover:bg-gray-50 dark:hover:bg-dark-600">
                       <td className="p-4 font-semibold text-gray-900 dark:text-white">Usage Data</td>
                       <td className="p-4 text-gray-600 dark:text-gray-300">Pages visited, features used, time spent</td>
@@ -212,8 +212,8 @@ export default function PrivacyPolicyPage() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-                <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl border border-gray-200 dark:border-dark-700 hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-200">
-                  <h4 className="text-primary-600 dark:text-primary-400 font-space font-semibold text-lg mb-3 flex items-center">
+                <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl border border-gray-200 dark:border-dark-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200">
+                  <h4 className="text-primary-500 dark:text-primary-400 font-dfaalt font-semibold text-lg mb-3 flex items-center">
                     🚀 Service Provision
                   </h4>
                   <ul className="space-y-2 text-sm">
@@ -224,7 +224,7 @@ export default function PrivacyPolicyPage() {
                   </ul>
                 </div>
                 <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl border border-gray-200 dark:border-dark-700 hover:border-accent-300 dark:hover:border-accent-700 transition-all duration-200">
-                  <h4 className="text-accent-600 dark:text-accent-400 font-space font-semibold text-lg mb-3 flex items-center">
+                  <h4 className="text-accent-600 dark:text-accent-400 font-dfaalt font-semibold text-lg mb-3 flex items-center">
                     📈 Service Improvement
                   </h4>
                   <ul className="space-y-2 text-sm">
@@ -235,7 +235,7 @@ export default function PrivacyPolicyPage() {
                   </ul>
                 </div>
                 <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl border border-gray-200 dark:border-dark-700 hover:border-success-300 dark:hover:border-success-700 transition-all duration-200">
-                  <h4 className="text-success-600 dark:text-success-400 font-space font-semibold text-lg mb-3 flex items-center">
+                  <h4 className="text-success-600 dark:text-success-400 font-dfaalt font-semibold text-lg mb-3 flex items-center">
                     📢 Communication
                   </h4>
                   <ul className="space-y-2 text-sm">
@@ -246,7 +246,7 @@ export default function PrivacyPolicyPage() {
                   </ul>
                 </div>
                 <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl border border-gray-200 dark:border-dark-700 hover:border-warning-300 dark:hover:border-warning-700 transition-all duration-200">
-                  <h4 className="text-warning-600 dark:text-warning-400 font-space font-semibold text-lg mb-3 flex items-center">
+                  <h4 className="text-warning-600 dark:text-warning-400 font-dfaalt font-semibold text-lg mb-3 flex items-center">
                     ⚖️ Legal & Compliance
                   </h4>
                   <ul className="space-y-2 text-sm">
@@ -262,7 +262,7 @@ export default function PrivacyPolicyPage() {
             {/* Section 4: Legal Basis */}
             <section id="legal-basis">
               <h2 className="flex items-center">
-                <Globe className="w-8 h-8 mr-3 text-primary-600" />
+                <Globe className="w-8 h-8 mr-3 text-primary-500" />
                 4. Legal Basis for Processing (GDPR)
               </h2>
               <p>For users in the European Union, we process your personal data based on the following legal grounds:</p>
@@ -301,7 +301,7 @@ export default function PrivacyPolicyPage() {
               <h2>5. Information Sharing and Disclosure</h2>
               
               <div className="bg-success-50 dark:bg-success-900/20 border-l-4 border-success-600 p-6 my-6">
-                <h4 className="text-success-800 dark:text-success-200 font-space font-semibold text-lg mb-2 flex items-center">
+                <h4 className="text-success-800 dark:text-success-200 font-dfaalt font-semibold text-lg mb-2 flex items-center">
                   🛡️ We Do Not Sell Personal Information
                 </h4>
                 <p className="text-success-700 dark:text-success-300 mb-0">
@@ -340,12 +340,12 @@ export default function PrivacyPolicyPage() {
                 <table className="w-full border-collapse bg-white dark:bg-dark-700 rounded-lg overflow-hidden shadow-lg">
                   <thead className="bg-accent-600 text-white">
                     <tr>
-                      <th className="p-4 text-left font-space font-semibold">Security Layer</th>
-                      <th className="p-4 text-left font-space font-semibold">Implementation</th>
-                      <th className="p-4 text-left font-space font-semibold">Description</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Security Layer</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Implementation</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Description</th>
                     </tr>
                   </thead>
-                  <tbody className="font-inter">
+                  <tbody className="font-montserrat">
                     <tr className="border-b border-gray-200 dark:border-dark-600 hover:bg-gray-50 dark:hover:bg-dark-600">
                       <td className="p-4 font-semibold text-gray-900 dark:text-white">Encryption</td>
                       <td className="p-4 text-gray-600 dark:text-gray-300">AES-256</td>
@@ -393,12 +393,12 @@ export default function PrivacyPolicyPage() {
                 <table className="w-full border-collapse bg-white dark:bg-dark-700 rounded-lg overflow-hidden shadow-lg">
                   <thead className="bg-success-600 text-white">
                     <tr>
-                      <th className="p-4 text-left font-space font-semibold">Data Type</th>
-                      <th className="p-4 text-left font-space font-semibold">Retention Period</th>
-                      <th className="p-4 text-left font-space font-semibold">Reason</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Data Type</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Retention Period</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Reason</th>
                     </tr>
                   </thead>
-                  <tbody className="font-inter">
+                  <tbody className="font-montserrat">
                     <tr className="border-b border-gray-200 dark:border-dark-600 hover:bg-gray-50 dark:hover:bg-dark-600">
                       <td className="p-4 text-gray-900 dark:text-white">Account Data</td>
                       <td className="p-4 text-gray-600 dark:text-gray-300">Active account + 3 years</td>
@@ -438,7 +438,7 @@ export default function PrivacyPolicyPage() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
                 <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl border border-gray-200 dark:border-dark-700">
-                  <h4 className="text-primary-600 dark:text-primary-400 font-space font-semibold text-lg mb-3">
+                  <h4 className="text-primary-500 dark:text-primary-400 font-dfaalt font-semibold text-lg mb-3">
                     🌍 General Rights (All Users)
                   </h4>
                   <ul className="space-y-2 text-sm">
@@ -450,7 +450,7 @@ export default function PrivacyPolicyPage() {
                   </ul>
                 </div>
                 <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl border border-gray-200 dark:border-dark-700">
-                  <h4 className="text-accent-600 dark:text-accent-400 font-space font-semibold text-lg mb-3">
+                  <h4 className="text-accent-600 dark:text-accent-400 font-dfaalt font-semibold text-lg mb-3">
                     🇪🇺 GDPR Rights (EU Residents)
                   </h4>
                   <ul className="space-y-2 text-sm">
@@ -462,7 +462,7 @@ export default function PrivacyPolicyPage() {
                   </ul>
                 </div>
                 <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl border border-gray-200 dark:border-dark-700">
-                  <h4 className="text-success-600 dark:text-success-400 font-space font-semibold text-lg mb-3">
+                  <h4 className="text-success-600 dark:text-success-400 font-dfaalt font-semibold text-lg mb-3">
                     🇺🇸 CCPA Rights (California)
                   </h4>
                   <ul className="space-y-2 text-sm">
@@ -473,7 +473,7 @@ export default function PrivacyPolicyPage() {
                   </ul>
                 </div>
                 <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl border border-gray-200 dark:border-dark-700">
-                  <h4 className="text-warning-600 dark:text-warning-400 font-space font-semibold text-lg mb-3">
+                  <h4 className="text-warning-600 dark:text-warning-400 font-dfaalt font-semibold text-lg mb-3">
                     🇨🇦 PIPEDA Rights (Canada)
                   </h4>
                   <ul className="space-y-2 text-sm">
@@ -515,12 +515,12 @@ export default function PrivacyPolicyPage() {
                 <table className="w-full border-collapse bg-white dark:bg-dark-700 rounded-lg overflow-hidden shadow-lg">
                   <thead className="bg-warning-600 text-white">
                     <tr>
-                      <th className="p-4 text-left font-space font-semibold">Cookie Type</th>
-                      <th className="p-4 text-left font-space font-semibold">Purpose</th>
-                      <th className="p-4 text-left font-space font-semibold">Examples</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Cookie Type</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Purpose</th>
+                      <th className="p-4 text-left font-dfaalt font-semibold">Examples</th>
                     </tr>
                   </thead>
-                  <tbody className="font-inter">
+                  <tbody className="font-montserrat">
                     <tr className="border-b border-gray-200 dark:border-dark-600 hover:bg-gray-50 dark:hover:bg-dark-600">
                       <td className="p-4 font-semibold text-gray-900 dark:text-white">Essential Cookies</td>
                       <td className="p-4 text-gray-600 dark:text-gray-300">Required for basic functionality</td>
@@ -612,9 +612,9 @@ export default function PrivacyPolicyPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-gradient-to-br from-primary-600 to-accent-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-space font-bold text-3xl text-center mb-8">
+      <section className="py-16 bg-gradient-to-br from-primary-500 to-accent-600 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
+          <h2 className="font-dfaalt font-bold text-3xl text-center mb-8">
             Contact Information
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -622,7 +622,7 @@ export default function PrivacyPolicyPage() {
               <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mx-auto mb-4">
                 <Mail className="w-6 h-6" />
               </div>
-              <h4 className="font-space font-semibold text-lg mb-2">Email</h4>
+              <h4 className="font-dfaalt font-semibold text-lg mb-2">Email</h4>
               <p className="opacity-90 mb-2">For privacy inquiries</p>
               <a href="mailto:hello@exotiq.ai" className="text-white hover:text-gray-200 underline">
                 hello@exotiq.ai
@@ -632,7 +632,7 @@ export default function PrivacyPolicyPage() {
               <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mx-auto mb-4">
                 <MapPin className="w-6 h-6" />
               </div>
-              <h4 className="font-space font-semibold text-lg mb-2">Address</h4>
+              <h4 className="font-dfaalt font-semibold text-lg mb-2">Address</h4>
               <p className="opacity-90 text-sm">
                 G & G Holdings MT LLC<br />
                 1001 S Main St #XXX<br />
@@ -643,7 +643,7 @@ export default function PrivacyPolicyPage() {
               <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mx-auto mb-4">
                 <Globe className="w-6 h-6" />
               </div>
-              <h4 className="font-space font-semibold text-lg mb-2">Website</h4>
+              <h4 className="font-dfaalt font-semibold text-lg mb-2">Website</h4>
               <p className="opacity-90 mb-2">Visit our main site</p>
               <a href="https://exotiq.ai" className="text-white hover:text-gray-200 underline">
                 https://exotiq.ai
@@ -655,15 +655,15 @@ export default function PrivacyPolicyPage() {
 
       {/* Last Updated */}
       <section className="py-8 bg-gray-50 dark:bg-dark-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
           <div className="bg-white dark:bg-dark-700 p-6 rounded-xl border border-gray-200 dark:border-dark-600">
-            <p className="font-inter text-sm text-gray-600 dark:text-gray-400 mb-2">
+            <p className="font-montserrat text-sm text-gray-600 dark:text-gray-400 mb-2">
               <strong>Last Updated:</strong> January 2025
             </p>
-            <p className="font-inter text-sm text-gray-600 dark:text-gray-400 mb-4">
+            <p className="font-montserrat text-sm text-gray-600 dark:text-gray-400 mb-4">
               <strong>Version:</strong> 1.0
             </p>
-            <p className="font-inter text-xs text-gray-500 dark:text-gray-400 italic">
+            <p className="font-montserrat text-xs text-gray-500 dark:text-gray-400 italic">
               This document represents our complete Privacy Policy for Exotiq.ai. By using our Services, 
               you acknowledge that you have read, understood, and agree to the practices described herein.
             </p>

@@ -58,11 +58,11 @@ export default function ContactPage() {
       
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-dark-800 dark:to-dark-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-space font-bold text-5xl md:text-6xl text-gray-900 dark:text-white mb-6 animate-slide-up">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
+          <h1 className="font-dfaalt font-bold text-5xl md:text-6xl text-gray-900 dark:text-white mb-6 animate-slide-up">
             Let's Connect
           </h1>
-          <p className="font-inter text-xl text-gray-600 dark:text-gray-300 mb-8 animate-slide-up" style={{ animationDelay: '100ms' }}>
+          <p className="font-montserrat text-xl text-gray-600 dark:text-gray-300 mb-8 animate-slide-up" style={{ animationDelay: '100ms' }}>
             Ready to transform your fleet management? Have questions about Exotiq? 
             We'd love to hear from you.
           </p>
@@ -71,11 +71,11 @@ export default function ContactPage() {
 
       {/* Contact Form & Info */}
       <section className="py-20 bg-white dark:bg-dark-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="bg-gray-50 dark:bg-dark-800 p-8 rounded-2xl animate-slide-up">
-              <h2 className="font-space font-bold text-3xl text-gray-900 dark:text-white mb-6">
+              <h2 className="font-dfaalt font-bold text-3xl text-gray-900 dark:text-white mb-6">
                 Send Us a Message
               </h2>
               
@@ -84,14 +84,14 @@ export default function ContactPage() {
                   <div className="flex items-center justify-center w-16 h-16 bg-success-600 rounded-full mx-auto mb-4">
                     <CheckCircle className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-4">
+                  <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-4">
                     Message Sent Successfully!
                   </h3>
-                  <p className="font-inter text-gray-600 dark:text-gray-300 mb-6">
+                  <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-6">
                     Thanks {formData.firstName}! We have received your message and will get back to you within 24 hours.
                   </p>
                   <div className="bg-primary-50 dark:bg-primary-900/20 p-4 rounded-lg">
-                    <p className="font-inter text-sm text-primary-700 dark:text-primary-300">
+                    <p className="font-montserrat text-sm text-primary-600 dark:text-primary-300">
                       📧 Confirmation sent to {formData.email}
                     </p>
                   </div>
@@ -101,13 +101,13 @@ export default function ContactPage() {
                   {error && (
                     <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center space-x-2">
                       <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
-                      <span className="font-inter text-red-700 dark:text-red-300">{error}</span>
+                      <span className="font-montserrat text-red-700 dark:text-red-300">{error}</span>
                     </div>
                   )}
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="group">
-                      <label className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                         First Name
                       </label>
                       <input
@@ -121,7 +121,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div className="group">
-                      <label className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Last Name
                       </label>
                       <input
@@ -137,7 +137,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="group">
-                    <label className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Email Address
                     </label>
                     <input
@@ -152,7 +152,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="group">
-                    <label className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Subject
                     </label>
                     <select 
@@ -174,7 +174,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="group">
-                    <label className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Fleet Size (Optional)
                     </label>
                     <select 
@@ -194,7 +194,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="group">
-                    <label className="block font-inter font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Message
                     </label>
                     <textarea
@@ -212,7 +212,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 text-white rounded-lg transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                    className="w-full font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-400 text-white rounded-lg transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -233,10 +233,10 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="space-y-8 animate-slide-up" style={{ animationDelay: '200ms' }}>
               <div>
-                <h2 className="font-space font-bold text-3xl text-gray-900 dark:text-white mb-6">
+                <h2 className="font-dfaalt font-bold text-3xl text-gray-900 dark:text-white mb-6">
                   Get in Touch
                 </h2>
-                <p className="font-inter text-lg text-gray-600 dark:text-gray-300 mb-8">
+                <p className="font-montserrat text-lg text-gray-600 dark:text-gray-300 mb-8">
                   Whether you are a fleet owner looking to scale, an investor interested in the future 
                   of car sharing, or a partner wanting to collaborate, we want to hear from you.
                 </p>
@@ -245,18 +245,18 @@ export default function ContactPage() {
               <div className="space-y-6">
                 <div className="flex items-start space-x-4 group">
                   <div className="flex items-center justify-center w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg group-hover:scale-110 transition-transform">
-                    <Mail className="w-6 h-6 text-primary-600" />
+                    <Mail className="w-6 h-6 text-primary-500" />
                   </div>
                   <div>
-                    <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-1">
+                    <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-1">
                       Email
                     </h3>
-                    <p className="font-inter text-gray-600 dark:text-gray-300 mb-1">
+                    <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-1">
                       For all inquiries
                     </p>
                     <a 
                       href="mailto:hello@exotiq.ai"
-                      className="font-inter text-primary-600 dark:text-primary-400 hover:underline"
+                      className="font-montserrat text-primary-500 dark:text-primary-400 hover:underline"
                     >
                       hello@exotiq.ai
                     </a>
@@ -268,15 +268,15 @@ export default function ContactPage() {
                     <Phone className="w-6 h-6 text-accent-600" />
                   </div>
                   <div>
-                    <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-1">
+                    <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-1">
                       Phone
                     </h3>
-                    <p className="font-inter text-gray-600 dark:text-gray-300 mb-1">
+                    <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-1">
                       For urgent matters
                     </p>
                     <a 
                       href="tel:+19703439634"
-                      className="font-inter text-accent-600 dark:text-accent-400 hover:underline"
+                      className="font-montserrat text-accent-600 dark:text-accent-400 hover:underline"
                     >
                       +1 970.343.9634
                     </a>
@@ -288,10 +288,10 @@ export default function ContactPage() {
                     <MapPin className="w-6 h-6 text-secondary-600" />
                   </div>
                   <div>
-                    <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-1">
+                    <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-1">
                       Office
                     </h3>
-                    <p className="font-inter text-gray-600 dark:text-gray-300">
+                    <p className="font-montserrat text-gray-600 dark:text-gray-300">
                       San Francisco, CA<br />
                       United States
                     </p>
@@ -300,10 +300,10 @@ export default function ContactPage() {
               </div>
 
               <div className="bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 p-6 rounded-xl">
-                <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-3">
+                <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-3">
                   Response Times
                 </h3>
-                <div className="space-y-2 font-inter text-sm text-gray-600 dark:text-gray-300">
+                <div className="space-y-2 font-montserrat text-sm text-gray-600 dark:text-gray-300">
                   <div className="flex justify-between">
                     <span>General inquiries:</span>
                     <span className="font-medium">24-48 hours</span>

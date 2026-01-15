@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -7,182 +7,198 @@ import {
   Globe,
   Zap,
   Bot,
-  Phone,
   TrendingUp,
-  Wrench,
-  MapPin,
-  Shield,
-  BarChart3,
-  DollarSign,
-  CreditCard,
-  BookOpen,
-  Youtube,
-  Users,
-  Car,
-  CheckCircle,
-  Star,
-  Sparkles,
   Brain,
-  Target,
-  Clock,
-  Award,
-  Smartphone,
-  Monitor,
-  Bell,
-  Headphones,
-  Settings,
-  Eye,
   PieChart,
-  TrendingDown,
+  Shield,
+  DollarSign,
+  BarChart3,
+  Target,
+  Eye,
+  Star,
   FileText,
-  Mic
+  Play,
+  CheckCircle
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
-import LazyImage from '../components/LazyImage';
+import FeaturesHero from '../components/FeaturesHero';
+import { MobileSection, MobileContainer } from '../components/MobileOptimizations';
+import Card from '../components/ui/Card';
 import { softwareApplicationSchema, breadcrumbSchema } from '../data/structuredData';
-import { elevenLabsLoader } from '../services/elevenlabsLoader';
-import logger from '../utils/logger';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-const FeatureCard = ({ 
-  icon: Icon, 
-  title, 
-  description, 
-  badge, 
-  color = 'primary',
-  delay = 0 
-}: {
-  icon: any;
-  title: string;
-  description: string;
-  badge?: string;
-  color?: string;
-  delay?: number;
-}) => (
-  <div 
-    className={`group bg-white dark:bg-dark-800 p-6 rounded-2xl border border-gray-200 dark:border-dark-700 hover:shadow-2xl transition-all duration-500 hover:scale-105 animate-slide-up`}
-    style={{ animationDelay: `${delay}ms` }}
-  >
-    <div className={`flex items-center justify-center w-14 h-14 bg-${color}-100 dark:bg-${color}-900/30 rounded-xl mb-4 group-hover:scale-110 transition-transform`}>
-      <Icon className={`w-7 h-7 text-${color}-600`} />
-    </div>
-    {badge && (
-      <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-${color}-100 dark:bg-${color}-900/30 text-${color}-700 dark:text-${color}-300 mb-3`}>
-        {badge}
-      </div>
-    )}
-    <h3 className="font-space font-semibold text-xl text-gray-900 dark:text-white mb-3">
-      {title}
-    </h3>
-    <p className="font-inter text-gray-600 dark:text-gray-300 leading-relaxed">
-      {description}
-    </p>
-  </div>
-);
+// Module data with story arc order and testimonial integration
+const modules = [
+  {
+    id: 'motoriq',
+    name: 'MotorIQ',
+    tagline: 'Profitability Engine',
+    icon: TrendingUp,
+    color: 'primary',
+    metricHeadline: '40% Revenue Increase',
+    metricSubline: 'in 90 Days',
+    screenshot: '/images/app-screenshots/hero-dashboard-macbook.svg',
+    screenshotAlt: 'MotorIQ dashboard showing AI-powered pricing optimization',
+    features: [
+      { icon: DollarSign, text: 'AI analyzes 1,000+ data points to optimize every rental' },
+      { icon: BarChart3, text: 'Dynamic pricing adapts to demand in real-time' },
+      { icon: Target, text: 'Competitor tracking ensures you never leave money on the table' }
+    ],
+    testimonial: {
+      quote: "Exotiq's pricing AI increased our profits by 40% in just 3 months.",
+      author: 'Sarah Chen',
+      role: 'Fleet Owner, Luxury Drives Miami'
+    }
+  },
+  {
+    id: 'pulse',
+    name: 'Pulse',
+    tagline: 'Live Analytics Dashboard',
+    icon: PieChart,
+    color: 'success',
+    metricHeadline: '89% Utilization Rate',
+    metricSubline: 'Industry-Leading',
+    screenshot: '/images/app-screenshots/demand-forecast-macbook.svg',
+    screenshotAlt: 'Pulse analytics showing demand forecasts and calendar heatmap',
+    features: [
+      { icon: Eye, text: 'Real-time visibility into vehicle status and active bookings' },
+      { icon: Star, text: 'Identify top performers for smarter acquisition decisions' },
+      { icon: Brain, text: 'AI-powered predictions based on location and seasonal trends' }
+    ],
+    testimonial: {
+      quote: "Finally, a platform that understands the exotic rental business. Absolutely essential.",
+      author: 'Emma Thompson',
+      role: 'Operations Manager, Premium Auto Collective'
+    }
+  },
+  {
+    id: 'book',
+    name: 'Book',
+    tagline: 'Direct Booking Platform',
+    icon: Globe,
+    color: 'primary',
+    metricHeadline: '100% Revenue Retention',
+    metricSubline: 'vs 65-75% on Platforms',
+    screenshot: '/images/app-screenshots/booking-mobile.svg',
+    screenshotAlt: 'Book module showing direct booking interface',
+    features: [
+      { icon: Globe, text: 'Custom-branded booking platform captures 100% revenue' },
+      { icon: DollarSign, text: 'Eliminate 25-35% platform fees with direct bookings' },
+      { icon: TrendingUp, text: 'Built-in SEO tools drive organic traffic to your site' }
+    ],
+    testimonial: {
+      quote: "Exotiq transformed our operations. We increased profits by 40% in just 3 months.",
+      author: 'Sarah Chen',
+      role: 'Fleet Owner, Luxury Drives Miami'
+    }
+  },
+  {
+    id: 'vault',
+    name: 'Vault',
+    tagline: 'Compliance & Documentation',
+    icon: Shield,
+    color: 'accent',
+    metricHeadline: 'Zero Compliance Issues',
+    metricSubline: 'Automated Protection',
+    screenshot: '/images/app-screenshots/crm-macbook.svg',
+    screenshotAlt: 'Vault compliance dashboard showing document management',
+    features: [
+      { icon: Shield, text: 'Automated insurance tracking and renewal reminders' },
+      { icon: FileText, text: 'Digital document storage with instant retrieval' },
+      { icon: CheckCircle, text: 'Compliance checklists ensure nothing falls through' }
+    ],
+    testimonial: {
+      quote: "The AI insights are game-changing. It's like having a business consultant available 24/7.",
+      author: 'Marcus Rodriguez',
+      role: 'Rental Entrepreneur, Elite Car Share'
+    }
+  },
+  {
+    id: 'core',
+    name: 'Core',
+    tagline: 'Operations Hub',
+    icon: Zap,
+    color: 'accent',
+    metricHeadline: '15+ Hours Saved',
+    metricSubline: 'Every Single Week',
+    screenshot: '/images/app-screenshots/crm-macbook.svg',
+    screenshotAlt: 'Core operations hub showing unified dashboard',
+    features: [
+      { icon: MessageSquare, text: 'Unified inbox manages all guest communication' },
+      { icon: Calendar, text: 'Visual fleet calendar across all vehicles and platforms' },
+      { icon: Zap, text: 'Automated workflows handle check-ins and follow-ups' }
+    ],
+    testimonial: {
+      quote: "The AI insights are game-changing. It's like having a business consultant available 24/7.",
+      author: 'Marcus Rodriguez',
+      role: 'Rental Entrepreneur, Elite Car Share'
+    }
+  }
+];
 
-const FeatureSection = ({ 
-  title, 
-  subtitle, 
-  children, 
-  bgColor = 'bg-white dark:bg-dark-900',
-  id 
-}: {
-  title: string;
-  subtitle: string;
-  children: React.ReactNode;
-  bgColor?: string;
-  id?: string;
-}) => (
-  <section id={id} className={`py-20 ${bgColor}`}>
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-16">
-        <h2 className="font-space font-bold text-4xl md:text-5xl text-gray-900 dark:text-white mb-6">
-          {title}
-        </h2>
-        <p className="font-inter text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          {subtitle}
-        </p>
-      </div>
-      {children}
-    </div>
-  </section>
-);
+// Color class mappings
+const colorClasses = {
+  primary: {
+    bg: 'bg-primary-500',
+    bgLight: 'bg-primary-100 dark:bg-primary-900/30',
+    text: 'text-primary-500 dark:text-primary-400',
+    border: 'border-primary-500/30',
+    iconBg: 'bg-primary-500/10',
+    iconText: 'text-primary-500',
+  },
+  accent: {
+    bg: 'bg-accent-600',
+    bgLight: 'bg-accent-100 dark:bg-accent-900/30',
+    text: 'text-accent-600 dark:text-accent-400',
+    border: 'border-accent-500/30',
+    iconBg: 'bg-accent-600/10',
+    iconText: 'text-accent-600',
+  },
+  success: {
+    bg: 'bg-success-600',
+    bgLight: 'bg-success-100 dark:bg-success-900/30',
+    text: 'text-success-600 dark:text-success-400',
+    border: 'border-success-500/30',
+    iconBg: 'bg-success-600/10',
+    iconText: 'text-success-600',
+  },
+};
 
 export default function FeaturesPage() {
   const [activeTab, setActiveTab] = useState('motoriq');
-  const [showConvAI, setShowConvAI] = useState(false);
-  const [elevenLabsReady, setElevenLabsReady] = useState(false);
-  const [isStickyNav, setIsStickyNav] = useState(false);
+  const [contentVisible, setContentVisible] = useState(true);
+  const contentRef = useRef<HTMLDivElement>(null);
+  
+  const activeModule = modules.find(m => m.id === activeTab) || modules[0];
+  const activeColorClasses = colorClasses[activeModule.color as keyof typeof colorClasses] || colorClasses.primary;
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Load ElevenLabs script when component mounts
+  // Trigger content animation when tab changes
   useEffect(() => {
-    elevenLabsLoader.loadScript()
-      .then(() => setElevenLabsReady(true))
-      .catch(error => logger.error('Failed to load ElevenLabs script', { error }));
-  }, []);
+    setContentVisible(false);
+    const timer = setTimeout(() => setContentVisible(true), 150);
+    return () => clearTimeout(timer);
+  }, [activeTab]);
 
-  const tabs = [
-    { id: 'motoriq', label: 'MotorIQ', icon: TrendingUp },
-    { id: 'pulse', label: 'Pulse', icon: PieChart },
-    { id: 'book', label: 'Book', icon: Globe },
-    { id: 'vault', label: 'Vault', icon: Shield },
-    { id: 'core', label: 'Core', icon: Zap }
-  ];
-
-  const scrollToBeta = () => {
-    // Navigate to homepage and scroll to beta section
-    window.location.href = '/#beta';
-  };
-
-  // Scroll-based active tab detection
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = tabs.map(tab => tab.id);
-      const scrollPosition = window.scrollY + 200; // Offset for header
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveTab(sections[i]);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial position
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Track when nav bar should show enhanced styling
-  useEffect(() => {
-    const handleScrollNav = () => {
-      setIsStickyNav(window.scrollY > 600); // Enhance after scrolling past hero
-    };
-
-    window.addEventListener('scroll', handleScrollNav, { passive: true });
-    handleScrollNav(); // Check initial position
-
-    return () => window.removeEventListener('scroll', handleScrollNav);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    setActiveTab(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 100; // Account for fixed header
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+  const handleTabClick = (moduleId: string) => {
+    setActiveTab(moduleId);
+    
+    // Smooth scroll to content
+    if (contentRef.current) {
+      setTimeout(() => {
+        const headerOffset = 100;
+        const elementPosition = contentRef.current!.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }, 100);
     }
   };
 
@@ -190,8 +206,8 @@ export default function FeaturesPage() {
     <div className="pt-16">
       <SEOHead
         title="Platform Features - Complete Fleet Management Solution"
-        description="Discover Exotiq.ai's five powerful modules: MotorIQ for profitability, Pulse for analytics, Book for direct bookings, Vault for compliance, and Core for operations. Built specifically for vehicle rental businesses."
-        keywords="fleet management features, AI pricing engine, vehicle analytics, direct booking platform, compliance management, fleet operations dashboard, Turo host tools, rental business automation"
+        description="Discover Exotiq.ai's powerful modules: MotorIQ for revenue optimization, FleetCopilot for AI automation, Pulse for analytics, Book for direct bookings, and Core for operations. Built specifically for exotic fleet operators."
+        keywords="fleet management features, AI pricing engine, vehicle analytics, direct booking platform, fleet operations dashboard, Turo host tools, rental business automation"
         url="https://exotiq.ai/features"
         structuredData={[
           softwareApplicationSchema,
@@ -202,550 +218,410 @@ export default function FeaturesPage() {
         ]}
       />
       
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-700 dark:text-primary-300 font-semibold text-sm mb-6">
-              <Sparkles className="w-4 h-4 mr-2" />
-              Five Modules. One Powerful Platform.
+      {/* Hero Section - Proof-Driven */}
+      <FeaturesHero />
+
+      {/* Module Navigation & Content Section - Bombon-Inspired */}
+      <MobileSection className="bg-white dark:bg-dark-900 py-16 lg:py-20">
+        <div id="platform-features">
+          <MobileContainer>
+            {/* Section Header */}
+            <div className="text-center mb-12 sm:mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-600 dark:text-primary-300 font-semibold text-sm mb-4">
+                <Brain className="w-4 h-4 mr-2" />
+                The Exotiq Platform
+              </div>
+              <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-white mb-4">
+                Five Powerful Modules.
+                <span className="block text-primary-500 dark:text-primary-400">One Complete Platform.</span>
+              </h2>
+              <p className="font-inter text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Each module addresses a critical operational challenge. Together, they transform complexity into automated profitability.
+              </p>
             </div>
-            <h1 className="font-space font-bold text-5xl md:text-6xl lg:text-7xl text-gray-900 dark:text-white mb-6 leading-tight">
-              The Complete Platform for
-              <span className="block text-primary-600">Modern Fleet Operators</span>
-            </h1>
-            <p className="font-inter text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-              From independent hosts to professional fleets, Exotiq provides everything you need to 
-              scale, automate, and optimize your car-sharing business.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                to="/survey"
-                className="font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center min-h-[44px] touch-manipulation"
+            
+            {/* Bombon-Inspired Module Grid - No Sticky Tabs */}
+            <div className="max-w-6xl mx-auto">
+              {/* Module Cards Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-10 sm:mb-12">
+                {modules.map((module) => {
+                  const Icon = module.icon;
+                  const moduleColorClasses = colorClasses[module.color as keyof typeof colorClasses] || colorClasses.primary;
+                  const isActive = activeTab === module.id;
+                  
+                  return (
+                    <button
+                      key={module.id}
+                      onClick={() => handleTabClick(module.id)}
+                      className={`group relative flex flex-col items-center p-4 sm:p-5 rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                        isActive
+                          ? `${moduleColorClasses.bg} text-white shadow-xl`
+                          : 'bg-gray-50 dark:bg-dark-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-700 border border-gray-200 dark:border-dark-700 hover:shadow-lg'
+                      }`}
+                    >
+                      {/* Active Indicator */}
+                      {isActive && (
+                        <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-lg" />
+                      )}
+                      
+                      {/* Icon */}
+                      <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-3 transition-all duration-300 ${
+                        isActive 
+                          ? 'bg-white/20' 
+                          : moduleColorClasses.iconBg
+                      }`}>
+                        <Icon className={`w-6 h-6 sm:w-7 sm:h-7 transition-transform duration-300 group-hover:scale-110 ${
+                          isActive ? 'text-white' : moduleColorClasses.iconText
+                        }`} />
+                      </div>
+                      
+                      {/* Name */}
+                      <span className={`font-dfaalt font-bold text-sm sm:text-base mb-1 ${
+                        isActive ? 'text-white' : 'text-gray-900 dark:text-white'
+                      }`}>
+                        {module.name}
+                      </span>
+                      
+                      {/* Tagline */}
+                      <span className={`font-inter text-xs text-center leading-tight ${
+                        isActive ? 'text-white/80' : 'text-gray-500 dark:text-gray-400'
+                      }`}>
+                        {module.tagline}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+              
+              {/* Tab Content - Full Feature Card */}
+              <Card 
+                ref={contentRef}
+                variant="elevated" 
+                padding="lg" 
+                hover
+                className={`shadow-2xl hover:shadow-3xl transition-all duration-500 ${contentVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4'}`}
               >
-                <span>Choose your fleet type to access the correct beta survey</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <button className="font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white rounded-lg transition-all duration-200 hover:scale-105">
-                Watch Demo
-              </button>
-              <Link
-                to="/fleetcopilot"
-                className="font-poppins font-bold text-sm uppercase tracking-wide px-6 py-4 bg-accent-600 hover:bg-accent-700 text-white rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center min-h-[44px] touch-manipulation"
-              >
-                <span>Try FleetCopilot™ Live</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Feature Navigation Tabs - Enhanced Floating Sticky */}
-          <div className={`sticky top-16 z-50 transition-all duration-500 ${
-            isStickyNav 
-              ? 'bg-white/95 dark:bg-dark-900/95 shadow-2xl backdrop-blur-xl border-b-2 border-primary-200 dark:border-primary-800' 
-              : 'bg-white/90 dark:bg-dark-800/90 shadow-lg backdrop-blur-md'
-          } rounded-b-2xl mx-4 mb-8 border border-gray-200 dark:border-dark-700 ${
-            isStickyNav ? 'scale-[0.97] mt-2' : 'scale-100'
-          }`}>
-            <div className="max-w-7xl mx-auto px-4 py-3">
-              <div className="flex flex-wrap justify-center gap-2">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => scrollToSection(tab.id)}
-                    className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-inter font-medium transition-all duration-300 ${
-                      activeTab === tab.id
-                        ? 'bg-primary-600 text-white shadow-lg scale-105 ring-2 ring-primary-300 dark:ring-primary-700'
-                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-700 hover:scale-105'
-                    }`}
-                  >
-                    <tab.icon className="w-4 h-4" />
-                    <span className="hidden sm:inline">{tab.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MotorIQ - Profitability Engine */}
-      <FeatureSection
-        id="motoriq"
-        title="MotorIQ: Your Fleet's Profitability Engine"
-        subtitle="Real-time revenue insights, automated pricing, and maintenance cost forecasting"
-        bgColor="bg-white dark:bg-dark-900"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard
-            icon={BarChart3}
-            title="Real-Time Revenue Insights"
-            description="Track earnings, profit margins, and performance metrics across all platforms in one unified dashboard."
-            badge="Live Data"
-            color="primary"
-            delay={0}
-          />
-          <FeatureCard
-            icon={DollarSign}
-            title="Automated Dynamic Pricing"
-            description="AI-powered pricing engine adjusts rates based on demand, competition, and market conditions to maximize revenue."
-            badge="AI-Powered"
-            color="accent"
-            delay={100}
-          />
-          <FeatureCard
-            icon={Target}
-            title="Maintenance Cost Forecasting"
-            description="Predict upcoming maintenance costs and budget for repairs before they become expensive emergencies."
-            badge="Predictive"
-            color="success"
-            delay={200}
-          />
-        </div>
-
-        {/* MotorIQ Dashboard Preview */}
-        <div className="mt-16 bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 p-8 md:p-12 rounded-3xl">
-          <h3 className="font-space font-bold text-3xl text-gray-900 dark:text-white mb-8 text-center">
-            MotorIQ Revenue Dashboard
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-space font-bold text-primary-600 mb-2">$47,250</div>
-              <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Monthly Revenue</div>
-              <div className="flex items-center justify-center space-x-1 mt-1">
-                <TrendingUp className="w-4 h-4 text-success-600" />
-                <span className="font-inter text-xs text-success-600">+23%</span>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-space font-bold text-accent-600 mb-2">89%</div>
-              <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Utilization Rate</div>
-              <div className="flex items-center justify-center space-x-1 mt-1">
-                <TrendingUp className="w-4 h-4 text-success-600" />
-                <span className="font-inter text-xs text-success-600">+5%</span>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-space font-bold text-success-600 mb-2">$1,890</div>
-              <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Avg per Vehicle</div>
-              <div className="flex items-center justify-center space-x-1 mt-1">
-                <TrendingUp className="w-4 h-4 text-success-600" />
-                <span className="font-inter text-xs text-success-600">+12%</span>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-space font-bold text-warning-600 mb-2">32%</div>
-              <div className="font-inter text-sm text-gray-600 dark:text-gray-400">Profit Margin</div>
-              <div className="flex items-center justify-center space-x-1 mt-1">
-                <TrendingUp className="w-4 h-4 text-success-600" />
-                <span className="font-inter text-xs text-success-600">+8%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </FeatureSection>
-
-      {/* Pulse - Live Analytics */}
-      <FeatureSection
-        id="pulse"
-        title="Pulse: Live Analytics for Smarter Decisions"
-        subtitle="Monitor vehicle performance, booking metrics, and forecasts in real-time"
-        bgColor="bg-gray-50 dark:bg-dark-800"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard
-            icon={Eye}
-            title="Live Vehicle & Booking Metrics"
-            description="Real-time visibility into vehicle status, active bookings, and performance across your entire fleet."
-            badge="Real-Time"
-            color="primary"
-            delay={0}
-          />
-          <FeatureCard
-            icon={Star}
-            title="Top-Performing Vehicles"
-            description="Identify your most profitable vehicles and understand what makes them successful for better acquisition decisions."
-            badge="Data-Driven"
-            color="accent"
-            delay={100}
-          />
-          <FeatureCard
-            icon={Brain}
-            title="Location & Season Forecasts"
-            description="AI-powered predictions based on location trends, seasonal patterns, and local events to optimize your strategy."
-            badge="AI Forecasting"
-            color="success"
-            delay={200}
-          />
-        </div>
-
-        {/* Pulse Analytics Preview */}
-        <div className="mt-16 bg-white dark:bg-dark-700 rounded-3xl p-8 md:p-12 shadow-2xl">
-          <h3 className="font-space font-bold text-3xl text-gray-900 dark:text-white mb-8 text-center">
-            Fleet Performance Analytics
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl">
-              <div className="flex items-center justify-between mb-4">
-                <Eye className="w-6 h-6 text-primary-600" />
-                <span className="text-2xl font-space font-bold text-gray-900 dark:text-white">12</span>
-              </div>
-              <h4 className="font-space font-semibold text-gray-900 dark:text-white mb-1">Active Rentals</h4>
-              <p className="font-inter text-sm text-gray-600 dark:text-gray-300">Currently on the road</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl">
-              <div className="flex items-center justify-between mb-4">
-                <MapPin className="w-6 h-6 text-success-600" />
-                <span className="text-2xl font-space font-bold text-gray-900 dark:text-white">98%</span>
-              </div>
-              <h4 className="font-space font-semibold text-gray-900 dark:text-white mb-1">Fleet Health</h4>
-              <p className="font-inter text-sm text-gray-600 dark:text-gray-300">All systems operational</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl">
-              <div className="flex items-center justify-between mb-4">
-                <Clock className="w-6 h-6 text-accent-600" />
-                <span className="text-2xl font-space font-bold text-gray-900 dark:text-white">2.3</span>
-              </div>
-              <h4 className="font-space font-semibold text-gray-900 dark:text-white mb-1">Avg Response</h4>
-              <p className="font-inter text-sm text-gray-600 dark:text-gray-300">Minutes to guest inquiries</p>
-            </div>
-          </div>
-        </div>
-      </FeatureSection>
-
-      {/* Book - Direct Booking Portal */}
-      <FeatureSection
-        id="book"
-        title="Book: Your Branded Direct Booking Portal"
-        subtitle="White-labeled websites, mobile-first design, and commission-free reservations"
-        bgColor="bg-white dark:bg-dark-900"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard
-            icon={Monitor}
-            title="White-Labeled Website for 5+ Car Hosts"
-            description="Professional, branded booking websites that establish your fleet as a premium rental business."
-            badge="Professional"
-            color="primary"
-            delay={0}
-          />
-          <FeatureCard
-            icon={Smartphone}
-            title="Mobile-First Design"
-            description="Optimized for mobile bookings with seamless user experience across all devices and screen sizes."
-            badge="Mobile Optimized"
-            color="accent"
-            delay={100}
-          />
-          <FeatureCard
-            icon={DollarSign}
-            title="Zero Commission Fees"
-            description="Keep every dollar from direct bookings (just pay your SaaS subscription). Zero commission fees on your bookings."
-            badge="100% Revenue"
-            color="success"
-            delay={200}
-          />
-          <FeatureCard
-            icon={TrendingUp}
-            title="SEO Optimized"
-            description="Built-in marketing tools to drive organic traffic and increase direct bookings."
-            badge="Marketing Tools"
-            color="primary"
-            delay={300}
-          />
-          <FeatureCard
-            icon={CreditCard}
-            title="Integrated Payment Processing"
-            description="Secure, instant payments with seamless checkout experience for your customers."
-            badge="Secure Payments"
-            color="accent"
-            delay={400}
-          />
-        </div>
-
-        {/* Savings Example Callout */}
-        <div className="mt-12 bg-success-50 dark:bg-success-900/20 border-2 border-success-200 dark:border-success-800 rounded-xl p-6 sm:p-8">
-            <div className="flex items-start space-x-4">
-              <DollarSign className="w-8 h-8 text-success-600 dark:text-success-400 flex-shrink-0 mt-1" />
-              <div>
-                <h4 className="font-space font-bold text-xl text-gray-900 dark:text-white mb-3">
-                  Example Savings
-                </h4>
-              <p className="font-inter text-gray-700 dark:text-gray-300 mb-2">
-                $50,000 in annual bookings on Turo = $12,500-$17,500 in platform fees
-              </p>
-              <p className="font-inter text-gray-700 dark:text-gray-300 mb-2">
-                Same bookings through Exotiq Book = $0 in commissions (just $99-199/mo subscription)
-              </p>
-              <p className="font-space font-bold text-lg text-success-700 dark:text-success-400 mt-4">
-                Your savings: $12,000-$16,800 per year
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Book Website Preview */}
-        <div className="mt-16 bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 p-8 md:p-12 rounded-3xl">
-          <h3 className="font-space font-bold text-3xl text-gray-900 dark:text-white mb-8 text-center">
-            Your Branded Booking Experience
-          </h3>
-          <div className="bg-white dark:bg-dark-700 rounded-2xl p-6 shadow-xl">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-                <Car className="w-4 h-4 text-white" />
-              </div>
-              <span className="font-space font-bold text-xl text-gray-900 dark:text-white">
-                YourFleet<span className="text-primary-600">.com</span>
-              </span>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-gray-50 dark:bg-dark-800 p-4 rounded-lg">
-                <LazyImage 
-                  src="/white tesla model 3 small.jpg" 
-                  alt="Tesla Model 3" 
-                  className="w-full h-40 object-cover object-center rounded-lg mb-3"
-                />
-                <h4 className="font-space font-semibold text-gray-900 dark:text-white mb-1">Tesla Model 3</h4>
-                <p className="font-inter text-sm text-gray-600 dark:text-gray-300">$89/day</p>
-              </div>
-              <div className="bg-gray-50 dark:bg-dark-800 p-4 rounded-lg">
-                <LazyImage 
-                  src="/bmw x5 in front of trees small.jpg" 
-                  alt="BMW X5" 
-                  className="w-full h-40 object-cover object-center rounded-lg mb-3"
-                />
-                <h4 className="font-space font-semibold text-gray-900 dark:text-white mb-1">BMW X5</h4>
-                <p className="font-inter text-sm text-gray-600 dark:text-gray-300">$129/day</p>
-              </div>
-              <div className="bg-gray-50 dark:bg-dark-800 p-4 rounded-lg">
-                <LazyImage 
-                  src="/White porsche 911 small.jpg" 
-                  alt="Porsche 911" 
-                  className="w-full h-40 object-cover object-center rounded-lg mb-3"
-                />
-                <h4 className="font-space font-semibold text-gray-900 dark:text-white mb-1">Porsche 911</h4>
-                <p className="font-inter text-sm text-gray-600 dark:text-gray-300">$299/day</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </FeatureSection>
-
-      {/* Vault - Compliance & Documentation */}
-      <FeatureSection
-        id="vault"
-        title="Vault: Peace of Mind for Compliance"
-        subtitle="Document storage, expiration alerts, and AI-verified uploads"
-        bgColor="bg-gray-50 dark:bg-dark-800"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard
-            icon={FileText}
-            title="Document Storage & Expiration Alerts"
-            description="Centralized storage for all important documents with automatic alerts before licenses and insurance expire."
-            badge="Never Miss Renewals"
-            color="primary"
-            delay={0}
-          />
-          <FeatureCard
-            icon={Shield}
-            title="Rental Agreements, Insurance, Licenses"
-            description="Organize and track all compliance documents including rental agreements, insurance policies, and business licenses."
-            badge="Compliance Ready"
-            color="accent"
-            delay={100}
-          />
-          <FeatureCard
-            icon={Brain}
-            title="AI-Verified Uploads"
-            description="AI automatically verifies document types, extracts key information, and flags any issues or missing requirements."
-            badge="AI-Powered"
-            color="success"
-            delay={200}
-          />
-        </div>
-
-        {/* Vault Document Management Preview */}
-        <div className="mt-16 bg-white dark:bg-dark-700 rounded-3xl p-8 md:p-12 shadow-2xl">
-          <h3 className="font-space font-bold text-3xl text-gray-900 dark:text-white mb-8 text-center">
-            Document Management Center
-          </h3>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-dark-800 rounded-lg">
-              <div className="flex items-center space-x-3">
-                <Shield className="w-5 h-5 text-success-600" />
-                <div>
-                  <div className="font-inter font-semibold text-gray-900 dark:text-white">Commercial Insurance Policy</div>
-                  <div className="font-inter text-sm text-gray-600 dark:text-gray-300">Expires: March 15, 2025</div>
-                </div>
-              </div>
-              <div className="px-3 py-1 bg-success-100 dark:bg-success-900/30 text-success-700 dark:text-success-300 rounded-full text-xs font-semibold">
-                Valid
-              </div>
-            </div>
-            <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-dark-800 rounded-lg">
-              <div className="flex items-center space-x-3">
-                <FileText className="w-5 h-5 text-warning-600" />
-                <div>
-                  <div className="font-inter font-semibold text-gray-900 dark:text-white">Business License</div>
-                  <div className="font-inter text-sm text-gray-600 dark:text-gray-300">Expires: January 31, 2025</div>
-                </div>
-              </div>
-              <div className="px-3 py-1 bg-warning-100 dark:bg-warning-900/30 text-warning-700 dark:text-warning-300 rounded-full text-xs font-semibold">
-                Expiring Soon
-              </div>
-            </div>
-            <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-dark-800 rounded-lg">
-              <div className="flex items-center space-x-3">
-                <Car className="w-5 h-5 text-primary-600" />
-                <div>
-                  <div className="font-inter font-semibold text-gray-900 dark:text-white">Vehicle Registration - Tesla Model 3</div>
-                  <div className="font-inter text-sm text-gray-600 dark:text-gray-300">Expires: June 30, 2025</div>
-                </div>
-              </div>
-              <div className="px-3 py-1 bg-success-100 dark:bg-success-900/30 text-success-700 dark:text-success-300 rounded-full text-xs font-semibold">
-                Valid
-              </div>
-            </div>
-          </div>
-        </div>
-      </FeatureSection>
-
-      {/* Core - Command Center */}
-      <FeatureSection
-        id="core"
-        title="Core: Your Intelligent Command Center"
-        subtitle="Unified dashboard, calendar & CRM, alerts and smart automations"
-        bgColor="bg-white dark:bg-dark-900"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard
-            icon={Monitor}
-            title="Unified Dashboard"
-            description="Single view of your entire operation with customizable widgets and real-time updates across all platforms."
-            badge="All-in-One"
-            color="primary"
-            delay={0}
-          />
-          <FeatureCard
-            icon={Calendar}
-            title="Calendar & CRM"
-            description="Integrated calendar management and customer relationship tools to streamline bookings and guest communications."
-            badge="Integrated"
-            color="accent"
-            delay={100}
-          />
-          <FeatureCard
-            icon={Bell}
-            title="Alerts, Automations & Smart Actions"
-            description="Intelligent notifications and automated workflows that handle routine tasks and flag important issues."
-            badge="Smart Automation"
-            color="success"
-            delay={200}
-          />
-        </div>
-
-        {/* FleetCopilot Integration */}
-        <div className="mt-16 bg-gradient-to-r from-accent-50 to-primary-50 dark:from-accent-900/20 dark:to-primary-900/20 p-8 md:p-12 rounded-3xl">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center px-4 py-2 bg-accent-600/20 rounded-full text-accent-700 dark:text-accent-300 font-semibold text-sm mb-4">
-              <Bot className="w-4 h-4 mr-2" />
-              Powered by FleetCopilot™ AI
-            </div>
-            <h3 className="font-space font-bold text-3xl text-gray-900 dark:text-white mb-4">
-              Your AI Assistant Never Sleeps
-            </h3>
-            <p className="font-inter text-lg text-gray-600 dark:text-gray-300">
-              FleetCopilot™ monitors your operation 24/7, handling routine tasks and alerting you to opportunities.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white dark:bg-dark-700 p-6 rounded-xl text-center">
-              <Phone className="w-8 h-8 text-accent-600 mx-auto mb-3" />
-              <h4 className="font-space font-semibold text-gray-900 dark:text-white mb-2">Voice Support</h4>
-              <p className="font-inter text-sm text-gray-600 dark:text-gray-300">Natural phone conversations with guests</p>
-            </div>
-            <div className="bg-white dark:bg-dark-700 p-6 rounded-xl text-center">
-              <TrendingUp className="w-8 h-8 text-primary-600 mx-auto mb-3" />
-              <h4 className="font-space font-semibold text-gray-900 dark:text-white mb-2">Smart Pricing</h4>
-              <p className="font-inter text-sm text-gray-600 dark:text-gray-300">Automatic rate optimization</p>
-            </div>
-            <div className="bg-white dark:bg-dark-700 p-6 rounded-xl text-center">
-              <Wrench className="w-8 h-8 text-warning-600 mx-auto mb-3" />
-              <h4 className="font-space font-semibold text-gray-900 dark:text-white mb-2">Maintenance</h4>
-              <p className="font-inter text-sm text-gray-600 dark:text-gray-300">Predictive service alerts</p>
-            </div>
-            <div className="bg-white dark:bg-dark-700 p-6 rounded-xl text-center">
-              <MessageSquare className="w-8 h-8 text-success-600 mx-auto mb-3" />
-              <h4 className="font-space font-semibold text-gray-900 dark:text-white mb-2">Communication</h4>
-              <p className="font-inter text-sm text-gray-600 dark:text-gray-300">Automated guest messaging</p>
-            </div>
-          </div>
-        </div>
-      </FeatureSection>
-
-      {/* Demo Video Section */}
-      <FeatureSection
-        title="See Exotiq in Action"
-        subtitle="Experience the power of our integrated platform"
-        bgColor="bg-gray-50 dark:bg-dark-800"
-      >
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white dark:bg-dark-700 rounded-3xl p-8 md:p-12 shadow-2xl text-center">
-            <div className="mb-8">
-              <Youtube className="w-16 h-16 text-primary-600 mx-auto mb-4" />
-              <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-4">
-                Platform Demo Video
-              </h3>
-              <div className="mt-8 text-center">
-                <h3 className="font-space font-bold text-2xl text-gray-900 dark:text-white mb-4">
-                  🎙️ Voice Assistant Active
-                </h3>
-                <p className="font-inter text-gray-600 dark:text-gray-300 mb-6">
-                  Start a natural conversation with FleetCopilot
-                </p>
-                {elevenLabsReady && (
-                  <div id="elevenlabs-convai-container">
-                    {/* ElevenLabs ConvAI will be rendered here when script is loaded */}
+                {/* Module Header with Icon */}
+                <div className="flex items-center gap-4 pb-6 mb-6 border-b border-gray-200 dark:border-dark-700">
+                  <div className={`w-14 h-14 ${activeColorClasses.bgLight} rounded-xl flex items-center justify-center`}>
+                    <activeModule.icon className={`w-7 h-7 ${activeColorClasses.text}`} />
                   </div>
-                )}
-                <p className="font-inter text-xs text-gray-500 dark:text-gray-400 mt-4">
-                </p>
-              </div>
+                  <div>
+                    <h3 className="font-dfaalt font-bold text-2xl sm:text-3xl text-gray-900 dark:text-white">
+                      {activeModule.name}
+                    </h3>
+                    <p className="font-inter text-gray-600 dark:text-gray-400">{activeModule.tagline}</p>
+                  </div>
+                </div>
+                
+                {/* Big Metric Headline */}
+                <div className={`text-center py-6 mb-8 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-dark-800 dark:to-dark-700 rounded-xl transition-all duration-500 ${contentVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ transitionDelay: '100ms' }}>
+                  <div className={`text-4xl sm:text-5xl lg:text-6xl font-dfaalt font-bold ${activeColorClasses.text} mb-2`}>
+                    {activeModule.metricHeadline}
+                  </div>
+                  <div className="font-inter text-lg text-gray-600 dark:text-gray-400">
+                    {activeModule.metricSubline}
+                  </div>
+                </div>
+                
+                {/* Screenshot + Features Layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-8">
+                  {/* Screenshot - Large & Prominent */}
+                  <div 
+                    className={`relative transition-all duration-500 ${contentVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                    style={{ transitionDelay: '200ms' }}
+                  >
+                    <div className="relative group">
+                      <div className="absolute -inset-6 bg-gradient-to-r from-primary-500/10 to-primary-600/10 dark:from-primary-500/15 dark:to-primary-600/15 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <img
+                        src={activeModule.screenshot}
+                        alt={activeModule.screenshotAlt}
+                        className="w-full h-auto relative z-10 rounded-lg drop-shadow-xl transition-all duration-500 group-hover:scale-[1.02] group-hover:drop-shadow-2xl"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* 3 Power Features */}
+                  <div className="space-y-4">
+                    {activeModule.features.map((feature, index) => {
+                      const FeatureIcon = feature.icon;
+                      return (
+                        <div 
+                          key={index} 
+                          className={`flex items-start gap-4 p-5 rounded-xl bg-gray-50 dark:bg-dark-800 border border-gray-100 dark:border-dark-700 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                          style={{ transitionDelay: `${300 + index * 100}ms` }}
+                        >
+                          <div className={`w-12 h-12 ${activeColorClasses.bgLight} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                            <FeatureIcon className={`w-6 h-6 ${activeColorClasses.text}`} />
+                          </div>
+                          <p className="font-inter text-gray-700 dark:text-gray-300 leading-relaxed pt-2">
+                            {feature.text}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                
+                {/* Testimonial Proof Element */}
+                <div 
+                  className={`bg-gradient-to-r from-gray-50 to-gray-100 dark:from-dark-800 dark:to-dark-700 p-6 rounded-xl border-l-4 ${activeColorClasses.border} transition-all duration-500 ${contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  style={{ transitionDelay: '600ms' }}
+                >
+                  <p className="font-inter text-lg text-gray-700 dark:text-gray-300 italic mb-4">
+                    "{activeModule.testimonial.quote}"
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary-500/10 dark:bg-primary-500/20 rounded-full flex items-center justify-center">
+                      <span className="font-dfaalt font-bold text-primary-500 text-sm">
+                        {activeModule.testimonial.author.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="font-dfaalt font-semibold text-gray-900 dark:text-white">
+                        {activeModule.testimonial.author}
+                      </div>
+                      <div className="font-inter text-sm text-gray-500 dark:text-gray-400">
+                        {activeModule.testimonial.role}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
             </div>
-          </div>
+          </MobileContainer>
         </div>
-      </FeatureSection>
+      </MobileSection>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-dark-900 to-dark-800 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center px-4 py-2 bg-primary-600/20 rounded-full text-primary-400 font-semibold text-sm mb-6">
-            <Zap className="w-4 h-4 mr-2" />
-            Limited Beta Access Available
-          </div>
-          <h2 className="font-space font-bold text-4xl md:text-5xl mb-6">
-            Ready to Transform Your Fleet?
-          </h2>
-          <p className="font-inter text-xl mb-8 opacity-90">
-            Be among the first to experience the future of fleet management. Join our exclusive beta program.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/survey"
-              className="font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center"
-            >
-              <span>Choose your fleet type to access the correct beta survey</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/contact"
-              className="font-poppins font-bold text-sm uppercase tracking-wide px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-dark-900 rounded-lg transition-all duration-200 hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation"
-            >
-              Get in Touch
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Social Proof Section - 3 Testimonials */}
+      <TestimonialsSection />
+
+      {/* Demo Section */}
+      <DemoSection />
+
+      {/* Final CTA Section */}
+      <FinalCTASection />
     </div>
   );
 }
+
+// Testimonials Section Component
+const TestimonialsSection: React.FC = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
+
+  const testimonials = [
+    {
+      quote: "Exotiq transformed our operations. We increased profits by 40% in just 3 months.",
+      author: 'Sarah Chen',
+      initials: 'SC',
+      role: 'Fleet Owner',
+      company: 'Luxury Drives Miami'
+    },
+    {
+      quote: "The AI insights are game-changing. It's like having a business consultant available 24/7.",
+      author: 'Marcus Rodriguez',
+      initials: 'MR',
+      role: 'Rental Entrepreneur',
+      company: 'Elite Car Share'
+    },
+    {
+      quote: "Finally, a platform that understands the exotic rental business. Absolutely essential.",
+      author: 'Emma Thompson',
+      initials: 'ET',
+      role: 'Operations Manager',
+      company: 'Premium Auto Collective'
+    }
+  ];
+
+  return (
+    <MobileSection ref={ref} className="bg-gray-50 dark:bg-dark-800 py-16 lg:py-20">
+      <MobileContainer>
+        <div className="text-center mb-12">
+          <h2 
+            className={`font-dfaalt font-bold text-3xl sm:text-4xl text-gray-900 dark:text-white mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          >
+            What Operators Are Saying
+          </h2>
+          <p 
+            className={`font-inter text-lg text-gray-600 dark:text-gray-400 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{ transitionDelay: '100ms' }}
+          >
+            Real results from real fleet operators
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={testimonial.author}
+              className={`relative bg-white dark:bg-dark-900 rounded-2xl p-6 lg:p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 dark:border-dark-700 hover:-translate-y-2 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${200 + index * 100}ms` }}
+            >
+              {/* Stars */}
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 text-amber-400 fill-current" />
+                ))}
+              </div>
+              
+              {/* Quote */}
+              <p className="font-inter text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                "{testimonial.quote}"
+              </p>
+              
+              {/* Author */}
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-primary-500/10 dark:bg-primary-500/20 rounded-full flex items-center justify-center">
+                  <span className="font-dfaalt font-bold text-primary-500">
+                    {testimonial.initials}
+                  </span>
+                </div>
+                <div>
+                  <div className="font-dfaalt font-semibold text-gray-900 dark:text-white">
+                    {testimonial.author}
+                  </div>
+                  <div className="font-inter text-sm text-gray-500 dark:text-gray-400">
+                    {testimonial.role}, {testimonial.company}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </MobileContainer>
+    </MobileSection>
+  );
+};
+
+// Demo Section Component
+const DemoSection: React.FC = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
+
+  return (
+    <MobileSection ref={ref} className="bg-white dark:bg-dark-900 py-16 lg:py-20">
+      <MobileContainer>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 
+            className={`font-dfaalt font-bold text-3xl sm:text-4xl text-gray-900 dark:text-white mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          >
+            See Exotiq in Action
+          </h2>
+          <p 
+            className={`font-inter text-lg text-gray-600 dark:text-gray-400 mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{ transitionDelay: '100ms' }}
+          >
+            Experience the power of our integrated platform
+          </p>
+
+          {/* Video Placeholder */}
+          <div 
+            className={`bg-gradient-to-br from-gray-100 to-gray-200 dark:from-dark-800 dark:to-dark-700 rounded-2xl p-12 lg:p-16 mb-10 border-2 border-dashed border-gray-300 dark:border-dark-600 transition-all duration-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+            style={{ transitionDelay: '200ms' }}
+          >
+            <div className="flex flex-col items-center">
+              <div className="w-20 h-20 bg-primary-500/10 dark:bg-primary-500/20 rounded-full flex items-center justify-center mb-6">
+                <Play className="w-10 h-10 text-primary-500" />
+              </div>
+              <p className="font-inter text-gray-500 dark:text-gray-400 text-lg">
+                Demo video coming soon
+              </p>
+            </div>
+          </div>
+
+          {/* CTA Below Video */}
+          <p 
+            className={`font-inter text-lg text-gray-700 dark:text-gray-300 mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{ transitionDelay: '300ms' }}
+          >
+            Ready to transform your operations?
+          </p>
+          
+          <div 
+            className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{ transitionDelay: '400ms' }}
+          >
+            <a
+              href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-3 font-dfaalt font-semibold text-base px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              <Calendar className="w-5 h-5" />
+              <span>Book Your Demo Call</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <Link
+              to="/fleetcopilot"
+              className="inline-flex items-center justify-center gap-2 font-dfaalt font-semibold text-base px-8 py-4 border-2 border-gray-300 dark:border-dark-600 text-gray-700 dark:text-gray-300 hover:border-primary-500 hover:text-primary-500 rounded-xl transition-all duration-300"
+            >
+              <Bot className="w-5 h-5" />
+              <span>Or explore FleetCopilot</span>
+            </Link>
+          </div>
+        </div>
+      </MobileContainer>
+    </MobileSection>
+  );
+};
+
+// Final CTA Section Component
+const FinalCTASection: React.FC = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
+
+  return (
+    <MobileSection ref={ref} className="bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 py-20 lg:py-24">
+      <MobileContainer>
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 
+            className={`font-dfaalt font-bold text-4xl sm:text-5xl text-white mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          >
+            Ready to Scale Your Exotic Fleet?
+          </h2>
+          <p 
+            className={`font-inter text-xl text-gray-300 mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{ transitionDelay: '100ms' }}
+          >
+            Join 20+ operators already growing with Exotiq
+          </p>
+
+          {/* Single Large CTA */}
+          <div 
+            className={`mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{ transitionDelay: '200ms' }}
+          >
+            <a
+              href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-3 font-dfaalt font-semibold text-lg px-10 py-5 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/30"
+            >
+              <Calendar className="w-6 h-6" />
+              <span>Book Your 15-Minute Demo</span>
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+
+          {/* Trust Badges */}
+          <div 
+            className={`flex flex-wrap justify-center gap-6 text-gray-400 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{ transitionDelay: '300ms' }}
+          >
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-primary-500" />
+              <span className="font-inter text-sm">No credit card required</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-primary-500" />
+              <span className="font-inter text-sm">15-minute consultation</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-primary-500" />
+              <span className="font-inter text-sm">Custom setup included</span>
+            </div>
+          </div>
+        </div>
+      </MobileContainer>
+    </MobileSection>
+  );
+};

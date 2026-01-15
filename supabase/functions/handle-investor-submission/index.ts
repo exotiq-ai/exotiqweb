@@ -1,4 +1,5 @@
 import { corsHeaders } from '../_shared/cors.ts'
+import { getImmediateEmail } from './email-templates.ts'
 
 interface InvestorSubmission {
   firstName: string
@@ -154,11 +155,14 @@ async function sendWelcomeEmail(submission: InvestorSubmission) {
     return
   }
 
+  // Use premium email template
+  const emailTemplate = getImmediateEmail(submission.firstName, submission.email)
+  
   const emailData: EmailNotification = {
     to: submission.email,
-    subject: 'Welcome to Exotiq - Investment Interest',
-    html: createWelcomeEmailHTML(submission),
-    text: createWelcomeEmailText(submission)
+    subject: emailTemplate.subject,
+    html: emailTemplate.html,
+    text: emailTemplate.text
   }
 
   await sendEmail(emailData)
@@ -192,11 +196,15 @@ async function sendEmail(emailData: EmailNotification) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Exotiq Team <hello@exotiq.ai>',
+      from: 'Gregory @ Exotiq <hello@exotiq.ai>',
       to: [emailData.to],
       subject: emailData.subject,
       text: emailData.text,
-      html: emailData.html
+      html: emailData.html,
+      tags: [
+        { name: 'type', value: 'investor_immediate' },
+        { name: 'campaign', value: 'pre_seed_raise' }
+      ]
     })
   })
 

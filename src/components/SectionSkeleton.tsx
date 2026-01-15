@@ -8,7 +8,7 @@ export default function SectionSkeleton({ variant = 'default' }: SectionSkeleton
   if (variant === 'fleetcopilot') {
     return (
       <div className="py-16 md:py-20 animate-pulse">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Text Side */}
             <div className="space-y-6">
@@ -36,7 +36,7 @@ export default function SectionSkeleton({ variant = 'default' }: SectionSkeleton
   if (variant === 'testimonials') {
     return (
       <div className="py-16 md:py-20 animate-pulse">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="h-12 bg-gray-200 dark:bg-dark-700 rounded-lg w-2/3 mx-auto mb-12"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3].map((i) => (
@@ -61,7 +61,7 @@ export default function SectionSkeleton({ variant = 'default' }: SectionSkeleton
   if (variant === 'features') {
     return (
       <div className="py-16 md:py-20 animate-pulse">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="h-12 bg-gray-200 dark:bg-dark-700 rounded-lg w-1/2 mx-auto mb-12"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -80,7 +80,7 @@ export default function SectionSkeleton({ variant = 'default' }: SectionSkeleton
   // Default skeleton
   return (
     <div className="py-16 md:py-20 animate-pulse">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
         <div className="h-12 bg-gray-200 dark:bg-dark-700 rounded-lg w-2/3 mx-auto mb-8"></div>
         <div className="h-6 bg-gray-200 dark:bg-dark-700 rounded w-1/2 mx-auto mb-12"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

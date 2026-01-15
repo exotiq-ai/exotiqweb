@@ -17,12 +17,12 @@ export default function TestPage() {
   return (
     <div className="pt-16 min-h-screen bg-gray-50 dark:bg-dark-900">
       {/* Header */}
-      <section className="py-12 bg-gradient-to-br from-primary-600 to-accent-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-space font-bold text-4xl mb-4">
+      <section className="py-12 bg-gradient-to-br from-primary-500 to-accent-600 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
+          <h1 className="font-dfaalt font-bold text-4xl mb-4">
             ChatBot Testing Center
           </h1>
-          <p className="font-inter text-xl opacity-90">
+          <p className="font-montserrat text-xl opacity-90">
             Comprehensive testing tools for OpenAI integration and ChatBot functionality
           </p>
         </div>
@@ -30,18 +30,18 @@ export default function TestPage() {
 
       {/* Test Options */}
       <section className="py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             {/* AI Integration Test */}
             <div className="bg-white dark:bg-dark-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700">
               <div className="flex items-center justify-center w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-xl mx-auto mb-6">
-                <Brain className="w-8 h-8 text-primary-600" />
+                <Brain className="w-8 h-8 text-primary-500" />
               </div>
-              <h3 className="font-space font-bold text-2xl text-center mb-4">
+              <h3 className="font-dfaalt font-bold text-2xl text-center mb-4">
                 AI Integration Test
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300 text-center mb-6">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300 text-center mb-6">
                 Comprehensive test suite to verify OpenAI integration, response quality, 
                 error handling, and performance metrics.
               </p>
@@ -67,7 +67,7 @@ export default function TestPage() {
               
               <button
                 onClick={() => setShowTest(true)}
-                className="w-full font-poppins font-bold text-sm uppercase tracking-wide px-6 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-200 hover:scale-105"
+                className="w-full font-poppins font-bold text-sm uppercase tracking-wide px-6 py-4 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-all duration-200 hover:scale-105"
               >
                 Run AI Integration Test
               </button>
@@ -78,10 +78,10 @@ export default function TestPage() {
               <div className="flex items-center justify-center w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-xl mx-auto mb-6">
                 <MessageSquare className="w-8 h-8 text-accent-600" />
               </div>
-              <h3 className="font-space font-bold text-2xl text-center mb-4">
+              <h3 className="font-dfaalt font-bold text-2xl text-center mb-4">
                 Live ChatBot Test
               </h3>
-              <p className="font-inter text-gray-600 dark:text-gray-300 text-center mb-6">
+              <p className="font-montserrat text-gray-600 dark:text-gray-300 text-center mb-6">
                 Interactive test of the actual ChatBot interface. Test conversation flows, 
                 AI responses, and user experience in real-time.
               </p>
@@ -118,14 +118,14 @@ export default function TestPage() {
           <div className="mt-12 bg-blue-50 dark:bg-blue-900/20 p-8 rounded-2xl border border-blue-200 dark:border-blue-800">
             <div className="flex items-center space-x-3 mb-4">
               <Settings className="w-6 h-6 text-blue-600" />
-              <h3 className="font-space font-bold text-xl text-blue-900 dark:text-blue-100">
+              <h3 className="font-dfaalt font-bold text-xl text-blue-900 dark:text-blue-100">
                 Testing Instructions
               </h3>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-space font-semibold text-lg mb-3 text-blue-900 dark:text-blue-100">
+                <h4 className="font-dfaalt font-semibold text-lg mb-3 text-blue-900 dark:text-blue-100">
                   Before Testing
                 </h4>
                 <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
@@ -137,7 +137,7 @@ export default function TestPage() {
               </div>
               
               <div>
-                <h4 className="font-space font-semibold text-lg mb-3 text-blue-900 dark:text-blue-100">
+                <h4 className="font-dfaalt font-semibold text-lg mb-3 text-blue-900 dark:text-blue-100">
                   What to Test
                 </h4>
                 <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
@@ -154,7 +154,7 @@ export default function TestPage() {
           <div className="mt-8 bg-gray-100 dark:bg-dark-800 p-6 rounded-xl">
             <div className="flex items-center space-x-3 mb-4">
               <BarChart3 className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-              <h4 className="font-space font-semibold text-lg">Current Configuration</h4>
+              <h4 className="font-dfaalt font-semibold text-lg">Current Configuration</h4>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">

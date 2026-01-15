@@ -1,207 +1,154 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
 import { MobileContainer } from './MobileOptimizations';
-import { useParallax } from '../hooks/useScrollAnimation';
 
 interface HomeHeroSectionProps {
   isVisible: boolean;
 }
 
-// Static hero image - McLaren 720S Urban Night
-const heroImage = {
-  src: {
-    desktop: '/images/hero/mclaren-720s-urban-night-desktop.jpg',
-    tablet: '/images/hero/mclaren-720s-urban-night-tablet.jpg',
-    mobile: '/images/hero/mclaren-720s-urban-night-mobile.jpg',
-    tiny: '/images/hero/mclaren-720s-urban-night-tiny.jpg'
-  },
-  srcWebP: {
-    desktop: '/images/hero/mclaren-720s-urban-night-desktop.webp',
-    tablet: '/images/hero/mclaren-720s-urban-night-tablet.webp',
-    mobile: '/images/hero/mclaren-720s-urban-night-mobile.webp'
-  },
-  alt: 'Volcano orange McLaren 720S supercar in motion on wet city streets at night with light trails and urban skyline',
-  title: 'Tech-Forward Fleet Operations - McLaren 720S',
-  overlayIntensity: 0.32,
-  backgroundPosition: 'center 45%'
-};
-
 const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => {
-  const parallaxOffset = useParallax(0.3);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (window.innerWidth >= 1024) { // Only on desktop
-        const x = (e.clientX - window.innerWidth / 2) / 50;
-        const y = (e.clientY - window.innerHeight / 2) / 50;
-        setMousePosition({ x, y });
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
-    <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    <section
+      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900"
       data-hero-section
-      aria-label="Hero section with McLaren 720S"
+      aria-label="Hero section"
     >
-      {/* Static Hero Image with WebP Support */}
+      {/* Animated gradient background */}
       <div className="absolute inset-0">
-        {/* Blur Placeholder */}
-        <div 
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${imageLoaded ? 'opacity-0' : 'opacity-100'}`}
+        {/* Primary gradient mesh */}
+        <div
+          className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: `url('${heroImage.src.tiny}')`,
-            filter: 'blur(20px)',
-            transform: 'scale(1.1)'
-          }}
-          aria-hidden="true"
-        />
-        
-        {/* Main Image with Picture Element */}
-        <picture className={`absolute inset-0 transition-opacity duration-1500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Mobile WebP */}
-          <source 
-            media="(max-width: 640px)" 
-            srcSet={heroImage.srcWebP.mobile}
-            type="image/webp"
-          />
-          {/* Mobile JPG Fallback */}
-          <source 
-            media="(max-width: 640px)" 
-            srcSet={heroImage.src.mobile}
-            type="image/jpeg"
-          />
-          
-          {/* Tablet WebP */}
-          <source 
-            media="(max-width: 1024px)" 
-            srcSet={heroImage.srcWebP.tablet}
-            type="image/webp"
-          />
-          {/* Tablet JPG Fallback */}
-          <source 
-            media="(max-width: 1024px)" 
-            srcSet={heroImage.src.tablet}
-            type="image/jpeg"
-          />
-          
-          {/* Desktop WebP */}
-          <source 
-            media="(min-width: 1025px)" 
-            srcSet={heroImage.srcWebP.desktop}
-            type="image/webp"
-          />
-          {/* Desktop JPG Fallback */}
-          <source 
-            media="(min-width: 1025px)" 
-            srcSet={heroImage.src.desktop}
-            type="image/jpeg"
-          />
-          
-          <img
-            src={heroImage.src.desktop}
-            alt={heroImage.alt}
-            title={heroImage.title}
-            onLoad={() => setImageLoaded(true)}
-            className="w-full h-full object-cover transition-transform duration-500 ease-out"
-            style={{
-              objectPosition: heroImage.backgroundPosition,
-              transform: `translate3d(0, ${parallaxOffset}px, 0) scale(1.08)`,
-              willChange: 'transform',
-            }}
-            loading="eager"
-          />
-        </picture>
-        
-        {/* Dynamic Overlay */}
-        <div 
-          className="absolute inset-0 bg-gradient-to-b transition-colors duration-1500"
-          style={{
-            background: `linear-gradient(to bottom, 
-              rgba(0, 0, 0, ${heroImage.overlayIntensity}), 
-              rgba(0, 0, 0, ${heroImage.overlayIntensity - 0.05}), 
-              rgba(0, 0, 0, ${heroImage.overlayIntensity + 0.1})
-            )`
+            background: `
+              radial-gradient(ellipse 80% 50% at 20% 40%, rgba(110, 193, 228, 0.3) 0%, transparent 50%),
+              radial-gradient(ellipse 60% 40% at 80% 60%, rgba(110, 193, 228, 0.2) 0%, transparent 50%)
+            `
           }}
         />
-        
-        {/* Premium gradient mesh overlay */}
-        <div 
-          className="absolute inset-0 opacity-30"
+
+        {/* Subtle animated gradient */}
+        <div
+          className="absolute inset-0 opacity-20 animate-gradient-shift"
           style={{
-            backgroundImage: `radial-gradient(circle at ${50 + mousePosition.x}% ${50 + mousePosition.y}%, rgba(30, 64, 175, 0.4) 0%, transparent 50%)`,
-            transition: 'background-image 0.3s ease-out',
-          }}
-        />
-        
-        {/* Sophisticated animated gradient mesh */}
-        <div className="absolute inset-0 opacity-20 animate-gradient-shift" 
-          style={{
-            background: 'linear-gradient(135deg, rgba(197, 165, 114, 0.15) 0%, transparent 50%, rgba(229, 228, 226, 0.1) 100%)',
+            background: 'linear-gradient(135deg, rgba(110, 193, 228, 0.2) 0%, transparent 40%, rgba(241, 90, 41, 0.1) 100%)',
             backgroundSize: '200% 200%',
           }}
         />
+
+        {/* Grid pattern overlay for depth */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }}
+        />
       </div>
-      
+
       {/* Content */}
-      <div className="relative z-10 w-full">
+      <div className="relative z-10 w-full pt-8 pb-16 lg:pt-0 lg:pb-0">
         <MobileContainer>
-          <div className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="font-space font-bold text-4xl sm:text-5xl md:text-6xl lg:text-6xl text-white mb-4 sm:mb-6 leading-tight px-2 drop-shadow-lg">
-              Transform Your Fleet Operations
-              <span className="block text-primary-300 animate-gradient-text drop-shadow-lg">With AI That Actually Works</span>
-            </h1>
-            <p className="font-inter text-lg sm:text-xl md:text-2xl text-gray-100 dark:text-gray-50 max-w-4xl mx-auto mb-6 sm:mb-8 animate-slide-up px-4 drop-shadow-md font-medium" style={{ animationDelay: '200ms' }}>
-              Stop losing 15+ hours every week to manual tasks. Exotiq automates pricing, availability, maintenance, and messaging—so you can scale profitably.
-            </p>
-            
-            {/* Trust Signal with Badge */}
-            <div className="flex items-center justify-center gap-3 mt-2 mb-6 sm:mb-8 px-4">
-              <div className="relative overflow-hidden rounded-lg backdrop-blur-sm bg-white/5 border border-white/20 px-4 py-2.5">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-success-400 rounded-full animate-pulse"></div>
-                  <span className="font-inter text-sm text-white/90 font-medium">
-                    Built by former Turo hosts for operators
-                  </span>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+
+            {/* Left Column - Copy */}
+            <div className={`text-center lg:text-left lg:pr-8 xl:pr-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+
+              {/* Trust Badge - Animated */}
+              <div
+                className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white/90 mb-6 border border-white/20 animate-pulse-subtle"
+                style={{ animationDelay: '100ms' }}
+              >
+                <CheckCircle className="w-4 h-4 mr-2 text-green-400" />
+                Trusted by operators managing $120M+ in fleet assets
+              </div>
+
+              {/* Headline */}
+              <h1 className="font-dfaalt font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 leading-[1.1] tracking-tight">
+                Exotic Fleet Operations on{' '}
+                <span className="text-primary-400">Autopilot</span>
+              </h1>
+
+              {/* Subheadline */}
+              <p className="font-inter text-lg sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                AI-powered platform that automates pricing, guest messaging, and maintenance so you can scale without the chaos.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-8">
+                <Link
+                  to="/features"
+                  className="group inline-flex items-center justify-center font-dfaalt font-semibold text-base px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary-500/30 active:scale-[0.98]"
+                >
+                  <span>Explore the Platform</span>
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
+
+                <a
+                  href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center font-dfaalt font-semibold text-base px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/20 hover:border-white/40 rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  Book a Demo
+                </a>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 text-sm text-gray-400">
+                <span className="flex items-center">
+                  <CheckCircle className="w-4 h-4 mr-1.5 text-green-400" />
+                  No commitment
+                </span>
+                <span className="flex items-center">
+                  <CheckCircle className="w-4 h-4 mr-1.5 text-green-400" />
+                  14-day free trial
+                </span>
+                <span className="flex items-center">
+                  <CheckCircle className="w-4 h-4 mr-1.5 text-green-400" />
+                  Cancel anytime
+                </span>
               </div>
             </div>
-            
-            {/* Premium CTA Buttons */}
-            <div className="flex flex-col sm:flex-row justify-center gap-5 px-4">
-              <Link
-                to="/features"
-                className="group relative font-inter font-semibold text-base px-10 py-5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl transition-all duration-250 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center space-x-2.5 min-h-[52px] touch-manipulation shadow-xl hover:shadow-2xl overflow-hidden"
-              >
-                {/* Ripple effect */}
-                <span className="absolute inset-0 bg-white/20 scale-0 group-active:scale-100 transition-transform duration-500 rounded-xl"></span>
-                {/* Content */}
-                <span className="relative z-10 flex items-center space-x-2.5">
-                  <span>Explore the Platform</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform duration-250" />
-                </span>
-              </Link>
-              <a
-                href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative font-inter font-semibold text-base px-10 py-5 bg-white/10 hover:bg-white/20 backdrop-blur-md border-2 border-white/30 hover:border-white/50 text-white rounded-xl transition-all duration-250 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center min-h-[52px] touch-manipulation shadow-lg hover:shadow-xl overflow-hidden"
-              >
-                {/* Glassmorphism enhancement */}
-                <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                <span className="relative z-10">Book a 15-Min Demo</span>
-              </a>
+
+            {/* Right Column - Dashboard Screenshot */}
+            <div
+              className={`relative transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+            >
+              {/* Glow effect behind the dashboard */}
+              <div
+                className="absolute -inset-8 lg:-inset-16 bg-gradient-to-r from-primary-500/25 via-primary-400/15 to-primary-500/25 rounded-3xl blur-3xl"
+                aria-hidden="true"
+              />
+
+              {/* Dashboard Image Container - LARGER & MORE PROMINENT */}
+              <div className="relative lg:scale-110 lg:translate-x-4 xl:scale-115 xl:translate-x-8 animate-float">
+                {/* Main Dashboard - MacBook - PROMINENT */}
+                <img
+                  src="/images/app-screenshots/hero-dashboard-macbook.svg"
+                  alt="Exotiq MotorIQ Dashboard showing dynamic pricing optimization and fleet utilization analytics"
+                  className={`w-full h-auto relative z-10 drop-shadow-2xl transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                  onLoad={() => setImageLoaded(true)}
+                  loading="eager"
+                />
+
+                {/* Loading placeholder */}
+                {!imageLoaded && (
+                  <div className="absolute inset-0 bg-dark-700 rounded-2xl animate-pulse" />
+                )}
+              </div>
             </div>
           </div>
         </MobileContainer>
       </div>
+
+      {/* Bottom fade for smooth transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark-900 to-transparent pointer-events-none" />
     </section>
   );
 };

@@ -32,11 +32,11 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isTyping, message
           <div
             className={`inline-block rounded-2xl px-4 py-3 shadow-sm max-w-[90vw] md:max-w-2xl break-words ${
               message.type === 'user'
-                ? 'bg-primary-600 text-white'
+                ? 'bg-primary-500 text-white'
                 : 'bg-gray-100 dark:bg-dark-700 text-gray-900 dark:text-white'
             }`}
           >
-            <p className="font-inter text-sm leading-relaxed break-words">{message.content}</p>
+            <p className="font-montserrat text-sm leading-relaxed break-words">{message.content}</p>
           </div>
           {/* Action buttons */}
           {message.metadata?.buttons && (
@@ -45,7 +45,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isTyping, message
                 <button
                   key={index}
                   onClick={() => handleActionClick(button.action, button.url)}
-                  className="block w-full text-left px-4 py-3 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-sm font-medium border border-primary-200 dark:border-primary-800 hover:border-primary-300 dark:hover:border-primary-700 min-h-[44px] touch-manipulation"
+                  className="block w-full text-left px-4 py-3 bg-primary-50 dark:bg-primary-900/20 text-primary-500 dark:text-primary-400 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-sm font-medium border border-primary-200 dark:border-primary-800 hover:border-primary-300 dark:hover:border-primary-600 min-h-[44px] touch-manipulation"
                 >
                   <div className="flex items-center justify-between min-h-[20px]">
                     <span className="flex-1 pr-2 leading-tight">{button.text}</span>

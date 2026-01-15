@@ -9,7 +9,7 @@ export default function GTMTestPage() {
         description="Google Tag Manager test page for Exotiq.ai"
       />
       <div className="min-h-screen bg-white dark:bg-dark-900 py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
               GTM Test Page

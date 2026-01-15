@@ -23,7 +23,7 @@ const AccessibilityControls: React.FC = () => {
       {/* Accessibility toggle button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 z-50 p-3 bg-primary-600 hover:bg-primary-700 text-white rounded-full shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+        className="fixed bottom-4 right-4 z-50 p-3 bg-primary-500 hover:bg-primary-600 text-white rounded-full shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         aria-label="Accessibility controls"
         aria-expanded={isOpen}
       >
@@ -43,7 +43,7 @@ const AccessibilityControls: React.FC = () => {
           <div className="fixed bottom-20 right-4 w-80 max-w-[calc(100vw-2rem)] bg-white dark:bg-dark-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-dark-700 overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-dark-700">
-              <h3 className="font-space font-bold text-lg text-gray-900 dark:text-white">
+              <h3 className="font-dfaalt font-bold text-lg text-gray-900 dark:text-white">
                 Accessibility
               </h3>
               <button
@@ -60,12 +60,12 @@ const AccessibilityControls: React.FC = () => {
               {/* High Contrast */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <Eye className="w-5 h-5 text-primary-600" />
+                  <Eye className="w-5 h-5 text-primary-500" />
                   <div>
-                    <h4 className="font-inter font-semibold text-gray-900 dark:text-white">
+                    <h4 className="font-montserrat font-semibold text-gray-900 dark:text-white">
                       High Contrast
                     </h4>
-                    <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
+                    <p className="font-montserrat text-sm text-gray-600 dark:text-gray-400">
                       Better visibility
                     </p>
                   </div>
@@ -73,7 +73,7 @@ const AccessibilityControls: React.FC = () => {
                 <button
                   onClick={toggleHighContrast}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
-                    highContrast ? 'bg-primary-600' : 'bg-gray-200 dark:bg-dark-600'
+                    highContrast ? 'bg-primary-500' : 'bg-gray-200 dark:bg-dark-600'
                   }`}
                   aria-label={`${highContrast ? 'Disable' : 'Enable'} high contrast mode`}
                 >
@@ -90,10 +90,10 @@ const AccessibilityControls: React.FC = () => {
                 <div className="flex items-center space-x-3">
                   <Zap className="w-5 h-5 text-accent-600" />
                   <div>
-                    <h4 className="font-inter font-semibold text-gray-900 dark:text-white">
+                    <h4 className="font-montserrat font-semibold text-gray-900 dark:text-white">
                       Reduced Motion
                     </h4>
-                    <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
+                    <p className="font-montserrat text-sm text-gray-600 dark:text-gray-400">
                       Less animations
                     </p>
                   </div>
@@ -118,10 +118,10 @@ const AccessibilityControls: React.FC = () => {
                 <div className="flex items-center space-x-3">
                   <Type className="w-5 h-5 text-success-600" />
                   <div>
-                    <h4 className="font-inter font-semibold text-gray-900 dark:text-white">
+                    <h4 className="font-montserrat font-semibold text-gray-900 dark:text-white">
                       Font Size
                     </h4>
-                    <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
+                    <p className="font-montserrat text-sm text-gray-600 dark:text-gray-400">
                       Adjust text size
                     </p>
                   </div>
@@ -133,7 +133,7 @@ const AccessibilityControls: React.FC = () => {
                       onClick={() => setFontSize(size)}
                       className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                         fontSize === size
-                          ? 'bg-primary-600 text-white'
+                          ? 'bg-primary-500 text-white'
                           : 'bg-gray-100 dark:bg-dark-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-600'
                       }`}
                       aria-label={`Set font size to ${size}`}
@@ -146,7 +146,7 @@ const AccessibilityControls: React.FC = () => {
 
               {/* Keyboard shortcuts info */}
               <div className="pt-4 border-t border-gray-200 dark:border-dark-700">
-                <h4 className="font-inter font-semibold text-gray-900 dark:text-white mb-2">
+                <h4 className="font-montserrat font-semibold text-gray-900 dark:text-white mb-2">
                   Keyboard Shortcuts
                 </h4>
                 <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">

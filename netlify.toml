@@ -5,19 +5,49 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Enable prerendering for crawlers and bots (AI models, search engines)
+[[plugins]]
+  package = "@netlify/plugin-prerender-spa"
+
+# Prerendering configuration
+[plugins.inputs]
+  # Cache prerendered pages for 7 days
+  cacheAge = 604800
+  # Prerender these routes explicitly
+  routes = [
+    "/",
+    "/features",
+    "/about",
+    "/contact",
+    "/investors",
+    "/survey"
+  ]
+
+# Redirects - SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  # Don't apply to files that exist
+  force = false
 
+# Headers for AI/Bot detection and caching
 [[headers]]
   for = "/*"
   [headers.values]
+    # Security headers
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Cache control for HTML (allow revalidation for fresh content)
+    Cache-Control = "public, max-age=0, must-revalidate"
+    
+    # Help AI models identify content
+    X-Robots-Tag = "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
 
+# Static assets - aggressive caching
 [[headers]]
   for = "/assets/*"
   [headers.values]
@@ -33,4 +63,30 @@
   for = "*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-    Content-Type = "text/css" 
+    Content-Type = "text/css"
+
+# Images - long cache
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "image/jpeg"
+
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "image/webp"
+
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "image/png"
+
+# Fonts - long cache
+[[headers]]
+  for = "*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "font/woff2"
