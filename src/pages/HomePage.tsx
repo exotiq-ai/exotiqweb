@@ -24,7 +24,6 @@ import StickyCTABar from '../components/StickyCTABar';
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('motoriq');
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -82,8 +81,8 @@ export default function HomePage() {
       {/* 3. Built for Exotic Fleets - McLaren imagery section */}
       <ExoticFleetsSection />
 
-      {/* 4. Platform Modules Section - Tabbed interface */}
-      <PlatformModulesSection activeTab={activeTab} setActiveTab={setActiveTab} />
+      {/* 4. Platform Modules Section - Bombon-style scroll reveal cards */}
+      <PlatformModulesSection />
 
       {/* 5. ROI Calculator CTA Section - Moved lower */}
       <MobileSection className="py-12 sm:py-14 bg-gradient-to-b from-dark-900 to-dark-black">
