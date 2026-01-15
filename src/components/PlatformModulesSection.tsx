@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { MobileSection, MobileContainer } from './MobileOptimizations';
-import { Brain, TrendingUp, PieChart, Globe, Shield, Zap, DollarSign, BarChart3, Target, Eye, Star, MessageSquare, Calendar, FileText, ArrowRight } from 'lucide-react';
+import { Brain, TrendingUp, PieChart, Globe, Shield, Bot, DollarSign, BarChart3, Target, Eye, Star, MessageSquare, Calendar, FileText, ArrowRight, Mic, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface PlatformModulesSectionProps {
@@ -20,15 +20,15 @@ const modules = [
     borderColor: 'border-blue-500/30',
     iconBg: 'bg-blue-500/20',
     iconColor: 'text-blue-400',
-    description: 'AI-powered dynamic pricing that automatically adjusts your rates based on demand, competition, and market conditions to maximize revenue.',
+    description: 'AI-powered dynamic pricing that watches competitor pricing, local events, and demand to adjust your rates in real-time. Set your floor, set your ceiling, let AI maximize every booking.',
     screenshot: '/images/app-screenshots/motoriq-ui.png',
     screenshotAlt: 'MotorIQ dashboard showing price optimization and revenue analytics',
     features: [
       { icon: DollarSign, text: 'AI Dynamic Pricing' },
       { icon: BarChart3, text: 'Revenue Analytics' },
-      { icon: Target, text: 'Cost Forecasting' }
+      { icon: Target, text: 'Profit Intelligence' }
     ],
-    metric: { value: '$1,890', label: 'Avg Revenue/Vehicle', change: '+12%' }
+    metric: { value: '40%', label: 'Revenue Increase', change: 'in 90 days' }
   },
   {
     id: 'pulse',
@@ -40,15 +40,15 @@ const modules = [
     borderColor: 'border-orange-500/30',
     iconBg: 'bg-orange-500/20',
     iconColor: 'text-orange-400',
-    description: 'Real-time visibility into your entire fleet with live metrics, demand forecasting, and performance analytics that help you make smarter decisions.',
+    description: 'Your entire fleet on one screen. See which vehicles are booked, which are sitting idle, where demand is heating up. Zero spreadsheets, zero guessing.',
     screenshot: '/images/app-screenshots/pulse-ui.png',
     screenshotAlt: 'Pulse analytics showing demand forecasts and calendar heatmap',
     features: [
-      { icon: Eye, text: 'Live Fleet Metrics' },
-      { icon: Star, text: 'Performance Analysis' },
+      { icon: Eye, text: 'Live Fleet Status' },
+      { icon: Star, text: 'Performance Rankings' },
       { icon: Brain, text: 'Demand Forecasting' }
     ],
-    metric: { value: '89%', label: 'Utilization Rate', change: '+5%' }
+    metric: { value: '89%', label: 'Utilization Rate', change: 'industry-leading' }
   },
   {
     id: 'book',
@@ -60,15 +60,15 @@ const modules = [
     borderColor: 'border-emerald-500/30',
     iconBg: 'bg-emerald-500/20',
     iconColor: 'text-emerald-400',
-    description: 'Your own white-label booking website that captures 100% of revenue. Eliminate platform fees and build direct relationships with customers.',
+    description: 'Stop giving away 25-40% of every booking. Unified calendar, customer intelligence, and MotorIQ pricing sync. Your customers, your data, your revenue.',
     screenshot: '/images/app-screenshots/book-ui.png',
     screenshotAlt: 'Book module showing direct booking interface',
     features: [
-      { icon: Calendar, text: 'White-Label Booking' },
+      { icon: Calendar, text: 'Unified Calendar' },
       { icon: DollarSign, text: 'Zero Platform Fees' },
-      { icon: TrendingUp, text: 'SEO Optimized' }
+      { icon: TrendingUp, text: 'Customer Intelligence' }
     ],
-    metric: { value: '100%', label: 'Revenue Retention', change: 'vs 65-75%' }
+    metric: { value: '100%', label: 'Revenue Retention', change: 'vs 60-75%' }
   },
   {
     id: 'vault',
@@ -80,35 +80,35 @@ const modules = [
     borderColor: 'border-amber-500/30',
     iconBg: 'bg-amber-500/20',
     iconColor: 'text-amber-400',
-    description: 'Automated compliance management that generates documents, tracks expirations, and keeps you compliant with all regulations automatically.',
+    description: 'One lapsed policy can sink your business. Vault tracks every deadline, generates every document, and alerts you before anything slips.',
     screenshot: '/images/app-screenshots/vault-ui.png',
     screenshotAlt: 'Vault compliance dashboard showing document management',
     features: [
       { icon: FileText, text: 'Auto Documentation' },
-      { icon: Shield, text: 'Regulatory Compliance' },
-      { icon: Calendar, text: 'Expiration Tracking' }
+      { icon: Shield, text: 'Insurance Tracker' },
+      { icon: Calendar, text: 'Deadline Radar' }
     ],
-    metric: { value: '0', label: 'Compliance Violations', change: '100% Success' }
+    metric: { value: '$47K', label: 'Avg Compliance Failure', change: 'sleep easier' }
   },
   {
-    id: 'core',
-    name: 'Core',
-    tagline: 'Operations Hub',
-    icon: Zap,
-    color: 'primary',
-    gradient: 'from-violet-500/20 to-purple-500/10',
-    borderColor: 'border-violet-500/30',
-    iconBg: 'bg-violet-500/20',
-    iconColor: 'text-violet-400',
-    description: 'Your central command center for all fleet operations. Unified inbox, fleet calendar, and workflow automation in one powerful dashboard.',
-    screenshot: '/images/app-screenshots/core-ui.png',
-    screenshotAlt: 'Core operations hub showing unified dashboard',
+    id: 'fleetcopilot',
+    name: 'FleetCopilot',
+    tagline: 'AI Operations Assistant',
+    icon: Bot,
+    color: 'copilot',
+    gradient: 'from-emerald-400/20 to-teal-500/10',
+    borderColor: 'border-emerald-400/30',
+    iconBg: 'bg-emerald-500/20',
+    iconColor: 'text-emerald-400',
+    description: 'Talk to it like a teammate. Voice commands, smart scheduling, condition-based estimates. The admin work that took hours now takes seconds.',
+    screenshot: '/images/app-screenshots/fleetcopilot-ui.png',
+    screenshotAlt: 'FleetCopilot AI assistant interface showing voice commands',
     features: [
+      { icon: Mic, text: 'Voice Commands' },
       { icon: MessageSquare, text: 'Unified Inbox' },
-      { icon: Calendar, text: 'Fleet Calendar' },
       { icon: Zap, text: 'Workflow Automation' }
     ],
-    metric: { value: '15+', label: 'Hours Saved Weekly', change: 'Per Operator' }
+    metric: { value: '15+', label: 'Hours Saved Weekly', change: 'per operator' }
   }
 ];
 
@@ -166,28 +166,34 @@ const ModuleCard: React.FC<{ module: typeof modules[0]; index: number; isReverse
                   </div>
                 </div>
                 
-                {/* Screenshot Image */}
-                <div className="aspect-[16/10] bg-dark-900/50 flex items-center justify-center">
-                  <img
-                    src={module.screenshot}
-                    alt={module.screenshotAlt}
-                    className="w-full h-full object-cover object-top"
-                    loading="lazy"
-                    onError={(e) => {
-                      // Fallback placeholder if image doesn't exist yet
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      target.parentElement!.innerHTML = `
-                        <div class="w-full h-full flex flex-col items-center justify-center text-gray-500 p-8">
-                          <svg class="w-16 h-16 mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                          <span class="text-sm font-medium">${module.name} Screenshot</span>
-                          <span class="text-xs mt-1 opacity-60">Coming Soon</span>
-                        </div>
-                      `;
-                    }}
-                  />
+                {/* Screenshot Image - Scaled to fit full app view */}
+                <div className="aspect-[16/10] bg-dark-900 overflow-hidden relative">
+                  <div className="absolute inset-0 flex items-center justify-center p-2">
+                    <img
+                      src={module.screenshot}
+                      alt={module.screenshotAlt}
+                      className="w-full h-full object-contain rounded-sm"
+                      style={{ 
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                      }}
+                      loading="lazy"
+                      onError={(e) => {
+                        // Fallback placeholder if image doesn't exist yet
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        target.parentElement!.innerHTML = `
+                          <div class="w-full h-full flex flex-col items-center justify-center text-gray-500 p-8">
+                            <svg class="w-16 h-16 mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-sm font-medium">${module.name} Screenshot</span>
+                            <span class="text-xs mt-1 opacity-60">Coming Soon</span>
+                          </div>
+                        `;
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -251,7 +257,7 @@ const ModuleCard: React.FC<{ module: typeof modules[0]; index: number; isReverse
                 <div className="font-inter text-sm text-gray-300 font-medium">
                   {module.metric.label}
                 </div>
-                <div className="font-inter text-xs text-primary-400 font-semibold">
+                <div className={`font-inter text-xs font-semibold ${module.iconColor}`}>
                   {module.metric.change}
                 </div>
               </div>
