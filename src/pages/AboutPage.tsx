@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ArrowRight, Calendar, Target, Cpu, Users, CheckCircle } from 'lucide-react';
+import { ArrowRight, Calendar, Cpu, Users, CheckCircle, Crown, Gem, Shield, Zap, AlertTriangle, Sparkles, Layers, Heart } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { organizationSchema, breadcrumbSchema } from '../data/structuredData';
 import { MobileSection, MobileContainer } from '../components/MobileOptimizations';
@@ -33,11 +33,14 @@ export default function AboutPage() {
       {/* Mission Statement - Bold & Clear */}
       <MissionSection />
 
-      {/* The Problem / What We Built - Two Column */}
+      {/* Why We're Different - 3 Cards (moved up) */}
+      <WhyDifferentSection />
+
+      {/* The Problem / What We Built - Redesigned */}
       <ProblemSolutionSection />
 
-      {/* Why We're Different - 3 Cards */}
-      <WhyDifferentSection />
+      {/* Gratitude Section */}
+      <GratitudeSection />
 
       {/* Founder CTA Section */}
       <FounderCTASection />
@@ -69,21 +72,20 @@ const HeroSection: React.FC = () => {
               <span>Our Story</span>
             </div>
             
-            <h1 className="font-dfaalt font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 leading-[1.1]">
-              We've Been in Your{' '}
-              <span className="text-primary-400">Driver's Seat</span>
+            <h1 className="font-dfaalt font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-8 leading-[1.1]">
+              Built in the Trenches,{' '}
+              <span className="text-primary-400">Not the Boardroom</span>
             </h1>
-            
-            <p className="font-inter text-lg sm:text-xl text-gray-300 mb-6 leading-relaxed max-w-xl">
-              Exotiq exists because the tools exotic fleet operators actually need didn't exist in one place. So we built them.
-            </p>
 
-            {/* Origin Quote */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5 mb-6">
-              <p className="font-inter text-gray-300 italic leading-relaxed">
-                "We built Exotiq because we lived the chaos ourselves. Every feature is built from real operational pain. Every automation targets hours we've personally lost."
+            {/* Origin Quote - Tighter, Punchier */}
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <p className="font-inter text-gray-300 italic leading-relaxed text-lg">
+                "We built Exotiq because we lived the chaos. Every feature exists because we felt the pain first.
               </p>
-              <p className="font-dfaalt font-semibold text-white mt-3 text-sm">
+              <p className="font-inter text-gray-300 italic leading-relaxed text-lg mt-3">
+                Steve Jobs was right — start with the customer experience and work backward. That's not a philosophy here. <span className="text-white font-medium">It's how we ship.</span>"
+              </p>
+              <p className="font-dfaalt font-semibold text-white mt-4 text-sm">
                 — Gregory Ringler, Founder & CEO
               </p>
             </div>
@@ -105,7 +107,7 @@ const HeroSection: React.FC = () => {
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent rounded-b-2xl p-4">
                 <p className="font-inter text-white text-sm font-medium">
-                  Managing real fleets. Building real solutions.
+                  Real fleets. Real problems. Real solutions.
                 </p>
               </div>
             </div>
@@ -125,17 +127,18 @@ const MissionSection: React.FC = () => {
       <MobileContainer>
         <div className="max-w-4xl mx-auto text-center">
           <div 
-            className={`inline-flex items-center px-4 py-2 bg-accent-500/20 rounded-full text-accent-400 font-semibold text-sm mb-6 border border-accent-500/30 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`inline-flex items-center px-4 py-2 bg-amber-500/20 rounded-full text-amber-400 font-semibold text-sm mb-6 border border-amber-500/30 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           >
-            <Target className="w-4 h-4 mr-2" />
+            <Crown className="w-4 h-4 mr-2" />
             Our Mission
           </div>
           
           <h2 
-            className={`font-dfaalt font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-6 leading-tight transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`font-dfaalt font-bold text-2xl sm:text-3xl lg:text-4xl text-white leading-tight transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '100ms' }}
           >
-            Help exotic fleet operators make more money, waste less time, and stop handing their customers to platforms that don't give a damn about their success.
+            Make running an exotic fleet as{' '}
+            <span className="text-primary-400">refined</span> as driving one.
           </h2>
         </div>
       </MobileContainer>
@@ -147,59 +150,140 @@ const MissionSection: React.FC = () => {
 const ProblemSolutionSection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
 
+  const industryProblems = [
+    {
+      icon: Layers,
+      title: 'Frankenstack',
+      description: 'Software duct-taped together that breaks when you need it most'
+    },
+    {
+      icon: Users,
+      title: 'Built for Enterprise, Not You',
+      description: 'Tools designed for 10,000 sedans. Not 10-150 exotics.'
+    },
+    {
+      icon: Cpu,
+      title: 'AI Theater',
+      description: 'Marketing buzzwords, not actual intelligence running your ops'
+    }
+  ];
+
+  const whatWeBuilt = [
+    {
+      icon: Gem,
+      title: 'Exotic-Native',
+      description: 'Pricing that knows a McLaren isn\'t a Mustang'
+    },
+    {
+      icon: Zap,
+      title: 'Intelligence at the Core',
+      description: 'Not bolted on. Born this way.'
+    },
+    {
+      icon: Shield,
+      title: 'Battle-Tested',
+      description: 'Every feature earned its place in the product'
+    }
+  ];
+
   return (
-    <MobileSection ref={ref} className="bg-white dark:bg-dark-900 py-14 lg:py-16">
+    <MobileSection ref={ref} className="bg-dark-900 py-16 lg:py-20">
       <MobileContainer>
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 
+            className={`font-dfaalt font-bold text-3xl sm:text-4xl text-white mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          >
+            The Story Behind Exotiq
+          </h2>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* The Problem */}
           <div 
-            className={`bg-gray-50 dark:bg-dark-800 rounded-2xl p-6 lg:p-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-red-500/10 rounded-lg flex items-center justify-center">
-                <span className="text-red-500 font-bold text-lg">!</span>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center border border-red-500/20">
+                <AlertTriangle className="w-6 h-6 text-red-400" />
               </div>
-              <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white">
+              <h3 className="font-dfaalt font-bold text-2xl text-white">
                 The Industry Problem
               </h3>
             </div>
             
-            <div className="space-y-4 font-inter text-gray-700 dark:text-gray-300 leading-relaxed">
-              <p>
-                Exotic car rental operators have been stuck between two bad options: a patchwork of siloed tools duct-taped together, or enterprise fleet software engineered for companies running 10,000 economy sedans.
-              </p>
-              <p>
-                Nothing purpose-built for operators managing 5-150 high-value vehicles with the service standards and operational complexity that exotic fleets demand.
-              </p>
-              <p className="font-medium text-gray-900 dark:text-white">
-                And the AI? Either nonexistent or bolted on as a marketing checkbox. Not architected from the ground up to actually run your business.
-              </p>
+            <p className="font-inter text-gray-400 mb-6 leading-relaxed">
+              Exotic fleet operators have been stuck with bad options:
+            </p>
+
+            <div className="space-y-4">
+              {industryProblems.map((problem, index) => {
+                const Icon = problem.icon;
+                return (
+                  <div 
+                    key={problem.title}
+                    className={`flex items-start gap-4 p-4 bg-dark-800/50 rounded-xl border border-dark-700 transition-all duration-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                    style={{ transitionDelay: `${200 + index * 100}ms` }}
+                  >
+                    <div className="w-10 h-10 bg-red-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-5 h-5 text-red-400" />
+                    </div>
+                    <div>
+                      <h4 className="font-dfaalt font-semibold text-white mb-1">{problem.title}</h4>
+                      <p className="font-inter text-gray-400 text-sm leading-relaxed">{problem.description}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
+
+            <p className="font-inter text-gray-500 mt-6 text-sm italic">
+              Nothing purpose-built for operators managing 10-150+ high-value vehicles who refuse to compromise on service.
+            </p>
           </div>
 
           {/* What We Built */}
           <div 
-            className={`bg-primary-50 dark:bg-primary-900/20 rounded-2xl p-6 lg:p-8 border border-primary-200 dark:border-primary-500/30 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ transitionDelay: '150ms' }}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-primary-500/10 rounded-lg flex items-center justify-center">
-                <Cpu className="w-5 h-5 text-primary-500" />
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-primary-500/10 rounded-xl flex items-center justify-center border border-primary-500/20">
+                <Sparkles className="w-6 h-6 text-primary-400" />
               </div>
-              <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white">
+              <h3 className="font-dfaalt font-bold text-2xl text-white">
                 What We Built
               </h3>
             </div>
             
-            <div className="space-y-4 font-inter text-gray-700 dark:text-gray-300 leading-relaxed">
-              <p>
-                Exotiq is a multi-model AI platform built specifically for the exotic and luxury rental niche. Dynamic pricing that understands a McLaren isn't a Mustang. Predictive maintenance calibrated for vehicles worth more than most houses.
-              </p>
-              <p>
-                Operational intelligence designed by a team of SaaS architects, AI engineers, and a founder who spent years running luxury hospitality and exotic fleets on tools that were never built for the job.
-              </p>
-              <p className="font-semibold text-primary-600 dark:text-primary-400">
-                We didn't bolt AI onto legacy software. We built the platform AI-first because that's the only way it actually works.
+            <p className="font-inter text-gray-400 mb-6 leading-relaxed">
+              A platform built for operators who run fleets, not spreadsheets:
+            </p>
+
+            <div className="space-y-4">
+              {whatWeBuilt.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <div 
+                    key={item.title}
+                    className={`flex items-start gap-4 p-4 bg-primary-500/5 rounded-xl border border-primary-500/20 transition-all duration-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}
+                    style={{ transitionDelay: `${350 + index * 100}ms` }}
+                  >
+                    <div className="w-10 h-10 bg-primary-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-5 h-5 text-primary-400" />
+                    </div>
+                    <div>
+                      <h4 className="font-dfaalt font-semibold text-white mb-1">{item.title}</h4>
+                      <p className="font-inter text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-6 p-4 bg-gradient-to-r from-primary-500/10 to-accent-500/10 rounded-xl border border-primary-500/20">
+              <p className="font-inter text-primary-300 text-sm font-medium">
+                Architected by SaaS engineers. Shaped by AI specialists. <span className="text-white">Demanded by a founder who ran fleets on tools that weren't built for the job.</span>
               </p>
             </div>
           </div>
@@ -216,41 +300,44 @@ const WhyDifferentSection: React.FC = () => {
   const differentiators = [
     {
       icon: Users,
-      title: 'Built by Operators',
-      description: 'This isn\'t software built by developers guessing what hosts need. It\'s built by someone who knows what five-star service looks like.',
-      color: 'primary'
+      title: 'Operator DNA',
+      description: 'Not built by developers guessing. Built by someone who knows what 5-star service actually costs.',
+      color: 'amber',
+      gradient: 'from-amber-500/20 to-amber-600/5'
     },
     {
       icon: Cpu,
-      title: 'AI-First Architecture',
-      description: 'Every intelligence layer solves problems we\'ve actually faced. Not AI as a checkbox - AI as the foundation.',
-      color: 'accent'
+      title: 'AI That Ships',
+      description: 'Every intelligence layer solves problems we\'ve lived. Not a checkbox. The engine.',
+      color: 'primary',
+      gradient: 'from-primary-500/20 to-primary-600/5'
     },
     {
-      icon: Target,
-      title: 'Operator-Aligned',
-      description: 'We don\'t take booking commissions. You keep 100% of your revenue. Your success is our success.',
-      color: 'success'
+      icon: Shield,
+      title: 'Zero Commission',
+      description: 'We don\'t take a cut of your bookings. You keep 100%. Your growth is our growth.',
+      color: 'emerald',
+      gradient: 'from-emerald-500/20 to-emerald-600/5'
     }
   ];
 
   const colorClasses = {
-    primary: 'bg-primary-500/10 text-primary-500 border-primary-500/30',
-    accent: 'bg-accent-500/10 text-accent-500 border-accent-500/30',
-    success: 'bg-success-500/10 text-success-500 border-success-500/30'
+    amber: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+    primary: 'bg-primary-500/10 text-primary-400 border-primary-500/30',
+    emerald: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
   };
 
   return (
-    <MobileSection ref={ref} className="bg-gray-50 dark:bg-dark-800 py-14 lg:py-16">
+    <MobileSection ref={ref} className="bg-dark-800 py-14 lg:py-16">
       <MobileContainer>
         <div className="text-center mb-10">
           <h2 
-            className={`font-dfaalt font-bold text-3xl sm:text-4xl text-gray-900 dark:text-white mb-3 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`font-dfaalt font-bold text-3xl sm:text-4xl text-white mb-3 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           >
             Why We're Different
           </h2>
           <p 
-            className={`font-inter text-lg text-gray-600 dark:text-gray-400 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`font-inter text-lg text-gray-400 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '100ms' }}
           >
             Three principles that guide everything we build
@@ -263,21 +350,52 @@ const WhyDifferentSection: React.FC = () => {
             return (
               <div
                 key={item.title}
-                className={`bg-white dark:bg-dark-900 rounded-2xl p-6 border border-gray-100 dark:border-dark-700 hover:shadow-xl transition-all duration-500 hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                className={`relative bg-dark-900 rounded-2xl p-6 border border-dark-700 hover:border-dark-600 transition-all duration-500 hover:-translate-y-1 group overflow-hidden ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                 style={{ transitionDelay: `${200 + index * 100}ms` }}
               >
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${colorClasses[item.color as keyof typeof colorClasses]}`}>
-                  <Icon className="w-6 h-6" />
+                {/* Subtle gradient background on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                
+                <div className="relative z-10">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 border ${colorClasses[item.color as keyof typeof colorClasses]}`}>
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-dfaalt font-bold text-lg text-white mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="font-inter text-gray-400 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="font-dfaalt font-bold text-lg text-gray-900 dark:text-white mb-2">
-                  {item.title}
-                </h3>
-                <p className="font-inter text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {item.description}
-                </p>
               </div>
             );
           })}
+        </div>
+      </MobileContainer>
+    </MobileSection>
+  );
+};
+
+// Gratitude Section Component
+const GratitudeSection: React.FC = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
+
+  return (
+    <MobileSection ref={ref} className="bg-dark-800 py-12 lg:py-16">
+      <MobileContainer>
+        <div 
+          className={`max-w-3xl mx-auto text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+        >
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-rose-500/10 rounded-full mb-6 border border-rose-500/20">
+            <Heart className="w-6 h-6 text-rose-400" />
+          </div>
+          
+          <p className="font-inter text-xl sm:text-2xl text-gray-300 leading-relaxed italic">
+            "To every operator juggling spreadsheets at midnight, chasing down renters, and wondering if there's a better way —
+          </p>
+          <p className="font-dfaalt font-bold text-2xl sm:text-3xl text-white mt-4">
+            there is. We built it for you."
+          </p>
         </div>
       </MobileContainer>
     </MobileSection>
@@ -295,23 +413,23 @@ const FounderCTASection: React.FC = () => {
           <h2 
             className={`font-dfaalt font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           >
-            Book a Call with Gregory Ringler
+            Let's Talk Fleet
           </h2>
           <p 
             className={`font-inter text-lg text-gray-400 mb-2 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '100ms' }}
           >
-            Founder & CEO, Exotiq
+            Gregory Ringler · Founder & CEO
           </p>
           <p 
             className={`font-inter text-xl text-gray-300 mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '150ms' }}
           >
-            Let's talk about your fleet and see if Exotiq is right for you.
+            15 minutes. No pitch. Just two operators talking shop.
           </p>
 
           <div 
-            className={`mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '200ms' }}
           >
             <a
@@ -321,26 +439,28 @@ const FounderCTASection: React.FC = () => {
               className="group inline-flex items-center justify-center gap-3 font-dfaalt font-semibold text-lg px-10 py-5 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/30"
             >
               <Calendar className="w-6 h-6" />
-              <span>Schedule a Conversation</span>
+              <span>Book a Call</span>
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
 
-          {/* Trust indicators */}
+          {/* Trust indicators - Better Desktop Alignment */}
           <div 
-            className={`flex flex-wrap justify-center gap-4 text-gray-400 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-gray-400 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '300ms' }}
           >
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary-500" />
+              <CheckCircle className="w-4 h-4 text-primary-500 flex-shrink-0" />
               <span className="font-inter text-sm">No sales pitch</span>
             </div>
+            <div className="hidden sm:block w-1 h-1 bg-gray-600 rounded-full" />
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary-500" />
+              <CheckCircle className="w-4 h-4 text-primary-500 flex-shrink-0" />
               <span className="font-inter text-sm">15 minutes</span>
             </div>
+            <div className="hidden sm:block w-1 h-1 bg-gray-600 rounded-full" />
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary-500" />
+              <CheckCircle className="w-4 h-4 text-primary-500 flex-shrink-0" />
               <span className="font-inter text-sm">Operator to operator</span>
             </div>
           </div>
