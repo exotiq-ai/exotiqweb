@@ -1,211 +1,213 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Brain, TrendingUp, MessageSquare, Wrench, ArrowRight } from 'lucide-react';
-import { MobileSection, MobileContainer } from './MobileOptimizations';
+import { Sparkles, TrendingUp, MessageSquare, Wrench, ArrowRight } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
+// Phone Mockup Component - Clean standalone mobile UI
+const PhoneMockup: React.FC = () => (
+  <div className="relative w-64 h-[500px]">
+    <motion.div
+      animate={{ y: [0, -10, 0] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute inset-0"
+    >
+      {/* Phone frame - Light mode with cyan glow */}
+      <div 
+        className="absolute inset-0 bg-white rounded-[3rem] border border-slate-200 overflow-hidden"
+        style={{ boxShadow: "0 25px 80px -12px rgba(56, 189, 248, 0.4), 0 10px 40px -8px rgba(56, 189, 248, 0.25)" }}
+      >
+        {/* Notch */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl" />
+        
+        {/* Screen content */}
+        <div className="absolute inset-4 top-8 bg-slate-50 rounded-[2rem] p-4 overflow-hidden">
+          {/* App header */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-cyan-500 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">E</span>
+              </div>
+              <span className="text-sm font-semibold text-slate-800 font-dfaalt">FleetCopilot</span>
+            </div>
+            <div className="w-8 h-8 rounded-full bg-slate-200" />
+          </div>
+
+          {/* Chat interface */}
+          <div className="space-y-3">
+            <div className="bg-white rounded-xl p-3 max-w-[80%] border border-slate-100">
+              <p className="text-xs text-slate-700 font-inter">Good morning! Your fleet is 95% booked this week.</p>
+            </div>
+            <div className="bg-cyan-500 rounded-xl p-3 max-w-[80%] ml-auto">
+              <p className="text-xs text-white font-inter">Show me today's schedule</p>
+            </div>
+            <div className="bg-white rounded-xl p-3 border border-slate-100">
+              <p className="text-xs text-slate-700 mb-2 font-inter">Here's your schedule:</p>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-[10px] text-slate-600 font-inter">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                  <span>9 AM - Pickup: Tesla Model S</span>
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-slate-600 font-inter">
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
+                  <span>2 PM - Return: Porsche 911</span>
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-slate-600 font-inter">
+                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+                  <span>5 PM - Maintenance check</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+);
+
+// Feature Card Component - Floating cards around the phone
+const FeatureCard: React.FC<{
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  position: string;
+  index: number;
+}> = ({ icon: Icon, title, description, position, index }) => {
+  const positionClasses: Record<string, string> = {
+    "right-top": "md:absolute md:right-0 md:top-8 md:-translate-x-4 lg:-translate-x-8",
+    "left-bottom": "md:absolute md:left-0 md:bottom-32 md:translate-x-4 lg:translate-x-8",
+    "right-bottom": "md:absolute md:right-0 md:bottom-8 md:-translate-x-4 lg:-translate-x-8",
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: position.includes("right") ? 30 : -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      className={`mt-6 md:mt-0 md:w-72 ${positionClasses[position] || ''}`}
+    >
+      <div 
+        className="bg-white border border-slate-200 rounded-xl p-5 hover:border-cyan-300 transition-colors duration-300"
+        style={{ boxShadow: "0 15px 40px -8px rgba(56, 189, 248, 0.3)" }}
+      >
+        <div className="w-10 h-10 rounded-lg bg-cyan-100 flex items-center justify-center mb-4">
+          <Icon className="w-5 h-5 text-cyan-600" />
+        </div>
+        <h3 className="text-lg font-semibold text-slate-800 mb-2 font-dfaalt">{title}</h3>
+        <p className="text-sm text-slate-500 font-inter">{description}</p>
+      </div>
+    </motion.div>
+  );
+};
+
 const FleetCopilotSection: React.FC = () => {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2, once: true });
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
 
   const features = [
     {
       icon: TrendingUp,
       title: 'Revenue Optimization',
-      description: 'AI analyzes competitors and demand to maximize your daily rates automatically.'
+      description: 'AI analyzes competitors and demand to maximize your daily rates automatically.',
+      position: 'right-top',
     },
     {
       icon: MessageSquare,
       title: 'Guest Automation',
-      description: 'Handle 3x more bookings with automated inquiries, check-ins, and VIP escalations.'
+      description: 'Handle all your bookings with automated inquiries, check-ins, and VIP escalations.',
+      position: 'left-bottom',
     },
     {
       icon: Wrench,
       title: 'Predictive Maintenance',
-      description: 'Get alerts before breakdowns happen. Schedule service during booking gaps.'
+      description: 'Get alerts before breakdowns happen. Schedule service during booking gaps.',
+      position: 'right-bottom',
     }
   ];
 
-  // Bombon-style animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.4, 0.25, 1]
-      }
-    }
-  };
-
-  const featureVariants = {
-    hidden: { opacity: 0, x: -30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-        delay: 0.3 + i * 0.1,
-        ease: [0.25, 0.4, 0.25, 1]
-      }
-    })
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.9, y: 30 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        delay: 0.2,
-        ease: [0.25, 0.4, 0.25, 1]
-      }
-    }
-  };
-
-  const floatAnimation = {
-    y: [-8, 8, -8],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  };
-
   return (
-    <MobileSection ref={ref} className="bg-white dark:bg-dark-900 py-14 lg:py-16">
-      <MobileContainer>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <section 
+      ref={ref}
+      className="relative py-24 lg:py-32 overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, hsl(230 25% 5%) 0%, hsl(220 30% 10%) 50%, hsl(230 25% 5%) 100%)'
+      }}
+    >
+      {/* Glow effect */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(6, 182, 212, 0.15), transparent)'
+        }}
+      />
+
+      <div className="container mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
+        {/* Section header - Centered */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 lg:mb-20"
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span className="text-sm text-cyan-400 font-medium font-inter">Meet FleetCopilot™ AI</span>
+          </div>
           
-          {/* Left Column - Copy */}
+          {/* Headline */}
+          <h2 className="font-dfaalt font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6">
+            Your AI Operations Partner
+          </h2>
+          
+          {/* Description */}
+          <p className="font-inter text-lg text-slate-400 max-w-2xl mx-auto mb-8">
+            FleetCopilot delivers the strategic capacity of a dedicated analyst, ops manager, 
+            and guest coordinator, without expanding your team.
+          </p>
+
+          {/* CTA Button */}
           <motion.div
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-            variants={containerVariants}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-block"
           >
-            {/* Badge */}
-            <motion.div
-              variants={itemVariants}
-              className="inline-flex items-center px-4 py-2 bg-primary-500/10 dark:bg-primary-500/20 rounded-full text-primary-600 dark:text-primary-400 font-semibold text-sm mb-4 border border-primary-500/20 dark:border-primary-500/30"
+            <Link
+              to="/fleetcopilot"
+              className="inline-flex items-center gap-2 h-12 px-8 text-base font-semibold font-dfaalt rounded-lg border border-slate-700 bg-slate-800/50 backdrop-blur-sm text-white hover:bg-slate-800 hover:border-slate-600 transition-all duration-300"
             >
-              <Brain className="w-4 h-4 mr-2" />
-              Meet FleetCopilot™ AI
-            </motion.div>
+              Talk to your FleetCopilot
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
+        </motion.div>
 
-            {/* Headline */}
-            <motion.h2
-              variants={itemVariants}
-              className="font-dfaalt font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4 leading-tight"
-            >
-              Your AI Operations Partner
-            </motion.h2>
-
-            {/* Description */}
-            <motion.p
-              variants={itemVariants}
-              className="font-inter text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed"
-            >
-              FleetCopilot delivers the strategic capacity of a dedicated analyst, ops manager, 
-              and guest coordinator, without expanding your team.
-            </motion.p>
-
-            {/* Feature List */}
-            <div className="space-y-5 mb-6">
-              {features.map((feature, index) => (
-                <motion.div 
-                  key={feature.title}
-                  custom={index}
-                  initial="hidden"
-                  animate={isVisible ? "visible" : "hidden"}
-                  variants={featureVariants}
-                  whileHover={{ x: 5 }}
-                  className="flex items-start space-x-4"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="flex-shrink-0 w-12 h-12 bg-primary-500/10 dark:bg-primary-500/20 rounded-xl flex items-center justify-center"
-                  >
-                    <feature.icon className="w-6 h-6 text-primary-500" />
-                  </motion.div>
-                  <div>
-                    <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-1">
-                      {feature.title}
-                    </h3>
-                    <p className="font-inter text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Link
-                to="/fleetcopilot"
-                className="inline-flex items-center gap-3 font-dfaalt font-semibold text-base px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/30 group"
-              >
-                <MessageSquare className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-                <span>Talk to Rari, your FleetCopilot</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
-            </motion.div>
+        {/* Features layout with phone in center */}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Center phone mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="flex justify-center"
+          >
+            <PhoneMockup />
           </motion.div>
 
-          {/* Right Column - App Screenshot */}
-          <motion.div
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-            variants={imageVariants}
-            className="relative"
-          >
-            {/* Background glow */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isVisible ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5 dark:from-primary-500/10 dark:to-accent-500/10 rounded-3xl blur-xl"
+          {/* Feature cards positioned around the phone */}
+          {features.map((feature, index) => (
+            <FeatureCard
+              key={feature.title}
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
+              position={feature.position}
+              index={index}
             />
-            
-            {/* Screenshot - Large and centered, no wasted space */}
-            <div className="relative flex items-center justify-center py-8">
-              <motion.div
-                animate={floatAnimation}
-                className="relative w-full max-w-lg lg:max-w-xl xl:max-w-2xl"
-              >
-                <motion.img
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  src="/images/app-screenshots/fleetcopilot-mobile-hand.svg"
-                  alt="FleetCopilot AI Assistant on mobile - voice-enabled fleet management with Rari"
-                  className="w-full h-auto drop-shadow-2xl"
-                  loading="lazy"
-                />
-              </motion.div>
-            </div>
-          </motion.div>
+          ))}
         </div>
-      </MobileContainer>
-    </MobileSection>
+      </div>
+    </section>
   );
 };
 

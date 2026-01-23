@@ -1,14 +1,14 @@
 import React from 'react';
-import { MobileSection, MobileContainer } from './MobileOptimizations';
-import { Car, Shield, TrendingUp, Users } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Link2, Shield, TrendingUp, Users } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const ExoticFleetsSection: React.FC = () => {
-    const { ref, isVisible } = useScrollAnimation({ threshold: 0.2, once: true });
+    const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
 
-    const differentiators = [
+    const features = [
         {
-            icon: Car,
+            icon: Link2,
             title: 'Exotic-First Design',
             description: 'Built specifically for high-value vehicles, not retrofitted from economy rental software.'
         },
@@ -30,99 +30,100 @@ const ExoticFleetsSection: React.FC = () => {
     ];
 
     return (
-        <MobileSection ref={ref} className="relative overflow-hidden">
-            {/* Background Image */}
-            <div className="absolute inset-0">
-                <picture>
-                    <source
-                        media="(min-width: 1025px)"
-                        srcSet="/images/hero/mclaren-720s-urban-night-desktop.webp"
-                        type="image/webp"
-                    />
-                    <source
-                        media="(min-width: 1025px)"
-                        srcSet="/images/hero/mclaren-720s-urban-night-desktop.jpg"
-                        type="image/jpeg"
-                    />
-                    <source
-                        media="(min-width: 641px)"
-                        srcSet="/images/hero/mclaren-720s-urban-night-tablet.webp"
-                        type="image/webp"
-                    />
-                    <source
-                        media="(min-width: 641px)"
-                        srcSet="/images/hero/mclaren-720s-urban-night-tablet.jpg"
-                        type="image/jpeg"
-                    />
-                    <source
-                        srcSet="/images/hero/mclaren-720s-urban-night-mobile.webp"
-                        type="image/webp"
-                    />
-                    <img
-                        src="/images/hero/mclaren-720s-urban-night-mobile.jpg"
-                        alt="McLaren 720S supercar representing the exotic fleet industry"
-                        className="w-full h-full object-cover object-center"
-                        loading="lazy"
-                    />
-                </picture>
-
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-dark-900/95 via-dark-900/85 to-dark-900/70" />
-            </div>
+        <section ref={ref} className="relative min-h-screen overflow-hidden">
+            {/* Background Image - New higher resolution image */}
+            <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ 
+                    backgroundImage: 'url(/images/hero/exotic-car-hero.jpg)',
+                }}
+            />
+            
+            {/* Darker overlay with stronger gradient for better contrast */}
+            <div 
+                className="absolute inset-0"
+                style={{
+                    background: 'linear-gradient(to right, rgba(10, 15, 20, 0.97) 0%, rgba(10, 15, 20, 0.85) 50%, rgba(10, 15, 20, 0.5) 100%)'
+                }}
+            />
+            <div 
+                className="absolute inset-0"
+                style={{
+                    background: 'linear-gradient(to top, rgba(10, 15, 20, 1) 0%, transparent 30%, transparent 70%, rgba(10, 15, 20, 0.6) 100%)'
+                }}
+            />
 
             {/* Content */}
-            <MobileContainer className="relative z-10 py-14 lg:py-16">
-                <div className="max-w-3xl">
-                    {/* Badge */}
-                    <div
-                        className={`inline-flex items-center px-4 py-2 bg-accent-500/20 rounded-full text-accent-400 font-semibold text-sm mb-4 border border-accent-500/30 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            <div className="container mx-auto px-6 sm:px-8 lg:px-16 py-24 lg:py-32 relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    className="max-w-2xl"
+                >
+                    {/* Badge - Stronger orange accent */}
+                    <span 
+                        className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full mb-8 border"
+                        style={{
+                            backgroundColor: 'rgba(241, 90, 41, 0.2)',
+                            borderColor: 'rgba(241, 90, 41, 0.4)',
+                            color: '#F15A29'
+                        }}
                     >
-                        <Car className="w-4 h-4 mr-2" />
+                        <Link2 className="w-4 h-4" />
                         Purpose-Built for Exotic Fleets
-                    </div>
+                    </span>
 
-                    {/* Headline */}
-                    <h2
-                        className={`font-dfaalt font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4 leading-tight transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                        style={{ transitionDelay: '100ms' }}
-                    >
-                        Not Another <span className="text-accent-400">Generic</span> Fleet Tool
+                    {/* Heading - More visual separation */}
+                    <h2 className="font-dfaalt font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
+                        Not Another{" "}
+                        <span style={{ color: '#F15A29' }}>Generic</span>{" "}
+                        Fleet Tool
                     </h2>
 
-                    {/* Description */}
-                    <p
-                        className={`font-inter text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                        style={{ transitionDelay: '200ms' }}
-                    >
-                        Exotiq was built from the ground up for professional exotic rental operators.
+                    {/* Description - Increased spacing */}
+                    <p className="font-inter text-lg text-slate-300 mb-14 max-w-lg leading-relaxed">
+                        Exotiq was built from the ground up for professional exotic rental operators. 
                         Every feature is designed around the unique challenges of managing high-value fleets.
                     </p>
 
-                    {/* Differentiators Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-                        {differentiators.map((item, index) => (
-                            <div
-                                key={item.title}
-                                className={`flex items-start space-x-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                                style={{ transitionDelay: `${300 + index * 100}ms` }}
+                    {/* Feature Grid - Tighter grouping, better structure */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                        {features.map((feature, index) => (
+                            <motion.div
+                                key={feature.title}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                                className="flex gap-4"
                             >
-                                <div className="flex-shrink-0 w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center">
-                                    <item.icon className="w-5 h-5 text-primary-400" />
+                                <div 
+                                    className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center border"
+                                    style={{
+                                        backgroundColor: 'rgba(241, 90, 41, 0.1)',
+                                        borderColor: 'rgba(241, 90, 41, 0.25)'
+                                    }}
+                                >
+                                    <feature.icon className="w-5 h-5" style={{ color: '#F15A29' }} />
                                 </div>
                                 <div>
-                                    <h3 className="font-dfaalt font-semibold text-white mb-1">
-                                        {item.title}
-                                    </h3>
-                                    <p className="font-inter text-sm text-gray-400 leading-relaxed">
-                                        {item.description}
-                                    </p>
+                                    <h3 className="text-white font-semibold mb-1 font-dfaalt">{feature.title}</h3>
+                                    <p className="text-slate-400 text-sm font-inter leading-relaxed">{feature.description}</p>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
-                </div>
-            </MobileContainer>
-        </MobileSection>
+                </motion.div>
+            </div>
+
+            {/* Bottom fade for transition */}
+            <div 
+                className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+                style={{
+                    background: 'linear-gradient(to top, hsl(230 25% 5%), transparent)'
+                }}
+            />
+        </section>
     );
 };
 
