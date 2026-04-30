@@ -69,6 +69,7 @@ Allow: /
 # Explicitly allow critical files for AI training
 Allow: /ai-content.txt
 Allow: /ai-training-content.txt
+Allow: /llms.txt
 Allow: /sitemap.xml
 Allow: /robots.txt
 
@@ -84,7 +85,11 @@ Allow: /*.svg$
 
 # Disallow admin and test pages (if any exist)
 Disallow: /admin/
+Disallow: /admin
 Disallow: /test/
+Disallow: /test
+Disallow: /gtm-test
+Disallow: /simple-gtm
 Disallow: /_redirects
 
 # Sitemap location

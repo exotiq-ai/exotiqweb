@@ -1,18 +1,45 @@
 import { useState } from 'react';
 import { Check, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { featureComparison } from '../../data/pricingData';
+import { PRICING_SALES_CALENDLY, trackPricingCta } from '../../utils/pricingCta';
+
+type TierKey = 'starter' | 'professional' | 'business' | 'enterprise';
+
+const TIER_OPTIONS: Array<{ key: TierKey; label: string }> = [
+  { key: 'starter', label: 'Starter' },
+  { key: 'professional', label: 'Professional' },
+  { key: 'business', label: 'Business' },
+  { key: 'enterprise', label: 'Enterprise' },
+];
 
 export default function FeatureComparison() {
   const [isExpanded, setIsExpanded] = useState(false);
+  // Mobile-only: which single tier the user is currently inspecting.
+  const [activeMobileTier, setActiveMobileTier] = useState<TierKey>('professional');
 
   const visibleFeatures = isExpanded ? featureComparison : featureComparison.slice(0, 8);
 
   const renderValue = (value: boolean | string) => {
     if (typeof value === 'boolean') {
       return value ? (
-        <Check className="w-6 h-6 text-success-500 mx-auto transition-transform hover:scale-125" />
+        <Check className="w-6 h-6 text-success-500 mx-auto transition-transform hover:scale-125" aria-label="Included" />
       ) : (
-        <X className="w-6 h-6 text-gray-500 mx-auto opacity-30" />
+        <X className="w-6 h-6 text-gray-500 mx-auto opacity-30" aria-label="Not included" />
+      );
+    }
+    return <span className="text-sm font-montserrat font-medium text-white">{value}</span>;
+  };
+
+  const renderMobileValue = (value: boolean | string) => {
+    if (typeof value === 'boolean') {
+      return value ? (
+        <span className="inline-flex items-center gap-1 text-success-500 text-sm font-medium">
+          <Check className="w-4 h-4" aria-hidden="true" /> Included
+        </span>
+      ) : (
+        <span className="inline-flex items-center gap-1 text-gray-400 text-sm">
+          <X className="w-4 h-4" aria-hidden="true" /> Not included
+        </span>
       );
     }
     return <span className="text-sm font-montserrat font-medium text-white">{value}</span>;
@@ -32,10 +59,45 @@ export default function FeatureComparison() {
           </p>
         </div>
 
-        {/* Table Container - With scroll indicator */}
-        <div className="relative">
-          {/* Scroll indicator for mobile */}
-          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-dark-900 to-transparent pointer-events-none z-10 md:hidden"></div>
+        {/* Mobile: Tier switcher + stacked feature list (avoids horizontal scroll) */}
+        <div className="md:hidden mb-8">
+          <div
+            className="grid grid-cols-2 gap-2 mb-6 bg-white/5 border border-white/10 rounded-xl p-2"
+            role="tablist"
+            aria-label="Compare tier"
+          >
+            {TIER_OPTIONS.map((opt) => (
+              <button
+                key={opt.key}
+                role="tab"
+                aria-selected={activeMobileTier === opt.key}
+                onClick={() => setActiveMobileTier(opt.key)}
+                className={`py-2 px-3 rounded-lg font-montserrat text-sm font-semibold transition-colors ${
+                  activeMobileTier === opt.key
+                    ? 'bg-[#6BB8E5] text-black'
+                    : 'text-white/80 hover:text-white'
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+
+          <ul className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl divide-y divide-white/10 overflow-hidden">
+            {visibleFeatures.map((row) => (
+              <li
+                key={row.feature}
+                className="flex items-center justify-between gap-4 px-4 py-3 text-sm"
+              >
+                <span className="font-montserrat font-medium text-white pr-4">{row.feature}</span>
+                <span className="text-right">{renderMobileValue(row[activeMobileTier])}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Desktop/tablet: Full comparison table */}
+        <div className="relative hidden md:block">
           <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-primary-500 scrollbar-track-dark-800">
             <div className="inline-block min-w-full align-middle">
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
@@ -122,12 +184,13 @@ export default function FeatureComparison() {
             Still have questions? We're here to help.
           </p>
           <a
-            href="https://calendly.com/hello-exotiq/30min"
+            href={PRICING_SALES_CALENDLY}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg transition-all duration-200 font-montserrat font-semibold"
+            onClick={() => trackPricingCta({ location: 'feature_comparison_demo', action: 'schedule_demo' })}
+            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg transition-all duration-200 font-montserrat font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6BB8E5] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
-            Schedule a Demo Call
+            Book a Demo
           </a>
         </div>
       </div>

@@ -40,13 +40,21 @@ export function useFormSubmission() {
         })
       });
 
-      const result = await response.json();
+      let result: { success?: boolean; error?: string } = {};
+      const text = await response.text();
+      try {
+        result = text ? JSON.parse(text) : {};
+      } catch {
+        throw new Error(response.ok ? 'Invalid response from server' : text || `Request failed (${response.status})`);
+      }
 
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Failed to submit form');
       }
       
-      logger.info('Form submitted successfully', { formType, result });
+      if (import.meta.env.DEV) {
+        console.info('[Form submission]', 'success', { formType, result });
+      }
       
       // Track analytics events
       if (formType === 'beta') {
@@ -63,7 +71,7 @@ export function useFormSubmission() {
       }, 5000);
       
     } catch (error) {
-      logger.error('Form submission error', { error, formType });
+      console.error('[Form submission]', formType, error);
       setState({ 
         isSubmitting: false, 
         isSubmitted: false, 

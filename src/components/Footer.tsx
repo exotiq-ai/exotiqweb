@@ -32,8 +32,11 @@ export default function Footer() {
                 <Mail className="w-4 h-4" />
                 <span className="font-montserrat text-sm">hello@exotiq.ai</span>
               </a>
+              {/* TODO: confirm LinkedIn company URL with team */}
               <a
-                href="#"
+                href="https://www.linkedin.com/company/exotiq-ai"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center space-x-2 text-gray-400 hover:text-primary-500 transition-colors"
                 aria-label="LinkedIn"
               >
@@ -79,9 +82,9 @@ export default function Footer() {
                   <Link to="/investors" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat text-sm leading-5">
                     Investors
                   </Link>
-                  <span className="text-gray-500 font-montserrat text-sm leading-5 cursor-not-allowed">
-                    Blog <span className="text-xs text-gray-600">(Soon)</span>
-                  </span>
+                  <Link to="/blog" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat text-sm leading-5">
+                    Blog
+                  </Link>
                   <span className="text-gray-500 font-montserrat text-sm leading-5 cursor-not-allowed">
                     Help Center <span className="text-xs text-gray-600">(Soon)</span>
                   </span>
@@ -122,8 +125,14 @@ export default function Footer() {
                 <Link to="/privacy" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat">
                   Privacy
                 </Link>
-                <Link to="/cookie-policy" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat">
+                <Link to="/cookies" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat">
                   Cookies
+                </Link>
+                <Link to="/dmca" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat">
+                  DMCA
+                </Link>
+                <Link to="/sms-terms" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat">
+                  SMS Terms
                 </Link>
               </nav>
             </div>

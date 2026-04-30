@@ -178,6 +178,7 @@ const ModuleCard: React.FC<{ module: typeof modules[0]; index: number; isReverse
                         maxHeight: '100%',
                       }}
                       loading="lazy"
+                      decoding="async"
                       onError={(e) => {
                         // Fallback placeholder if image doesn't exist yet
                         const target = e.target as HTMLImageElement;

@@ -262,13 +262,15 @@ export default function FleetCopilotDemoPage() {
             of your fleet management workflow.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link
-              to="/survey"
+            <a
+              href="https://calendly.com/hello-exotiq/15-minute-meeting"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-poppins font-bold text-sm uppercase tracking-wide px-10 py-5 bg-white text-primary-500 hover:bg-gray-100 rounded-xl transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center min-h-[44px] touch-manipulation shadow-lg"
             >
               <Zap className="w-5 h-5" />
-              <span>Join Beta Program</span>
-            </Link>
+              <span>Book a Demo</span>
+            </a>
             <Link
               to="/features"
               className="font-poppins font-bold text-sm uppercase tracking-wide px-10 py-5 border-2 border-white text-white hover:bg-white hover:text-primary-500 rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation"

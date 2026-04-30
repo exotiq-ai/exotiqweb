@@ -96,6 +96,8 @@ const FeaturesHero: React.FC = () => {
                 alt="Exotiq MotorIQ Dashboard showing AI-powered revenue optimization and fleet analytics"
                 className="w-full h-auto relative z-10 rounded-lg drop-shadow-2xl"
                 loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
             </div>
           </div>

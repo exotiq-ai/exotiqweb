@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CheckCircle, AlertCircle, Check } from 'lucide-react';
 import { useFormSubmission } from '../hooks/useFormSubmission';
 import LoadingSpinner from './LoadingSpinner';
+import SMSConsentCheckboxes from './SMSConsentCheckboxes';
+import { buildSmsConsentFields } from '../types/smsConsent';
 
 interface BetaFormData {
   fullName: string;
   email: string;
+  phone: string;
   fleetSize: string;
   currentPlatform: string;
   challenge: string;
+  smsConsentTransactional: boolean;
+  smsConsentMarketing: boolean;
 }
 
 export default function BetaSignupForm() {
@@ -16,12 +21,25 @@ export default function BetaSignupForm() {
   const [formData, setFormData] = useState<BetaFormData>({
     fullName: '',
     email: '',
+    phone: '',
     fleetSize: '',
     currentPlatform: '',
-    challenge: ''
+    challenge: '',
+    smsConsentTransactional: false,
+    smsConsentMarketing: false,
   });
   const [validationErrors, setValidationErrors] = useState<{[key: string]: string}>({});
   const [validFields, setValidFields] = useState<{[key: string]: boolean}>({});
+
+  useEffect(() => {
+    if (!formData.phone.trim() && (formData.smsConsentTransactional || formData.smsConsentMarketing)) {
+      setFormData((prev) => ({
+        ...prev,
+        smsConsentTransactional: false,
+        smsConsentMarketing: false,
+      }));
+    }
+  }, [formData.phone, formData.smsConsentTransactional, formData.smsConsentMarketing]);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -77,9 +95,34 @@ export default function BetaSignupForm() {
     }
   };
 
+  const handleSmsConsentChange = (
+    field: 'smsConsentTransactional' | 'smsConsentMarketing',
+    value: boolean
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await submitForm(formData, 'beta');
+    const phoneTrim = formData.phone.trim();
+    const payload = {
+      fullName: formData.fullName,
+      email: formData.email,
+      fleetSize: formData.fleetSize,
+      currentPlatform: formData.currentPlatform,
+      challenge: formData.challenge,
+      ...(phoneTrim
+        ? {
+            phone: phoneTrim,
+            ...buildSmsConsentFields(
+              formData.phone,
+              formData.smsConsentTransactional,
+              formData.smsConsentMarketing
+            ),
+          }
+        : {}),
+    };
+    await submitForm(payload, 'beta');
   };
 
   if (isSubmitted) {
@@ -106,7 +149,7 @@ export default function BetaSignupForm() {
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
       {error && (
-        <div className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg flex items-center space-x-2">
+        <div role="alert" className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg flex items-center space-x-2">
           <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
           <span className="font-montserrat text-red-400 text-sm">{error}</span>
         </div>
@@ -116,11 +159,15 @@ export default function BetaSignupForm() {
         {/* Full Name - Floating Label with Validation */}
         <div className="relative group">
           <input
+            id="fullName"
             type="text"
             name="fullName"
             value={formData.fullName}
             onChange={handleInputChange}
             placeholder=" "
+            autoComplete="name"
+            aria-invalid={Boolean(validationErrors.fullName)}
+            aria-describedby={validationErrors.fullName ? 'fullName-error' : undefined}
             className={`peer font-montserrat w-full px-4 pt-6 pb-2 pr-12 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 ${
               validFields.fullName ? 'border-success-500 dark:border-success-500' :
               validationErrors.fullName ? 'border-red-500 dark:border-red-500' : 
@@ -141,18 +188,22 @@ export default function BetaSignupForm() {
             </div>
           )}
           {validationErrors.fullName && (
-            <p className="absolute -bottom-5 left-0 text-xs text-red-500 dark:text-red-400">{validationErrors.fullName}</p>
+            <p id="fullName-error" role="alert" className="absolute -bottom-5 left-0 text-xs text-red-500 dark:text-red-400">{validationErrors.fullName}</p>
           )}
         </div>
 
         {/* Email - Floating Label with Validation */}
         <div className="relative group">
           <input
+            id="email"
             type="email"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
             placeholder=" "
+            autoComplete="email"
+            aria-invalid={Boolean(validationErrors.email)}
+            aria-describedby={validationErrors.email ? 'email-error' : undefined}
             className={`peer font-montserrat w-full px-4 pt-6 pb-2 pr-12 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 ${
               validFields.email ? 'border-success-500 dark:border-success-500' :
               validationErrors.email ? 'border-red-500 dark:border-red-500' : 
@@ -173,10 +224,39 @@ export default function BetaSignupForm() {
             </div>
           )}
           {validationErrors.email && (
-            <p className="absolute -bottom-5 left-0 text-xs text-red-500 dark:text-red-400">{validationErrors.email}</p>
+            <p id="email-error" role="alert" className="absolute -bottom-5 left-0 text-xs text-red-500 dark:text-red-400">{validationErrors.email}</p>
           )}
         </div>
       </div>
+
+      <div className="relative group mb-6">
+        <input
+          id="phone"
+          type="tel"
+          name="phone"
+          value={formData.phone}
+          onChange={handleInputChange}
+          placeholder=" "
+          autoComplete="tel"
+          className="peer font-montserrat w-full px-4 pt-6 pb-2 rounded-xl bg-white dark:bg-dark-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-dark-600 focus:border-primary-500 dark:focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-all duration-250 text-base min-h-[56px]"
+          disabled={isSubmitting}
+        />
+        <label
+          htmlFor="phone"
+          className="absolute left-4 top-1/2 -translate-y-1/2 font-montserrat text-gray-500 dark:text-gray-400 transition-all duration-250 pointer-events-none peer-focus:top-3 peer-focus:text-xs peer-focus:text-primary-600 dark:peer-focus:text-primary-400 peer-[:not(:placeholder-shown)]:top-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 dark:peer-[:not(:placeholder-shown)]:text-gray-400"
+        >
+          Phone (optional)
+        </label>
+      </div>
+
+      <SMSConsentCheckboxes
+        visible={formData.phone.trim() !== ''}
+        smsTransactional={formData.smsConsentTransactional}
+        smsMarketing={formData.smsConsentMarketing}
+        onChange={handleSmsConsentChange}
+        disabled={isSubmitting}
+        className="mb-6"
+      />
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
         {/* Fleet Size - Premium Select */}

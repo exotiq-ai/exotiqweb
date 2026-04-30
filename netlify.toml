@@ -5,23 +5,7 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Enable prerendering for crawlers and bots (AI models, search engines)
-[[plugins]]
-  package = "@netlify/plugin-prerender-spa"
-
-# Prerendering configuration
-[plugins.inputs]
-  # Cache prerendered pages for 7 days
-  cacheAge = 604800
-  # Prerender these routes explicitly
-  routes = [
-    "/",
-    "/features",
-    "/about",
-    "/contact",
-    "/investors",
-    "/survey"
-  ]
+# Crawler/bot prerendering: Netlify Prerender extension (site settings), not this file.
 
 # Redirects - SPA fallback
 [[redirects]]

@@ -4,14 +4,19 @@ import { useFormSubmission } from '../hooks/useFormSubmission';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SEOHead from '../components/SEOHead';
 import { breadcrumbSchema } from '../data/structuredData';
+import SMSConsentCheckboxes from '../components/SMSConsentCheckboxes';
+import { buildSmsConsentFields } from '../types/smsConsent';
 
 interface ContactFormData {
   firstName: string;
   lastName: string;
   email: string;
+  phone: string;
   subject: string;
   fleetSize: string;
   message: string;
+  smsConsentTransactional: boolean;
+  smsConsentMarketing: boolean;
 }
 
 export default function ContactPage() {
@@ -26,21 +31,60 @@ export default function ContactPage() {
     firstName: '',
     lastName: '',
     email: '',
+    phone: '',
     subject: '',
     fleetSize: '',
-    message: ''
+    message: '',
+    smsConsentTransactional: false,
+    smsConsentMarketing: false,
   });
 
+  useEffect(() => {
+    if (!formData.phone.trim() && (formData.smsConsentTransactional || formData.smsConsentMarketing)) {
+      setFormData((prev) => ({
+        ...prev,
+        smsConsentTransactional: false,
+        smsConsentMarketing: false,
+      }));
+    }
+  }, [formData.phone, formData.smsConsentTransactional, formData.smsConsentMarketing]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
+  };
+
+  const handleSmsConsentChange = (
+    field: 'smsConsentTransactional' | 'smsConsentMarketing',
+    value: boolean
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await submitForm(formData, 'contact');
+    const phoneTrim = formData.phone.trim();
+    const payload = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      subject: formData.subject,
+      fleetSize: formData.fleetSize,
+      message: formData.message,
+      ...(phoneTrim
+        ? {
+            phone: phoneTrim,
+            ...buildSmsConsentFields(
+              formData.phone,
+              formData.smsConsentTransactional,
+              formData.smsConsentMarketing
+            ),
+          }
+        : {}),
+    };
+    await submitForm(payload, 'contact');
   };
 
   return (
@@ -92,14 +136,14 @@ export default function ContactPage() {
                   </p>
                   <div className="bg-primary-50 dark:bg-primary-900/20 p-4 rounded-lg">
                     <p className="font-montserrat text-sm text-primary-600 dark:text-primary-300">
-                      📧 Confirmation sent to {formData.email}
+                      We’ll reply to {formData.email}. We don’t send an automatic confirmation email from this form yet.
                     </p>
                   </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {error && (
-                    <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center space-x-2">
+                    <div role="alert" className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center space-x-2">
                       <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
                       <span className="font-montserrat text-red-700 dark:text-red-300">{error}</span>
                     </div>
@@ -150,6 +194,30 @@ export default function ContactPage() {
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200 group-hover:shadow-md disabled:opacity-50"
                     />
                   </div>
+
+                  <div className="group">
+                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Phone <span className="text-gray-500 font-normal">(optional)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      autoComplete="tel"
+                      disabled={isSubmitting}
+                      placeholder="+1 (555) 123-4567"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200 group-hover:shadow-md disabled:opacity-50"
+                    />
+                  </div>
+
+                  <SMSConsentCheckboxes
+                    visible={formData.phone.trim() !== ''}
+                    smsTransactional={formData.smsConsentTransactional}
+                    smsMarketing={formData.smsConsentMarketing}
+                    onChange={handleSmsConsentChange}
+                    disabled={isSubmitting}
+                  />
                   
                   <div className="group">
                     <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">

@@ -8,7 +8,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://exotiq.ai/</loc>
-    <lastmod>2024-12-23</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -24,7 +24,7 @@
   <!-- Pricing Page -->
   <url>
     <loc>https://exotiq.ai/pricing</loc>
-    <lastmod>2024-12-23</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -69,6 +69,49 @@
     <priority>0.65</priority>
   </url>
   
+  <!-- Blog Articles -->
+  <url>
+    <loc>https://exotiq.ai/blog/fleet-management-fundamentals-rental-hosts</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://exotiq.ai/blog/turo-dynamic-pricing-playbook-2026</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://exotiq.ai/blog/utilization-benchmarks-by-fleet-size</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://exotiq.ai/blog/preventive-maintenance-schedule-template</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://exotiq.ai/blog/ai-pricing-vs-manual-pricing-for-rental-fleets</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://exotiq.ai/blog/exotiq-vs-spreadsheets-fleet-operations-breakdown</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
   <!-- Privacy Policy -->
   <url>
     <loc>https://exotiq.ai/privacy</loc>
@@ -87,10 +130,26 @@
   
   <!-- Cookie Policy -->
   <url>
-    <loc>https://exotiq.ai/cookie-policy</loc>
+    <loc>https://exotiq.ai/cookies</loc>
     <lastmod>2024-12-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.30</priority>
+  </url>
+
+  <!-- DMCA Policy -->
+  <url>
+    <loc>https://exotiq.ai/dmca</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+  </url>
+
+  <!-- SMS Terms -->
+  <url>
+    <loc>https://exotiq.ai/sms-terms</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
   </url>
 
 </urlset>

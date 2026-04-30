@@ -1,6 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { TrendingUp, DollarSign, Wrench, Target, Clock, Sparkles } from 'lucide-react';
 import { getTierForFleetSize, roiDefaults, calculatePrice } from '../../data/pricingData';
+import { openPricingSalesCall, trackPricingCta } from '../../utils/pricingCta';
+
+// We cap the headline ROI at this value to keep the claim within plausible
+// bounds. The raw computed value still appears in the underlying assumptions
+// section so power users can audit the math.
+const MAX_DISPLAY_ROI = 1000;
 
 export default function ROICalculator() {
   const [fleetSize, setFleetSize] = useState(15);
@@ -22,11 +28,20 @@ export default function ROICalculator() {
     calculateROI(fleetSize);
   }, [fleetSize]);
 
-  // Trigger confetti when ROI exceeds threshold
+  // Trigger confetti when ROI exceeds threshold. Respect users who have
+  // requested reduced motion — the ROI number still updates, but we
+  // suppress the celebratory burst.
   useEffect(() => {
     if (metrics.roi > 500 && prevROIRef.current <= 500) {
-      setShowConfetti(true);
-      setTimeout(() => setShowConfetti(false), 3000);
+      const prefersReducedMotion =
+        typeof window !== 'undefined' &&
+        typeof window.matchMedia === 'function' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 3000);
+      }
     }
     prevROIRef.current = metrics.roi;
   }, [metrics.roi]);
@@ -59,8 +74,10 @@ export default function ROICalculator() {
     const netGain = totalGain - exotiqCost;
     const roi = Math.round((netGain / exotiqCost) * 100);
 
-    // Calculate payback period in days
-    const paybackDays = Math.ceil((exotiqCost / totalGain) * 365);
+    // Calculate payback period in days. Floor at 1 day so a 1-vehicle
+    // fleet doesn't display "0 days" (which is mathematically possible
+    // when the cost is tiny vs. projected gains).
+    const paybackDays = Math.max(1, Math.ceil((exotiqCost / Math.max(totalGain, 1)) * 365));
 
     setMetrics({
       currentRevenue,
@@ -106,26 +123,32 @@ export default function ROICalculator() {
           {/* Fleet Size Slider */}
           <div className="mb-10">
             <div className="flex items-center justify-between mb-4">
-              <label className="font-montserrat font-semibold text-white">
+              <label htmlFor="roi-fleet-size" className="font-montserrat font-semibold text-white">
                 Your Fleet Size
               </label>
               <div className="flex items-baseline gap-2">
-                <span className="font-montserrat font-bold text-4xl text-[#6BB8E5]">
+                <span className="font-montserrat font-bold text-4xl text-[#6BB8E5]" aria-hidden="true">
                   {fleetSize}
                 </span>
-                <span className="font-montserrat text-[#A0A0A0]">vehicles</span>
+                <span className="font-montserrat text-[#A0A0A0]" aria-hidden="true">vehicles</span>
               </div>
             </div>
 
             {/* Custom Styled Slider */}
             <div className="relative">
               <input
+                id="roi-fleet-size"
                 type="range"
-                min="1"
-                max="100"
+                min={1}
+                max={100}
+                step={1}
                 value={fleetSize}
-                onChange={(e) => setFleetSize(parseInt(e.target.value))}
-                className="w-full h-3 bg-transparent rounded-lg appearance-none cursor-pointer relative z-10"
+                onChange={(e) => setFleetSize(parseInt(e.target.value, 10))}
+                aria-valuemin={1}
+                aria-valuemax={100}
+                aria-valuenow={fleetSize}
+                aria-valuetext={`${fleetSize} vehicle${fleetSize === 1 ? '' : 's'}`}
+                className="w-full h-3 bg-transparent rounded-lg appearance-none cursor-pointer relative z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6BB8E5] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 style={{
                   background: 'transparent',
                 }}
@@ -198,7 +221,7 @@ export default function ROICalculator() {
           </div>
 
           {/* Real-World Impact Metrics */}
-          <div className="mb-8">
+          <div className="mb-8" aria-live="polite" aria-atomic="false">
             <h3 className="font-montserrat font-bold text-xl text-white mb-6 text-center">
               Your Annual Impact with Exotiq AI
             </h3>
@@ -295,13 +318,18 @@ export default function ROICalculator() {
               </div>
               <div className="relative">
                 <p className="font-montserrat text-xs text-[#A0A0A0] mb-1">ROI</p>
-                <p className={`font-dfaalt font-bold text-3xl transition-all duration-300 ${
-                  metrics.roi > 500 ? 'text-accent-500 animate-pulse-subtle' : 'text-primary-500'
-                }`}>
-                  {metrics.roi.toLocaleString()}%
+                <p
+                  className={`font-dfaalt font-bold text-3xl transition-all duration-300 ${
+                    metrics.roi > 500 ? 'text-accent-500 animate-pulse-subtle' : 'text-primary-500'
+                  }`}
+                  aria-label={`Return on investment: ${metrics.roi >= MAX_DISPLAY_ROI ? `over ${MAX_DISPLAY_ROI.toLocaleString()} percent` : `${metrics.roi.toLocaleString()} percent`}`}
+                >
+                  {metrics.roi >= MAX_DISPLAY_ROI
+                    ? `${MAX_DISPLAY_ROI.toLocaleString()}%+`
+                    : `${metrics.roi.toLocaleString()}%`}
                 </p>
                 {metrics.roi > 500 && (
-                  <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-accent-500 animate-bounce-subtle" />
+                  <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-accent-500 animate-bounce-subtle" aria-hidden="true" />
                 )}
                 {/* Confetti effect */}
                 {showConfetti && (
@@ -327,18 +355,33 @@ export default function ROICalculator() {
 
           {/* CTA */}
           <div className="mt-8 text-center">
-            <button className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6BB8E5] to-[#4A9FCC] text-black px-8 py-4 rounded-lg font-montserrat font-bold hover:shadow-xl hover:shadow-[#6BB8E5]/30 transition-all duration-200">
-              Start Free Trial
+            <button
+              type="button"
+              onClick={() => {
+                trackPricingCta({
+                  location: 'roi_calculator_cta',
+                  action: 'schedule_demo',
+                  tier: tier.id,
+                  meta: {
+                    fleetSize,
+                    projectedROI: metrics.roi,
+                  },
+                });
+                openPricingSalesCall();
+              }}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6BB8E5] to-[#4A9FCC] text-black px-8 py-4 rounded-lg font-montserrat font-bold hover:shadow-xl hover:shadow-[#6BB8E5]/30 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6BB8E5] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              Book a Demo
             </button>
             <p className="font-montserrat text-xs text-[#A0A0A0] mt-3">
-              14-day free trial • See results in 48 hours
+              30-minute demo · We&apos;ll validate ROI assumptions with you
             </p>
           </div>
         </div>
 
         {/* Disclaimer */}
         <p className="text-center font-montserrat text-xs text-[#A0A0A0] mt-6 max-w-3xl mx-auto">
-          * Based on real data from exotic car rental operators: $350→$425 average daily rate (+21%), 62%→78% utilization (+16 points), 38% maintenance cost reduction. Individual results may vary based on market, fleet composition, and operational efficiency.
+          Estimates only. Based on aggregated data from exotic car rental operators: $350→$425 average daily rate (+21%), 62%→78% utilization (+16 points), 38% maintenance cost reduction. Individual results vary based on market, fleet composition, seasonality, and operational efficiency. ROI displayed is capped at {MAX_DISPLAY_ROI.toLocaleString()}% for legibility — your real return may be higher or lower.
         </p>
       </div>
     </div>

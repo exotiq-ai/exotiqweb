@@ -450,7 +450,7 @@ export const PerformanceMonitor = {
       TTFB: 800, // 800 milliseconds
     };
     
-    const summary = this.getPerformanceSummary();
+    const summary = PerformanceMonitor.getPerformanceSummary();
     if (!summary) return null;
     
     const violations: string[] = [];

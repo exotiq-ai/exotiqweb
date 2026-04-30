@@ -112,13 +112,14 @@ async function insertInvestorContact(data: InvestorSubmission & { ipAddress: str
     throw new Error('Supabase credentials not configured')
   }
 
-  const response = await fetch(`${supabaseUrl}/rest/v1/investor_contacts`, {
+  // Upsert on email so repeat submissions update the row instead of 409 duplicate key
+  const response = await fetch(`${supabaseUrl}/rest/v1/investor_contacts?on_conflict=email`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${supabaseServiceKey}`,
       'apikey': supabaseServiceKey,
-      'Prefer': 'return=representation'
+      'Prefer': 'return=representation,resolution=merge-duplicates',
     },
     body: JSON.stringify({
       first_name: data.firstName,

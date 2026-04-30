@@ -175,7 +175,7 @@ export const faqItems = [
   },
   {
     question: 'What is the real ROI? How do I know I will make my money back?',
-    answer: 'Our customers see an average 25% revenue increase from AI pricing optimization and 38% reduction in maintenance costs. For a 15-vehicle fleet on Professional tier ($399/month), that translates to $487,620 additional annual revenue. Your investment pays back in under 3 days on average.',
+    answer: 'Use the ROI calculator on this page with your actual fleet size. As a benchmark: a 15-vehicle Professional fleet ($399/month) typically projects ~$629K in additional annual revenue from AI pricing plus ~$17K in maintenance savings, based on real operator data ($350→$425 average daily rate, 62%→78% utilization, 38% maintenance reduction). Individual results vary by market and fleet mix — we publish those exact assumptions next to the calculator so you can adjust them.',
   },
   {
     question: 'Can I cancel if it does not work for me?',
@@ -207,11 +207,32 @@ export const roiDefaults = {
 };
 
 // Founder pricing config
+//
+// IMPORTANT: To roll the founder window forward, update `deadlineISO` and
+// `spotsRemaining` here only. Every component reads from these values.
+const FOUNDER_DEADLINE_ISO = '2026-07-31T23:59:59';
+const FOUNDER_TOTAL_SPOTS = 250;
+const FOUNDER_SPOTS_REMAINING = 15;
+
+const founderDeadline = new Date(FOUNDER_DEADLINE_ISO);
+
 export const founderConfig = {
-  deadline: new Date('2025-03-31T23:59:59'),
-  totalSpots: 250,
-  spotsRemaining: 73,
-  isActive: () => new Date() < new Date('2025-03-31T23:59:59'),
+  deadline: founderDeadline,
+  deadlineISO: FOUNDER_DEADLINE_ISO,
+  totalSpots: FOUNDER_TOTAL_SPOTS,
+  spotsRemaining: FOUNDER_SPOTS_REMAINING,
+  isActive: () => new Date() < founderDeadline,
+  // "July 31, 2026" — used in long-form SEO copy and the offer band subtitle.
+  deadlineLabel: founderDeadline.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  }),
+  // "Jul 31" — used in tight UI surfaces (hero pill, header chip).
+  deadlineShortLabel: founderDeadline.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+  }),
 };
 
 // Helper functions

@@ -55,7 +55,9 @@ Deno.serve(async (req: Request) => {
       emailSubject = `New Beta Signup: ${formData.fullName}`
       emailBody = createBetaSignupEmailHTML(formData, timestamp)
     } else if (type === 'contact') {
-      // Contact form data
+      // Contact form: keep original column order, append phone/SMS at end for existing Sheets layouts
+      const smsTx = formData.smsConsentTransactional === true ? 'yes' : formData.phone ? 'no' : ''
+      const smsMkt = formData.smsConsentMarketing === true ? 'yes' : formData.phone ? 'no' : ''
       sheetData = {
         values: [
           timestamp,
@@ -65,7 +67,11 @@ Deno.serve(async (req: Request) => {
           formData.subject || '',
           formData.fleetSize || '',
           formData.company || '',
-          formData.message || ''
+          formData.message || '',
+          formData.phone || '',
+          smsTx,
+          smsMkt,
+          formData.smsConsentTimestamp || '',
         ]
       }
       
@@ -245,6 +251,9 @@ function createContactFormEmailHTML(formData: any, timestamp: string): string {
             <h2 style="color: #1f2937; margin: 0 0 15px 0; font-size: 18px; font-weight: 600;">Contact Information</h2>
             <p style="margin: 8px 0;"><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</p>
             <p style="margin: 8px 0;"><strong>Email:</strong> <a href="mailto:${formData.email}" style="color: #2563eb;">${formData.email}</a></p>
+            <p style="margin: 8px 0;"><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
+            <p style="margin: 8px 0;"><strong>SMS transactional consent:</strong> ${formData.smsConsentTransactional === true ? 'Yes' : formData.phone ? 'No' : 'N/A'}</p>
+            <p style="margin: 8px 0;"><strong>SMS marketing consent:</strong> ${formData.smsConsentMarketing === true ? 'Yes' : formData.phone ? 'No' : 'N/A'}</p>
             <p style="margin: 8px 0;"><strong>Company:</strong> ${formData.company || 'Not specified'}</p>
             <p style="margin: 8px 0;"><strong>Subject:</strong> ${formData.subject}</p>
             <p style="margin: 8px 0;"><strong>Fleet Size:</strong> ${formData.fleetSize || 'Not specified'}</p>

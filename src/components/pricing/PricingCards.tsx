@@ -1,212 +1,197 @@
-import { Check, Sparkles, TrendingUp } from 'lucide-react';
+import { Check, Sparkles } from 'lucide-react';
 import { useState } from 'react';
-import { pricingTiers, calculatePrice, getAnnualPrice } from '../../data/pricingData';
+import { pricingTiers, getAnnualPrice } from '../../data/pricingData';
+import { openPricingSalesCall, trackPricingCta } from '../../utils/pricingCta';
 
 export default function PricingCards() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const billing = isAnnual ? 'annual' : 'monthly';
 
   const handleSelectPlan = (tierId: string) => {
-    // TODO: Open plan selection modal with Stripe checkout
-    console.log('Selected plan:', tierId, 'Annual:', isAnnual);
+    trackPricingCta({
+      location: `pricing_card_${tierId}`,
+      action: 'schedule_demo',
+      tier: tierId,
+      billing,
+    });
+    openPricingSalesCall();
   };
 
   return (
-    <div className="py-20 px-4 sm:px-6 lg:px-16 xl:px-20 bg-gradient-to-b from-black to-[#1B1B1B]">
+    <div className="pt-20 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-16 xl:px-20 bg-gradient-to-b from-black to-dark-900">
       <div className="max-w-7xl mx-auto">
-        
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="font-montserrat font-bold text-4xl sm:text-5xl md:text-6xl text-white mb-6">
             Simple, Transparent Pricing
           </h2>
-          <p className="font-montserrat text-lg sm:text-xl text-[#A0A0A0] max-w-3xl mx-auto mb-10">
+          <p className="font-montserrat text-lg sm:text-xl text-white/60 max-w-3xl mx-auto mb-10">
             Start with a 14-day free trial. Scale as you grow. Cancel anytime.
           </p>
 
-          {/* Billing Toggle */}
-          <div className="inline-flex items-center gap-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-2">
+          <div
+            className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1.5"
+            role="tablist"
+            aria-label="Billing period"
+          >
             <button
+              type="button"
+              role="tab"
+              aria-selected={!isAnnual}
               onClick={() => setIsAnnual(false)}
-              className={`px-6 py-2 rounded-full font-montserrat text-sm font-medium transition-all duration-200 ${
+              className={`px-5 py-2 rounded-full font-montserrat text-sm font-medium transition-all duration-200 ${
                 !isAnnual
-                  ? 'bg-[#6BB8E5] text-black'
-                  : 'text-white hover:text-[#6BB8E5]'
+                  ? 'bg-primary-500 text-dark-950'
+                  : 'text-white/80 hover:text-primary-300'
               }`}
             >
               Monthly
             </button>
             <button
+              type="button"
+              role="tab"
+              aria-selected={isAnnual}
               onClick={() => setIsAnnual(true)}
-              className={`px-6 py-2 rounded-full font-montserrat text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
+              className={`px-5 py-2 rounded-full font-montserrat text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
                 isAnnual
-                  ? 'bg-[#6BB8E5] text-black'
-                  : 'text-white hover:text-[#6BB8E5]'
+                  ? 'bg-primary-500 text-dark-950'
+                  : 'text-white/80 hover:text-primary-300'
               }`}
             >
               Annual
-              <span className="text-xs bg-[#22C55E] text-white px-2 py-0.5 rounded-full font-bold">
+              <span className="text-xs bg-success-500 text-white px-2 py-0.5 rounded-full font-bold">
                 2 months free
               </span>
             </button>
           </div>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-6">
           {pricingTiers.map((tier) => {
-            // Calculate pricing based on model
-            const displayPrice = tier.pricingModel === 'per-vehicle'
-              ? tier.basePrice
-              : tier.basePrice;
-              
-            const annualPrice = getAnnualPrice(displayPrice);
-            const monthlyEquivalent = isAnnual ? Math.round(annualPrice / 12) : displayPrice;
+            const monthlyBase = tier.basePrice;
+            const annualTotal = getAnnualPrice(monthlyBase);
+            const monthlyEquivalent = isAnnual ? Math.round(annualTotal / 12) : monthlyBase;
+            const isPerVehicle = tier.pricingModel === 'per-vehicle';
+            const saveAmount = monthlyBase * 2;
+
+            const ctaLabel = 'Book a Demo';
 
             return (
               <div
                 key={tier.id}
-                className={`relative bg-white/5 backdrop-blur-sm border-2 rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:scale-105 hover:bg-white/10 hover:shadow-2xl ${
+                className={`flex h-full min-h-0 flex-col gap-0 rounded-2xl border p-7 transition-colors duration-200 lg:p-8 ${
                   tier.popular
-                    ? 'border-accent-500 shadow-2xl shadow-accent-500/30 lg:scale-105 bg-white/8'
-                    : 'border-white/10 hover:border-primary-500/50'
+                    ? 'border-primary-500/40 bg-primary-500/[0.05] ring-1 ring-primary-500/20'
+                    : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]'
                 }`}
               >
-                {/* Popular Badge - Enhanced with larger size and animation */}
-                {tier.popular && (
-                  <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 z-10">
-                    <div className="bg-gradient-to-r from-accent-500 via-accent-600 to-accent-500 text-white px-6 py-2.5 rounded-full text-base font-bold flex items-center gap-2 shadow-xl animate-pulse-subtle">
-                      <TrendingUp className="w-5 h-5" />
-                      <span className="font-dfaalt">{tier.label}</span>
-                    </div>
-                  </div>
-                )}
-
-                {/* Tier Label (for non-popular) */}
-                {!tier.popular && (
-                  <div className="text-[#6BB8E5] text-xs font-semibold uppercase tracking-wide mb-2">
-                    {tier.label}
-                  </div>
-                )}
-
-                {/* Tier Name */}
-                <h3 className="font-montserrat font-bold text-2xl text-white mb-2">
-                  {tier.name}
-                </h3>
-
-                {/* Tagline */}
-                <p className="font-montserrat text-sm text-[#A0A0A0] mb-6">
-                  {tier.tagline}
-                </p>
-
-                {/* Pricing */}
-                <div className="mb-6">
-                  {tier.pricingModel === 'per-vehicle' ? (
-                    // Per-vehicle pricing (Starter)
-                    <>
-                      <div className="flex items-baseline gap-1 mb-1">
-                        <span className="font-montserrat font-bold text-4xl sm:text-5xl text-white">
-                          ${monthlyEquivalent}
-                        </span>
-                        <span className="font-montserrat text-base text-[#A0A0A0]">
-                          /vehicle/month
-                        </span>
-                      </div>
-                      <p className="font-montserrat text-sm text-[#6BB8E5] mb-2">
-                        Minimum ${tier.minCharge}/month
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <span className="font-montserrat text-sm text-[#A0A0A0] line-through">
-                          ${tier.regularPrice}/vehicle/month
-                        </span>
-                        <span className="text-xs bg-[#6BB8E5]/20 text-[#6BB8E5] px-2 py-0.5 rounded-full">
-                          Founder Price
-                        </span>
-                      </div>
-                    </>
+                {/* Row 1: tier label OR Most popular (always 24px) */}
+                <div
+                  className={`mb-4 flex h-6 shrink-0 items-center ${tier.popular ? 'justify-end' : 'justify-start'}`}
+                >
+                  {tier.popular ? (
+                    <span className="inline-flex items-center gap-1 rounded-full border border-primary-500/30 bg-primary-500/15 px-2.5 py-0.5 font-montserrat text-[11px] font-semibold uppercase tracking-wide text-primary-300">
+                      Most popular
+                    </span>
                   ) : (
-                    // Flat pricing (Professional, Business, Enterprise)
-                    <>
-                      <div className="flex items-baseline gap-1 mb-1">
-                        <span className="font-montserrat font-bold text-4xl sm:text-5xl text-white">
-                          ${isAnnual ? monthlyEquivalent : displayPrice}
-                        </span>
-                        <span className="font-montserrat text-base text-[#A0A0A0]">
-                          /month
-                        </span>
-                      </div>
-                      {isAnnual && (
-                        <p className="font-montserrat text-sm text-[#22C55E] mb-2">
-                          ${annualPrice}/year (2 months free!)
-                        </p>
-                      )}
-                      <p className="font-montserrat text-sm text-[#6BB8E5] mb-2">
-                        Includes up to {tier.includedVehicles} vehicles
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <span className="font-montserrat text-sm text-[#A0A0A0] line-through">
-                          ${tier.regularPrice}/vehicle/month equivalent
-                        </span>
-                        <span className="text-xs bg-[#6BB8E5]/20 text-[#6BB8E5] px-2 py-0.5 rounded-full">
-                          Founder Price
-                        </span>
-                      </div>
-                    </>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary-400">
+                      {tier.label}
+                    </span>
                   )}
                 </div>
 
-                {/* CTA Button */}
+                {/* Name + tagline (tagline min-height reserves 2 lines) */}
+                <div className="mb-4">
+                  <h3 className="mb-2 font-dfaalt text-2xl font-bold text-white">{tier.name}</h3>
+                  <p className="min-h-[3.25rem] font-montserrat text-sm leading-relaxed text-white/60">
+                    {tier.tagline}
+                  </p>
+                </div>
+
+                <div className="mb-4 h-px shrink-0 bg-white/10" />
+
+                {/* Price block — aligned min-heights across all cards */}
+                <div className="mb-4 flex flex-col gap-1.5">
+                  <div className="flex min-h-[3.25rem] items-baseline gap-1.5">
+                    <span className="font-dfaalt text-5xl font-bold tracking-tight text-white">
+                      ${monthlyEquivalent}
+                    </span>
+                    <span className="font-montserrat text-sm text-white/55">
+                      {isPerVehicle ? '/vehicle/mo' : '/month'}
+                    </span>
+                  </div>
+
+                  <div className="min-h-[2.75rem] font-montserrat text-sm text-white/75">
+                    {isPerVehicle ? (
+                      <>
+                        <p>
+                          Minimum ${tier.minCharge}/month
+                          {isAnnual && tier.minCharge
+                            ? ` ($${tier.minCharge * 10}/year prepay)`
+                            : ''}
+                        </p>
+                        <p className="text-white/45">1–10 vehicles</p>
+                      </>
+                    ) : (
+                      <>
+                        <p>Up to {tier.includedVehicles} vehicles included</p>
+                        <p className="text-white/45">
+                          +${tier.overagePrice}/vehicle after
+                        </p>
+                      </>
+                    )}
+                  </div>
+
+                  <p
+                    className={`min-h-[1.25rem] font-montserrat text-xs font-medium ${
+                      isAnnual ? 'text-success-500' : 'text-transparent select-none'
+                    }`}
+                    aria-hidden={!isAnnual}
+                  >
+                    {isAnnual
+                      ? `Save $${saveAmount}${isPerVehicle ? '/vehicle' : ''}/yr with annual billing`
+                      : '\u00A0'}
+                  </p>
+                </div>
+
                 <button
+                  type="button"
                   onClick={() => handleSelectPlan(tier.id)}
-                  className={`w-full py-3 rounded-lg font-montserrat font-semibold text-sm transition-all duration-200 mb-6 ${
+                  aria-label={`Book a demo for the ${tier.name} plan`}
+                  className={`mb-5 w-full min-h-12 rounded-lg font-montserrat text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950 ${
                     tier.popular
-                      ? 'bg-gradient-to-r from-[#FFD700] to-[#FFC700] text-black hover:shadow-lg hover:shadow-[#FFD700]/50'
-                      : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+                      ? 'bg-primary-500 text-dark-950 hover:bg-primary-400'
+                      : 'border border-white/15 bg-white/[0.06] text-white hover:bg-white/10'
                   }`}
                 >
-                  {tier.popular ? 'Lock in Founder Pricing' : 'Start Free Trial'}
+                  {ctaLabel}
                 </button>
 
-                {/* Features List */}
-                <ul className="space-y-3">
+                <div className="mb-4 h-px shrink-0 bg-white/10" />
+
+                <ul className="min-h-0 flex-1 space-y-2.5">
                   {tier.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-[#22C55E] flex-shrink-0 mt-0.5" />
-                      <span className="font-montserrat text-sm text-[#E0E0E0] leading-relaxed">
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <Check
+                        className="mt-0.5 h-4 w-4 flex-shrink-0 text-success-500"
+                        aria-hidden="true"
+                      />
+                      <span className="font-montserrat text-sm leading-relaxed text-white/85">
                         {feature}
                       </span>
                     </li>
                   ))}
                 </ul>
 
-                {/* AI Badge for Professional+ */}
                 {tier.id !== 'starter' && (
-                  <div className="mt-6 pt-6 border-t border-white/10">
-                    <div className="flex items-center gap-2 text-[#6BB8E5]">
-                      <Sparkles className="w-4 h-4" />
-                      <span className="font-montserrat text-xs font-semibold">
-                        AI-Powered Intelligence
-                      </span>
-                    </div>
+                  <div className="mt-4 flex items-center gap-1.5 text-primary-400/90">
+                    <Sparkles className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    <span className="font-montserrat text-[11px] font-medium">AI features included</span>
                   </div>
                 )}
               </div>
             );
           })}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-12">
-          <p className="font-montserrat text-[#A0A0A0] mb-4">
-            Need custom pricing for 150+ vehicles?
-          </p>
-          <a
-            href="https://calendly.com/hello-exotiq/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center font-montserrat text-[#6BB8E5] hover:text-[#5AA7D4] transition-colors font-semibold"
-          >
-            Schedule Enterprise Demo →
-          </a>
         </div>
       </div>
     </div>

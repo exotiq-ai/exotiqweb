@@ -1,28 +1,41 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, Brain, BarChart3, Users, Mail, TrendingUp, Building } from 'lucide-react';
+import { Menu, X, Moon, Sun, Home, BarChart3, Users, Mail, TrendingUp, Building, BookOpen, Tag, Flame } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 import ThemeAwareLogo from './ThemeAwareLogo';
+import { founderConfig } from '../data/pricingData';
+
+const MOBILE_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
 
 export default function MobileNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
   const navigation = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'Platform', href: '/features', icon: BarChart3 },
+    { name: 'Pricing', href: '/pricing', icon: Tag },
     { name: 'About', href: '/about', icon: Users },
+    { name: 'Blog', href: '/blog', icon: BookOpen },
     { name: 'Survey', href: '/survey', icon: TrendingUp },
-    { name: 'Investors', href: '/investors', icon: Building },
+    { name: 'Invest', href: '/investors', icon: Building },
     { name: 'Contact', href: '/contact', icon: Mail },
   ];
 
   const isActive = (path: string) => location.pathname === path;
 
-  const scrollToBeta = () => {
-    if (location.pathname !== '/') {
-      window.location.href = '/#beta';
-    } else {
-      document.getElementById('beta')?.scrollIntoView({ behavior: 'smooth' });
+  const handleDemoClick = () => {
+    if (typeof window !== 'undefined') {
+      const w = window as typeof window & {
+        dataLayer?: Array<Record<string, unknown>>;
+      };
+      w.dataLayer = w.dataLayer || [];
+      w.dataLayer.push({
+        event: 'header_cta_click',
+        location: 'mobile_menu_book_demo',
+        action: 'schedule_demo',
+      });
     }
     setIsMenuOpen(false);
   };
@@ -56,10 +69,21 @@ export default function MobileNavigation() {
           </Link>
 
           {/* Mobile Controls */}
-          <div className="flex items-center">
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Toggle theme"
+            >
+              {theme === 'light' ? (
+                <Moon className="w-5 h-5 text-gray-700 dark:text-gray-200" />
+              ) : (
+                <Sun className="w-5 h-5 text-gray-700 dark:text-gray-200" />
+              )}
+            </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors min-h-[48px] min-w-[48px] flex items-center justify-center"
+              className="p-2 rounded-lg bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
@@ -75,55 +99,67 @@ export default function MobileNavigation() {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          {/* Backdrop with enhanced blur */}
+          {/* Backdrop */}
           <div 
-            className="fixed inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-300 animate-fade-in"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsMenuOpen(false)}
           />
           
-          {/* Menu Panel with slide animation */}
-          <div 
-            className="fixed top-16 left-0 right-0 bottom-0 bg-white dark:bg-dark-900 overflow-y-auto transform transition-transform duration-300 ease-out animate-slide-right"
-          >
-            <div className="px-4 py-6">
-              {/* Navigation Links - Optimized for Maximum Clickability */}
-              <nav className="space-y-1 mb-8">
-              {navigation.map((item) => (
+          {/* Menu Panel */}
+          <div className="fixed top-16 left-0 right-0 bottom-0 bg-white dark:bg-dark-900 overflow-y-auto">
+            <div className="p-6">
+              {/* Founder pricing chip — only shown while the offer is active
+                  and the user isn't already on /pricing. */}
+              {founderConfig.isActive() && location.pathname !== '/pricing' && (
                 <Link
-                  key={item.name}
-                  to={item.href}
+                  to="/pricing"
                   onClick={() => setIsMenuOpen(false)}
-                  className={`
-                    flex items-center gap-4 px-5 py-4 rounded-xl 
-                    font-montserrat font-medium text-base
-                    transition-all duration-200 
-                    min-h-[60px] w-full
-                    active:scale-[0.98]
-                    touch-manipulation
-                    ${
-                      isActive(item.href)
-                        ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-500 dark:text-primary-400 shadow-sm'
-                        : 'text-gray-900 dark:text-gray-100 active:bg-gray-100 dark:active:bg-dark-800'
-                    }
-                  `}
+                  aria-label={`Founder pricing — ${founderConfig.spotsRemaining} of ${founderConfig.totalSpots} spots remaining, ends ${founderConfig.deadlineLabel}`}
+                  className="flex items-center justify-between gap-3 mb-6 px-4 py-3 rounded-xl bg-orange-500/10 border border-orange-500/30 text-orange-700 dark:text-orange-300"
                 >
-                  <item.icon className="w-6 h-6 flex-shrink-0" />
-                  <span className="flex-1 text-left">{item.name}</span>
+                  <span className="flex items-center gap-2 font-inter font-semibold text-sm">
+                    <Flame className="w-4 h-4" aria-hidden="true" />
+                    Founder pricing — {founderConfig.spotsRemaining} spots left
+                  </span>
+                  <span className="font-inter text-xs opacity-80">
+                    ends {founderConfig.deadlineShortLabel}
+                  </span>
                 </Link>
-              ))}
+              )}
+
+              {/* Navigation Links */}
+              <nav className="space-y-2 mb-8">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-inter font-medium transition-all duration-200 min-h-[52px] ${
+                      isActive(item.href)
+                        ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400'
+                        : 'text-gray-800 hover:bg-gray-100 dark:text-gray-100 dark:hover:bg-dark-800'
+                    }`}
+                  >
+                    <item.icon className="w-5 h-5" />
+                    <span>{item.name}</span>
+                  </Link>
+                ))}
               </nav>
 
               {/* CTA Button */}
-              <button
-                onClick={scrollToBeta}
-                className="w-full font-montserrat font-semibold text-base px-6 py-4 bg-primary-500 active:bg-primary-600 text-white rounded-xl transition-all duration-200 active:scale-[0.98] min-h-[56px] shadow-lg touch-manipulation"
+              <a
+                href={MOBILE_DEMO_CALENDLY}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleDemoClick}
+                className="w-full font-poppins font-bold text-sm uppercase tracking-wide px-6 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl transition-all duration-200 active:scale-95 min-h-[52px] shadow-lg flex items-center justify-center"
               >
-                Join Beta
-              </button>
+                Book a Demo
+              </a>
 
               {/* Additional Info */}
               <div className="mt-8 pt-6 border-t border-gray-200 dark:border-dark-700">
-                <p className="font-montserrat text-sm text-gray-600 dark:text-gray-300 text-center leading-relaxed">
+                <p className="font-inter text-sm text-gray-600 dark:text-gray-300 text-center">
                   Built by automotive enthusiasts,<br />
                   for automotive enthusiasts.
                 </p>

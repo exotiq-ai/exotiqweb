@@ -104,6 +104,8 @@ const HeroSection: React.FC = () => {
                 alt="Gregory Ringler, Founder of Exotiq.ai"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent rounded-b-2xl p-4">
                 <p className="font-inter text-white text-sm font-medium">

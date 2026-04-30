@@ -304,7 +304,7 @@ export default function FleetCopilot({ isOpen, onToggle, sessionId, isReturningU
       addBotMessage("I apologize, but I'm having trouble connecting right now. Let me help you with some quick options instead!", {
         buttons: [
           { text: "Schedule a Call", action: "calendar", url: "https://calendly.com/hello-exotiq/15-minute-meeting" },
-          { text: "Join Beta List", action: "beta" },
+          { text: "Book a Demo", action: "calendar", url: "https://calendly.com/hello-exotiq/15-minute-meeting" },
           { text: "Learn More", action: "features" }
         ]
       });

@@ -511,6 +511,7 @@ const ModuleSection: React.FC<{ module: typeof modules[0]; index: number }> = ({
                           maxHeight: '100%',
                         }}
                         loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';

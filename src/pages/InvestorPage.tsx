@@ -25,7 +25,9 @@ import {
   Phone
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import SMSConsentCheckboxes from '../components/SMSConsentCheckboxes';
 import { organizationSchema, breadcrumbSchema } from '../data/structuredData';
+import { buildSmsConsentFields } from '../types/smsConsent';
 import logger from '../utils/logger';
 
 interface InvestorFormData {
@@ -40,6 +42,15 @@ interface InvestorFormData {
   investmentTimeline: string;
   contactPreference: string;
   additionalNotes?: string;
+  smsConsentTransactional: boolean;
+  smsConsentMarketing: boolean;
+}
+
+function humanizeInvestorSubmitError(message: string): string {
+  if (/23505|duplicate key|already exists|investor_contacts_email_key/i.test(message)) {
+    return 'We already have your email on file from a previous submission. If you need to update your information, reply to any Exotiq email or contact hello@exotiq.ai.';
+  }
+  return message;
 }
 
 export default function InvestorPage() {
@@ -65,14 +76,34 @@ export default function InvestorPage() {
     industryExperience: '',
     investmentTimeline: '',
     contactPreference: '',
-    additionalNotes: ''
+    additionalNotes: '',
+    smsConsentTransactional: false,
+    smsConsentMarketing: false,
   });
+
+  useEffect(() => {
+    const p = formData.phone?.trim() ?? '';
+    if (!p && (formData.smsConsentTransactional || formData.smsConsentMarketing)) {
+      setFormData((prev) => ({
+        ...prev,
+        smsConsentTransactional: false,
+        smsConsentMarketing: false,
+      }));
+    }
+  }, [formData.phone, formData.smsConsentTransactional, formData.smsConsentMarketing]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
+  };
+
+  const handleSmsConsentChange = (
+    field: 'smsConsentTransactional' | 'smsConsentMarketing',
+    value: boolean
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -86,17 +117,27 @@ export default function InvestorPage() {
       const firstName = nameParts[0] || '';
       const lastName = nameParts.slice(1).join(' ') || '';
 
+      const phoneTrim = formData.phone?.trim() ?? '';
       const submissionData = {
         firstName,
         lastName,
         email: formData.email,
         companyName: formData.companyName,
-        phone: formData.phone,
         investmentAmountRange: formData.investmentAmountRange,
         investmentType: formData.investmentType,
         investmentTimeline: formData.investmentTimeline,
         additionalNotes: formData.additionalNotes,
-        source: 'website'
+        source: 'website',
+        ...(phoneTrim
+          ? {
+              phone: phoneTrim,
+              ...buildSmsConsentFields(
+                formData.phone,
+                formData.smsConsentTransactional,
+                formData.smsConsentMarketing
+              ),
+            }
+          : {}),
       };
 
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -113,7 +154,13 @@ export default function InvestorPage() {
         body: JSON.stringify(submissionData)
       });
 
-      const result = await response.json();
+      const text = await response.text();
+      let result: { success?: boolean; error?: string; investorId?: string } = {};
+      try {
+        result = text ? JSON.parse(text) : {};
+      } catch {
+        throw new Error(text || `Request failed (${response.status})`);
+      }
 
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Failed to submit investor form');
@@ -129,7 +176,8 @@ export default function InvestorPage() {
 
     } catch (error) {
       logger.error('Investor submission error', { error });
-      setSubmitError(error instanceof Error ? error.message : 'An error occurred while submitting the form');
+      const raw = error instanceof Error ? error.message : 'An error occurred while submitting the form';
+      setSubmitError(humanizeInvestorSubmitError(raw));
     } finally {
       setIsSubmitting(false);
     }
@@ -514,8 +562,9 @@ export default function InvestorPage() {
                         value={formData.firstName}
                         onChange={handleInputChange}
                         required
+                        disabled={isSubmitting}
                         placeholder="John Smith"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base disabled:opacity-50"
                       />
                     </div>
                     <div>
@@ -530,8 +579,9 @@ export default function InvestorPage() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
+                        disabled={isSubmitting}
                         placeholder="john@company.com"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base disabled:opacity-50"
                       />
                     </div>
                   </div>
@@ -549,8 +599,9 @@ export default function InvestorPage() {
                       value={formData.companyName}
                       onChange={handleInputChange}
                       required
+                      disabled={isSubmitting}
                       placeholder="Acme Ventures"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base disabled:opacity-50"
                     />
                   </div>
 
@@ -566,7 +617,8 @@ export default function InvestorPage() {
                         value={formData.investmentAmountRange}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base disabled:opacity-50"
                       >
                         <option value="">Select range</option>
                         <option value="25k-100k">$25K - $100K</option>
@@ -585,7 +637,8 @@ export default function InvestorPage() {
                         value={formData.investmentType}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base disabled:opacity-50"
                       >
                         <option value="">Select type</option>
                         <option value="angel">Angel Investor</option>
@@ -609,7 +662,8 @@ export default function InvestorPage() {
                         value={formData.investmentTimeline}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base disabled:opacity-50"
                       >
                         <option value="">Select timeline</option>
                         <option value="immediate">Ready to invest now</option>
@@ -629,11 +683,20 @@ export default function InvestorPage() {
                         autoComplete="tel"
                         value={formData.phone}
                         onChange={handleInputChange}
+                        disabled={isSubmitting}
                         placeholder="+1 (555) 123-4567"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent text-base disabled:opacity-50"
                       />
                     </div>
                   </div>
+
+                  <SMSConsentCheckboxes
+                    visible={(formData.phone ?? '').trim() !== ''}
+                    smsTransactional={formData.smsConsentTransactional}
+                    smsMarketing={formData.smsConsentMarketing}
+                    onChange={handleSmsConsentChange}
+                    disabled={isSubmitting}
+                  />
 
                   <div>
                     <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -644,13 +707,14 @@ export default function InvestorPage() {
                       value={formData.additionalNotes}
                       onChange={handleInputChange}
                       rows={3}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accent-500 disabled:opacity-50"
                       placeholder="Any additional information about your investment interest..."
                     />
                   </div>
 
                   {submitError && (
-                    <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                    <div role="alert" className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
                       <p className="text-red-600 dark:text-red-400 text-sm">{submitError}</p>
                     </div>
                   )}

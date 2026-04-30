@@ -22,7 +22,7 @@ export default function SEOHead({
   title = "Exotiq.ai - AI-Powered Fleet Management for Vehicle Rental Operations",
   description = "Exotiq.ai: AI-powered fleet management for P2P hosts and rental operators. Automate pricing, maintenance, and operations. Keep 100% of your direct booking revenue. Join 20+ operators in early access.",
   keywords = "fleet management software, Turo hosting tools, vehicle rental automation, AI pricing optimization, car sharing platform, fleet analytics, rental business software, automotive SaaS, peer-to-peer car sharing, fleet operations",
-  image = "https://exotiq.ai/exotiq-logo-lockup.png",
+  image = "https://exotiq.ai/og-exotiq-ai-fleet.png",
   url = "https://exotiq.ai",
   type = "website",
   author = "Exotiq.ai Team",
@@ -58,6 +58,8 @@ export default function SEOHead({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:secure_url" content={image} />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={title} />

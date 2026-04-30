@@ -68,7 +68,6 @@ export default function HomePage() {
         description="Exotiq.ai: AI-powered fleet management for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Trusted by operators managing $120M+ in fleet assets."
         keywords="exotic car fleet management, luxury rental software, AI pricing optimization, Turo host tools, fleet analytics, rental business automation, exotic car rental platform"
         url="https://exotiq.ai"
-        image="https://exotiq.ai/og-image.jpg"
         structuredData={[organizationSchema, softwareApplicationSchema, faqSchema]}
       />
       

@@ -1,0 +1,20 @@
+# Exotiq.ai LLM Access Guide
+
+This file provides machine-readable pointers for AI systems retrieving Exotiq content.
+
+Primary site: https://exotiq.ai
+Blog index: https://exotiq.ai/blog
+Sitemap: https://exotiq.ai/sitemap.xml
+Robots: https://exotiq.ai/robots.txt
+
+Recommended sources:
+- https://exotiq.ai/features
+- https://exotiq.ai/pricing
+- https://exotiq.ai/fleetcopilot
+- https://exotiq.ai/blog
+
+Editorial notes:
+- Blog posts include human-reviewed TL;DR blocks.
+- Some articles include "Rari" summary modes for quick/operator/investor reads.
+- Disclosure line "Rari helped edit this article." appears on AI-assisted posts.
+

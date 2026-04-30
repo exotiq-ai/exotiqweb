@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import mdx from '@mdx-js/rollup';
+import remarkGfm from 'remark-gfm';
 import { visualizer } from 'rollup-plugin-visualizer';
 import fs from 'fs';
 import path from 'path';
@@ -11,7 +13,14 @@ const hasSSL = fs.existsSync(sslKeyPath) && fs.existsSync(sslCertPath);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    // @supabase/node-fetch declares "browser": "./browser.js" but npm package omits that file; Vite fails to resolve.
+    alias: {
+      '@supabase/node-fetch': path.resolve(__dirname, 'src/shims/supabase-node-fetch.ts'),
+    },
+  },
   plugins: [
+    mdx({ remarkPlugins: [remarkGfm] }),
     react(),
     visualizer({
       filename: 'dist/bundle-analysis.html',
@@ -55,8 +64,7 @@ export default defineConfig({
   },
   // Performance optimizations
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom'],
-    exclude: ['@supabase/supabase-js'], // Exclude from pre-bundling
+    include: ['react', 'react-dom', 'react-router-dom', '@supabase/supabase-js'],
   },
   // Server optimizations
   server: {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Calendar, Sparkles } from 'lucide-react';
 
 export default function StickyCTABar() {
@@ -59,13 +58,15 @@ export default function StickyCTABar() {
         </a>
         
         {/* Secondary CTA */}
-        <Link
-          to="/survey"
+        <a
+          href="https://calendly.com/hello-exotiq/15-minute-meeting"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 px-5 py-3 bg-accent-600 active:bg-accent-700 text-white rounded-xl font-montserrat font-semibold text-sm transition-all duration-200 active:scale-[0.98] min-h-[52px] shadow-lg touch-manipulation"
         >
           <Sparkles className="w-4 h-4" />
-          <span>Join Beta</span>
-        </Link>
+          <span>Book a Demo</span>
+        </a>
       </div>
     </div>
   );

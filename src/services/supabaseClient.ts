@@ -1,12 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 import logger from '../utils/logger';
 
-// You'll need to replace these with your actual Supabase credentials
-// Find these in your Supabase project settings > API
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://mlfzduuclgdscdlztzdi.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sZnpkdXVjbGdkc2NkbHp0emRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyMTI3NzUsImV4cCI6MjA2Nzc4ODc3NX0.MYMwtO6wgDEqaECwFypS2OZtKY0mnUdh2wAPeiM6w5E';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+if (!supabaseUrl || !supabaseAnonKey) {
+  logger.warn('Supabase environment variables are missing. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.');
+}
+
+export const supabase = createClient(supabaseUrl ?? '', supabaseAnonKey ?? '');
 
 // Interface for survey submission
 export interface SurveySubmission {

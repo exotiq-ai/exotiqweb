@@ -139,38 +139,6 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
           const escapeEvent = new CustomEvent('accessibility:escape');
           window.dispatchEvent(escapeEvent);
           break;
-        case 'h':
-        case 'H':
-          if (event.ctrlKey || event.metaKey) {
-            event.preventDefault();
-            // Navigate to home
-            window.location.href = '/';
-          }
-          break;
-        case 'f':
-        case 'F':
-          if (event.ctrlKey || event.metaKey) {
-            event.preventDefault();
-            // Navigate to features
-            window.location.href = '/features';
-          }
-          break;
-        case 'a':
-        case 'A':
-          if (event.ctrlKey || event.metaKey) {
-            event.preventDefault();
-            // Navigate to about
-            window.location.href = '/about';
-          }
-          break;
-        case 'c':
-        case 'C':
-          if (event.ctrlKey || event.metaKey) {
-            event.preventDefault();
-            // Navigate to contact
-            window.location.href = '/contact';
-          }
-          break;
       }
     };
 

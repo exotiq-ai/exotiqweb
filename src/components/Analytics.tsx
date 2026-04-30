@@ -14,8 +14,8 @@ interface AnalyticsProps {
 
 export default function Analytics({ trackingId = 'G-XXXXXXXXXX' }: AnalyticsProps) {
   useEffect(() => {
-    // Only load analytics in production
-    if (process.env.NODE_ENV !== 'production') {
+    // Only load analytics in production with a valid tracking ID.
+    if (!import.meta.env.PROD || !trackingId || trackingId === 'G-XXXXXXXXXX') {
       return;
     }
 
@@ -39,7 +39,7 @@ export default function Analytics({ trackingId = 'G-XXXXXXXXXX' }: AnalyticsProp
       `;
       document.head.appendChild(script2);
 
-      // Track page views
+      // Track page views across SPA navigation and browser navigation.
       const handleRouteChange = () => {
         if (window.gtag) {
           window.gtag('config', trackingId, {
@@ -50,11 +50,28 @@ export default function Analytics({ trackingId = 'G-XXXXXXXXXX' }: AnalyticsProp
         }
       };
 
-      // Listen for route changes (for SPA)
+      const originalPushState = window.history.pushState;
+      const originalReplaceState = window.history.replaceState;
+      const routeEventName = 'exotiq:route-change';
+
+      window.history.pushState = function (...args) {
+        originalPushState.apply(this, args);
+        window.dispatchEvent(new Event(routeEventName));
+      };
+
+      window.history.replaceState = function (...args) {
+        originalReplaceState.apply(this, args);
+        window.dispatchEvent(new Event(routeEventName));
+      };
+
       window.addEventListener('popstate', handleRouteChange);
+      window.addEventListener(routeEventName, handleRouteChange);
 
       return () => {
         window.removeEventListener('popstate', handleRouteChange);
+        window.removeEventListener(routeEventName, handleRouteChange);
+        window.history.pushState = originalPushState;
+        window.history.replaceState = originalReplaceState;
       };
     } catch (error) {
       logger.warn('Failed to initialize Google Analytics', { error });
