@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { MobileSection, MobileContainer } from './MobileOptimizations';
 import { Brain, TrendingUp, PieChart, Globe, Shield, Bot, DollarSign, BarChart3, Target, Eye, Star, MessageSquare, Calendar, FileText, ArrowRight, Mic, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { DEMO_CTA_URL, trackDemoCta } from '../utils/conversionCta';
 
 interface PlatformModulesSectionProps {
   activeTab?: string;
@@ -358,9 +359,10 @@ const PlatformModulesSection: React.FC<PlatformModulesSectionProps> = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <a
-                  href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+                  href={DEMO_CTA_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackDemoCta('platform_modules_bottom_book_demo')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-dfaalt font-semibold rounded-xl border border-white/20 hover:border-white/40 transition-all duration-300"
                 >
                   Book a Demo

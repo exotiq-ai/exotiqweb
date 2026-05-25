@@ -121,11 +121,11 @@ export default function BlogPostPage() {
       name: 'Exotiq.ai',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://exotiq.ai/logo.png',
+        url: 'https://exotiq.ai/exotiq-logo-lockup.png',
       },
     },
     mainEntityOfPage: articleUrl,
-    image: post.ogImage || 'https://exotiq.ai/og-image.jpg',
+    image: post.ogImage || 'https://exotiq.ai/og-exotiq-ai-fleet.png',
     keywords: [post.primaryKeyword, ...post.secondaryKeywords].join(', '),
   };
 
@@ -444,4 +444,3 @@ export default function BlogPostPage() {
     </div>
   );
 }
-

@@ -5,7 +5,7 @@ export const organizationSchema = {
   "name": "Exotiq AI",
   "alternateName": "Exotiq",
   "url": "https://exotiq.ai",
-  "logo": "https://exotiq.ai/logo.png",
+  "logo": "https://exotiq.ai/exotiq-logo-lockup.png",
   "description": "Exotiq provides AI-driven car rental fleet management and Turo automation. Optimize operations and maximize margins for exotic and private rental fleet hosts.",
   "foundingDate": "2024-01-01",
   "founders": [
@@ -28,7 +28,7 @@ export const organizationSchema = {
     "availableLanguage": "English"
   },
   "sameAs": [
-    "https://www.linkedin.com/company/driveexotiq",
+    "https://www.linkedin.com/company/exotiq-ai",
     "https://twitter.com/Exotiqai"
   ],
   "knowsAbout": [
@@ -59,7 +59,7 @@ export const softwareApplicationSchema = {
     "@type": "Offer",
     "price": "49",
     "priceCurrency": "USD",
-    "priceValidUntil": "2025-12-31",
+    "priceValidUntil": "2027-12-31",
     "availability": "https://schema.org/InStock",
     "description": "Starting at $49/month for up to 5 vehicles"
   },

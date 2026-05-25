@@ -6,64 +6,127 @@ console.log('🔍 Pre-Deployment Checklist');
 
 let allChecksPassed = true;
 
+const fail = (message) => {
+    console.log(`❌ ${message}`);
+    allChecksPassed = false;
+};
+
+const pass = (message) => {
+    console.log(`✅ ${message}`);
+};
+
+const read = (file) => fs.readFileSync(file, 'utf8');
+
 // Check if cookie fixes are present
 console.log('1. Checking cookie fixes...');
 if (fs.existsSync('src/components/CookieConsentBanner.tsx')) {
-    const content = fs.readFileSync('src/components/CookieConsentBanner.tsx', 'utf8');
+    const content = read('src/components/CookieConsentBanner.tsx');
     if (content.includes('useEffect(() => {') && content.includes('try {')) {
-        console.log('✅ CookieConsentBanner has useEffect fix and error handling');
+        pass('CookieConsentBanner has useEffect fix and error handling');
     } else {
-        console.log('❌ CookieConsentBanner missing useEffect fix or error handling');
-        allChecksPassed = false;
+        fail('CookieConsentBanner missing useEffect fix or error handling');
     }
 } else {
-    console.log('❌ CookieConsentBanner.tsx not found');
-    allChecksPassed = false;
+    fail('CookieConsentBanner.tsx not found');
 }
 
 // Check if OG image is correct
 console.log('2. Checking Open Graph image...');
 if (fs.existsSync('index.html')) {
-    const content = fs.readFileSync('index.html', 'utf8');
-    if (content.includes('exotiq-logo-lockup.png') && content.includes('og:image')) {
-        console.log('✅ OG image is correct');
+    const content = read('index.html');
+    if (content.includes('og-exotiq-ai-fleet.png') && content.includes('og:image')) {
+        pass('OG image is correct');
     } else {
-        console.log('❌ OG image is incorrect');
-        allChecksPassed = false;
+        fail('OG image is incorrect');
     }
 } else {
-    console.log('❌ index.html not found');
-    allChecksPassed = false;
+    fail('index.html not found');
 }
 
 // Check if analytics has error handling
 console.log('3. Checking analytics error handling...');
 if (fs.existsSync('src/components/Analytics.tsx')) {
-    const content = fs.readFileSync('src/components/Analytics.tsx', 'utf8');
+    const content = read('src/components/Analytics.tsx');
     if (content.includes('try {') && content.includes('catch (error)')) {
-        console.log('✅ Analytics has error handling');
+        pass('Analytics has error handling');
     } else {
-        console.log('❌ Analytics missing error handling');
-        allChecksPassed = false;
+        fail('Analytics missing error handling');
     }
 } else {
-    console.log('❌ Analytics.tsx not found');
-    allChecksPassed = false;
+    fail('Analytics.tsx not found');
 }
 
 // Check if SEOHead has correct default social image
 console.log('4. Checking SEOHead component...');
 if (fs.existsSync('src/components/SEOHead.tsx')) {
-    const content = fs.readFileSync('src/components/SEOHead.tsx', 'utf8');
+    const content = read('src/components/SEOHead.tsx');
     if (content.includes('og-exotiq-ai-fleet.png')) {
-        console.log('✅ SEOHead has correct social image');
+        pass('SEOHead has correct social image');
     } else {
-        console.log('❌ SEOHead has incorrect social image');
-        allChecksPassed = false;
+        fail('SEOHead has incorrect social image');
     }
 } else {
-    console.log('❌ SEOHead.tsx not found');
-    allChecksPassed = false;
+    fail('SEOHead.tsx not found');
+}
+
+console.log('5. Checking public assets...');
+[
+    'public/exotiq-logo-lockup.png',
+    'public/og-exotiq-ai-fleet.png',
+    'public/site.webmanifest',
+    'public/robots.txt',
+    'public/sitemap.xml'
+].forEach((file) => {
+    if (fs.existsSync(file)) {
+        pass(`${file} exists`);
+    } else {
+        fail(`${file} missing`);
+    }
+});
+
+console.log('6. Checking sitemap route hygiene...');
+if (fs.existsSync('public/sitemap.xml')) {
+    const sitemap = read('public/sitemap.xml');
+    const requiredRoutes = ['/', '/features', '/pricing', '/survey', '/fleetcopilot', '/about', '/contact', '/investors', '/blog'];
+    const blockedRoutes = ['/admin', '/test', '/gtm-test', '/simple-gtm'];
+
+    requiredRoutes.forEach((route) => {
+        const url = route === '/' ? 'https://exotiq.ai/' : `https://exotiq.ai${route}`;
+        if (sitemap.includes(`<loc>${url}</loc>`)) {
+            pass(`Sitemap includes ${route}`);
+        } else {
+            fail(`Sitemap missing ${route}`);
+        }
+    });
+
+    blockedRoutes.forEach((route) => {
+        if (sitemap.includes(`https://exotiq.ai${route}`)) {
+            fail(`Sitemap should not include ${route}`);
+        }
+    });
+} else {
+    fail('public/sitemap.xml not found');
+}
+
+console.log('7. Checking structured data freshness...');
+if (fs.existsSync('src/data/structuredData.ts')) {
+    const structuredData = read('src/data/structuredData.ts');
+    const match = structuredData.match(/"priceValidUntil": "([^"]+)"/);
+    const priceValidUntil = match ? new Date(`${match[1]}T00:00:00Z`) : null;
+
+    if (structuredData.includes('https://exotiq.ai/exotiq-logo-lockup.png')) {
+        pass('Structured data references an existing logo asset');
+    } else {
+        fail('Structured data logo must use exotiq-logo-lockup.png');
+    }
+
+    if (priceValidUntil && priceValidUntil > new Date()) {
+        pass(`Structured data priceValidUntil is current (${match[1]})`);
+    } else {
+        fail('Structured data priceValidUntil is missing or expired');
+    }
+} else {
+    fail('src/data/structuredData.ts not found');
 }
 
 if (allChecksPassed) {

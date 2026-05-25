@@ -72,6 +72,9 @@ Deno.serve(async (req: Request) => {
           smsTx,
           smsMkt,
           formData.smsConsentTimestamp || '',
+          formData.role || '',
+          formData.timeline || '',
+          formData._metadata ? JSON.stringify(formData._metadata) : '',
         ]
       }
       
@@ -255,8 +258,11 @@ function createContactFormEmailHTML(formData: any, timestamp: string): string {
             <p style="margin: 8px 0;"><strong>SMS transactional consent:</strong> ${formData.smsConsentTransactional === true ? 'Yes' : formData.phone ? 'No' : 'N/A'}</p>
             <p style="margin: 8px 0;"><strong>SMS marketing consent:</strong> ${formData.smsConsentMarketing === true ? 'Yes' : formData.phone ? 'No' : 'N/A'}</p>
             <p style="margin: 8px 0;"><strong>Company:</strong> ${formData.company || 'Not specified'}</p>
+            <p style="margin: 8px 0;"><strong>Role:</strong> ${formData.role || 'Not specified'}</p>
             <p style="margin: 8px 0;"><strong>Subject:</strong> ${formData.subject}</p>
             <p style="margin: 8px 0;"><strong>Fleet Size:</strong> ${formData.fleetSize || 'Not specified'}</p>
+            <p style="margin: 8px 0;"><strong>Timeline:</strong> ${formData.timeline || 'Not specified'}</p>
+            <p style="margin: 8px 0;"><strong>Attribution:</strong> ${formData._metadata ? JSON.stringify(formData._metadata) : 'Not captured'}</p>
           </div>
           
           <div style="background-color: #dbeafe; border-radius: 8px; padding: 20px; margin-bottom: 20px;">

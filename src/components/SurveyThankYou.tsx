@@ -4,9 +4,10 @@ import { ArrowRight, ExternalLink, CheckCircle, DollarSign } from 'lucide-react'
 
 interface SurveyThankYouProps {
   surveyType: string | null;
+  leadEmail?: string;
 }
 
-const SurveyThankYou: React.FC<SurveyThankYouProps> = ({ surveyType }) => {
+const SurveyThankYou: React.FC<SurveyThankYouProps> = ({ surveyType, leadEmail }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-success-50 to-success-100 dark:from-success-900/20 dark:to-success-800/20 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
@@ -68,7 +69,9 @@ const SurveyThankYou: React.FC<SurveyThankYouProps> = ({ surveyType }) => {
                 </div>
                 <div>
                   <h4 className="font-dfaalt font-semibold text-gray-900 dark:text-white text-sm">Reward Delivery</h4>
-                  <p className="font-montserrat text-xs text-gray-600 dark:text-gray-300">Your incentive will be sent to your email within 5 business days</p>
+                  <p className="font-montserrat text-xs text-gray-600 dark:text-gray-300">
+                    Your incentive will be sent to {leadEmail || 'your email'} within 5 business days
+                  </p>
                 </div>
               </div>
             </div>

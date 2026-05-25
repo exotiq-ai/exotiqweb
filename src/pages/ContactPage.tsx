@@ -11,9 +11,12 @@ interface ContactFormData {
   firstName: string;
   lastName: string;
   email: string;
+  company: string;
+  role: string;
   phone: string;
   subject: string;
   fleetSize: string;
+  timeline: string;
   message: string;
   smsConsentTransactional: boolean;
   smsConsentMarketing: boolean;
@@ -31,9 +34,12 @@ export default function ContactPage() {
     firstName: '',
     lastName: '',
     email: '',
+    company: '',
+    role: '',
     phone: '',
-    subject: '',
+    subject: 'demo',
     fleetSize: '',
+    timeline: '',
     message: '',
     smsConsentTransactional: false,
     smsConsentMarketing: false,
@@ -70,8 +76,11 @@ export default function ContactPage() {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
+      company: formData.company,
+      role: formData.role,
       subject: formData.subject,
       fleetSize: formData.fleetSize,
+      timeline: formData.timeline,
       message: formData.message,
       ...(phoneTrim
         ? {
@@ -90,9 +99,9 @@ export default function ContactPage() {
   return (
     <div className="pt-16">
       <SEOHead
-        title="Contact Exotiq.ai - Get in Touch with Our Team"
-        description="Contact Exotiq.ai for beta access, partnerships, investor relations, or support. We respond to general inquiries within 24-48 hours and partnership inquiries same day."
-        keywords="contact Exotiq.ai, fleet management support, beta access request, partnership inquiry, investor relations, customer support"
+        title="Talk to Exotiq.ai - Book a Fleet Management Demo"
+        description="Talk to Exotiq.ai about fleet size, timeline, and the right demo path for your car-sharing or rental operation."
+        keywords="Exotiq.ai demo, fleet management demo, car sharing software demo, rental fleet operations, fleet automation consultation"
         url="https://exotiq.ai/contact"
         structuredData={breadcrumbSchema([
           { name: "Home", url: "https://exotiq.ai" },
@@ -104,11 +113,11 @@ export default function ContactPage() {
       <section className="py-20 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-dark-800 dark:to-dark-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
           <h1 className="font-dfaalt font-bold text-5xl md:text-6xl text-gray-900 dark:text-white mb-6 animate-slide-up">
-            Let's Connect
+            Talk to Exotiq
           </h1>
           <p className="font-montserrat text-xl text-gray-600 dark:text-gray-300 mb-8 animate-slide-up" style={{ animationDelay: '100ms' }}>
-            Ready to transform your fleet management? Have questions about Exotiq? 
-            We'd love to hear from you.
+            Tell us about your fleet, your operating role, and when you want to improve margins.
+            We will route you to the right demo conversation.
           </p>
         </div>
       </section>
@@ -120,7 +129,7 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="bg-gray-50 dark:bg-dark-800 p-8 rounded-2xl animate-slide-up">
               <h2 className="font-dfaalt font-bold text-3xl text-gray-900 dark:text-white mb-6">
-                Send Us a Message
+                Request a Demo
               </h2>
               
               {isSubmitted ? (
@@ -129,14 +138,14 @@ export default function ContactPage() {
                     <CheckCircle className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="font-dfaalt font-bold text-2xl text-gray-900 dark:text-white mb-4">
-                    Message Sent Successfully!
+                    Demo Request Sent
                   </h3>
                   <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-6">
-                    Thanks {formData.firstName}! We have received your message and will get back to you within 24 hours.
+                    Thanks {formData.firstName}! We have received your request and will follow up with next steps for {formData.company}.
                   </p>
                   <div className="bg-primary-50 dark:bg-primary-900/20 p-4 rounded-lg">
                     <p className="font-montserrat text-sm text-primary-600 dark:text-primary-300">
-                      We’ll reply to {formData.email}. We don’t send an automatic confirmation email from this form yet.
+                      We will reply to {formData.email}. We do not send an automatic confirmation email from this form yet.
                     </p>
                   </div>
                 </div>
@@ -151,10 +160,11 @@ export default function ContactPage() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="group">
-                      <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label htmlFor="contact-first-name" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                         First Name
                       </label>
                       <input
+                        id="contact-first-name"
                         type="text"
                         name="firstName"
                         value={formData.firstName}
@@ -165,10 +175,11 @@ export default function ContactPage() {
                       />
                     </div>
                     <div className="group">
-                      <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label htmlFor="contact-last-name" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Last Name
                       </label>
                       <input
+                        id="contact-last-name"
                         type="text"
                         name="lastName"
                         value={formData.lastName}
@@ -181,10 +192,11 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="group">
-                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="contact-email" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Email Address
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       name="email"
                       value={formData.email}
@@ -195,11 +207,49 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="group">
+                      <label htmlFor="contact-company" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Company
+                      </label>
+                      <input
+                        id="contact-company"
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        required
+                        disabled={isSubmitting}
+                        autoComplete="organization"
+                        placeholder="Fleet or rental company"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200 group-hover:shadow-md disabled:opacity-50"
+                      />
+                    </div>
+                    <div className="group">
+                      <label htmlFor="contact-role" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Role
+                      </label>
+                      <input
+                        id="contact-role"
+                        type="text"
+                        name="role"
+                        value={formData.role}
+                        onChange={handleInputChange}
+                        required
+                        disabled={isSubmitting}
+                        autoComplete="organization-title"
+                        placeholder="Owner, operator, GM..."
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200 group-hover:shadow-md disabled:opacity-50"
+                      />
+                    </div>
+                  </div>
+
                   <div className="group">
-                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="contact-phone" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Phone <span className="text-gray-500 font-normal">(optional)</span>
                     </label>
                     <input
+                      id="contact-phone"
                       type="tel"
                       name="phone"
                       value={formData.phone}
@@ -220,10 +270,11 @@ export default function ContactPage() {
                   />
                   
                   <div className="group">
-                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Subject
+                    <label htmlFor="contact-subject" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      What would you like to discuss?
                     </label>
                     <select 
+                      id="contact-subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
@@ -232,23 +283,25 @@ export default function ContactPage() {
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200 group-hover:shadow-md disabled:opacity-50"
                     >
                       <option value="">Select a topic</option>
+                      <option value="demo">Book a Product Demo</option>
+                      <option value="roi">ROI / Plan Fit Review</option>
                       <option value="beta">Beta Access</option>
                       <option value="partnership">Partnership Inquiry</option>
                       <option value="investor">Investor Relations</option>
-                      <option value="press">Press & Media</option>
-                      <option value="support">Technical Support</option>
                       <option value="other">Other</option>
                     </select>
                   </div>
                   
                   <div className="group">
-                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Fleet Size (Optional)
+                    <label htmlFor="contact-fleet-size" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Fleet Size
                     </label>
                     <select 
+                      id="contact-fleet-size"
                       name="fleetSize"
                       value={formData.fleetSize}
                       onChange={handleInputChange}
+                      required
                       disabled={isSubmitting}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200 group-hover:shadow-md disabled:opacity-50"
                     >
@@ -260,19 +313,41 @@ export default function ContactPage() {
                       <option value="planning">Planning to start</option>
                     </select>
                   </div>
+
+                  <div className="group">
+                    <label htmlFor="contact-timeline" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Timeline
+                    </label>
+                    <select
+                      id="contact-timeline"
+                      name="timeline"
+                      value={formData.timeline}
+                      onChange={handleInputChange}
+                      required
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200 group-hover:shadow-md disabled:opacity-50"
+                    >
+                      <option value="">Select timeline</option>
+                      <option value="asap">ASAP / this month</option>
+                      <option value="30-60">30-60 days</option>
+                      <option value="quarter">This quarter</option>
+                      <option value="researching">Researching for later</option>
+                    </select>
+                  </div>
                   
                   <div className="group">
-                    <label className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="contact-message" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Message
                     </label>
                     <textarea
+                      id="contact-message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={6}
                       required
                       disabled={isSubmitting}
-                      placeholder="Tell us about your fleet management needs, partnership ideas, or any questions you have..."
+                      placeholder="What is slowing down your operation today? Include platforms, current workflow, or demo goals."
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200 group-hover:shadow-md disabled:opacity-50 resize-none"
                     ></textarea>
                   </div>
@@ -285,12 +360,12 @@ export default function ContactPage() {
                     {isSubmitting ? (
                       <>
                         <LoadingSpinner size="sm" color="white" />
-                        <span>Sending Message...</span>
+                        <span>Sending Request...</span>
                       </>
                     ) : (
                       <>
                         <Send className="w-5 h-5" />
-                        <span>Send Message</span>
+                        <span>Request Demo</span>
                       </>
                     )}
                   </button>
@@ -302,11 +377,11 @@ export default function ContactPage() {
             <div className="space-y-8 animate-slide-up" style={{ animationDelay: '200ms' }}>
               <div>
                 <h2 className="font-dfaalt font-bold text-3xl text-gray-900 dark:text-white mb-6">
-                  Get in Touch
+                  What to Expect
                 </h2>
                 <p className="font-montserrat text-lg text-gray-600 dark:text-gray-300 mb-8">
-                  Whether you are a fleet owner looking to scale, an investor interested in the future 
-                  of car sharing, or a partner wanting to collaborate, we want to hear from you.
+                  We use your company, role, fleet size, and timeline to tailor the conversation around
+                  your current bottlenecks, platform mix, and likely ROI.
                 </p>
               </div>
 
@@ -320,7 +395,7 @@ export default function ContactPage() {
                       Email
                     </h3>
                     <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-1">
-                      For all inquiries
+                      For demo and sales follow-up
                     </p>
                     <a 
                       href="mailto:hello@exotiq.ai"
@@ -340,7 +415,7 @@ export default function ContactPage() {
                       Phone
                     </h3>
                     <p className="font-montserrat text-gray-600 dark:text-gray-300 mb-1">
-                      For urgent matters
+                      Optional for faster scheduling
                     </p>
                     <a 
                       href="tel:+19703439634"
@@ -357,11 +432,11 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-1">
-                      Office
+                      Demo Focus
                     </h3>
                     <p className="font-montserrat text-gray-600 dark:text-gray-300">
-                      San Francisco, CA<br />
-                      United States
+                      Pricing, maintenance, reporting,<br />
+                      team workflow, and plan fit
                     </p>
                   </div>
                 </div>
@@ -373,20 +448,20 @@ export default function ContactPage() {
                 </h3>
                 <div className="space-y-2 font-montserrat text-sm text-gray-600 dark:text-gray-300">
                   <div className="flex justify-between">
-                    <span>General inquiries:</span>
+                    <span>Demo requests:</span>
+                    <span className="font-medium">Same day</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>ROI / plan fit:</span>
+                    <span className="font-medium">Same day</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Partnerships:</span>
+                    <span className="font-medium">Same day</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Other inquiries:</span>
                     <span className="font-medium">24-48 hours</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Partnership inquiries:</span>
-                    <span className="font-medium">Same day</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Investor relations:</span>
-                    <span className="font-medium">Same day</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Technical support:</span>
-                    <span className="font-medium">4-6 hours</span>
                   </div>
                 </div>
               </div>
