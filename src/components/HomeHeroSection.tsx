@@ -1,13 +1,14 @@
 import React from 'react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, Calendar, ChevronDown, DollarSign } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { MobileContainer } from './MobileOptimizations';
+import { DEMO_CTA_URL, ROI_CTA_URL, trackDemoCta, trackRoiCta } from '../utils/conversionCta';
 
 interface HomeHeroSectionProps {
   isVisible: boolean;
-  scrollToSection: (id: string) => void;
 }
 
-const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible, scrollToSection }) => (
+const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
     {/* Background Image with Overlay */}
     <div 
@@ -32,14 +33,26 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible, scrollToSe
           <p className="font-inter text-base sm:text-lg text-gray-200 dark:text-gray-100 mb-6 sm:mb-8 max-w-3xl mx-auto px-2 italic drop-shadow-md">
             We've walked in your shoes. Now we're using AI to make the road smoother for everyone.
           </p>
-          <div className="flex justify-center px-4">
-            <button
-              onClick={() => scrollToSection('platform-features')}
-              className="group font-poppins font-bold text-xs sm:text-sm uppercase tracking-wide px-6 sm:px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center min-h-[48px] touch-manipulation shadow-lg hover:shadow-xl"
+          <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
+            <Link
+              to={ROI_CTA_URL}
+              onClick={() => trackRoiCta('home_hero_calculate_roi')}
+              className="group font-poppins font-bold text-xs sm:text-sm uppercase tracking-wide px-6 sm:px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-200 hover:scale-105 flex items-center gap-2 justify-center min-h-[48px] touch-manipulation shadow-lg hover:shadow-xl"
             >
-              <span>View Platform Features</span>
+              <DollarSign className="w-4 h-4" />
+              <span>Calculate ROI</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
+            <a
+              href={DEMO_CTA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackDemoCta('home_hero_book_demo')}
+              className="group font-poppins font-bold text-xs sm:text-sm uppercase tracking-wide px-6 sm:px-8 py-4 bg-white/15 hover:bg-white/25 text-white border border-white/30 rounded-lg transition-all duration-200 hover:scale-105 flex items-center gap-2 justify-center min-h-[48px] touch-manipulation shadow-lg hover:shadow-xl"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>Book Demo</span>
+            </a>
           </div>
         </div>
       </MobileContainer>
@@ -51,4 +64,4 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible, scrollToSe
   </section>
 );
 
-export default HomeHeroSection; 
+export default HomeHeroSection;

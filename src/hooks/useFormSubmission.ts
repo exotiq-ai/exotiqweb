@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { trackBetaSignup, trackContactForm } from '../components/Analytics';
+import { getAttributionMetadata, withoutEmptyAttribution } from '../utils/attribution';
 
 interface FormSubmissionState {
   isSubmitting: boolean;
@@ -36,7 +37,10 @@ export function useFormSubmission() {
         },
         body: JSON.stringify({
           type: formType,
-          formData: formData
+          formData: {
+            ...formData,
+            _metadata: withoutEmptyAttribution(getAttributionMetadata() as unknown as Record<string, unknown>)
+          }
         })
       });
 

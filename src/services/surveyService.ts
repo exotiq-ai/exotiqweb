@@ -1,9 +1,14 @@
 // Survey service for handling survey submissions
+import { SurveyLeadFields } from '../data/surveyData';
 import logger from '../utils/logger';
+
+export type SurveySubmissionMetadata = Record<string, unknown>;
 
 export interface SurveySubmission {
   surveyType: string;
   responses: Record<string, any>;
+  lead?: SurveyLeadFields;
+  metadata?: SurveySubmissionMetadata;
   timestamp: string;
   userAgent: string;
   sessionId: string;
@@ -99,10 +104,15 @@ export class SurveyService {
     try {
       // Dynamically import Supabase client to avoid module resolution issues at build time
       const { submitSurveyToSupabase } = await import('./supabaseClient');
+      const responses = {
+        ...data.responses,
+        ...(data.lead ? { _lead: data.lead } : {}),
+        ...(data.metadata ? { _metadata: data.metadata } : {}),
+      };
       
       const supabaseData = {
         survey_type: data.surveyType,
-        responses: data.responses,
+        responses,
         submitted_at: data.timestamp,
         user_agent: data.userAgent,
         session_id: data.sessionId,
@@ -116,7 +126,7 @@ export class SurveyService {
       return true;
     } catch (error) {
       logger.warn('Supabase submission failed, using localStorage only', { error, sessionId: data.sessionId });
-      return true; // Still return true since we saved locally
+      return false;
     }
   }
 

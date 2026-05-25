@@ -24,7 +24,7 @@ export default defineConfig({
     react(),
     visualizer({
       filename: 'dist/bundle-analysis.html',
-      open: true,
+      open: process.env.ANALYZE === 'true',
       gzipSize: true,
       brotliSize: true,
     }),

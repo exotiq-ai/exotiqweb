@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, Clock, DollarSign, BarChart3, ChevronLeft, ChevronRight } from 'lucide-react';
-import { SurveyData, SurveyQuestion } from '../data/surveyData';
+import { CheckCircle, Clock, DollarSign, BarChart3, ChevronLeft, ChevronRight, AlertCircle } from 'lucide-react';
+import { SurveyData, SurveyLeadFields, SurveyQuestion } from '../data/surveyData';
 
 interface SurveyFormProps {
   survey: SurveyData;
@@ -10,6 +10,12 @@ interface SurveyFormProps {
   onNext: () => void;
   onPrevious: () => void;
   onSubmit: () => void;
+  leadFields: SurveyLeadFields;
+  leadFieldsValid: boolean;
+  onLeadFieldChange: (field: keyof SurveyLeadFields, value: string) => void;
+  isCurrentStepAnswered: boolean;
+  isSubmitting?: boolean;
+  submitError?: string | null;
 }
 
 const SurveyForm: React.FC<SurveyFormProps> = ({
@@ -19,10 +25,17 @@ const SurveyForm: React.FC<SurveyFormProps> = ({
   onInputChange,
   onNext,
   onPrevious,
-  onSubmit
+  onSubmit,
+  leadFields,
+  leadFieldsValid,
+  onLeadFieldChange,
+  isCurrentStepAnswered,
+  isSubmitting = false,
+  submitError = null,
 }) => {
   const currentQuestion = survey.questions[currentStep];
   const progress = ((currentStep + 1) / survey.questions.length) * 100;
+  const isFinalStep = currentStep === survey.questions.length - 1;
 
   const renderQuestion = (question: SurveyQuestion) => {
     const currentValue = responses[question.id];
@@ -176,19 +189,71 @@ const SurveyForm: React.FC<SurveyFormProps> = ({
             </div>
             
             {/* Question Content */}
-            <div className="p-6">
+            <div className="p-6 space-y-6">
               {renderQuestion(currentQuestion)}
+
+              {isFinalStep && (
+                <div className="border-t border-gray-200 dark:border-dark-600 pt-6">
+                  <div className="mb-4">
+                    <h3 className="font-dfaalt font-bold text-lg text-gray-900 dark:text-white mb-1">
+                      Where should we send your reward and beta follow-up?
+                    </h3>
+                    <p className="font-montserrat text-sm text-gray-600 dark:text-gray-300">
+                      Name and email are required before final submission.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="survey-lead-name" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Name
+                      </label>
+                      <input
+                        id="survey-lead-name"
+                        type="text"
+                        value={leadFields.name}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onLeadFieldChange('name', e.target.value)}
+                        required
+                        autoComplete="name"
+                        placeholder="Your name"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="survey-lead-email" className="block font-montserrat font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Email
+                      </label>
+                      <input
+                        id="survey-lead-email"
+                        type="email"
+                        value={leadFields.email}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onLeadFieldChange('email', e.target.value)}
+                        required
+                        autoComplete="email"
+                        placeholder="you@example.com"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             
             {/* Navigation Footer */}
             <div className="bg-gray-50 dark:bg-dark-700 px-6 py-4 border-t border-gray-200 dark:border-dark-600">
+              {submitError && (
+                <div role="alert" className="mb-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center space-x-2">
+                  <AlertCircle className="w-4 h-4 text-red-600 dark:text-red-400 flex-shrink-0" />
+                  <span className="font-montserrat text-sm text-red-700 dark:text-red-300">{submitError}</span>
+                </div>
+              )}
               <div className="flex items-center justify-between">
                 {/* Previous Button */}
                 <button
                   onClick={onPrevious}
-                  disabled={currentStep === 0}
+                  disabled={currentStep === 0 || isSubmitting}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                    currentStep === 0
+                    currentStep === 0 || isSubmitting
                       ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-dark-600'
                   }`}
@@ -205,18 +270,28 @@ const SurveyForm: React.FC<SurveyFormProps> = ({
                 </div>
                 
                 {/* Next/Submit Button */}
-                {currentStep === survey.questions.length - 1 ? (
+                {isFinalStep ? (
                   <button
                     onClick={onSubmit}
-                    className="flex items-center space-x-2 px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-lg"
+                    disabled={!leadFieldsValid || !isCurrentStepAnswered || isSubmitting}
+                    className={`flex items-center space-x-2 px-6 py-2 text-white rounded-lg font-medium transition-all duration-200 shadow-lg ${
+                      leadFieldsValid && isCurrentStepAnswered && !isSubmitting
+                        ? 'bg-primary-500 hover:bg-primary-600 hover:scale-105'
+                        : 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
+                    }`}
                   >
                     <CheckCircle className="w-4 h-4" />
-                    <span>Submit Survey</span>
+                    <span>{isSubmitting ? 'Submitting...' : 'Submit Survey'}</span>
                   </button>
                 ) : (
                   <button
                     onClick={onNext}
-                    className="flex items-center space-x-2 px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-lg"
+                    disabled={!isCurrentStepAnswered}
+                    className={`flex items-center space-x-2 px-6 py-2 text-white rounded-lg font-medium transition-all duration-200 shadow-lg ${
+                      isCurrentStepAnswered
+                        ? 'bg-primary-500 hover:bg-primary-600 hover:scale-105'
+                        : 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
+                    }`}
                   >
                     <span className="hidden sm:inline">Next</span>
                     <ChevronRight className="w-4 h-4" />

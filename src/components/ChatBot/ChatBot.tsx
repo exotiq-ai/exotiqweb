@@ -21,6 +21,7 @@ import { openAIService } from '../../services/openai';
 import { analyticsService } from '../../services/analytics';
 import { persistenceService } from '../../services/persistence';
 import logger from '../../utils/logger';
+import { DEMO_CTA_URL, trackDemoCta } from '../../utils/conversionCta';
 import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
 
@@ -174,7 +175,9 @@ export default function FleetCopilot({ isOpen, onToggle, sessionId, isReturningU
     });
 
     // Track analytics
-    analyticsService.trackMessage(sessionId, newMessage.type, newMessage.content, userProfile.leadScore);
+    if (newMessage.type === 'user' || newMessage.type === 'bot') {
+      analyticsService.trackMessage(sessionId, newMessage.type, newMessage.content, userProfile.leadScore);
+    }
 
     return newMessage;
   };
@@ -303,8 +306,7 @@ export default function FleetCopilot({ isOpen, onToggle, sessionId, isReturningU
       // Fallback response
       addBotMessage("I apologize, but I'm having trouble connecting right now. Let me help you with some quick options instead!", {
         buttons: [
-          { text: "Schedule a Call", action: "calendar", url: "https://calendly.com/hello-exotiq/15-minute-meeting" },
-          { text: "Book a Demo", action: "calendar", url: "https://calendly.com/hello-exotiq/15-minute-meeting" },
+          { text: "Book a Demo", action: "calendar", url: DEMO_CTA_URL },
           { text: "Learn More", action: "features" }
         ]
       });
@@ -361,8 +363,7 @@ export default function FleetCopilot({ isOpen, onToggle, sessionId, isReturningU
       setTimeout(() => {
         addBotMessage("Based on our conversation, Exotiq sounds like a perfect fit for your operation! Ready to see how we can help you scale?", {
           buttons: [
-            { text: "Quick 15-min Chat", action: "calendar", url: "https://calendly.com/hello-exotiq/15-minute-meeting" },
-            { text: "30-min Strategy Call", action: "calendar", url: "https://calendly.com/hello-exotiq/30min" }
+            { text: "Book a Demo", action: "calendar", url: DEMO_CTA_URL }
           ]
         });
       }, 2000);
@@ -374,7 +375,11 @@ export default function FleetCopilot({ isOpen, onToggle, sessionId, isReturningU
   };
 
   const handleActionClick = (action: string, url?: string) => {
-    analyticsService.trackAction(sessionId, action, { url });
+    if (action === 'calendar') {
+      trackDemoCta('chatbot_book_demo', { destination: url || DEMO_CTA_URL });
+    } else {
+      analyticsService.trackAction(sessionId, action, { url });
+    }
 
     if (url) {
       window.open(url, '_blank');

@@ -6,15 +6,21 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "lint": "eslint .",
     "preview": "vite preview",
     "pre-deploy": "node scripts/pre-deployment-check.js",
     "verify-build": "node scripts/verify-build.js",
     "health-check": "node scripts/health-check.js",
     "deploy-safe": "npm run pre-deploy && npm run build && npm run verify-build && npm run health-check && echo '✅ Ready for deployment!'",
+    "deploy-verified": "npm run pre-deploy && npm run typecheck && npm run build && npm run test:e2e && npm run verify-build && npm run health-check && echo '✅ Verified deployment ready!'",
     "deploy-clean": "rm -rf node_modules package-lock.json dist && npm install && npm run deploy-safe",
     "deploy-reliable": "npm run pre-deploy && npm run build && npm run verify-build && npm run health-check && echo '✅ Reliable deployment ready!'",
-    "optimize-images": "node scripts/optimize-images.js"
+    "optimize-images": "node scripts/optimize-images.js",
+    "test:e2e": "playwright test",
+    "test:a11y": "playwright test e2e/accessibility.spec.ts",
+    "test:perf": "playwright test e2e/performance.spec.ts",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
@@ -33,7 +39,9 @@
     "yaml": "^2.8.2"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@eslint/js": "^9.9.1",
+    "@playwright/test": "^1.60.0",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

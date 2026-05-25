@@ -40,6 +40,7 @@ import {
 import SEOHead from '../components/SEOHead';
 import { MobileSection, MobileContainer } from '../components/MobileOptimizations';
 import { softwareApplicationSchema, breadcrumbSchema } from '../data/structuredData';
+import { DEMO_CTA_URL, trackDemoCta } from '../utils/conversionCta';
 
 // Enhanced module data with final copy
 const modules = [
@@ -615,9 +616,10 @@ const ModuleSection: React.FC<{ module: typeof modules[0]; index: number }> = ({
             className="text-center mt-12"
           >
             <a
-              href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+              href={DEMO_CTA_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackDemoCta(`features_module_${module.id}_demo`)}
               className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r ${module.gradient} text-white font-dfaalt font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg group`}
             >
               <span>See {module.name} in Action</span>
@@ -751,9 +753,10 @@ export default function FeaturesPage() {
               className="flex flex-col sm:flex-row justify-center gap-4"
             >
               <a
-                href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+                href={DEMO_CTA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackDemoCta('features_hero_book_demo')}
                 className="group inline-flex items-center justify-center gap-3 font-dfaalt font-semibold text-lg px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/30"
               >
                 <Calendar className="w-5 h-5" />
@@ -799,13 +802,14 @@ export default function FeaturesPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <a
-                  href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+                  href={DEMO_CTA_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackDemoCta('features_final_book_demo')}
                   className="group inline-flex items-center justify-center gap-3 font-dfaalt font-semibold text-lg px-10 py-5 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/30"
                 >
                   <Calendar className="w-6 h-6" />
-                  <span>Book Your 15-Minute Demo</span>
+                  <span>Book Your Demo</span>
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </a>
               </motion.div>

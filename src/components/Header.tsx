@@ -4,8 +4,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import MobileNavigation from './MobileNavigation';
 import ThemeAwareLogo from './ThemeAwareLogo';
 import { founderConfig } from '../data/pricingData';
-
-const HEADER_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
+import { DEMO_CTA_URL, trackDemoCta } from '../utils/conversionCta';
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -25,19 +24,6 @@ export default function Header() {
   // Show the founder chip on every page except /pricing (where the page
   // itself already surfaces founder messaging in multiple places).
   const showFounderChip = founderConfig.isActive() && location.pathname !== '/pricing';
-
-  const trackHeaderDemoClick = () => {
-    if (typeof window === 'undefined') return;
-    const w = window as typeof window & {
-      dataLayer?: Array<Record<string, unknown>>;
-    };
-    w.dataLayer = w.dataLayer || [];
-    w.dataLayer.push({
-      event: 'header_cta_click',
-      location: 'header_book_demo',
-      action: 'schedule_demo',
-    });
-  };
 
   return (
     <>
@@ -94,10 +80,10 @@ export default function Header() {
                 )}
               </button>
               <a
-                href={HEADER_DEMO_CALENDLY}
+                href={DEMO_CTA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={trackHeaderDemoClick}
+                onClick={() => trackDemoCta('header_book_demo')}
                 className="font-poppins font-bold text-sm uppercase tracking-wide px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-200 hover:scale-105 min-h-[44px] flex items-center justify-center shadow-lg hover:shadow-xl"
               >
                 Book a Demo

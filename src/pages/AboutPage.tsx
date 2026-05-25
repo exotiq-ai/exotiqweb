@@ -4,6 +4,7 @@ import SEOHead from '../components/SEOHead';
 import { organizationSchema, breadcrumbSchema } from '../data/structuredData';
 import { MobileSection, MobileContainer } from '../components/MobileOptimizations';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { DEMO_CTA_URL, trackDemoCta } from '../utils/conversionCta';
 
 export default function AboutPage() {
   // Scroll to top when component mounts
@@ -435,9 +436,10 @@ const FounderCTASection: React.FC = () => {
             style={{ transitionDelay: '200ms' }}
           >
             <a
-              href="https://calendly.com/hello-exotiq/15-minute-meeting"
+              href={DEMO_CTA_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackDemoCta('about_founder_book_call')}
               className="group inline-flex items-center justify-center gap-3 font-dfaalt font-semibold text-lg px-10 py-5 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/30"
             >
               <Calendar className="w-6 h-6" />

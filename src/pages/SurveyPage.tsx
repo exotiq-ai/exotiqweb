@@ -1,12 +1,12 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { breadcrumbSchema } from '../data/structuredData';
-import { surveys, SurveyData, SurveyQuestion } from '../data/surveyData';
+import { surveys, SurveyLeadFields } from '../data/surveyData';
 import { SurveyService } from '../services/surveyService';
 import logger from '../utils/logger';
-import SurveyDebug from '../components/SurveyDebug';
+import { getAttributionMetadata, withoutEmptyAttribution } from '../utils/attribution';
 
 // Lazy load heavy components and icons
 const SurveyIcons = lazy(() => import('../components/SurveyIcons'));
@@ -26,8 +26,25 @@ export default function SurveyPage() {
   const [responses, setResponses] = useState<Record<string, any>>({});
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [leadFields, setLeadFields] = useState<SurveyLeadFields>({
+    name: '',
+    email: '',
+  });
 
   const currentSurvey = surveyType && surveys[surveyType as keyof typeof surveys];
+  const leadFieldsValid = leadFields.name.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(leadFields.email.trim());
+
+  const isCurrentStepAnswered = (): boolean => {
+    if (!currentSurvey) return false;
+    const question = currentSurvey.questions[currentStep];
+    if (!question?.required) return true;
+    const value = responses[question.id];
+    if (value === undefined || value === null || value === '') return false;
+    if (Array.isArray(value) && value.length === 0) return false;
+    return true;
+  };
 
   const handleInputChange = (questionId: string, value: any) => {
     setResponses((prev: Record<string, any>) => ({
@@ -36,8 +53,15 @@ export default function SurveyPage() {
     }));
   };
 
+  const handleLeadFieldChange = (field: keyof SurveyLeadFields, value: string) => {
+    setLeadFields((prev) => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
   const handleNext = () => {
-    if (currentSurvey && currentStep < currentSurvey.questions.length - 1) {
+    if (currentSurvey && currentStep < currentSurvey.questions.length - 1 && isCurrentStepAnswered()) {
       setCurrentStep((prev: number) => prev + 1);
     }
   };
@@ -49,14 +73,25 @@ export default function SurveyPage() {
   };
 
   const handleSubmit = async () => {
+    if (!leadFieldsValid) {
+      logger.warn('Blocked survey submission without required lead fields', { surveyType });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const lead = {
+      name: leadFields.name.trim(),
+      email: leadFields.email.trim(),
+    };
+
     try {
-      // Scroll to top to show thank you message
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      
-      // Prepare survey data
       const surveyData = {
         surveyType: surveyType || 'general',
         responses,
+        lead,
+        metadata: withoutEmptyAttribution(getAttributionMetadata() as unknown as Record<string, unknown>),
         timestamp: new Date().toISOString(),
         userAgent: navigator.userAgent,
         sessionId: sessionStorage.getItem('exotiq_session_id') || 'unknown'
@@ -64,33 +99,36 @@ export default function SurveyPage() {
 
       logger.debug('Submitting survey data', { surveyType, responseCount: Object.keys(responses).length });
 
-      // Use the survey service to handle submission
       const success = await SurveyService.submitSurvey(surveyData);
       
       if (success) {
         logger.info('Survey submitted successfully', { surveyType });
         
-        // Track analytics if available
         if (window.gtag) {
           window.gtag('event', 'survey_completed', {
             survey_type: surveyType,
             response_count: Object.keys(responses).length
           });
         }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setIsSubmitted(true);
+      } else {
+        setSubmitError('We saved your responses locally but could not reach our server. Please try again or contact hello@exotiq.ai.');
       }
     } catch (error) {
       logger.error('Error submitting survey', { error });
-      // Still show success to user even if submission fails
+      setSubmitError('Something went wrong submitting your survey. Your responses have been saved locally — please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
-    
-    setIsSubmitted(true);
   };
 
   // If survey is submitted, show thank you page
   if (isSubmitted) {
     return (
       <Suspense fallback={<div className="animate-pulse">Loading...</div>}>
-        <SurveyThankYou surveyType={surveyType} />
+        <SurveyThankYou surveyType={surveyType} leadEmail={leadFields.email.trim()} />
       </Suspense>
     );
   }
@@ -178,6 +216,12 @@ export default function SurveyPage() {
         onNext={handleNext}
         onPrevious={handlePrevious}
         onSubmit={handleSubmit}
+        leadFields={leadFields}
+        leadFieldsValid={leadFieldsValid}
+        onLeadFieldChange={handleLeadFieldChange}
+        isCurrentStepAnswered={isCurrentStepAnswered()}
+        isSubmitting={isSubmitting}
+        submitError={submitError}
       />
     </Suspense>
   );

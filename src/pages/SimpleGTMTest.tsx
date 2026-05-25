@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SEOHead from '../components/SEOHead';
 
 export default function SimpleGTMTest() {
   const [gtmStatus, setGtmStatus] = useState<string>('Checking...');
@@ -75,7 +76,13 @@ export default function SimpleGTMTest() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <>
+      <SEOHead
+        title="Simple GTM Test - Exotiq.ai"
+        description="Internal Google Tag Manager test page for Exotiq.ai."
+        noindex
+      />
+      <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
         <div className="bg-white rounded-lg shadow-lg p-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-6">
@@ -135,6 +142,7 @@ export default function SimpleGTMTest() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

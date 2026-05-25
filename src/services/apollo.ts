@@ -4,7 +4,7 @@ import logger from '../utils/logger';
 export interface ApolloConfig {
   appId: string;
   enabled: boolean;
-  cookieConsent?: boolean;
+  cookieConsent: boolean;
 }
 
 class ApolloService {
@@ -103,7 +103,7 @@ class ApolloService {
     } catch (error) {
       logger.error('Failed to initialize Apollo tracking', { error });
       this.trackEvent('apollo_init_error', {
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
         appId: this.config.appId,
         timestamp: new Date().toISOString()
       });
@@ -247,4 +247,3 @@ export const trackApolloPageView = (page: string, properties?: Record<string, an
   apolloService.trackPageView(page, properties);
 export const trackApolloConversion = (conversionType: string, value?: number, properties?: Record<string, any>) => 
   apolloService.trackConversion(conversionType, value, properties);
-

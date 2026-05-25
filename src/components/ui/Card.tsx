@@ -5,6 +5,7 @@ export interface CardProps extends BaseComponentProps {
   variant?: CardVariant;
   padding?: 'none' | 'sm' | 'md' | 'lg';
   hover?: boolean;
+  style?: React.CSSProperties;
 }
 
 const Card = forwardRef<HTMLDivElement, CardProps>(({
@@ -12,7 +13,8 @@ const Card = forwardRef<HTMLDivElement, CardProps>(({
   padding = 'md',
   hover = false,
   className = '',
-  children
+  children,
+  style
 }, ref) => {
   const baseClasses = 'rounded-xl transition-all duration-300';
   
@@ -40,7 +42,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(({
   };
   
   return (
-    <div ref={ref} className={`${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${hoverClasses} ${variantHoverEffects[variant]} ${className}`}>
+    <div ref={ref} style={style} className={`${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${hoverClasses} ${variantHoverEffects[variant]} ${className}`}>
       {children}
     </div>
   );
@@ -49,4 +51,3 @@ const Card = forwardRef<HTMLDivElement, CardProps>(({
 Card.displayName = 'Card';
 
 export default Card;
-

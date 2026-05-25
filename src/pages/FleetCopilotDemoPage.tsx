@@ -5,6 +5,7 @@ import SEOHead from '../components/SEOHead';
 import { breadcrumbSchema } from '../data/structuredData';
 import { elevenLabsLoader } from '../services/elevenlabsLoader';
 import logger from '../utils/logger';
+import { DEMO_CTA_URL, trackDemoCta } from '../utils/conversionCta';
 
 export default function FleetCopilotDemoPage() {
   const [elevenLabsReady, setElevenLabsReady] = useState(false);
@@ -263,9 +264,10 @@ export default function FleetCopilotDemoPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a
-              href="https://calendly.com/hello-exotiq/15-minute-meeting"
+              href={DEMO_CTA_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackDemoCta('fleetcopilot_final_book_demo')}
               className="font-poppins font-bold text-sm uppercase tracking-wide px-10 py-5 bg-white text-primary-500 hover:bg-gray-100 rounded-xl transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center min-h-[44px] touch-manipulation shadow-lg"
             >
               <Zap className="w-5 h-5" />

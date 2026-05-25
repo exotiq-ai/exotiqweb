@@ -1,13 +1,6 @@
 import { useEffect } from 'react';
 import logger from '../utils/logger';
 
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
-  }
-}
-
 interface AnalyticsProps {
   trackingId?: string;
 }

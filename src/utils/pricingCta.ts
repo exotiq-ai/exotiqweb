@@ -1,18 +1,7 @@
-// Lightweight pricing CTA tracker.
-//
-// Why a dedicated helper:
-// - Centralizes the GTM `dataLayer.push` shape so every CTA reports
-//   the same event name and properties (e.g. `pricing_cta_click`).
-// - Stays SSR-safe (no-op when `window` is unavailable).
-// - Avoids tying the pricing page to a heavier analytics dependency
-//   while still feeding GA4/GTM-based dashboards.
-//
-// To rename the event downstream, change `EVENT_NAME` only.
-
-const EVENT_NAME = 'pricing_cta_click';
+import { DEMO_CTA_URL, trackConversionCta } from './conversionCta';
 
 /** Primary sales call booking link used across /pricing. */
-export const PRICING_SALES_CALENDLY = 'https://calendly.com/hello-exotiq/30min';
+export const PRICING_SALES_CALENDLY = DEMO_CTA_URL;
 
 export function openPricingSalesCall(): void {
   if (typeof window === 'undefined') return;
@@ -33,24 +22,19 @@ export interface PricingCtaPayload {
 }
 
 export function trackPricingCta(payload: PricingCtaPayload): void {
-  if (typeof window === 'undefined') return;
+  const { meta, ...basePayload } = payload;
 
-  const w = window as typeof window & {
-    dataLayer?: Array<Record<string, unknown>>;
-    gtag?: (...args: unknown[]) => void;
-  };
-
-  try {
-    w.dataLayer = w.dataLayer || [];
-    w.dataLayer.push({
-      event: EVENT_NAME,
-      ...payload,
-    });
-
-    if (typeof w.gtag === 'function') {
-      w.gtag('event', EVENT_NAME, payload as unknown as Record<string, unknown>);
-    }
-  } catch {
-    // Analytics failures must never break the user experience.
-  }
+  trackConversionCta({
+    ...basePayload,
+    action:
+      payload.action === 'enterprise_contact'
+        ? 'enterprise_contact'
+        : payload.action === 'select_plan'
+          ? 'select_plan'
+          : payload.action === 'start_trial'
+            ? 'start_trial'
+            : 'schedule_demo',
+    destination: payload.action === 'enterprise_contact' ? '/contact' : PRICING_SALES_CALENDLY,
+    fleet_size: typeof meta?.fleetSize === 'number' ? meta.fleetSize : undefined,
+  });
 }

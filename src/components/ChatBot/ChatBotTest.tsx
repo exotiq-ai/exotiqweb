@@ -19,6 +19,8 @@ interface TestSuite {
   status: 'pending' | 'running' | 'completed';
 }
 
+const getErrorMessage = (error: unknown) => error instanceof Error ? error.message : String(error);
+
 export default function ChatBotTest() {
   const [testSuites, setTestSuites] = useState<TestSuite[]>([]);
   const [isRunning, setIsRunning] = useState(false);
@@ -167,7 +169,7 @@ export default function ChatBotTest() {
       } catch (error) {
         updateTestResult(0, 3, {
           status: 'error',
-          message: `✗ Edge function unreachable: ${error.message}`
+          message: `✗ Edge function unreachable: ${getErrorMessage(error)}`
         });
       }
     }
@@ -199,8 +201,8 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(1, 0, {
         status: 'error',
-        message: `✗ AI request failed: ${error.message}`,
-        details: { error: error.message }
+        message: `✗ AI request failed: ${getErrorMessage(error)}`,
+        details: { error: getErrorMessage(error) }
       });
     }
 
@@ -222,7 +224,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(1, 1, {
         status: 'error',
-        message: `✗ Context test failed: ${error.message}`
+        message: `✗ Context test failed: ${getErrorMessage(error)}`
       });
     }
 
@@ -244,7 +246,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(1, 2, {
         status: 'error',
-        message: `✗ History test failed: ${error.message}`
+        message: `✗ History test failed: ${getErrorMessage(error)}`
       });
     }
 
@@ -267,7 +269,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(1, 3, {
         status: 'warning',
-        message: `⚠ Error handling test inconclusive: ${error.message}`
+        message: `⚠ Error handling test inconclusive: ${getErrorMessage(error)}`
       });
     }
 
@@ -292,7 +294,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(1, 4, {
         status: 'error',
-        message: `✗ Quality test failed: ${error.message}`
+        message: `✗ Quality test failed: ${getErrorMessage(error)}`
       });
     }
 
@@ -318,7 +320,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(2, 0, {
         status: 'error',
-        message: `✗ Analytics service error: ${error.message}`
+        message: `✗ Analytics service error: ${getErrorMessage(error)}`
       });
     }
 
@@ -341,7 +343,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(2, 1, {
         status: 'error',
-        message: `✗ Persistence service error: ${error.message}`
+        message: `✗ Persistence service error: ${getErrorMessage(error)}`
       });
     }
 
@@ -358,7 +360,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(2, 2, {
         status: 'error',
-        message: `✗ Session management error: ${error.message}`
+        message: `✗ Session management error: ${getErrorMessage(error)}`
       });
     }
 
@@ -375,7 +377,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(2, 3, {
         status: 'error',
-        message: `✗ Lead scoring error: ${error.message}`
+        message: `✗ Lead scoring error: ${getErrorMessage(error)}`
       });
     }
 
@@ -402,7 +404,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(3, 0, {
         status: 'error',
-        message: `✗ Performance test failed: ${error.message}`
+        message: `✗ Performance test failed: ${getErrorMessage(error)}`
       });
     }
 
@@ -427,7 +429,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(3, 1, {
         status: 'error',
-        message: `✗ Concurrent test failed: ${error.message}`
+        message: `✗ Concurrent test failed: ${getErrorMessage(error)}`
       });
     }
 
@@ -451,7 +453,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(3, 2, {
         status: 'warning',
-        message: `⚠ Memory test inconclusive: ${error.message}`
+        message: `⚠ Memory test inconclusive: ${getErrorMessage(error)}`
       });
     }
 
@@ -478,7 +480,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(3, 3, {
         status: 'warning',
-        message: `⚠ Error recovery test inconclusive: ${error.message}`
+        message: `⚠ Error recovery test inconclusive: ${getErrorMessage(error)}`
       });
     }
 
