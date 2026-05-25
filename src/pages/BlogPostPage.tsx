@@ -9,6 +9,7 @@ import { mdxComponents } from '../components/blog/MdxComponents';
 import RariSummaryPanel from '../components/blog/RariSummaryPanel';
 import BlogShareBar from '../components/blog/BlogShareBar';
 import { trackEvent } from '../components/Analytics';
+import { DEMO_CTA_URL, trackDemoCta } from '../utils/conversionCta';
 import { useArticleAnalytics } from '../hooks/useArticleAnalytics';
 import { useActiveHeading } from '../hooks/useActiveHeading';
 import { usePublishedBlogPost, usePublishedBlogPosts } from '../hooks/useBlogData';
@@ -87,7 +88,7 @@ export default function BlogPostPage() {
   > = {
     demo: {
       label: post.ctaCopy || 'Book a demo',
-      href: 'https://calendly.com/hello-exotiq/15-minute-meeting',
+      href: DEMO_CTA_URL,
       external: true,
     },
     newsletter: {
@@ -301,12 +302,16 @@ export default function BlogPostPage() {
                 href={activeCta.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() =>
-                  trackEvent('cta_click', {
-                    event_category: 'blog_conversion',
-                    event_label: `${post.slug}:${post.ctaType}`,
-                  })
-                }
+                onClick={() => {
+                  if (post.ctaType === 'demo') {
+                    trackDemoCta(`blog_${post.slug}_cta`);
+                  } else {
+                    trackEvent('cta_click', {
+                      event_category: 'blog_conversion',
+                      event_label: `${post.slug}:${post.ctaType}`,
+                    });
+                  }
+                }}
                 className={`inline-flex w-full items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors ${
                   darkReadingMode
                     ? 'bg-blue-500 text-white hover:bg-blue-400'
@@ -385,12 +390,16 @@ export default function BlogPostPage() {
                 href={activeCta.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() =>
-                  trackEvent('cta_click', {
-                    event_category: 'blog_conversion',
-                    event_label: `${post.slug}:${post.ctaType}`,
-                  })
-                }
+                onClick={() => {
+                  if (post.ctaType === 'demo') {
+                    trackDemoCta(`blog_${post.slug}_sidebar_cta`);
+                  } else {
+                    trackEvent('cta_click', {
+                      event_category: 'blog_conversion',
+                      event_label: `${post.slug}:${post.ctaType}`,
+                    });
+                  }
+                }}
                 className={`inline-flex w-full items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors ${
                   darkReadingMode
                     ? 'bg-blue-500 text-white hover:bg-blue-400'

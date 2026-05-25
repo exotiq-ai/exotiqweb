@@ -87,7 +87,7 @@ console.log('5. Checking public assets...');
 console.log('6. Checking sitemap route hygiene...');
 if (fs.existsSync('public/sitemap.xml')) {
     const sitemap = read('public/sitemap.xml');
-    const requiredRoutes = ['/', '/features', '/pricing', '/survey', '/fleetcopilot', '/about', '/contact', '/investors', '/blog'];
+    const requiredRoutes = ['/', '/features', '/pricing', '/survey', '/fleetcopilot', '/about', '/contact', '/blog'];
     const blockedRoutes = ['/admin', '/test', '/gtm-test', '/simple-gtm'];
 
     requiredRoutes.forEach((route) => {

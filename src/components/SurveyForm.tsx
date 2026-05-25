@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, Clock, DollarSign, BarChart3, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CheckCircle, Clock, DollarSign, BarChart3, ChevronLeft, ChevronRight, AlertCircle } from 'lucide-react';
 import { SurveyData, SurveyLeadFields, SurveyQuestion } from '../data/surveyData';
 
 interface SurveyFormProps {
@@ -13,6 +13,9 @@ interface SurveyFormProps {
   leadFields: SurveyLeadFields;
   leadFieldsValid: boolean;
   onLeadFieldChange: (field: keyof SurveyLeadFields, value: string) => void;
+  isCurrentStepAnswered: boolean;
+  isSubmitting?: boolean;
+  submitError?: string | null;
 }
 
 const SurveyForm: React.FC<SurveyFormProps> = ({
@@ -25,7 +28,10 @@ const SurveyForm: React.FC<SurveyFormProps> = ({
   onSubmit,
   leadFields,
   leadFieldsValid,
-  onLeadFieldChange
+  onLeadFieldChange,
+  isCurrentStepAnswered,
+  isSubmitting = false,
+  submitError = null,
 }) => {
   const currentQuestion = survey.questions[currentStep];
   const progress = ((currentStep + 1) / survey.questions.length) * 100;
@@ -235,13 +241,19 @@ const SurveyForm: React.FC<SurveyFormProps> = ({
             
             {/* Navigation Footer */}
             <div className="bg-gray-50 dark:bg-dark-700 px-6 py-4 border-t border-gray-200 dark:border-dark-600">
+              {submitError && (
+                <div role="alert" className="mb-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center space-x-2">
+                  <AlertCircle className="w-4 h-4 text-red-600 dark:text-red-400 flex-shrink-0" />
+                  <span className="font-montserrat text-sm text-red-700 dark:text-red-300">{submitError}</span>
+                </div>
+              )}
               <div className="flex items-center justify-between">
                 {/* Previous Button */}
                 <button
                   onClick={onPrevious}
-                  disabled={currentStep === 0}
+                  disabled={currentStep === 0 || isSubmitting}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                    currentStep === 0
+                    currentStep === 0 || isSubmitting
                       ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-dark-600'
                   }`}
@@ -261,20 +273,25 @@ const SurveyForm: React.FC<SurveyFormProps> = ({
                 {isFinalStep ? (
                   <button
                     onClick={onSubmit}
-                    disabled={!leadFieldsValid}
+                    disabled={!leadFieldsValid || !isCurrentStepAnswered || isSubmitting}
                     className={`flex items-center space-x-2 px-6 py-2 text-white rounded-lg font-medium transition-all duration-200 shadow-lg ${
-                      leadFieldsValid
+                      leadFieldsValid && isCurrentStepAnswered && !isSubmitting
                         ? 'bg-primary-500 hover:bg-primary-600 hover:scale-105'
                         : 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
                     }`}
                   >
                     <CheckCircle className="w-4 h-4" />
-                    <span>Submit Survey</span>
+                    <span>{isSubmitting ? 'Submitting...' : 'Submit Survey'}</span>
                   </button>
                 ) : (
                   <button
                     onClick={onNext}
-                    className="flex items-center space-x-2 px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-lg"
+                    disabled={!isCurrentStepAnswered}
+                    className={`flex items-center space-x-2 px-6 py-2 text-white rounded-lg font-medium transition-all duration-200 shadow-lg ${
+                      isCurrentStepAnswered
+                        ? 'bg-primary-500 hover:bg-primary-600 hover:scale-105'
+                        : 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
+                    }`}
                   >
                     <span className="hidden sm:inline">Next</span>
                     <ChevronRight className="w-4 h-4" />

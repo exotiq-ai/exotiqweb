@@ -61,14 +61,6 @@
     <priority>0.70</priority>
   </url>
   
-  <!-- Investors Page -->
-  <url>
-    <loc>https://exotiq.ai/investors</loc>
-    <lastmod>2024-12-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-
   <!-- Blog Index -->
   <url>
     <loc>https://exotiq.ai/blog</loc>

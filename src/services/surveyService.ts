@@ -126,7 +126,7 @@ export class SurveyService {
       return true;
     } catch (error) {
       logger.warn('Supabase submission failed, using localStorage only', { error, sessionId: data.sessionId });
-      return true; // Still return true since we saved locally
+      return false;
     }
   }
 

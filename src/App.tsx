@@ -1,6 +1,6 @@
 import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AccessibilityProvider } from './components/AccessibilityProvider';
 import AccessibilityControls from './components/AccessibilityControls';
@@ -12,6 +12,7 @@ import ThemeAwareLogo from './components/ThemeAwareLogo';
 import RouteScrollManager from './components/RouteScrollManager';
 import AdminAuthGuard from './components/AdminAuthGuard';
 import { PerformanceMonitor } from './services/analytics';
+import { getAttributionMetadata } from './utils/attribution';
 
 // Lazy load page components for better performance
 const HomePage = React.lazy(() => import('./pages/HomePage'));
@@ -70,6 +71,9 @@ const NotFoundRoute = () => {
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4 bg-gray-50 dark:bg-dark-900">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="text-center max-w-lg">
         <p className="font-poppins font-bold text-sm uppercase tracking-wider text-primary-600 dark:text-primary-400 mb-3">
           404
@@ -106,7 +110,11 @@ const NotFoundRoute = () => {
 };
 
 export default function App() {
-  // Initialize performance monitoring
+  // Capture first-touch attribution (UTMs, landing page, referrer) on app mount
+  useEffect(() => {
+    getAttributionMetadata();
+  }, []);
+
   useEffect(() => {
     PerformanceMonitor.trackWebVitals();
     

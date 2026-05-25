@@ -82,7 +82,22 @@ export default function CookieConsentBanner() {
   };
 
   const applyPreferences = (prefs: CookiePreferences) => {
-    // Apply analytics cookies
+    // Update GTM Consent Mode to match user choice
+    if (typeof window !== 'undefined') {
+      try {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(...args: unknown[]) { window.dataLayer?.push(args); }
+        gtag('consent', 'update', {
+          'analytics_storage': prefs.analytics ? 'granted' : 'denied',
+          'ad_storage': prefs.marketing ? 'granted' : 'denied',
+          'ad_user_data': prefs.marketing ? 'granted' : 'denied',
+          'ad_personalization': prefs.marketing ? 'granted' : 'denied',
+        });
+      } catch (error) {
+        logger.warn('Failed to update GTM consent mode', { error });
+      }
+    }
+
     if (prefs.analytics) {
       loadGoogleAnalytics();
       loadMixpanel();
@@ -90,14 +105,12 @@ export default function CookieConsentBanner() {
       disableAnalytics();
     }
 
-    // Apply marketing cookies
     if (prefs.marketing) {
       loadMarketingCookies();
     } else {
       disableMarketing();
     }
 
-    // Apply functional cookies
     if (prefs.functional) {
       enableFunctionalFeatures();
     }
