@@ -4,8 +4,7 @@ import { Menu, X, Moon, Sun, Home, BarChart3, Users, Mail, TrendingUp, Building,
 import { useTheme } from '../contexts/ThemeContext';
 import ThemeAwareLogo from './ThemeAwareLogo';
 import { founderConfig } from '../data/pricingData';
-
-const MOBILE_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
+import { DEMO_CTA_URL, trackDemoCta } from '../utils/conversionCta';
 
 export default function MobileNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,17 +25,7 @@ export default function MobileNavigation() {
   const isActive = (path: string) => location.pathname === path;
 
   const handleDemoClick = () => {
-    if (typeof window !== 'undefined') {
-      const w = window as typeof window & {
-        dataLayer?: Array<Record<string, unknown>>;
-      };
-      w.dataLayer = w.dataLayer || [];
-      w.dataLayer.push({
-        event: 'header_cta_click',
-        location: 'mobile_menu_book_demo',
-        action: 'schedule_demo',
-      });
-    }
+    trackDemoCta('mobile_menu_book_demo');
     setIsMenuOpen(false);
   };
 
@@ -148,7 +137,7 @@ export default function MobileNavigation() {
 
               {/* CTA Button */}
               <a
-                href={MOBILE_DEMO_CALENDLY}
+                href={DEMO_CTA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleDemoClick}

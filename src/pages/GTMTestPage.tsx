@@ -7,6 +7,7 @@ export default function GTMTestPage() {
       <SEOHead 
         title="GTM Test Page - Exotiq.ai"
         description="Google Tag Manager test page for Exotiq.ai"
+        noindex
       />
       <div className="min-h-screen bg-white dark:bg-dark-900 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">

@@ -3,10 +3,11 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { breadcrumbSchema } from '../data/structuredData';
-import { surveys, SurveyData, SurveyQuestion } from '../data/surveyData';
+import { surveys, SurveyLeadFields } from '../data/surveyData';
 import { SurveyService } from '../services/surveyService';
 import logger from '../utils/logger';
 import SurveyDebug from '../components/SurveyDebug';
+import { getAttributionMetadata, withoutEmptyAttribution } from '../utils/attribution';
 
 // Lazy load heavy components and icons
 const SurveyIcons = lazy(() => import('../components/SurveyIcons'));
@@ -26,13 +27,25 @@ export default function SurveyPage() {
   const [responses, setResponses] = useState<Record<string, any>>({});
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [leadFields, setLeadFields] = useState<SurveyLeadFields>({
+    name: '',
+    email: '',
+  });
 
   const currentSurvey = surveyType && surveys[surveyType as keyof typeof surveys];
+  const leadFieldsValid = leadFields.name.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(leadFields.email.trim());
 
   const handleInputChange = (questionId: string, value: any) => {
     setResponses((prev: Record<string, any>) => ({
       ...prev,
       [questionId]: value
+    }));
+  };
+
+  const handleLeadFieldChange = (field: keyof SurveyLeadFields, value: string) => {
+    setLeadFields((prev) => ({
+      ...prev,
+      [field]: value
     }));
   };
 
@@ -49,6 +62,16 @@ export default function SurveyPage() {
   };
 
   const handleSubmit = async () => {
+    if (!leadFieldsValid) {
+      logger.warn('Blocked survey submission without required lead fields', { surveyType });
+      return;
+    }
+
+    const lead = {
+      name: leadFields.name.trim(),
+      email: leadFields.email.trim(),
+    };
+
     try {
       // Scroll to top to show thank you message
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -57,6 +80,8 @@ export default function SurveyPage() {
       const surveyData = {
         surveyType: surveyType || 'general',
         responses,
+        lead,
+        metadata: withoutEmptyAttribution(getAttributionMetadata() as unknown as Record<string, unknown>),
         timestamp: new Date().toISOString(),
         userAgent: navigator.userAgent,
         sessionId: sessionStorage.getItem('exotiq_session_id') || 'unknown'
@@ -90,7 +115,7 @@ export default function SurveyPage() {
   if (isSubmitted) {
     return (
       <Suspense fallback={<div className="animate-pulse">Loading...</div>}>
-        <SurveyThankYou surveyType={surveyType} />
+        <SurveyThankYou surveyType={surveyType} leadEmail={leadFields.email.trim()} />
       </Suspense>
     );
   }
@@ -178,6 +203,9 @@ export default function SurveyPage() {
         onNext={handleNext}
         onPrevious={handlePrevious}
         onSubmit={handleSubmit}
+        leadFields={leadFields}
+        leadFieldsValid={leadFieldsValid}
+        onLeadFieldChange={handleLeadFieldChange}
       />
     </Suspense>
   );

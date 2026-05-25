@@ -12,6 +12,7 @@ import SkeletonLoader from '../components/SkeletonLoader';
 import { MobileContainer, MobileSection } from '../components/MobileOptimizations';
 import SEOHead from '../components/SEOHead';
 import { organizationSchema, softwareApplicationSchema, faqSchema } from '../data/structuredData';
+import { DEMO_CTA_URL, ROI_CTA_URL, trackDemoCta, trackRoiCta } from '../utils/conversionCta';
 
 // Import section components
 import HomeHeroSection from '../components/HomeHeroSection';
@@ -95,7 +96,8 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
               <Link 
-                to="/pricing"
+                to={ROI_CTA_URL}
+                onClick={() => trackRoiCta('home_roi_section_calculate_roi')}
                 className="inline-flex items-center justify-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-xl font-dfaalt font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl hover:shadow-primary-500/25"
               >
                 <DollarSign className="w-5 h-5" />
@@ -103,9 +105,10 @@ export default function HomePage() {
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <a
-                href="https://calendly.com/hello-exotiq/15-minute-meeting"
+                href={DEMO_CTA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackDemoCta('home_roi_section_book_demo')}
                 className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 px-8 py-4 rounded-xl font-dfaalt font-semibold text-lg transition-all duration-300"
               >
                 <Calendar className="w-5 h-5" />
@@ -202,13 +205,14 @@ export default function HomePage() {
               Join the growing community of operators who are scaling smarter with Exotiq.
             </p>
             <a
-              href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+              href={DEMO_CTA_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackDemoCta('home_final_book_demo')}
               className="inline-flex items-center font-dfaalt font-semibold px-8 py-4 bg-white text-primary-600 hover:bg-gray-100 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
             >
               <Calendar className="w-5 h-5 mr-2" />
-              <span>Book a 15-Min Call</span>
+              <span>Book a Demo</span>
             </a>
             <p className="font-inter text-sm text-white/70 mt-6">
               No commitment required. Let's explore if Exotiq is right for you.

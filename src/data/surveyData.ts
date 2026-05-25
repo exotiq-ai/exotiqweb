@@ -20,6 +20,11 @@ export interface SurveyData {
   incentive: string;
 }
 
+export interface SurveyLeadFields {
+  name: string;
+  email: string;
+}
+
 export const surveys: Record<string, SurveyData> = {
   small: {
     title: 'Small Fleet Survey',
@@ -95,4 +100,4 @@ export const surveys: Record<string, SurveyData> = {
       { id: 'investment_capacity', type: 'radio', question: 'What would you invest monthly in premium fleet management software that could increase bookings by 30% and reduce operational overhead by 25%?', options: ['$200-499', '$500-999', '$1,000-1,999', '$2,000-4,999', '$5,000+', 'Would need comprehensive ROI analysis'], required: true }
     ]
   }
-}; 
+};

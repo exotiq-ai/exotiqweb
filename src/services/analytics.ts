@@ -317,7 +317,8 @@ export const PerformanceMonitor = {
         const fidObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries();
           entries.forEach((entry) => {
-            const fid = entry.processingStart - entry.startTime;
+            const fidEntry = entry as PerformanceEntry & { processingStart: number };
+            const fid = fidEntry.processingStart - fidEntry.startTime;
             PerformanceMonitor.trackMetric('FID', fid);
             
             if (window.gtag) {

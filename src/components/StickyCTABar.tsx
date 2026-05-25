@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Sparkles } from 'lucide-react';
+import { Calendar, DollarSign } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { DEMO_CTA_URL, ROI_CTA_URL, trackDemoCta, trackRoiCta } from '../utils/conversionCta';
 
 export default function StickyCTABar() {
   const [isVisible, setIsVisible] = useState(false);
@@ -48,9 +50,10 @@ export default function StickyCTABar() {
       <div className="relative px-4 py-3 flex items-center gap-3">
         {/* Primary CTA */}
         <a
-          href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+          href={DEMO_CTA_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackDemoCta('mobile_sticky_book_demo')}
           className="flex-1 flex items-center justify-center gap-2 px-5 py-3 bg-primary-500 active:bg-primary-600 text-white rounded-xl font-montserrat font-semibold text-sm transition-all duration-200 active:scale-[0.98] min-h-[52px] shadow-lg touch-manipulation"
         >
           <Calendar className="w-4 h-4" />
@@ -58,17 +61,15 @@ export default function StickyCTABar() {
         </a>
         
         {/* Secondary CTA */}
-        <a
-          href="https://calendly.com/hello-exotiq/15-minute-meeting"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          to={ROI_CTA_URL}
+          onClick={() => trackRoiCta('mobile_sticky_calculate_roi')}
           className="flex items-center justify-center gap-2 px-5 py-3 bg-accent-600 active:bg-accent-700 text-white rounded-xl font-montserrat font-semibold text-sm transition-all duration-200 active:scale-[0.98] min-h-[52px] shadow-lg touch-manipulation"
         >
-          <Sparkles className="w-4 h-4" />
-          <span>Book a Demo</span>
-        </a>
+          <DollarSign className="w-4 h-4" />
+          <span>Calculate ROI</span>
+        </Link>
       </div>
     </div>
   );
 }
-

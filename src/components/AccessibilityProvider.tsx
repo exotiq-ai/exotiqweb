@@ -121,7 +121,7 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
       }
 
       // Skip if user has text selected (they want to copy)
-      if (window.getSelection()?.toString().length > 0) {
+      if ((window.getSelection()?.toString().length ?? 0) > 0) {
         return;
       }
 

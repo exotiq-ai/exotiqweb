@@ -68,6 +68,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
+
+  <!-- Blog Index -->
+  <url>
+    <loc>https://exotiq.ai/blog</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
   
   <!-- Blog Articles -->
   <url>

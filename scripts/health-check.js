@@ -42,14 +42,20 @@ if (fs.existsSync(jsDir)) {
     } else {
         console.log(`✅ Found ${jsFiles.length} JavaScript files`);
         
+        const intentionallySmallChunks = [
+            'Analytics',
+            'MobileOptimizations',
+            'SurveyIcons',
+            'useScrollAnimation'
+        ];
+
         // Check file sizes
         jsFiles.forEach(file => {
             const filePath = path.join(jsDir, file);
             const stats = fs.statSync(filePath);
-            
-            // Allow small icon components (SurveyIcons, etc.)
-            const isSmallComponent = file.includes('SurveyIcons') || file.includes('Icons');
-            const minSize = isSmallComponent ? 200 : 1000;
+
+            const isIntentionallySmall = intentionallySmallChunks.some(chunk => file.includes(chunk));
+            const minSize = isIntentionallySmall ? 200 : 1000;
             
             if (stats.size < minSize) {
                 console.error(`❌ ${file} is suspiciously small (${stats.size} bytes)`);

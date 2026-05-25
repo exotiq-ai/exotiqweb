@@ -174,7 +174,9 @@ export default function FleetCopilot({ isOpen, onToggle, sessionId, isReturningU
     });
 
     // Track analytics
-    analyticsService.trackMessage(sessionId, newMessage.type, newMessage.content, userProfile.leadScore);
+    if (newMessage.type === 'user' || newMessage.type === 'bot') {
+      analyticsService.trackMessage(sessionId, newMessage.type, newMessage.content, userProfile.leadScore);
+    }
 
     return newMessage;
   };

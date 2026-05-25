@@ -112,7 +112,7 @@ export default function CookieConsentBanner() {
         document.head.appendChild(script);
 
         window.dataLayer = window.dataLayer || [];
-        function gtag(...args: any[]) { window.dataLayer.push(args); }
+        function gtag(...args: any[]) { window.dataLayer?.push(args); }
         window.gtag = gtag;
         gtag('js', new Date());
         gtag('config', import.meta.env.VITE_GA_MEASUREMENT_ID || 'GA_MEASUREMENT_ID', {

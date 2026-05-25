@@ -3,6 +3,7 @@ import { Brain, MessageSquare, Settings, BarChart3 } from 'lucide-react';
 import ChatBotTest from '../components/ChatBot/ChatBotTest';
 import FleetCopilot from '../components/ChatBot/ChatBot';
 import { useChatBot } from '../hooks/useChatBot';
+import SEOHead from '../components/SEOHead';
 
 export default function TestPage() {
   const [showTest, setShowTest] = useState(false);
@@ -15,7 +16,13 @@ export default function TestPage() {
   }, []);
 
   return (
-    <div className="pt-16 min-h-screen bg-gray-50 dark:bg-dark-900">
+    <>
+      <SEOHead
+        title="ChatBot Testing Center - Exotiq.ai"
+        description="Internal chatbot testing center for Exotiq.ai."
+        noindex
+      />
+      <div className="pt-16 min-h-screen bg-gray-50 dark:bg-dark-900">
       {/* Header */}
       <section className="py-12 bg-gradient-to-br from-primary-500 to-accent-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
@@ -192,6 +199,7 @@ export default function TestPage() {
           isReturningUser={false}
         />
       )}
-    </div>
+      </div>
+    </>
   );
 }
