@@ -1,5 +1,5 @@
-import React from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import ExotiqMark from './ExotiqMark';
 
 interface ThemeAwareLogoProps {
   className?: string;
@@ -7,45 +7,39 @@ interface ThemeAwareLogoProps {
   size?: 'header' | 'footer' | 'mobile' | 'loading';
 }
 
+// Mark + wordmark dimensions per slot. The mark:wordmark ratio (~1.4) and the
+// gap (~0.2 of the mark) follow the brand-book horizontal lockup proportions.
+const SLOT = {
+  header: { mark: 38, font: 27 },
+  footer: { mark: 44, font: 31 },
+  mobile: { mark: 32, font: 23 },
+  loading: { mark: 60, font: 44 },
+} as const;
+
 export default function ThemeAwareLogo({
   className = '',
-  alt = 'Exotiq.ai',
-  size = 'header'
+  alt = 'Exotiq',
+  size = 'header',
 }: ThemeAwareLogoProps) {
   const { theme } = useTheme();
-
-  // Choose logo based on theme and size
-  // Footer always uses white logo, others switch based on theme
-  const logoSrc = size === 'footer'
-    ? '/exotiq-lockup-white-transparent.svg'
-    : theme === 'dark'
-      ? '/exotiq-lockup-white-transparent.svg'
-      : '/exotiq-lockup-black-transparent.svg';
-
-  // Size classes with optimized dimensions
-  const sizeClasses = {
-    header: 'logo-optimized logo-header logo-hover',
-    footer: 'logo-optimized logo-footer logo-hover',
-    mobile: 'logo-optimized logo-mobile logo-hover',
-    loading: 'logo-optimized logo-header mx-auto opacity-80'
-  };
-
-  // Explicit dimensions to prevent layout shift (based on actual SVG aspect ratio)
-  // Desktop header increased to 180px for better brand presence
-  const dimensions = {
-    header: { width: 180, height: 41 },
-    footer: { width: 160, height: 37 },
-    mobile: { width: 120, height: 28 },
-    loading: { width: 180, height: 41 }
-  };
+  // Footer sits on the permanent dark surface; everything else follows theme.
+  const onDark = size === 'footer' || theme === 'dark';
+  const { mark, font } = SLOT[size];
 
   return (
-    <img
-      src={logoSrc}
-      alt={alt}
-      width={dimensions[size].width}
-      height={dimensions[size].height}
-      className={`${sizeClasses[size]} ${className}`}
-    />
+    <span
+      className={`logo-hover inline-flex items-center ${onDark ? 'text-white' : 'text-black'} ${className}`}
+      role="img"
+      aria-label={alt}
+      style={{ gap: Math.round(mark * 0.2) }}
+    >
+      <ExotiqMark size={mark} />
+      <span
+        className="font-manrope font-bold leading-none"
+        style={{ fontSize: font, letterSpacing: '-0.045em' }}
+      >
+        exotiq
+      </span>
+    </span>
   );
 }

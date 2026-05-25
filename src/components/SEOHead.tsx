@@ -86,8 +86,8 @@ export default function SEOHead({
       <meta name="twitter:site" content="@Exotiqai" />
       
       {/* Additional Meta Tags */}
-      <meta name="theme-color" content="#2563eb" />
-      <meta name="msapplication-TileColor" content="#2563eb" />
+      <meta name="theme-color" content="#000000" />
+      <meta name="msapplication-TileColor" content="#000000" />
       <meta name="application-name" content="Exotiq.ai" />
       <meta name="apple-mobile-web-app-title" content="Exotiq.ai" />
       <meta name="apple-mobile-web-app-capable" content="yes" />

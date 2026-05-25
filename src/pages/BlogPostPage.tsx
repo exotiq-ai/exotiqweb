@@ -121,7 +121,7 @@ export default function BlogPostPage() {
       name: 'Exotiq.ai',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://exotiq.ai/logo.png',
+        url: 'https://exotiq.ai/exotiq-logo.png',
       },
     },
     mainEntityOfPage: articleUrl,

@@ -5,7 +5,7 @@ export const organizationSchema = {
   "name": "Exotiq AI",
   "alternateName": "Exotiq",
   "url": "https://exotiq.ai",
-  "logo": "https://exotiq.ai/logo.png",
+  "logo": "https://exotiq.ai/exotiq-logo.png",
   "description": "Exotiq provides AI-driven car rental fleet management and Turo automation. Optimize operations and maximize margins for exotic and private rental fleet hosts.",
   "foundingDate": "2024-01-01",
   "founders": [
