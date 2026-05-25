@@ -33,26 +33,26 @@ export default function TermsAndConditionsPage() {
         ])}
       />
 
-      <section className="py-16 bg-gradient-to-br from-primary-500 to-accent-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
-          <div className="font-montserrat text-sm opacity-80 mb-4 tracking-wide uppercase">Exotiq Inc. — a Delaware C-Corporation</div>
-          <h1 className="font-dfaalt font-bold text-4xl md:text-5xl mb-4">Website Terms of Use</h1>
-          <p className="font-montserrat text-lg opacity-90">Terms Governing Access to exotiq.ai and Related Websites</p>
+      <section className="legal-hero legal-hero-accent">
+        <div className="legal-hero-inner">
+          <div className="legal-eyebrow">Exotiq Inc. — a Delaware C-Corporation</div>
+          <h1 className="legal-title">Website Terms of Use</h1>
+          <p className="legal-subtitle">Terms Governing Access to exotiq.ai and Related Websites</p>
         </div>
       </section>
 
-      <div className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 py-4">
-          <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm font-montserrat text-gray-600">
-            <span><strong className="text-gray-900">Effective Date:</strong> January 1, 2026</span>
-            <span><strong className="text-gray-900">Last Updated:</strong> March 2026</span>
+      <div className="legal-meta-bar">
+        <div className="legal-container">
+          <div className="legal-meta">
+            <span><strong>Effective Date:</strong> January 1, 2026</span>
+            <span><strong>Last Updated:</strong> March 2026</span>
           </div>
         </div>
       </div>
 
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
-          <article className="prose prose-gray prose-lg max-w-none prose-headings:font-dfaalt prose-headings:text-gray-900 prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-3 prose-h2:border-b prose-h2:border-gray-200 prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3 prose-p:font-montserrat prose-p:text-gray-700 prose-p:leading-relaxed prose-li:font-montserrat prose-li:text-gray-700 prose-a:text-primary-500 hover:prose-a:text-primary-600 prose-strong:text-gray-900">
+      <section className="legal-content-section">
+        <div className="legal-container">
+          <article className="legal-document">
 
             <p>These Website Terms of Use govern your access to exotiq.ai and driveexotiq.com (collectively, the &quot;Websites&quot;). These do not govern the Exotiq Command Center (app.exotiq.ai), which has separate <a href="/terms">Terms and Conditions</a>.</p>
 
@@ -76,16 +76,16 @@ export default function TermsAndConditionsPage() {
             <p className="uppercase text-sm font-semibold tracking-wide">CLASS ACTION WAIVER: CLAIMS MAY ONLY BE BROUGHT IN INDIVIDUAL CAPACITY.</p>
 
             <h2>Contact</h2>
-            <p><strong>Email:</strong> <a href="mailto:legal@exotiq.ai" className="text-primary-500 hover:text-primary-600">legal@exotiq.ai</a></p>
+            <p><strong>Email:</strong> <a href="mailto:legal@exotiq.ai">legal@exotiq.ai</a></p>
             <p><strong>Address:</strong> Exotiq Inc., 1001 S Main St #6709, Kalispell, MT 59901</p>
 
           </article>
         </div>
       </section>
 
-      <div className="bg-gray-50 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 py-8 text-center">
-          <p className="font-montserrat text-sm text-gray-500">&copy; 2026 Exotiq Inc. All rights reserved.</p>
+      <div className="legal-footer">
+        <div className="legal-footer-inner">
+          <p>&copy; 2026 Exotiq Inc. All rights reserved.</p>
         </div>
       </div>
     </div>

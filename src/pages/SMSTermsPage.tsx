@@ -23,9 +23,9 @@ export default function SMSTermsPage() {
   return (
     <div className="pt-16">
       <SEOHead
-        title="SMS/Text Messaging Consent and Disclosure - Exotiq Inc."
-        description="Exotiq's SMS and text messaging consent policy. TCPA and CTIA compliant disclosure for transactional and marketing text messages from Exotiq and Drive Exotiq."
-        keywords="Exotiq SMS policy, text messaging consent, TCPA compliance, CTIA, Drive Exotiq SMS, opt out"
+        title="SMS Terms and Conditions - Exotiq Inc."
+        description="Exotiq's SMS terms for operator lead-alert notifications, including opt-in, message frequency, STOP, HELP, carrier, and privacy disclosures."
+        keywords="Exotiq SMS terms, text messaging consent, TCPA compliance, CTIA, A2P 10DLC, opt out"
         url="https://exotiq.ai/sms-terms"
         structuredData={breadcrumbSchema([
           { name: "Home", url: "https://exotiq.ai" },
@@ -33,103 +33,104 @@ export default function SMSTermsPage() {
         ])}
       />
 
-      <section className="py-16 bg-gradient-to-br from-violet-500 to-primary-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
-          <div className="font-montserrat text-sm opacity-80 mb-4 tracking-wide uppercase">Exotiq Inc. dba Drive Exotiq — a Delaware C-Corporation</div>
-          <h1 className="font-dfaalt font-bold text-4xl md:text-5xl mb-4">SMS/Text Messaging Consent and Disclosure</h1>
-          <p className="font-montserrat text-lg opacity-90">TCPA and CTIA Compliance</p>
+      <section className="legal-hero legal-hero-primary">
+        <div className="legal-hero-inner">
+          <div className="legal-eyebrow">Exotiq Inc. — a Delaware C-Corporation</div>
+          <h1 className="legal-title">SMS Terms and Conditions</h1>
+          <p className="legal-subtitle">Operator Lead-Alert SMS Notifications</p>
         </div>
       </section>
 
-      <div className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 py-4">
-          <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm font-montserrat text-gray-600">
-            <span><strong className="text-gray-900">Effective Date:</strong> January 1, 2026</span>
-            <span><strong className="text-gray-900">Last Updated:</strong> March 2026</span>
+      <div className="legal-meta-bar">
+        <div className="legal-container">
+          <div className="legal-meta">
+            <span><strong>Effective Date:</strong> May 16, 2026</span>
+            <span><strong>Last Updated:</strong> May 2026</span>
           </div>
         </div>
       </div>
 
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
-          <article className="prose prose-gray prose-lg max-w-none prose-headings:font-dfaalt prose-headings:text-gray-900 prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-3 prose-h2:border-b prose-h2:border-gray-200 prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3 prose-p:font-montserrat prose-p:text-gray-700 prose-p:leading-relaxed prose-li:font-montserrat prose-li:text-gray-700 prose-a:text-primary-500 hover:prose-a:text-primary-600 prose-strong:text-gray-900">
+      <section className="legal-content-section">
+        <div className="legal-container">
+          <article className="legal-document">
 
-            <p>This SMS Policy describes the text messaging programs operated by Exotiq Inc., a Delaware C-Corporation, doing business as Drive Exotiq (&quot;Exotiq,&quot; &quot;Drive Exotiq,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). For consumer-facing SMS, the brand name &quot;Drive Exotiq&quot; is used. For operator-facing SMS, &quot;Exotiq&quot; is used. Both are the same legal entity.</p>
-            <p>This policy complies with the Telephone Consumer Protection Act (&quot;TCPA&quot;), 47 U.S.C. Section 227, the Cellular Telecommunications Industry Association (&quot;CTIA&quot;) Messaging Principles and Best Practices, applicable FCC regulations, and applicable state laws.</p>
+            <p>These SMS Terms and Conditions (&quot;SMS Terms&quot;) govern the SMS notification service provided by Exotiq Inc. (&quot;Exotiq,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) through the Exotiq.ai platform. By opting in to receive SMS notifications, you agree to these SMS Terms.</p>
+            <p>This policy is intended to support compliance with the Telephone Consumer Protection Act (&quot;TCPA&quot;), CTIA Messaging Principles and Best Practices, applicable FCC regulations, carrier messaging rules, and A2P 10DLC campaign registration requirements.</p>
 
-            <h2>Article I: Two Separate SMS Programs</h2>
-            <p>Exotiq operates <strong>two separate and independent SMS programs</strong>. Participation in one does not enroll you in the other.</p>
-            <h3>Section 1.1. Transactional Messages</h3>
-            <p>Booking confirmations, payment receipts, vehicle pickup/return reminders, fleet alerts, AI-generated operational alerts, security notifications, and support communications.</p>
-            <h3>Section 1.2. Marketing and Promotional Messages</h3>
-            <p>Feature announcements, promotional offers, Founding Member updates, event-based marketing, and referral program information.</p>
+            <h2>Article I: Program Description</h2>
+            <p>Exotiq provides an internal lead-alert notification service via SMS for registered operators on the Exotiq.ai platform. When an inbound caller to your business completes a lead capture form, a notification may be sent via SMS to the mobile phone number you have configured in your account settings.</p>
+            <p>These messages are operator-only notifications. No consumer third parties, inbound callers, rental customers, or lead form submitters are messaged through this SMS program.</p>
+            <p>Exotiq may operate separate transactional or marketing SMS programs only where a user provides separate express consent through a clear opt-in disclosure. Participation in the operator lead-alert SMS program does not enroll you in any marketing SMS program, and participation in a marketing SMS program does not enroll you in operator lead-alert notifications.</p>
 
-            <h2>Article II: Consent</h2>
-            <h3>Section 2.1. Opt-In Methods</h3>
-            <p>Consent may be provided by: (a) checking the SMS consent checkbox during registration or booking; (b) texting START to our number; (c) providing your number through a form with clear disclosure; or (d) documented verbal consent.</p>
-            <h3>Section 2.2. Consent Language</h3>
-            <p>Transactional checkbox:</p>
-            <blockquote><p>I consent to receive transactional text messages from Drive Exotiq at the phone number provided (e.g., booking confirmations, reminders, account alerts). Message frequency may vary. Message and data rates may apply. Reply <strong>HELP</strong> for help or <strong>STOP</strong> to opt out.</p></blockquote>
-            <p>Marketing checkbox:</p>
-            <blockquote><p>I consent to receive marketing and promotional text messages from Drive Exotiq at the phone number provided. Message frequency may vary. Message and data rates may apply. Reply <strong>HELP</strong> for help or <strong>STOP</strong> to opt out.</p></blockquote>
+            <h2>Article II: Opt-In and Consent</h2>
+            <h3>Section 2.1. Opt-In Method</h3>
+            <p>You opt in to receive SMS lead notifications by entering your mobile phone number in the notification settings within your Exotiq account dashboard and enabling SMS notifications.</p>
+            <h3>Section 2.2. Consent Disclosure</h3>
+            <p>The SMS opt-in screen states that by entering your mobile number and enabling SMS notifications, you consent to receive SMS lead notification alerts from Exotiq. The screen also discloses that message frequency varies based on inbound lead volume, message and data rates may apply, you may reply <strong>STOP</strong> to opt out, you may reply <strong>HELP</strong> for help, and consent is not a condition of purchase.</p>
+            <blockquote><p>By entering your mobile number and enabling SMS notifications, you consent to receive SMS lead notification alerts from Exotiq. Message frequency varies based on inbound lead volume. Message and data rates may apply. Reply <strong>STOP</strong> to opt out and <strong>HELP</strong> for help. Consent is not a condition of purchase. View our SMS Terms and Privacy Policy.</p></blockquote>
             <h3>Section 2.3. Not Required for Service</h3>
-            <p>Consent is not required as a condition of purchasing any goods or services, booking a vehicle, or creating an account. Checkboxes are never pre-checked.</p>
+            <p>SMS consent is not a condition of purchasing any goods or services from Exotiq. You are not required to opt in to SMS notifications to use the Exotiq platform. Any SMS opt-in checkbox or toggle is optional and is not pre-selected.</p>
 
             <h2>Article III: Message Frequency and Rates</h2>
-            <p>Transactional: 1-5 messages per booking/event. Marketing: no more than 8 per month. Message and data rates may apply.</p>
+            <p>For operator lead-alert notifications, message frequency varies based on inbound lead volume to your business. You will receive one SMS per qualifying lead event. During periods of high lead activity, you may receive multiple messages per day. For any separately consented marketing SMS program, message frequency may vary based on campaign activity. Standard message and data rates may apply depending on your mobile carrier and plan. Exotiq does not charge any fees for SMS notifications.</p>
 
             <h2>Article IV: Opt-Out</h2>
-            <p>Reply <strong>STOP</strong> to any message. Or contact <a href="mailto:support@exotiq.ai" className="text-primary-500 hover:text-primary-600">support@exotiq.ai</a> (operators) / <a href="mailto:support@driveexotiq.com" className="text-primary-500 hover:text-primary-600">support@driveexotiq.com</a> (renters). Reply <strong>PROMO STOP</strong> to opt out of marketing only. Processed immediately via text, within 5 business days via other channels.</p>
+            <p>You may opt out of SMS notifications at any time by replying <strong>STOP</strong> to any message you receive from us, or by removing your phone number from the notification settings in your Exotiq account dashboard.</p>
+            <p>After opting out, you will receive a single confirmation message acknowledging your request. No further SMS messages will be sent unless you re-enroll by adding your phone number back to your notification settings and enabling SMS notifications again.</p>
 
             <h2>Article V: HELP</h2>
-            <p>Reply <strong>HELP</strong> to any message, or contact <a href="mailto:support@exotiq.ai" className="text-primary-500 hover:text-primary-600">support@exotiq.ai</a> / <a href="mailto:support@driveexotiq.com" className="text-primary-500 hover:text-primary-600">support@driveexotiq.com</a>.</p>
+            <p>For assistance, reply <strong>HELP</strong> to any message you receive from us, or contact <a href="mailto:support@exotiq.ai" className="text-primary-500 hover:text-primary-600">support@exotiq.ai</a>.</p>
 
             <h2>Article VI: Carriers and Eligibility</h2>
-            <p>Supported by all major U.S. carriers (AT&amp;T, Verizon, T-Mobile, others). Carriers are not liable for delayed or undelivered messages. U.S. residents only, age 18+.</p>
+            <p>SMS notifications are supported on major U.S. carriers including AT&amp;T, T-Mobile, Verizon, and others. Carrier support is not guaranteed, and delivery may vary. Carriers are not liable for delayed or undelivered messages.</p>
 
             <h2>Article VII: SMS Platform Providers</h2>
-            <div className="not-prose overflow-x-auto my-6 rounded-lg border border-gray-200">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50">
+            <div className="legal-table-wrapper">
+              <table className="legal-table">
+                <thead>
                   <tr>
-                    <th className="px-4 py-3 text-left font-dfaalt font-semibold text-gray-900 border-b border-gray-200">Provider</th>
-                    <th className="px-4 py-3 text-left font-dfaalt font-semibold text-gray-900 border-b border-gray-200">Role</th>
-                    <th className="px-4 py-3 text-left font-dfaalt font-semibold text-gray-900 border-b border-gray-200">Data Processed</th>
+                    <th>Provider</th>
+                    <th>Role</th>
+                    <th>Data Processed</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">GoHighLevel</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Primary SMS platform, CRM, A2P 10DLC</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Phone numbers, messages, consent data</td>
+                    <td>GoHighLevel</td>
+                    <td>Primary SMS platform, CRM, A2P 10DLC</td>
+                    <td>Phone numbers, messages, consent data</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">Twilio</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">SMS delivery infrastructure</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Phone numbers, message content</td>
+                    <td>Twilio</td>
+                    <td>SMS delivery infrastructure</td>
+                    <td>Phone numbers, message content</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <h2>Article VIII: AI Messages (Rari)</h2>
-            <p>Rari may generate text messages regarding bookings. Initial messages include: &quot;This message was sent by Rari, Drive Exotiq&apos;s AI concierge, on behalf of [Operator Name].&quot; Operators using Rari for SMS are responsible for obtaining TCPA-compliant consent from recipients.</p>
+            <h2>Article VIII: Privacy and Third-Party Sharing</h2>
+            <p>Your mobile phone number, SMS opt-in data, and SMS consent will not be sold, rented, shared, or disclosed to third parties or affiliates for their own marketing or promotional purposes.</p>
+            <p>SMS opt-in data and consent may be shared only with service providers, aggregators, carriers, or technology vendors as necessary to provide the SMS notification service.</p>
+            <p>For full details on how we handle your data, please review our <a href="/privacy">Privacy Policy</a>.</p>
 
             <h2>Article IX: Consent Records</h2>
-            <p>We maintain consent records including date, time, method, IP address, and consent language version. Retained for at least five (5) years per TCPA, CTIA, and FCC requirements. We do not sell, rent, or share SMS consent or phone numbers for third-party marketing.</p>
+            <p>We maintain consent records including date, time, method, IP address where available, consent language version, opt-in status, and opt-out history. Consent records are retained as needed to provide the SMS notification service, document compliance, resolve disputes, and satisfy legal obligations.</p>
+
+            <h2>Article X: Modifications</h2>
+            <p>We may update these SMS Terms from time to time. Material changes will be communicated via the Exotiq platform, email, or SMS where permitted. Continued use of the SMS notification service after changes constitutes acceptance of the revised terms.</p>
 
             <h2>Contact</h2>
-            <p><strong>Operators:</strong> <a href="mailto:support@exotiq.ai" className="text-primary-500 hover:text-primary-600">support@exotiq.ai</a></p>
-            <p><strong>Renters:</strong> <a href="mailto:support@driveexotiq.com" className="text-primary-500 hover:text-primary-600">support@driveexotiq.com</a></p>
+            <p><strong>Email:</strong> <a href="mailto:support@exotiq.ai">support@exotiq.ai</a></p>
             <p><strong>Address:</strong> Exotiq Inc., 1001 S Main St #6709, Kalispell, MT 59901</p>
 
           </article>
         </div>
       </section>
 
-      <div className="bg-gray-50 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 py-8 text-center">
-          <p className="font-montserrat text-sm text-gray-500">&copy; 2026 Exotiq Inc. All rights reserved.</p>
+      <div className="legal-footer">
+        <div className="legal-footer-inner">
+          <p>&copy; 2026 Exotiq Inc. All rights reserved.</p>
         </div>
       </div>
     </div>

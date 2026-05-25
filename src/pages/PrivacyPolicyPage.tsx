@@ -33,26 +33,26 @@ export default function PrivacyPolicyPage() {
         ])}
       />
 
-      <section className="py-16 bg-gradient-to-br from-success-600 to-primary-500 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
-          <div className="font-montserrat text-sm opacity-80 mb-4 tracking-wide uppercase">Exotiq Inc. — a Delaware C-Corporation</div>
-          <h1 className="font-dfaalt font-bold text-4xl md:text-5xl mb-4">Privacy Policy</h1>
-          <p className="font-montserrat text-lg opacity-90">How Exotiq Collects, Uses, and Protects Your Information</p>
+      <section className="legal-hero legal-hero-success">
+        <div className="legal-hero-inner">
+          <div className="legal-eyebrow">Exotiq Inc. — a Delaware C-Corporation</div>
+          <h1 className="legal-title">Privacy Policy</h1>
+          <p className="legal-subtitle">How Exotiq Collects, Uses, and Protects Your Information</p>
         </div>
       </section>
 
-      <div className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 py-4">
-          <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm font-montserrat text-gray-600">
-            <span><strong className="text-gray-900">Effective Date:</strong> January 1, 2026</span>
-            <span><strong className="text-gray-900">Last Updated:</strong> March 2026</span>
+      <div className="legal-meta-bar">
+        <div className="legal-container">
+          <div className="legal-meta">
+            <span><strong>Effective Date:</strong> May 16, 2026</span>
+            <span><strong>Last Updated:</strong> May 2026</span>
           </div>
         </div>
       </div>
 
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
-          <article className="prose prose-gray prose-lg max-w-none prose-headings:font-dfaalt prose-headings:text-gray-900 prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-3 prose-h2:border-b prose-h2:border-gray-200 prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3 prose-p:font-montserrat prose-p:text-gray-700 prose-p:leading-relaxed prose-li:font-montserrat prose-li:text-gray-700 prose-a:text-primary-500 hover:prose-a:text-primary-600 prose-strong:text-gray-900">
+      <section className="legal-content-section">
+        <div className="legal-container">
+          <article className="legal-document">
 
             <p>Exotiq Inc. (&quot;Exotiq,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), a Delaware C-Corporation, is committed to protecting the privacy and security of information collected through the Exotiq Command Center platform (&quot;Platform&quot;) and the Drive Exotiq marketplace. This Privacy Policy explains what information we collect, how we use it, who we share it with, and how we protect it.</p>
             <p>This Privacy Policy applies to all users of the Platform, including fleet operators (&quot;Customers&quot;), their authorized users, Vehicle Partners, and renters who interact with Drive Exotiq.</p>
@@ -66,8 +66,10 @@ export default function PrivacyPolicyPage() {
             <p>When you use AI Services, we collect: MotorIQ usage data including pricing queries, applied recommendations, and pricing outcomes; FleetCopilot/Rari conversation logs including text and voice inputs; voice recordings processed through ElevenLabs for the Rari voice agent; and AI recommendation acceptance/rejection patterns used for model improvement.</p>
             <h3>Section 1.4. Technical and Usage Data</h3>
             <p>We automatically collect: IP addresses, browser type, device information, and operating system; pages viewed, features used, and session duration; error logs and performance data; and telematics data received from integrated providers (GPS location, vehicle diagnostics, driving data).</p>
-            <h3>Section 1.5. SMS Consent Data</h3>
-            <p>When you or your renters opt in to SMS/text messaging programs operated by Exotiq or Drive Exotiq, we collect and store: mobile phone numbers; SMS consent preferences (transactional, marketing, or both); the timestamp and IP address at the time of consent; the specific consent language presented at opt-in; and opt-out history and timestamps. These consent records are maintained for at least five (5) years after the last interaction as required for TCPA compliance.</p>
+            <h3>Section 1.5. SMS Notification and Consent Data</h3>
+            <p>When registered operators opt in to SMS lead-alert notifications operated by Exotiq, we collect and store: mobile phone numbers; SMS consent preferences; the timestamp and IP address where available at the time of consent; the specific consent language presented at opt-in; and opt-out history and timestamps. These consent records are maintained as needed to provide the SMS notification service, document compliance, resolve disputes, and satisfy legal obligations.</p>
+            <p>If you are a registered operator on our platform, you may configure your mobile phone number within your account dashboard to receive internal lead-alert notifications via SMS. The phone number you provide is stored in our application infrastructure and is used solely to deliver lead notifications triggered by your own business phone lines.</p>
+            <p>We do not sell, rent, share, or disclose your mobile phone number, SMS opt-in data, or SMS consent to third parties or affiliates for their own marketing or promotional purposes.</p>
 
             <h2>Article II: How We Use Your Information</h2>
             <h3>Section 2.1. Platform Operations</h3>
@@ -75,77 +77,83 @@ export default function PrivacyPolicyPage() {
             <h3>Section 2.2. AI Model Training and Improvement</h3>
             <p>We use aggregated, anonymized operational data to train and improve our proprietary AI models. We do not use individually identifiable Customer Data to train AI models shared across customers without explicit consent.</p>
             <h3>Section 2.3. Communications</h3>
-            <p>We use your contact information to send transactional emails via Resend; transactional and promotional SMS messages via GoHighLevel and Twilio (only with your prior express consent); product updates and feature announcements; and security notifications. You may opt out of non-transactional communications at any time.</p>
+            <p>We use your contact information to send transactional emails via Resend; internal SMS lead-alert notifications via GoHighLevel and Twilio only after you have opted in; product updates and feature announcements; and security notifications. You may opt out of non-transactional communications at any time.</p>
+            <h3>Section 2.4. SMS Data and Consent</h3>
+            <p>We send SMS messages only to registered operators who have explicitly opted in by entering their mobile phone number in the platform&apos;s notification settings and enabling SMS notifications. No consumer third parties, inbound callers, rental customers, or lead form submitters receive SMS messages through this program.</p>
+            <p>Exotiq may operate separate transactional or marketing SMS programs only where a user provides separate express consent through a clear opt-in disclosure. Participation in one SMS program does not enroll you in another SMS program.</p>
+            <p>Message frequency varies based on inbound lead volume. Message and data rates may apply. You may opt out at any time by replying <strong>STOP</strong> to any message or by removing your phone number from your account settings. For help, reply <strong>HELP</strong> to any SMS message or contact <a href="mailto:support@exotiq.ai" className="text-primary-500 hover:text-primary-600">support@exotiq.ai</a>. SMS consent is not a condition of purchasing any goods or services from Exotiq.</p>
+            <p>We do not sell, rent, share, or disclose your mobile phone number, SMS opt-in data, or SMS consent to third parties or affiliates for their own marketing or promotional purposes. SMS opt-in data and consent will not be shared with any third parties, except with aggregators, carriers, and service providers as necessary to provide the SMS messaging service.</p>
 
             <h2>Article III: How We Share Your Information</h2>
             <h3>Section 3.1. Third-Party Service Providers</h3>
-            <div className="not-prose overflow-x-auto my-6 rounded-lg border border-gray-200">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50">
+            <div className="legal-table-wrapper">
+              <table className="legal-table">
+                <thead>
                   <tr>
-                    <th className="px-4 py-3 text-left font-dfaalt font-semibold text-gray-900 border-b border-gray-200">Provider</th>
-                    <th className="px-4 py-3 text-left font-dfaalt font-semibold text-gray-900 border-b border-gray-200">Purpose</th>
-                    <th className="px-4 py-3 text-left font-dfaalt font-semibold text-gray-900 border-b border-gray-200">Data Shared</th>
+                    <th>Provider</th>
+                    <th>Purpose</th>
+                    <th>Data Shared</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">Stripe</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Payment processing</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Transaction data, account information</td>
+                    <td>Stripe</td>
+                    <td>Payment processing</td>
+                    <td>Transaction data, account information</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">Supabase</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Database and storage</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">All platform data (encrypted at rest)</td>
+                    <td>Supabase</td>
+                    <td>Database and storage</td>
+                    <td>All platform data (encrypted at rest)</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">ElevenLabs</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Voice AI (Rari)</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Voice recordings, text prompts</td>
+                    <td>ElevenLabs</td>
+                    <td>Voice AI (Rari)</td>
+                    <td>Voice recordings, text prompts</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">Google (Gemini)</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Demand forecasting</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Anonymized market queries</td>
+                    <td>Google (Gemini)</td>
+                    <td>Demand forecasting</td>
+                    <td>Anonymized market queries</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">OpenAI</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Communication AI</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Text inputs for optimization</td>
+                    <td>OpenAI</td>
+                    <td>Communication AI</td>
+                    <td>Text inputs for optimization</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">Anthropic</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">AI reasoning</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Text inputs for analysis</td>
+                    <td>Anthropic</td>
+                    <td>AI reasoning</td>
+                    <td>Text inputs for analysis</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">Resend</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Email delivery</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Email addresses, recipient names</td>
+                    <td>Resend</td>
+                    <td>Email delivery</td>
+                    <td>Email addresses, recipient names</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">GoHighLevel</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">SMS/text delivery, CRM</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Phone numbers, message content, consent data</td>
+                    <td>GoHighLevel</td>
+                    <td>SMS/text delivery, CRM</td>
+                    <td>Phone numbers, message content, consent data</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">Twilio</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">SMS delivery infrastructure</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Phone numbers, message content</td>
+                    <td>Twilio</td>
+                    <td>SMS delivery infrastructure</td>
+                    <td>Phone numbers, message content</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-montserrat font-medium text-gray-900">Telematics providers*</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Vehicle tracking</td>
-                    <td className="px-4 py-3 font-montserrat text-gray-700">Vehicle ID, account credentials</td>
+                    <td>Telematics providers*</td>
+                    <td>Vehicle tracking</td>
+                    <td>Vehicle ID, account credentials</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <p><em>*Telematics providers include Bouncie, Verizon Connect, and Zubie.</em></p>
+            <p>All third-party sharing excludes SMS opt-in data and consent, except where necessary to provide SMS messaging services through our messaging providers, aggregators, carriers, and service providers.</p>
 
             <h3>Section 3.2. SMS Consent Data</h3>
-            <p>We do not sell, rent, or share your SMS consent or phone number with any third parties for their marketing purposes. Your phone number and SMS consent data may only be shared with: (a) our SMS service providers (GoHighLevel and Twilio) solely for message delivery; and (b) as required by law or legal process.</p>
+            <p>We do not sell, rent, share, or disclose your mobile phone number, SMS opt-in data, or SMS consent to third parties or affiliates for their own marketing or promotional purposes. Your phone number, SMS opt-in data, and SMS consent may only be shared with: (a) aggregators, carriers, messaging providers, and service providers solely as necessary to provide the SMS messaging service; and (b) as required by law or legal process.</p>
             <h3>Section 3.3. No Sale of Personal Data</h3>
             <p>Exotiq does not sell, rent, or trade personal information to third parties for marketing purposes.</p>
 
@@ -183,16 +191,16 @@ export default function PrivacyPolicyPage() {
             <p>Material changes communicated via email at least thirty (30) days before the effective date.</p>
 
             <h2>Contact</h2>
-            <p><strong>Email:</strong> <a href="mailto:privacy@exotiq.ai" className="text-primary-500 hover:text-primary-600">privacy@exotiq.ai</a></p>
+            <p><strong>Email:</strong> <a href="mailto:privacy@exotiq.ai">privacy@exotiq.ai</a></p>
             <p><strong>Address:</strong> Exotiq Inc., 1001 S Main St #6709, Kalispell, MT 59901</p>
 
           </article>
         </div>
       </section>
 
-      <div className="bg-gray-50 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 py-8 text-center">
-          <p className="font-montserrat text-sm text-gray-500">&copy; 2026 Exotiq Inc. All rights reserved.</p>
+      <div className="legal-footer">
+        <div className="legal-footer-inner">
+          <p>&copy; 2026 Exotiq Inc. All rights reserved.</p>
         </div>
       </div>
     </div>
