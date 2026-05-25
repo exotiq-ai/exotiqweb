@@ -25,6 +25,10 @@ export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -72,7 +76,7 @@ export default function HomePage() {
       />
       
       {/* 1. Hero Section - Dark gradient with dashboard screenshot */}
-      <HomeHeroSection isVisible={isVisible} />
+      <HomeHeroSection isVisible={isVisible} scrollToSection={scrollToSection} />
 
       {/* 2. FleetCopilot™ AI Section - Product differentiator */}
       <FleetCopilotSection />

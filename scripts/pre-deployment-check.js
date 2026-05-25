@@ -51,14 +51,14 @@ if (fs.existsSync('src/components/Analytics.tsx')) {
     allChecksPassed = false;
 }
 
-// Check if SEOHead has correct image
+// Check if SEOHead has correct default social image
 console.log('4. Checking SEOHead component...');
 if (fs.existsSync('src/components/SEOHead.tsx')) {
     const content = fs.readFileSync('src/components/SEOHead.tsx', 'utf8');
-    if (content.includes('exotiq-logo-lockup.png')) {
-        console.log('✅ SEOHead has correct image');
+    if (content.includes('og-exotiq-ai-fleet.png')) {
+        console.log('✅ SEOHead has correct social image');
     } else {
-        console.log('❌ SEOHead has incorrect image');
+        console.log('❌ SEOHead has incorrect social image');
         allChecksPassed = false;
     }
 } else {

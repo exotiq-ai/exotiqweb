@@ -62,6 +62,7 @@ export interface BlogDbPost extends Omit<BlogFrontmatter, 'publishDate' | 'updat
   id: string;
   status: BlogStatus;
   bodyMarkdown: string;
+  readingTimeMinutes?: number;
   publishDate: string;
   updatedDate: string;
   createdAt: string;
@@ -89,4 +90,3 @@ export interface BlogLinkCheckResult {
   statusCode?: number;
   message?: string;
 }
-

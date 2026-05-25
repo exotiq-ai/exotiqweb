@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { MobileSection, MobileContainer } from './MobileOptimizations';
 import { Star, Quote } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
@@ -36,7 +37,7 @@ const testimonials = [
 ];
 
 // Bombon-style animation variants
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -47,19 +48,19 @@ const containerVariants = {
   }
 };
 
-const headerVariants = {
+const headerVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.4, 0.25, 1]
+      ease: [0.25, 0.4, 0.25, 1] as const
     }
   }
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: (i: number) => ({
     opacity: 1,
@@ -68,12 +69,12 @@ const cardVariants = {
     transition: {
       duration: 0.5,
       delay: 0.2 + i * 0.1,
-      ease: [0.25, 0.4, 0.25, 1]
+      ease: [0.25, 0.4, 0.25, 1] as const
     }
   })
 };
 
-const starVariants = {
+const starVariants: Variants = {
   hidden: { opacity: 0, scale: 0 },
   visible: (i: number) => ({
     opacity: 1,
@@ -81,7 +82,7 @@ const starVariants = {
     transition: {
       duration: 0.3,
       delay: i * 0.05,
-      type: "spring",
+      type: "spring" as const,
       stiffness: 500,
       damping: 25
     }
