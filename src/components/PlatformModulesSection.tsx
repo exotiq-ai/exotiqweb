@@ -18,6 +18,7 @@ const modules = [
     color: 'primary',
     gradient: 'from-blue-500/20 to-cyan-500/10',
     borderColor: 'border-blue-500/30',
+    glow: 'rgba(59, 130, 246, 0.35)',
     iconBg: 'bg-blue-500/20',
     iconColor: 'text-blue-400',
     description: 'AI-powered dynamic pricing that watches competitor pricing, local events, and demand to adjust your rates in real-time. Set your floor, set your ceiling, let AI maximize every booking.',
@@ -38,6 +39,7 @@ const modules = [
     color: 'accent',
     gradient: 'from-orange-500/20 to-amber-500/10',
     borderColor: 'border-orange-500/30',
+    glow: 'rgba(249, 115, 22, 0.35)',
     iconBg: 'bg-orange-500/20',
     iconColor: 'text-orange-400',
     description: 'Your entire fleet on one screen. See which vehicles are booked, which are sitting idle, where demand is heating up. Zero spreadsheets, zero guessing.',
@@ -58,6 +60,7 @@ const modules = [
     color: 'success',
     gradient: 'from-emerald-500/20 to-green-500/10',
     borderColor: 'border-emerald-500/30',
+    glow: 'rgba(16, 185, 129, 0.35)',
     iconBg: 'bg-emerald-500/20',
     iconColor: 'text-emerald-400',
     description: 'Stop giving away 25-40% of every booking. Unified calendar, customer intelligence, and MotorIQ pricing sync. Your customers, your data, your revenue.',
@@ -78,6 +81,7 @@ const modules = [
     color: 'warning',
     gradient: 'from-amber-500/20 to-yellow-500/10',
     borderColor: 'border-amber-500/30',
+    glow: 'rgba(245, 158, 11, 0.35)',
     iconBg: 'bg-amber-500/20',
     iconColor: 'text-amber-400',
     description: 'One lapsed policy can sink your business. Vault tracks every deadline, generates every document, and alerts you before anything slips.',
@@ -98,6 +102,7 @@ const modules = [
     color: 'copilot',
     gradient: 'from-emerald-400/20 to-teal-500/10',
     borderColor: 'border-emerald-400/30',
+    glow: 'rgba(20, 184, 166, 0.35)',
     iconBg: 'bg-emerald-500/20',
     iconColor: 'text-emerald-400',
     description: 'Talk to it like a teammate. Voice commands, smart scheduling, condition-based estimates. The admin work that took hours now takes seconds.',
@@ -147,27 +152,35 @@ const ModuleCard: React.FC<{ module: typeof modules[0]; index: number; isReverse
           >
             {/* Screenshot Frame */}
             <div className="relative group">
-              {/* Glow effect */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-white/5 to-white/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Always-on colored spotlight glow */}
+              <div
+                className="absolute -inset-6 rounded-[2rem] blur-2xl opacity-50 group-hover:opacity-90 transition-opacity duration-500 pointer-events-none"
+                style={{ background: `radial-gradient(60% 60% at 50% 40%, ${module.glow}, transparent 75%)` }}
+              />
               
-              {/* Screenshot Container - Clean UI frame */}
-              <div className="relative bg-dark-800/80 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              {/* Screenshot Container - Elevated UI frame */}
+              <div
+                className="relative bg-dark-800/90 rounded-2xl overflow-hidden border border-white/15 ring-1 ring-white/5 transition-transform duration-500 group-hover:-translate-y-1"
+                style={{ boxShadow: `0 30px 60px -15px rgba(0,0,0,0.7), 0 0 40px -8px ${module.glow}` }}
+              >
                 {/* Browser-style top bar */}
-                <div className="flex items-center gap-2 px-4 py-3 bg-dark-900/50 border-b border-white/5">
+                <div className="flex items-center gap-2 px-4 py-3 bg-dark-900/70 border-b border-white/10">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-500/80" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                     <div className="w-3 h-3 rounded-full bg-green-500/80" />
                   </div>
                   <div className="flex-1 mx-4">
-                    <div className="bg-dark-700/50 rounded-md px-3 py-1 text-xs text-gray-500 font-mono">
+                    <div className="bg-dark-700/60 rounded-md px-3 py-1 text-xs text-gray-400 font-mono">
                       app.exotiq.ai/{module.id}
                     </div>
                   </div>
                 </div>
                 
                 {/* Screenshot Image - Scaled to fit full app view */}
-                <div className="aspect-[16/10] bg-dark-900 overflow-hidden relative">
+                <div className="aspect-[16/10] bg-gradient-to-br from-dark-800 to-dark-900 overflow-hidden relative">
+                  {/* top sheen */}
+                  <div className="absolute inset-x-0 top-0 h-px bg-white/10 z-10 pointer-events-none" />
                   <div className="absolute inset-0 flex items-center justify-center p-2">
                     <img
                       src={module.screenshot}

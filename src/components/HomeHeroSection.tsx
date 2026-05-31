@@ -4,10 +4,9 @@ import { MobileContainer } from './MobileOptimizations';
 
 interface HomeHeroSectionProps {
   isVisible: boolean;
-  scrollToSection: (id: string) => void;
 }
 
-const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible, scrollToSection }) => (
+const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
     {/* Background Image with Overlay */}
     <div 
@@ -34,7 +33,11 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible, scrollToSe
           </p>
           <div className="flex justify-center px-4">
             <button
-              onClick={() => scrollToSection('platform-features')}
+              onClick={() =>
+                document
+                  .getElementById('platform-features')
+                  ?.scrollIntoView({ behavior: 'smooth' })
+              }
               className="group font-poppins font-bold text-xs sm:text-sm uppercase tracking-wide px-6 sm:px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2 justify-center min-h-[48px] touch-manipulation shadow-lg hover:shadow-xl"
             >
               <span>View Platform Features</span>
