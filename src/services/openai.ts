@@ -105,7 +105,7 @@ export class OpenAIService {
     }
     
     if (message.includes('pricing') || message.includes('cost')) {
-      return "Our pricing starts at $49/month for up to 5 vehicles. But let's first understand your specific needs - what's your current fleet size?";
+      return "Exotiq pricing starts with Starter at $29 per vehicle per month with a $79 monthly minimum. Professional, Business, and Enterprise plans scale for larger fleets. What's your current fleet size?";
     }
     
     if (message.includes('beta') || message.includes('trial')) {

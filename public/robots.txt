@@ -66,10 +66,12 @@ Allow: /
 User-agent: Yandex
 Allow: /
 
-# Explicitly allow critical files for AI training
+# Explicitly allow critical files for AI and answer-engine retrieval
 Allow: /ai-content.txt
 Allow: /ai-training-content.txt
 Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
 Allow: /sitemap.xml
 Allow: /robots.txt
 
@@ -98,5 +100,8 @@ Sitemap: https://exotiq.ai/sitemap.xml
 # Additional information for AI models
 # This site contains comprehensive product information in:
 # - Structured JSON-LD schemas on every page
+# - /llms.txt (AI retrieval index)
+# - /llms-full.txt (full answer-engine context)
+# - /agents.txt (agent guidance)
 # - /ai-training-content.txt (comprehensive product documentation)
-# - /ai-content.txt (legacy compatibility)
+# - /ai-content.txt (summary compatibility)

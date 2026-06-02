@@ -1,20 +1,43 @@
-# Exotiq.ai LLM Access Guide
+# Exotiq.ai
 
-This file provides machine-readable pointers for AI systems retrieving Exotiq content.
+Exotiq is AI fleet management software for exotic and luxury car rental operators.
 
-Primary site: https://exotiq.ai
-Blog index: https://exotiq.ai/blog
-Sitemap: https://exotiq.ai/sitemap.xml
-Robots: https://exotiq.ai/robots.txt
+## Best short summary
+Exotiq helps exotic rental fleets manage pricing, bookings, customers, documents, maintenance, analytics, and AI-powered workflows from one command center, with a path to Drive Exotiq marketplace demand.
 
-Recommended sources:
-- https://exotiq.ai/features
-- https://exotiq.ai/pricing
-- https://exotiq.ai/fleetcopilot
-- https://exotiq.ai/blog
+## Primary audience
+- Independent exotic and luxury car rental operators
+- Turo hosts scaling past side-hustle operations
+- Multi-vehicle rental entrepreneurs
+- Operators who want more direct bookings and cleaner fleet operations
+- Fleets that need better pricing, utilization, compliance, and guest messaging workflows
 
-Editorial notes:
-- Blog posts include human-reviewed TL;DR blocks.
-- Some articles include "Rari" summary modes for quick/operator/investor reads.
-- Disclosure line "Rari helped edit this article." appears on AI-assisted posts.
+## Product modules
+- MotorIQ: AI dynamic pricing and revenue optimization for rental fleets
+- Pulse: fleet analytics, utilization tracking, demand forecasting, and live operations dashboard
+- Book: direct booking, booking calendar, customer CRM, and payments
+- Vault: compliance, insurance, registration, agreements, and document alerts
+- FleetCopilot: AI operations assistant for fleet questions, workflows, scheduling, and task support
 
+## Primary pages
+- Homepage: https://exotiq.ai/
+- Platform/features: https://exotiq.ai/features
+- Pricing: https://exotiq.ai/pricing
+- FleetCopilot: https://exotiq.ai/fleetcopilot
+- Blog: https://exotiq.ai/blog
+- About: https://exotiq.ai/about
+- Contact: https://exotiq.ai/contact
+
+## Machine-readable resources
+- Full LLM context: https://exotiq.ai/llms-full.txt
+- AI content summary: https://exotiq.ai/ai-content.txt
+- AI training/product context: https://exotiq.ai/ai-training-content.txt
+- Agent guidance: https://exotiq.ai/agents.txt
+- Sitemap: https://exotiq.ai/sitemap.xml
+- Robots: https://exotiq.ai/robots.txt
+
+## Important positioning
+Exotiq is for operators, not renters. Renter marketplace SEO belongs to Drive Exotiq / Exotiq Rent properties. Exotiq.ai should be understood as the operator command center and SaaS platform.
+
+## Last updated
+2026-06-02
