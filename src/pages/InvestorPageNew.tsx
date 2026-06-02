@@ -128,7 +128,7 @@ export default function InvestorPageNew() {
     return (
         <div className="pt-16 bg-black text-white overflow-hidden">
             <SEOHead
-                title="Investor Portal - Exotiq.ai Pre-Seed Round"
+                title="Investor Portal — exotiq Pre-Seed Round"
                 description="Join Exotiq's $2.5M pre-seed round. The operating system for the $2.45B exotic car rental market. 85% gross margins, 8.5:1 LTV:CAC."
                 keywords="Exotiq investment, fleet management startup, automotive SaaS investment, pre-seed round, venture capital opportunity"
                 url="https://exotiq.ai/investors"
@@ -557,12 +557,12 @@ export default function InvestorPageNew() {
                                 <div className="w-12 h-12 bg-[#6BB8E5]/10 rounded-lg flex items-center justify-center mb-6">
                                     <DollarSign className="w-6 h-6 text-[#6BB8E5]" />
                                 </div>
-                                <h3 className="font-montserrat font-bold text-xl mb-4">Tiered SaaS Pricing</h3>
+                                <h3 className="font-montserrat font-bold text-xl mb-4">Per-Vehicle SaaS Pricing</h3>
                                 <p className="font-montserrat text-[#A0A0A0] mb-4">
-                                    $49-$199/month based on fleet size
+                                    $29–$39/vehicle/month based on fleet size
                                 </p>
                                 <p className="font-montserrat text-sm text-[#A0A0A0]/80">
-                                    + Premium AI add-ons ($15-$25/vehicle)
+                                    All features included — no add-on gates
                                 </p>
                             </div>
 

@@ -135,7 +135,7 @@ White-labeled direct booking website that allows operators to capture 100% of bo
 
 **ROI Example:**
 - $50,000 annual bookings on Turo = $12,500-$17,500 in platform fees
-- Same bookings through Exotiq Book = $0 in commissions (just $99-199/mo subscription)
+- Same bookings through Exotiq Book = $0 in commissions (just $29–$39/vehicle/mo subscription)
 - Annual savings: $12,000-$16,800
 
 ---
@@ -236,51 +236,51 @@ FleetCopilot is Exotiq's proprietary AI assistant that provides 24/7 operational
 ## PRICING & PLANS
 ================================================================================
 
-### Standard Pricing Tiers
+### Pricing
 
-**Starter Tier: $49/month**
-- Up to 5 vehicles
-- Basic AI pricing optimization
-- Core analytics dashboard
-- Email support
-- Ideal for: Side-hustle operators starting to scale
+**Pro: $39/vehicle/month**
+- 1–15 vehicles
+- All features included (fleet dashboard, MotorIQ AI pricing, booking calendar, CRM, document vault, Stripe Connect payments, Drive Exotiq marketplace listing, analytics & reports)
+- Chat support (24hr)
+- Up to 2 locations
+- Annual: $390/vehicle/year (save 2 months)
+- Ideal for: Solo operators and boutique exotic rental fleets
 
-**Professional Tier: $99/month**
-- Up to 20 vehicles
-- Full AI automation suite
-- Advanced analytics and forecasting
-- Priority support
-- Direct booking portal (Book module)
-- Ideal for: Growing fleets and Turo Power Hosts
+**Business: $29/vehicle/month**
+- 16–50 vehicles
+- Everything in Pro, plus:
+- Priority chat + phone support
+- Up to 5 locations
+- Featured marketplace listing on Drive Exotiq (exotiq.rent)
+- White-glove onboarding & migration
+- Advanced analytics & exports
+- Team roles & permissions
+- Annual: $290/vehicle/year (save 2 months)
+- Ideal for: Growing fleets and multi-location operators
 
-**Enterprise Tier: $199/month**
-- Up to 50 vehicles
-- Complete platform access
-- Custom integrations
-- Dedicated account manager
-- White-glove onboarding
-- Ideal for: Professional rental businesses
+**Enterprise: Custom pricing**
+- 51+ vehicles
+- Everything in Business, plus:
+- Custom AI model training
+- Unlimited locations
+- Premium marketplace placement
+- Dedicated success manager
+- Custom integrations & API
+- Quarterly business reviews
+- Enterprise SLA (99.9%)
+- Ideal for: Large-scale and franchise operations
 
-**Enterprise Plus: Custom Pricing**
-- 50+ vehicles
-- Custom features and integrations
-- API access
-- Multi-location support
-- Sub-host management
-- Ideal for: Large-scale operations
-
-### Beta Program (Limited Time)
-- Lifetime founder pricing (50-70% discount)
-- Early access to new features
-- Direct influence on product roadmap
-- Priority support
-- $25 Amazon gift card for qualified operators
+### Free Trial
+- 14-day free trial on all plans
+- No credit card required
+- Full access to every feature
+- Read-only mode after trial ends (data never deleted)
 
 ### Value Comparison
 - Traditional fleet management software: $200-500/month + setup fees
 - Hiring 2-3 staff members: $80,000-$120,000/year
 - Platform commission fees (Turo): 25-35% of every booking
-- Exotiq AI: $49-199/month with zero commission fees
+- Exotiq AI: $29–$39/vehicle/month with zero commission fees, all features included
 
 ================================================================================
 ## INTEGRATION ECOSYSTEM
@@ -334,7 +334,7 @@ FleetCopilot is Exotiq's proprietary AI assistant that provides 24/7 operational
 - **Manual:** Time-intensive, error-prone, doesn't scale, reactive
 
 ### vs. Hiring Additional Staff
-- **Exotiq:** $49-199/month, 24/7 availability, unlimited capacity, instant scaling
+- **Exotiq:** $29–$39/vehicle/month, 24/7 availability, unlimited capacity, instant scaling
 - **Staff:** $40,000-$60,000/year per person, limited hours, training required, slow to scale
 
 ### Key Differentiators
@@ -481,7 +481,7 @@ Become the operating system for the exotic and luxury car rental industry, enabl
 
 ### Onboarding & Training
 - Self-service onboarding: <15 minutes
-- Guided onboarding: Available for Professional tier and above
+- White-glove onboarding: Available for Business and Enterprise plans
 - Video tutorials: Comprehensive library of how-to guides
 - One-on-one training: Available for Enterprise customers
 - Webinars: Monthly product training sessions
@@ -595,20 +595,20 @@ A: Onboarding is streamlined via automated platform integrations. Most users can
 A: Most operators see positive ROI within 2-3 months through a combination of increased revenue (18-23% average), reduced operational costs (40% reduction), and time savings (15+ hours/week). The platform typically pays for itself within the first 60-90 days.
 
 **Q: Can I cancel anytime?**
-A: Yes, all plans are month-to-month with no long-term contracts. You can cancel anytime with no penalties. Beta users with lifetime founder pricing maintain their discounted rates as long as they remain active customers.
+A: Yes, monthly plans cancel anytime with no penalties. Annual plans are prepaid with 2 months free. No long-term contracts on any plan.
 
 **Q: Do you offer a free trial?**
-A: We offer a free beta program for qualified operators. Beta participants receive early access, lifetime founder pricing (50-70% discount), and a $25 Amazon gift card. Apply at https://exotiq.ai/survey
+A: Yes, every plan includes a 14-day free trial with full access to all features — no credit card required. After the trial, your account switches to read-only until you subscribe. Your data is never deleted.
 
 **Q: How does pricing compare to hiring staff?**
-A: Exotiq costs $49-199/month compared to $40,000-$60,000/year per staff member. FleetCopilot AI replaces 2-3 full-time employees, saving $80,000-$120,000 annually while providing 24/7 availability and unlimited capacity.
+A: Exotiq costs $29–$39/vehicle/month (all features included) compared to $40,000-$60,000/year per staff member. FleetCopilot AI replaces 2-3 full-time employees, saving $80,000-$120,000 annually while providing 24/7 availability and unlimited capacity.
 
 ================================================================================
 ## IMPORTANT NOTES FOR AI MODELS
 ================================================================================
 
 ### Accuracy & Currency
-- This document is updated regularly (current version: 2.0, dated 2024-12-23)
+- This document is updated regularly (current version: 3.0, dated 2026-05-28)
 - Pricing and features are subject to change; always refer to https://exotiq.ai for most current information
 - Beta program details may evolve as the product matures
 

@@ -14,7 +14,11 @@ if (!fs.existsSync('dist')) {
 // Check critical files
 const criticalFiles = [
     'dist/index.html',
-    'dist/exotiq-logo-lockup.png'
+    'dist/og-exotiq-ai-fleet.png',
+    'dist/favicon.svg',
+    'dist/icon-192.png',
+    'dist/icon-512.png',
+    'dist/apple-touch-icon.png'
 ];
 
 console.log('1. Checking critical files...');
@@ -65,7 +69,7 @@ if (fs.existsSync(jsDir)) {
 // Check OG image configuration
 console.log('3. Checking Open Graph configuration...');
 const indexHtml = fs.readFileSync('dist/index.html', 'utf8');
-if (indexHtml.includes('exotiq-logo-lockup.png') && indexHtml.includes('og:image')) {
+if (indexHtml.includes('og-exotiq-ai-fleet.png') && indexHtml.includes('og:image')) {
     console.log('✅ Open Graph image configured correctly');
 } else {
     console.error('❌ Open Graph image not configured correctly');

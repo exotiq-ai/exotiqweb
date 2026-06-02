@@ -118,7 +118,7 @@ export default function BlogPostPage() {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Exotiq.ai',
+      name: 'exotiq',
       logo: {
         '@type': 'ImageObject',
         url: 'https://exotiq.ai/logo.png',

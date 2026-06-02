@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Moon, Sun, Home, BarChart3, Users, Mail, TrendingUp, Building, BookOpen, Tag, Flame } from 'lucide-react';
+import { Menu, X, Moon, Sun, Home, BarChart3, Users, Mail, TrendingUp, Building, BookOpen, Tag, Zap } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import ThemeAwareLogo from './ThemeAwareLogo';
-import { founderConfig } from '../data/pricingData';
 
 const MOBILE_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
 
@@ -108,21 +107,15 @@ export default function MobileNavigation() {
           {/* Menu Panel */}
           <div className="fixed top-16 left-0 right-0 bottom-0 bg-white dark:bg-dark-900 overflow-y-auto">
             <div className="p-6">
-              {/* Founder pricing chip — only shown while the offer is active
-                  and the user isn't already on /pricing. */}
-              {founderConfig.isActive() && location.pathname !== '/pricing' && (
+              {location.pathname !== '/pricing' && (
                 <Link
                   to="/pricing"
                   onClick={() => setIsMenuOpen(false)}
-                  aria-label={`Founder pricing — ${founderConfig.spotsRemaining} of ${founderConfig.totalSpots} spots remaining, ends ${founderConfig.deadlineLabel}`}
-                  className="flex items-center justify-between gap-3 mb-6 px-4 py-3 rounded-xl bg-orange-500/10 border border-orange-500/30 text-orange-700 dark:text-orange-300"
+                  className="flex items-center gap-3 mb-6 px-4 py-3 rounded-xl bg-primary-500/10 border border-primary-500/30 text-primary-600 dark:text-primary-300"
                 >
                   <span className="flex items-center gap-2 font-inter font-semibold text-sm">
-                    <Flame className="w-4 h-4" aria-hidden="true" />
-                    Founder pricing — {founderConfig.spotsRemaining} spots left
-                  </span>
-                  <span className="font-inter text-xs opacity-80">
-                    ends {founderConfig.deadlineShortLabel}
+                    <Zap className="w-4 h-4" aria-hidden="true" />
+                    Launch pricing — lock in before 2027
                   </span>
                 </Link>
               )}

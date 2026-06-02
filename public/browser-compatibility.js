@@ -268,7 +268,7 @@
     }
 
     console.log('✅ Browser compatibility check complete');
-    console.log('🌐 Exotiq.ai optimized for:', Object.keys(browserInfo).filter(key => browserInfo[key]).join(', '));
+    console.log('🌐 exotiq optimized for:', Object.keys(browserInfo).filter(key => browserInfo[key]).join(', '));
 
 })();
 

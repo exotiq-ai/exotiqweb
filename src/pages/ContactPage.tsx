@@ -90,9 +90,9 @@ export default function ContactPage() {
   return (
     <div className="pt-16">
       <SEOHead
-        title="Contact Exotiq.ai - Get in Touch with Our Team"
-        description="Contact Exotiq.ai for beta access, partnerships, investor relations, or support. We respond to general inquiries within 24-48 hours and partnership inquiries same day."
-        keywords="contact Exotiq.ai, fleet management support, beta access request, partnership inquiry, investor relations, customer support"
+        title="Contact exotiq — Get in Touch with Our Team"
+        description="Contact exotiq for beta access, partnerships, investor relations, or support. We respond to general inquiries within 24-48 hours and partnership inquiries same day."
+        keywords="contact exotiq, fleet management support, beta access request, partnership inquiry, investor relations, customer support"
         url="https://exotiq.ai/contact"
         structuredData={breadcrumbSchema([
           { name: "Home", url: "https://exotiq.ai" },

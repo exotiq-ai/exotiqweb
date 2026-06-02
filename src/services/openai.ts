@@ -105,7 +105,7 @@ export class OpenAIService {
     }
     
     if (message.includes('pricing') || message.includes('cost')) {
-      return "Our pricing starts at $49/month for up to 5 vehicles. But let's first understand your specific needs - what's your current fleet size?";
+      return "Our pricing is simple: $39/vehicle/month for Pro (1–15 vehicles) and $29/vehicle/month for Business (16–50 vehicles). All features included on every plan, and you can start with a 14-day free trial — no credit card required. What's your current fleet size?";
     }
     
     if (message.includes('beta') || message.includes('trial')) {

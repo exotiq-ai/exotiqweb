@@ -187,15 +187,15 @@ function createBetaSignupEmailHTML(formData: any, timestamp: string): string {
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>New Beta Signup - Exotiq.ai</title>
+      <title>New Beta Signup - exotiq</title>
     </head>
     <body style="font-family: 'Inter', Arial, sans-serif; line-height: 1.6; color: #374151; background-color: #f9fafb; margin: 0; padding: 20px;">
       <div style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
         <!-- Header -->
         <div style="background: linear-gradient(135deg, #2563eb 0%, #ea580c 100%); padding: 30px; text-align: center;">
-          <img src="https://exotiq.ai/Exotiq%20Lockup.png" alt="Exotiq.ai" style="height: 40px; width: auto; filter: brightness(0) invert(1);">
+          <img src="https://exotiq.ai/brand/exotiq-lockup-horizontal-white.svg" alt="exotiq" style="height: 40px; width: auto;">
           <h1 style="color: white; margin: 20px 0 10px 0; font-size: 24px; font-weight: bold;">New Beta Signup! 🚀</h1>
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 16px;">Someone wants to join the Exotiq.ai beta program</p>
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 16px;">Someone wants to join the exotiq beta program</p>
         </div>
         
         <!-- Content -->
@@ -234,13 +234,13 @@ function createContactFormEmailHTML(formData: any, timestamp: string): string {
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>New Contact Form - Exotiq.ai</title>
+      <title>New Contact Form - exotiq</title>
     </head>
     <body style="font-family: 'Inter', Arial, sans-serif; line-height: 1.6; color: #374151; background-color: #f9fafb; margin: 0; padding: 20px;">
       <div style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
         <!-- Header -->
         <div style="background: linear-gradient(135deg, #2563eb 0%, #ea580c 100%); padding: 30px; text-align: center;">
-          <img src="https://exotiq.ai/Exotiq%20Lockup.png" alt="Exotiq.ai" style="height: 40px; width: auto; filter: brightness(0) invert(1);">
+          <img src="https://exotiq.ai/brand/exotiq-lockup-horizontal-white.svg" alt="exotiq" style="height: 40px; width: auto;">
           <h1 style="color: white; margin: 20px 0 10px 0; font-size: 24px; font-weight: bold;">New Contact Form 📧</h1>
           <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 16px;">Someone reached out through the contact form</p>
         </div>

@@ -54,11 +54,11 @@ export default function SMSTermsPage() {
         <div className="legal-container">
           <article className="legal-document">
 
-            <p>These SMS Terms and Conditions (&quot;SMS Terms&quot;) govern the SMS notification service provided by Exotiq Inc. (&quot;Exotiq,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) through the Exotiq.ai platform. By opting in to receive SMS notifications, you agree to these SMS Terms.</p>
+            <p>These SMS Terms and Conditions (&quot;SMS Terms&quot;) govern the SMS notification service provided by Exotiq Inc. (&quot;Exotiq,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) through the exotiq platform. By opting in to receive SMS notifications, you agree to these SMS Terms.</p>
             <p>This policy is intended to support compliance with the Telephone Consumer Protection Act (&quot;TCPA&quot;), CTIA Messaging Principles and Best Practices, applicable FCC regulations, carrier messaging rules, and A2P 10DLC campaign registration requirements.</p>
 
             <h2>Article I: Program Description</h2>
-            <p>Exotiq provides an internal lead-alert notification service via SMS for registered operators on the Exotiq.ai platform. When an inbound caller to your business completes a lead capture form, a notification may be sent via SMS to the mobile phone number you have configured in your account settings.</p>
+            <p>Exotiq provides an internal lead-alert notification service via SMS for registered operators on the exotiq platform. When an inbound caller to your business completes a lead capture form, a notification may be sent via SMS to the mobile phone number you have configured in your account settings.</p>
             <p>These messages are operator-only notifications. No consumer third parties, inbound callers, rental customers, or lead form submitters are messaged through this SMS program.</p>
             <p>Exotiq may operate separate transactional or marketing SMS programs only where a user provides separate express consent through a clear opt-in disclosure. Participation in the operator lead-alert SMS program does not enroll you in any marketing SMS program, and participation in a marketing SMS program does not enroll you in operator lead-alert notifications.</p>
 

@@ -54,7 +54,7 @@ const PageLoadingFallback = () => (
 // Lightweight 404 fallback so unknown routes don't render a blank <main>
 const NotFoundRoute = () => {
   useEffect(() => {
-    document.title = 'Page Not Found - Exotiq.ai';
+    document.title = 'Page Not Found | exotiq';
     if (typeof window !== 'undefined') {
       const w = window as typeof window & {
         dataLayer?: Array<Record<string, unknown>>;

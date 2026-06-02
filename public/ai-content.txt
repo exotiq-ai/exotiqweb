@@ -1,7 +1,7 @@
-# Exotiq.ai - AI-Powered Fleet Management Platform
+# exotiq — The AI command center for exotic car rental operations
 
 ## Company Overview
-Exotiq.ai is an AI-powered fleet management platform designed for exotic car rental operators and Turo hosts. Built by operators who scaled to 15+ vehicles, the platform automates pricing, maintenance, guest communications, and operations.
+exotiq is the AI command center for exotic car rental operators and Turo hosts. Built by operators who scaled to 15+ vehicles, the platform automates pricing, maintenance, guest communications, and operations.
 
 ## Core Value Proposition
 Turn wasted hours into revenue-generating time. Automate pricing, availability, maintenance, and guest messaging with AI built for fleet operators.

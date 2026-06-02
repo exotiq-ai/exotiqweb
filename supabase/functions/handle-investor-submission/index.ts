@@ -266,7 +266,7 @@ function createWelcomeEmailHTML(submission: InvestorSubmission): string {
       <div style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
         <!-- Header -->
         <div style="background: linear-gradient(135deg, #2563eb 0%, #ea580c 100%); padding: 30px; text-align: center;">
-          <img src="https://exotiq.ai/exotiq_4k_transparent_background.png" alt="Exotiq.ai" style="height: 40px; width: auto; filter: brightness(0) invert(1);">
+          <img src="https://exotiq.ai/brand/exotiq-lockup-horizontal-white.svg" alt="exotiq" style="height: 40px; width: auto;">
           <h1 style="color: white; margin: 20px 0 10px 0; font-size: 24px; font-weight: bold;">Welcome to Exotiq! 🚀</h1>
           <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 16px;">Thank you for your investment interest</p>
         </div>
@@ -292,7 +292,7 @@ function createWelcomeEmailHTML(submission: InvestorSubmission): string {
           <p style="margin: 20px 0; font-size: 16px;">In the meantime, feel free to explore our website to learn more about our platform and vision.</p>
           
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://exotiq.ai" style="background-color: #2563eb; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">Visit Exotiq.ai</a>
+            <a href="https://exotiq.ai" style="background-color: #6EC1E4; color: #000000; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">Visit exotiq</a>
           </div>
           
           <p style="margin: 20px 0 0 0; font-size: 16px;">Best regards,<br>The Exotiq Team</p>
@@ -335,13 +335,13 @@ function createNotificationEmailHTML(submission: InvestorSubmission, investorId:
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>New Investor Interest - Exotiq.ai</title>
+      <title>New Investor Interest - exotiq</title>
     </head>
     <body style="font-family: 'Inter', Arial, sans-serif; line-height: 1.6; color: #374151; background-color: #f9fafb; margin: 0; padding: 20px;">
       <div style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
         <!-- Header -->
         <div style="background: linear-gradient(135deg, #2563eb 0%, #ea580c 100%); padding: 30px; text-align: center;">
-          <img src="https://exotiq.ai/exotiq_4k_transparent_background.png" alt="Exotiq.ai" style="height: 40px; width: auto; filter: brightness(0) invert(1);">
+          <img src="https://exotiq.ai/brand/exotiq-lockup-horizontal-white.svg" alt="exotiq" style="height: 40px; width: auto;">
           <h1 style="color: white; margin: 20px 0 10px 0; font-size: 24px; font-weight: bold;">New Investor Interest! 💰</h1>
           <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 16px;">Someone wants to invest in Exotiq</p>
         </div>
