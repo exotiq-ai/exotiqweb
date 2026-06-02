@@ -24,7 +24,9 @@ export default defineConfig({
     react(),
     visualizer({
       filename: 'dist/bundle-analysis.html',
-      open: true,
+      // Don't auto-open a browser tab — breaks CI/automated prerender builds.
+      // The report is still written to dist/bundle-analysis.html.
+      open: false,
       gzipSize: true,
       brotliSize: true,
     }),

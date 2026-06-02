@@ -70,6 +70,8 @@ Allow: /
 Allow: /ai-content.txt
 Allow: /ai-training-content.txt
 Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
 Allow: /sitemap.xml
 Allow: /robots.txt
 
