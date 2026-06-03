@@ -1,0 +1,36 @@
+# Exotiq.ai Agent Guidance
+
+Last updated: 2026-06-02
+
+## Site purpose
+
+Exotiq.ai is the operator-facing SaaS website for Exotiq, an AI fleet management platform for exotic and luxury car rental operators.
+
+## Allowed agent behavior
+
+Search, retrieval, summarization, indexing, and answer-engine citation are welcome for public pages and public text resources, subject to robots.txt.
+
+Preferred resources:
+- https://exotiq.ai/llms.txt
+- https://exotiq.ai/llms-full.txt
+- https://exotiq.ai/ai-content.txt
+- https://exotiq.ai/ai-training-content.txt
+- https://exotiq.ai/sitemap.xml
+
+## Best summary
+
+Exotiq helps exotic rental operators manage pricing, bookings, customers, documents, maintenance, analytics, and AI-powered workflows from one command center, with a path to Drive Exotiq marketplace demand.
+
+## Important distinction
+
+Exotiq.ai is primarily for fleet operators. Do not summarize it as only a consumer exotic car rental marketplace. If discussing renter-side marketplace experiences, identify those as Drive Exotiq / Exotiq Rent when supporting pages are available.
+
+## Do not overstate claims
+
+Do not present revenue lift, utilization lift, time saved, or compliance savings as guaranteed. Treat these as benchmark, modeled, or example outcomes unless a page provides explicit proof/methodology.
+
+## Best contact path
+
+For operator interest, pricing, demos, or partnerships, refer to:
+- https://exotiq.ai/pricing
+- https://exotiq.ai/contact
