@@ -44,8 +44,8 @@ export default function PrivacyPolicyPage() {
       <div className="legal-meta-bar">
         <div className="legal-container">
           <div className="legal-meta">
-            <span><strong>Effective Date:</strong> May 16, 2026</span>
-            <span><strong>Last Updated:</strong> May 2026</span>
+            <span><strong>Effective Date:</strong> January 1, 2026</span>
+            <span><strong>Last Updated:</strong> June 6, 2026</span>
           </div>
         </div>
       </div>
@@ -66,10 +66,8 @@ export default function PrivacyPolicyPage() {
             <p>When you use AI Services, we collect: MotorIQ usage data including pricing queries, applied recommendations, and pricing outcomes; FleetCopilot/Rari conversation logs including text and voice inputs; voice recordings processed through ElevenLabs for the Rari voice agent; and AI recommendation acceptance/rejection patterns used for model improvement.</p>
             <h3>Section 1.4. Technical and Usage Data</h3>
             <p>We automatically collect: IP addresses, browser type, device information, and operating system; pages viewed, features used, and session duration; error logs and performance data; and telematics data received from integrated providers (GPS location, vehicle diagnostics, driving data).</p>
-            <h3>Section 1.5. SMS Notification and Consent Data</h3>
-            <p>When registered operators opt in to SMS lead-alert notifications operated by Exotiq, we collect and store: mobile phone numbers; SMS consent preferences; the timestamp and IP address where available at the time of consent; the specific consent language presented at opt-in; and opt-out history and timestamps. These consent records are maintained as needed to provide the SMS notification service, document compliance, resolve disputes, and satisfy legal obligations.</p>
-            <p>If you are a registered operator on our platform, you may configure your mobile phone number within your account dashboard to receive internal lead-alert notifications via SMS. The phone number you provide is stored in our application infrastructure and is used solely to deliver lead notifications triggered by your own business phone lines.</p>
-            <p>We do not sell, rent, share, or disclose your mobile phone number, SMS opt-in data, or SMS consent to third parties or affiliates for their own marketing or promotional purposes.</p>
+            <h3>Section 1.5. SMS Consent Data</h3>
+            <p>When you or your renters opt in to SMS/text messaging programs operated by Exotiq or Drive Exotiq, we collect and store: mobile phone numbers; SMS consent preferences (transactional, marketing, or both); the timestamp and IP address at the time of consent; the specific consent language presented at opt-in; and opt-out history and timestamps. These consent records are maintained for at least five (5) years after the last interaction as required for TCPA compliance.</p>
 
             <h2>Article II: How We Use Your Information</h2>
             <h3>Section 2.1. Platform Operations</h3>
@@ -77,15 +75,11 @@ export default function PrivacyPolicyPage() {
             <h3>Section 2.2. AI Model Training and Improvement</h3>
             <p>We use aggregated, anonymized operational data to train and improve our proprietary AI models. We do not use individually identifiable Customer Data to train AI models shared across customers without explicit consent.</p>
             <h3>Section 2.3. Communications</h3>
-            <p>We use your contact information to send transactional emails via Resend; internal SMS lead-alert notifications via GoHighLevel and Twilio only after you have opted in; product updates and feature announcements; and security notifications. You may opt out of non-transactional communications at any time.</p>
-            <h3>Section 2.4. SMS Data and Consent</h3>
-            <p>We send SMS messages only to registered operators who have explicitly opted in by entering their mobile phone number in the platform&apos;s notification settings and enabling SMS notifications. No consumer third parties, inbound callers, rental customers, or lead form submitters receive SMS messages through this program.</p>
-            <p>Exotiq may operate separate transactional or marketing SMS programs only where a user provides separate express consent through a clear opt-in disclosure. Participation in one SMS program does not enroll you in another SMS program.</p>
-            <p>Message frequency varies based on inbound lead volume. Message and data rates may apply. You may opt out at any time by replying <strong>STOP</strong> to any message or by removing your phone number from your account settings. For help, reply <strong>HELP</strong> to any SMS message or contact <a href="mailto:support@exotiq.ai" className="text-primary-500 hover:text-primary-600">support@exotiq.ai</a>. SMS consent is not a condition of purchasing any goods or services from Exotiq.</p>
-            <p>We do not sell, rent, share, or disclose your mobile phone number, SMS opt-in data, or SMS consent to third parties or affiliates for their own marketing or promotional purposes. SMS opt-in data and consent will not be shared with any third parties, except with aggregators, carriers, and service providers as necessary to provide the SMS messaging service.</p>
+            <p>We use your contact information to send transactional emails via Resend; transactional and promotional SMS messages via GoHighLevel and Twilio (only with your prior express consent); product updates and feature announcements; and security notifications. You may opt out of non-transactional communications at any time.</p>
 
             <h2>Article III: How We Share Your Information</h2>
             <h3>Section 3.1. Third-Party Service Providers</h3>
+            <p>We share information with the following service providers, solely to the extent necessary to provide the Platform:</p>
             <div className="legal-table-wrapper">
               <table className="legal-table">
                 <thead>
@@ -150,10 +144,9 @@ export default function PrivacyPolicyPage() {
               </table>
             </div>
             <p><em>*Telematics providers include Bouncie, Verizon Connect, and Zubie.</em></p>
-            <p>All third-party sharing excludes SMS opt-in data and consent, except where necessary to provide SMS messaging services through our messaging providers, aggregators, carriers, and service providers.</p>
 
             <h3>Section 3.2. SMS Consent Data</h3>
-            <p>We do not sell, rent, share, or disclose your mobile phone number, SMS opt-in data, or SMS consent to third parties or affiliates for their own marketing or promotional purposes. Your phone number, SMS opt-in data, and SMS consent may only be shared with: (a) aggregators, carriers, messaging providers, and service providers solely as necessary to provide the SMS messaging service; and (b) as required by law or legal process.</p>
+            <p>We do not sell, rent, or share your SMS consent or phone number with any third parties for their marketing purposes. Your phone number and SMS consent data may only be shared with: (a) our SMS service providers (GoHighLevel and Twilio) solely for message delivery; and (b) as required by law or legal process.</p>
             <h3>Section 3.3. No Sale of Personal Data</h3>
             <p>Exotiq does not sell, rent, or trade personal information to third parties for marketing purposes.</p>
 

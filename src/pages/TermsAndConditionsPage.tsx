@@ -45,7 +45,7 @@ export default function TermsAndConditionsPage() {
         <div className="legal-container">
           <div className="legal-meta">
             <span><strong>Effective Date:</strong> January 1, 2026</span>
-            <span><strong>Last Updated:</strong> March 2026</span>
+            <span><strong>Last Updated:</strong> June 6, 2026</span>
           </div>
         </div>
       </div>
