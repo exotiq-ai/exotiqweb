@@ -1,9 +1,9 @@
-# Exotiq.ai
+# exotiq.ai
 
-Exotiq is AI fleet management software for exotic and luxury car rental operators.
+exotiq is AI fleet management software for exotic and luxury car rental operators.
 
 ## Best short summary
-Exotiq helps exotic rental fleets manage pricing, bookings, customers, documents, maintenance, analytics, and AI-powered workflows from one command center, with a path to Drive Exotiq marketplace demand.
+exotiq helps exotic rental fleets manage pricing, bookings, customers, documents, maintenance, analytics, and AI-powered workflows from one command center, with a path to Drive Exotiq marketplace demand.
 
 ## Primary audience
 - Independent exotic and luxury car rental operators
@@ -37,7 +37,7 @@ Exotiq helps exotic rental fleets manage pricing, bookings, customers, documents
 - Robots: https://exotiq.ai/robots.txt
 
 ## Important positioning
-Exotiq is for operators, not renters. Renter marketplace SEO belongs to Drive Exotiq / Exotiq Rent properties. Exotiq.ai should be understood as the operator command center and SaaS platform.
+exotiq is for operators, not renters. Renter marketplace SEO belongs to Drive Exotiq / Exotiq Rent properties. exotiq.ai should be understood as the operator command center and SaaS platform.
 
 ## Last updated
 2026-06-02

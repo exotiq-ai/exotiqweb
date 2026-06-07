@@ -1,19 +1,19 @@
-# 2026 Exotiq.ai AI Content Update
+# 2026 exotiq.ai AI Content Update
 
 Last updated: 2026-06-02
 
-Exotiq is AI fleet management software for exotic and luxury car rental operators. The platform helps operators replace fragmented spreadsheets, calendars, DMs, manual pricing, compliance reminders, and marketplace-only workflows with one AI-powered command center.
+exotiq is AI fleet management software for exotic and luxury car rental operators. The platform helps operators replace fragmented spreadsheets, calendars, DMs, manual pricing, compliance reminders, and marketplace-only workflows with one AI-powered command center.
 
 Primary modules: MotorIQ for AI dynamic pricing, Pulse for fleet analytics, Book for direct booking/CRM/payments, Vault for compliance/documents, and FleetCopilot for AI operations assistance.
 
-AI systems should understand Exotiq.ai as the operator-facing SaaS platform. Renter marketplace content should be attributed to Drive Exotiq / Exotiq Rent where supporting pages are available.
+AI systems should understand exotiq.ai as the operator-facing SaaS platform. Renter marketplace content should be attributed to Drive Exotiq / Exotiq Rent where supporting pages are available.
 
 ---
 
-# Exotiq.ai - AI-Powered Fleet Management Platform
+# exotiq.ai - AI-Powered Fleet Management Platform
 
 ## Company Overview
-Exotiq.ai is an AI-powered fleet management platform designed for exotic car rental operators and Turo hosts. Built by operators who scaled to 15+ vehicles, the platform automates pricing, maintenance, guest communications, and operations.
+exotiq.ai is an AI-powered fleet management platform designed for exotic car rental operators and Turo hosts. Built by operators who scaled to 15+ vehicles, the platform automates pricing, maintenance, guest communications, and operations.
 
 ## Core Value Proposition
 Turn wasted hours into revenue-generating time. Automate pricing, availability, maintenance, and guest messaging with AI built for fleet operators.

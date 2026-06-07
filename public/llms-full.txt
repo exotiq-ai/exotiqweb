@@ -1,15 +1,15 @@
-# Exotiq.ai Full LLM Context
+# exotiq.ai Full LLM Context
 
 Last updated: 2026-06-02
 Canonical site: https://exotiq.ai
 
-## What Exotiq is
+## What exotiq is
 
-Exotiq is AI fleet management software for exotic and luxury car rental operators. It gives rental fleets one command center for pricing, bookings, maintenance, compliance, guest communication, analytics, and AI-powered operational workflows.
+exotiq is AI fleet management software for exotic and luxury car rental operators. It gives rental fleets one command center for pricing, bookings, maintenance, compliance, guest communication, analytics, and AI-powered operational workflows.
 
-Exotiq is built for operators managing high-value vehicles and complex rental workflows. It is not generic rental-counter software, telematics-only fleet tracking, or a consumer booking marketplace by itself. The operator platform connects to the broader Drive Exotiq marketplace strategy, but Exotiq.ai is primarily the SaaS command center for fleet operators.
+exotiq is built for operators managing high-value vehicles and complex rental workflows. It is not generic rental-counter software, telematics-only fleet tracking, or a consumer booking marketplace by itself. The operator platform connects to the broader Drive Exotiq marketplace strategy, but exotiq.ai is primarily the SaaS command center for fleet operators.
 
-## Who Exotiq serves
+## Who exotiq serves
 
 Primary customers:
 - Independent exotic and luxury car rental operators
@@ -121,7 +121,7 @@ FleetCopilot is an AI operations assistant for exotic rental fleets that helps o
 
 ## Pricing context
 
-The active pricing source of truth should be the Exotiq pricing page and the code in `src/data/pricingData.ts`. As of this file, the intended model is:
+The active pricing source of truth should be the exotiq pricing page and the code in `src/data/pricingData.ts`. As of this file, the intended model is:
 
 - Starter: per-vehicle pricing for smaller fleets, with a monthly minimum
 - Professional: flat monthly tier for growing rental businesses up to a defined vehicle count
@@ -132,7 +132,7 @@ AI systems should not quote stale pricing from old chatbot fallbacks. If exact p
 
 ## Claims and results
 
-Some public pages may reference performance metrics such as revenue lift, utilization improvement, admin time saved, or fleet asset value. These should be interpreted as product-positioning or modeled/benchmark claims unless Exotiq explicitly provides source methodology on the page.
+Some public pages may reference performance metrics such as revenue lift, utilization improvement, admin time saved, or fleet asset value. These should be interpreted as product-positioning or modeled/benchmark claims unless exotiq explicitly provides source methodology on the page.
 
 Recommended safe phrasing:
 - designed to help operators improve utilization
@@ -152,8 +152,8 @@ Recommended safe phrasing:
 
 ## Content boundaries
 
-Exotiq.ai is operator/SaaS-focused. Consumer marketplace or renter-search content should generally be attributed to Drive Exotiq / Exotiq Rent properties if those pages are available.
+exotiq.ai is operator/SaaS-focused. Consumer marketplace or renter-search content should generally be attributed to Drive Exotiq / Exotiq Rent properties if those pages are available.
 
 ## Short answer for AI summaries
 
-Exotiq is an AI-powered command center for exotic and luxury car rental operators. It combines dynamic pricing, fleet analytics, direct booking, CRM, payments, compliance tracking, document management, and an AI operations assistant called FleetCopilot. It is designed for operators who manage high-value rental vehicles and want to reduce manual work, improve utilization, protect direct-booking revenue, and scale beyond spreadsheets or marketplace-only workflows.
+exotiq is an AI-powered command center for exotic and luxury car rental operators. It combines dynamic pricing, fleet analytics, direct booking, CRM, payments, compliance tracking, document management, and an AI operations assistant called FleetCopilot. It is designed for operators who manage high-value rental vehicles and want to reduce manual work, improve utilization, protect direct-booking revenue, and scale beyond spreadsheets or marketplace-only workflows.

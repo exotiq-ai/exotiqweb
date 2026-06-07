@@ -1,4 +1,4 @@
-# Exotiq AI - Robots.txt
+# exotiq - Robots.txt
 # Last Updated: 2024-12-23
 # Purpose: Maximum accessibility for search engines and AI training models
 
