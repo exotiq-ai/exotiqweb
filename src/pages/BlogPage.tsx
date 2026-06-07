@@ -51,7 +51,7 @@ export default function BlogPage() {
     url: 'https://exotiq.ai/blog',
     publisher: {
       '@type': 'Organization',
-      name: 'Exotiq.ai',
+      name: 'exotiq',
       url: 'https://exotiq.ai',
     },
   };

@@ -64,8 +64,8 @@ export default function HomePage() {
   return (
     <div className="pt-16">
       <SEOHead
-        title="Exotiq.ai - AI-Powered Fleet Management for Exotic Car Rental Operations"
-        description="Exotiq.ai: AI-powered fleet management for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Trusted by operators managing $120M+ in fleet assets."
+        title="exotiq — The AI command center for exotic car rental operations"
+        description="exotiq is the AI command center for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Trusted by operators managing $120M+ in fleet assets."
         keywords="exotic car fleet management, luxury rental software, AI pricing optimization, Turo host tools, fleet analytics, rental business automation, exotic car rental platform"
         url="https://exotiq.ai"
         structuredData={[organizationSchema, softwareApplicationSchema, faqSchema]}
@@ -131,11 +131,11 @@ export default function HomePage() {
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center px-4 py-2 bg-accent-100 dark:bg-accent-500/20 rounded-full text-accent-700 dark:text-accent-400 font-semibold text-sm mb-6 border border-accent-200 dark:border-accent-500/30">
               <Sparkles className="w-4 h-4 mr-2" />
-              Exclusive Founder Opportunity
+              Early Adopter Program
             </div>
             
             <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-white mb-6">
-              Join the Founder's Circle
+              Shape the Future of Fleet Tech
             </h2>
             
             <p className="font-inter text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -172,10 +172,10 @@ export default function HomePage() {
                   <Award className="w-6 h-6 text-accent-500" />
                 </div>
                 <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">
-                  Lifetime Founder Pricing
+                  Launch Pricing Lock-In
                 </h3>
                 <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
-                  Exclusive founding member rates
+                  Lock in current rates before 2027 increase
                 </p>
               </div>
             </div>
@@ -184,7 +184,7 @@ export default function HomePage() {
               to="/survey"
               className="inline-flex items-center font-dfaalt font-semibold px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white rounded-xl transition-all duration-300 hover:scale-105"
             >
-              <span>Join the Founder's Circle</span>
+              <span>Join the Early Adopter Program</span>
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </div>

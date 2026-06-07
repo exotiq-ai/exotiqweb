@@ -31,8 +31,10 @@ export default function SMSConsentCheckboxes({
     >
       <p className="font-montserrat text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
         Providing your phone number does not opt you in to text messages. Optional checkboxes below are
-        the only way to consent. SMS consent data is not sold or shared with third parties except our SMS
-        delivery providers. See our{' '}
+        the only way to consent and are not pre-selected. SMS opt-in data and consent are not sold,
+        rented, shared, or disclosed to third parties or affiliates for their own marketing or promotional
+        purposes, except with aggregators, carriers, and service providers as necessary to provide SMS
+        messaging services. See our{' '}
         <Link to="/privacy" className="text-primary-500 hover:text-primary-600 underline">
           Privacy Policy
         </Link>{' '}
@@ -53,9 +55,10 @@ export default function SMSConsentCheckboxes({
           className="mt-1 h-4 w-4 rounded border-gray-300 text-primary-500 focus:ring-primary-500 disabled:opacity-50"
         />
         <span className="font-montserrat text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-          I consent to receive transactional text messages from Exotiq at the phone number provided (e.g.,
-          booking confirmations, reminders, account alerts). Message frequency may vary. Message and data
-          rates may apply. Reply HELP for help or STOP to opt out.
+          I consent to receive transactional text messages from Exotiq at the phone number provided,
+          including lead notification alerts, booking confirmations, reminders, and account alerts.
+          Message frequency varies based on activity. Message and data rates may apply. Reply STOP to
+          opt out and HELP for help. Consent is not a condition of purchase.
         </span>
       </label>
 
@@ -70,8 +73,8 @@ export default function SMSConsentCheckboxes({
         />
         <span className="font-montserrat text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
           I consent to receive marketing and promotional text messages from Exotiq at the phone number
-          provided. Message frequency may vary. Message and data rates may apply. Reply HELP for help or
-          STOP to opt out.
+          provided. Message frequency may vary. Message and data rates may apply. Reply STOP to opt out
+          and HELP for help. Consent is not a condition of purchase.
         </span>
       </label>
     </div>

@@ -23,11 +23,11 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible, scrollToSe
       <MobileContainer>
         <div className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h1 className="font-space font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 sm:mb-6 leading-tight px-2 drop-shadow-lg">
-            AI Fleet Intelligence That Saves Time
-            <span className="block text-primary-300 animate-gradient-text drop-shadow-lg">and Accelerates Growth</span>
+            AI Fleet Management Software
+            <span className="block text-primary-300 animate-gradient-text drop-shadow-lg">for Exotic Car Rental Operators</span>
           </h1>
           <p className="font-inter text-lg sm:text-xl text-gray-100 dark:text-gray-50 max-w-4xl mx-auto mb-8 sm:mb-12 animate-slide-up px-4 drop-shadow-md" style={{ animationDelay: '200ms' }}>
-            Exotiq replaces 15+ hours of manual work each week with intelligent automation, so you can focus on growing your business while we handle pricing, availability, maintenance, and messaging.
+            Exotiq gives exotic and luxury rental fleets one command center for pricing, bookings, maintenance, compliance, guest communication, and marketplace growth.
           </p>
           <p className="font-inter text-base sm:text-lg text-gray-200 dark:text-gray-100 mb-6 sm:mb-8 max-w-3xl mx-auto px-2 italic drop-shadow-md">
             We've walked in your shoes. Now we're using AI to make the road smoother for everyone.

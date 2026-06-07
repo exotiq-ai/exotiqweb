@@ -1,13 +1,16 @@
-// Service Worker for Exotiq.ai
-const CACHE_NAME = 'exotiq-cache-v2';
+// Service Worker for exotiq
+const CACHE_NAME = 'exotiq-cache-v3';
 const urlsToCache = [
   '/',
   '/index.html',
   '/favicon.svg',
   '/site.webmanifest',
-  '/exotiq-logo-lockup.png',
-  '/exotiq-lockup-white-transparent.svg',
-  '/exotiq-lockup-black-transparent.svg'
+  '/icon-192.png',
+  '/icon-512.png',
+  '/apple-touch-icon.png',
+  '/og-exotiq-ai-fleet.png',
+  '/brand/exotiq-lockup-horizontal-white.svg',
+  '/brand/exotiq-lockup-horizontal-black.svg'
 ];
 
 // Install event - cache resources

@@ -2,16 +2,16 @@
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Exotiq AI",
+  "name": "exotiq",
   "alternateName": "Exotiq",
   "url": "https://exotiq.ai",
-  "logo": "https://exotiq.ai/logo.png",
-  "description": "Exotiq provides AI-driven car rental fleet management and Turo automation. Optimize operations and maximize margins for exotic and private rental fleet hosts.",
+  "logo": "https://exotiq.ai/brand/exotiq-lockup-horizontal-white.svg",
+  "description": "exotiq is the AI command center for exotic car rental operators. Optimize operations and maximize margins for rental fleet hosts.",
   "foundingDate": "2024-01-01",
   "founders": [
     {
       "@type": "Person",
-      "name": "Exotiq.ai Founding Team"
+      "name": "Exotiq Founding Team"
     }
   ],
   "industry": "Software as a Service (SaaS)",
@@ -50,8 +50,8 @@ export const organizationSchema = {
 export const softwareApplicationSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Exotiq.ai Fleet Management Platform",
-  "description": "AI-powered fleet management software that automates pricing, maintenance, and operations for vehicle rental businesses and Turo hosts.",
+  "name": "exotiq",
+  "description": "The AI command center for exotic car rental operators. Automates pricing, maintenance, and operations for vehicle rental businesses and Turo hosts.",
   "url": "https://exotiq.ai",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web-based, iOS, Android",
@@ -59,9 +59,9 @@ export const softwareApplicationSchema = {
     "@type": "Offer",
     "price": "49",
     "priceCurrency": "USD",
-    "priceValidUntil": "2025-12-31",
+    "priceValidUntil": "2027-12-31",
     "availability": "https://schema.org/InStock",
-    "description": "Starting at $49/month for up to 5 vehicles"
+    "description": "Starting at $39/vehicle/month — all features included"
   },
   "aggregateRating": {
     "@type": "AggregateRating",
@@ -82,12 +82,12 @@ export const softwareApplicationSchema = {
     "FleetCopilot AI assistant for 24/7 operations support",
     "Compliance and documentation management"
   ],
-  "screenshot": "https://exotiq.ai/exotiq-logo-lockup.png",
+  "screenshot": "https://exotiq.ai/og-exotiq-ai-fleet.png",
   "softwareVersion": "1.0",
   "datePublished": "2024-01-01",
   "author": {
     "@type": "Organization",
-    "name": "Exotiq AI"
+    "name": "exotiq"
   }
 };
 
@@ -97,15 +97,15 @@ export const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How does Exotiq AI differentiate from traditional fleet management software?",
+      "name": "How does exotiq differentiate from traditional fleet management software?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Unlike legacy tools that rely on static rules, Exotiq utilizes Generative AI to proactively solve problems - negotiating claims, optimizing insurance usage, and predicting maintenance events before breakdowns occur, acting as a true autonomous co-pilot. Traditional fleet management software requires manual input and reactive decision-making, while Exotiq AI automates 85% of operational tasks including pricing optimization, guest communications, and predictive maintenance."
+        "text": "Unlike legacy tools that rely on static rules, exotiq utilizes Generative AI to proactively solve problems - negotiating claims, optimizing insurance usage, and predicting maintenance events before breakdowns occur, acting as a true autonomous co-pilot. Traditional fleet management software requires manual input and reactive decision-making, while exotiq automates 85% of operational tasks including pricing optimization, guest communications, and predictive maintenance."
       }
     },
     {
       "@type": "Question",
-      "name": "Does Exotiq AI support multi-platform fleet synchronization?",
+      "name": "Does exotiq support multi-platform fleet synchronization?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. Exotiq provides real-time synchronization across Turo, Getaround, and private direct-booking websites. This unified inventory management prevents double-bookings and centralizes financial analytics into a single dashboard. All pricing updates, availability changes, and booking confirmations sync automatically across all platforms in real-time."
@@ -121,7 +121,7 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      "name": "Is Exotiq AI suitable for scaling from a side-hustle to an enterprise fleet?",
+      "name": "Is exotiq suitable for scaling from a side-hustle to an enterprise fleet?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Exotiq is architected for scalability. It supports fleets ranging from 5 vehicles to enterprise operations with 500+ units, offering advanced features like sub-host management, dynamic market pricing, and predictive fleet utilization analytics. Our tiered pricing grows with your business, and the AI automation ensures you can scale operations without proportionally increasing your payroll."
@@ -129,15 +129,15 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      "name": "How does Exotiq AI handle data security and guest privacy?",
+      "name": "How does exotiq handle data security and guest privacy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Exotiq AI employs enterprise-grade encryption for all fleet and guest data. We adhere to strict data privacy standards, ensuring that guest communications and vehicle telemetry data are processed securely and never shared with unauthorized third parties. All data is encrypted in transit and at rest, and we maintain SOC 2 compliance standards for data security."
+        "text": "exotiq employs enterprise-grade encryption for all fleet and guest data. We adhere to strict data privacy standards, ensuring that guest communications and vehicle telemetry data are processed securely and never shared with unauthorized third parties. All data is encrypted in transit and at rest, and we maintain SOC 2 compliance standards for data security."
       }
     },
     {
       "@type": "Question",
-      "name": "How quickly can I onboard my existing fleet to Exotiq AI?",
+      "name": "How quickly can I onboard my existing fleet to exotiq?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Onboarding is streamlined via automated platform integrations. Most users can sync their existing Turo or car rental accounts and fully configure their AI settings within less than 15 minutes. Our one-click integration connects to your existing platforms, imports your vehicle data, and the AI begins learning your pricing patterns immediately."
@@ -145,10 +145,10 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      "name": "How much does Exotiq.ai cost?",
+      "name": "How much does exotiq cost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Exotiq.ai offers tiered pricing starting at $49/month for up to 5 vehicles, $99/month for up to 20 vehicles, and $199/month for up to 50 vehicles. Enterprise pricing is available for larger fleets. Beta users receive lifetime founder pricing with significant discounts. Unlike platform-based solutions, there are zero commission fees - you keep 100% of your direct booking revenue."
+        "text": "exotiq offers simple per-vehicle pricing. Pro is $39/vehicle/month for 1–15 vehicles. Business is $29/vehicle/month for 16–50 vehicles. Enterprise pricing is available for 51+ vehicles. All features are included on every plan with a 14-day free trial, no credit card required. Unlike platform-based solutions, there are zero commission fees — you keep 100% of your direct booking revenue."
       }
     },
     {
@@ -180,7 +180,7 @@ export const serviceSchema = {
   "description": "AI-powered fleet management platform for vehicle rental operations",
   "provider": {
     "@type": "Organization",
-    "name": "Exotiq.ai"
+    "name": "exotiq"
   },
   "serviceType": "Software as a Service",
   "areaServed": {

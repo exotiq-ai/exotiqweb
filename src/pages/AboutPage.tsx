@@ -14,9 +14,9 @@ export default function AboutPage() {
   return (
     <div className="pt-16">
       <SEOHead
-        title="About Exotiq.ai - Built by Fleet Operators, for Fleet Operators"
+        title="About exotiq — Built by Fleet Operators, for Fleet Operators"
         description="We built Exotiq because we lived the chaos ourselves. Every feature is built from real operational pain. Every automation targets hours we've personally lost."
-        keywords="Exotiq.ai team, fleet management company, exotic car rental software, automotive SaaS startup, vehicle rental industry, fleet operations experts"
+        keywords="exotiq team, fleet management company, exotic car rental software, automotive SaaS startup, vehicle rental industry, fleet operations experts"
         url="https://exotiq.ai/about"
         structuredData={[
           organizationSchema,
@@ -101,7 +101,7 @@ const HeroSection: React.FC = () => {
             <div className="relative">
               <img
                 src="/images/about/gregory-s8-desktop.jpg"
-                alt="Gregory Ringler, Founder of Exotiq.ai"
+                alt="Gregory Ringler, Founder of Exotiq"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                 decoding="async"

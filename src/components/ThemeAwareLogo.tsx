@@ -7,22 +7,22 @@ interface ThemeAwareLogoProps {
   size?: 'header' | 'footer' | 'mobile' | 'loading';
 }
 
+/** Horizontal lockup viewBox 708×240 */
+const LOCKUP_ASPECT = 708 / 240;
+
 export default function ThemeAwareLogo({
   className = '',
-  alt = 'Exotiq.ai',
+  alt = 'exotiq',
   size = 'header'
 }: ThemeAwareLogoProps) {
   const { theme } = useTheme();
 
-  // Choose logo based on theme and size
-  // Footer always uses white logo, others switch based on theme
   const logoSrc = size === 'footer'
-    ? '/exotiq-lockup-white-transparent.svg'
+    ? '/brand/exotiq-lockup-horizontal-white.svg'
     : theme === 'dark'
-      ? '/exotiq-lockup-white-transparent.svg'
-      : '/exotiq-lockup-black-transparent.svg';
+      ? '/brand/exotiq-lockup-horizontal-white.svg'
+      : '/brand/exotiq-lockup-horizontal-black.svg';
 
-  // Size classes with optimized dimensions
   const sizeClasses = {
     header: 'logo-optimized logo-header logo-hover',
     footer: 'logo-optimized logo-footer logo-hover',
@@ -30,21 +30,22 @@ export default function ThemeAwareLogo({
     loading: 'logo-optimized logo-header mx-auto opacity-80'
   };
 
-  // Explicit dimensions to prevent layout shift (based on actual SVG aspect ratio)
-  // Desktop header increased to 180px for better brand presence
-  const dimensions = {
-    header: { width: 180, height: 41 },
-    footer: { width: 160, height: 37 },
-    mobile: { width: 120, height: 28 },
-    loading: { width: 180, height: 41 }
+  const heights = {
+    header: 48,
+    footer: 80,
+    mobile: 32,
+    loading: 48
   };
+
+  const height = heights[size];
+  const width = Math.round(height * LOCKUP_ASPECT);
 
   return (
     <img
       src={logoSrc}
       alt={alt}
-      width={dimensions[size].width}
-      height={dimensions[size].height}
+      width={width}
+      height={height}
       className={`${sizeClasses[size]} ${className}`}
     />
   );

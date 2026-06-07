@@ -113,7 +113,7 @@ if (fs.existsSync('dist/.htaccess')) {
 // Check for cookie fixes
 console.log('6. Checking cookie fixes...');
 const indexHtml = fs.readFileSync('dist/index.html', 'utf8');
-if (indexHtml.includes('error-recovery.js') && indexHtml.includes('exotiq-logo-lockup.png')) {
+if (indexHtml.includes('error-recovery.js') && indexHtml.includes('favicon.svg')) {
     console.log('✅ Index.html properly configured');
 } else {
     console.error('❌ Index.html missing critical configurations');

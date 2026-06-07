@@ -1,9 +1,31 @@
 [build]
   publish = "dist"
+  # Production stays on the plain SPA build until the prerender pipeline is
+  # validated on a preview/branch deploy (see context overrides below).
   command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
+
+# --- Prerender validation contexts -----------------------------------------
+# Deploy previews (PRs) and branch deploys run the full static-prerender
+# pipeline so we can confirm crawlable HTML on a live URL before switching
+# production. Chromium is installed for Playwright; if the preview logs report
+# missing shared libraries, change to `--with-deps chromium`.
+[context.deploy-preview]
+  command = "npx playwright install chromium && npm run build:prerendered"
+
+[context.deploy-preview.environment]
+  NODE_VERSION = "20"
+
+[context.branch-deploy]
+  command = "npx playwright install chromium && npm run build:prerendered"
+
+[context.branch-deploy.environment]
+  NODE_VERSION = "20"
+
+# To activate in production after validation, change the [build] command above
+# to: npx playwright install chromium && npm run build:prerendered
 
 # Crawler/bot prerendering: Netlify Prerender extension (site settings), not this file.
 

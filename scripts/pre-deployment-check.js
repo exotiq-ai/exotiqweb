@@ -25,7 +25,7 @@ if (fs.existsSync('src/components/CookieConsentBanner.tsx')) {
 console.log('2. Checking Open Graph image...');
 if (fs.existsSync('index.html')) {
     const content = fs.readFileSync('index.html', 'utf8');
-    if (content.includes('exotiq-logo-lockup.png') && content.includes('og:image')) {
+    if (content.includes('og-exotiq-ai-fleet.png') && content.includes('og:image')) {
         console.log('✅ OG image is correct');
     } else {
         console.log('❌ OG image is incorrect');
@@ -55,7 +55,7 @@ if (fs.existsSync('src/components/Analytics.tsx')) {
 console.log('4. Checking SEOHead component...');
 if (fs.existsSync('src/components/SEOHead.tsx')) {
     const content = fs.readFileSync('src/components/SEOHead.tsx', 'utf8');
-    if (content.includes('exotiq-logo-lockup.png')) {
+    if (content.includes('og-exotiq-ai-fleet.png')) {
         console.log('✅ SEOHead has correct image');
     } else {
         console.log('❌ SEOHead has incorrect image');

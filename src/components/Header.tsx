@@ -1,9 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Flame } from 'lucide-react';
+import { Moon, Sun, Zap } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import MobileNavigation from './MobileNavigation';
 import ThemeAwareLogo from './ThemeAwareLogo';
-import { founderConfig } from '../data/pricingData';
 
 const HEADER_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
 
@@ -22,9 +21,7 @@ export default function Header() {
   ];
 
   const isActive = (path: string) => location.pathname === path;
-  // Show the founder chip on every page except /pricing (where the page
-  // itself already surfaces founder messaging in multiple places).
-  const showFounderChip = founderConfig.isActive() && location.pathname !== '/pricing';
+  const showLaunchChip = location.pathname !== '/pricing';
 
   const trackHeaderDemoClick = () => {
     if (typeof window === 'undefined') return;
@@ -72,14 +69,13 @@ export default function Header() {
 
             {/* Theme Toggle & CTA */}
             <div className="flex items-center space-x-3">
-              {showFounderChip && (
+              {showLaunchChip && (
                 <Link
                   to="/pricing"
-                  aria-label={`Founder pricing — ${founderConfig.spotsRemaining} of ${founderConfig.totalSpots} spots remaining, ends ${founderConfig.deadlineLabel}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-inter font-semibold bg-orange-500/10 text-orange-700 border border-orange-500/30 hover:bg-orange-500/20 dark:text-orange-300 transition-colors whitespace-nowrap"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-inter font-semibold bg-primary-500/10 text-primary-600 border border-primary-500/30 hover:bg-primary-500/20 dark:text-primary-300 transition-colors whitespace-nowrap"
                 >
-                  <Flame className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>Founder · {founderConfig.spotsRemaining} spots left</span>
+                  <Zap className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Launch pricing</span>
                 </Link>
               )}
               <button

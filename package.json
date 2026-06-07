@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "generate:seo": "node scripts/generate-seo-artifacts.mjs",
+    "prerender": "node scripts/prerender-public-routes.mjs",
+    "verify:prerender": "node scripts/verify-prerendered-routes.mjs",
+    "build:prerendered": "npm run generate:seo && vite build && npm run prerender && npm run verify:prerender",
     "lint": "eslint .",
     "preview": "vite preview",
     "pre-deploy": "node scripts/pre-deployment-check.js",
@@ -42,6 +46,7 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.11",
     "globals": "^15.9.0",
+    "playwright": "^1.60.0",
     "postcss": "^8.4.35",
     "rollup-plugin-visualizer": "^6.0.3",
     "sharp": "^0.33.5",

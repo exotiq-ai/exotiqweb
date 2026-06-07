@@ -1,4 +1,4 @@
-// Error recovery system for Exotiq.ai
+// Error recovery system for exotiq
 // Prevents page loading failures and provides fallback
 
 (function() {
@@ -154,7 +154,7 @@
             <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                 <div style="text-align: center; padding: 3rem; background: white; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); max-width: 500px; margin: 2rem;">
                     <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; font-weight: bold;">E</div>
-                    <h1 style="color: #1f2937; margin-bottom: 1rem; font-size: 2rem; font-weight: 700;">Exotiq.ai</h1>
+                    <h1 style="color: #1f2937; margin-bottom: 1rem; font-size: 2rem; font-weight: 700;">exotiq</h1>
                     <p style="color: #6b7280; margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.6;">AI-Powered Fleet Management for Vehicle Rental Operations</p>
                     <p style="color: #6b7280; margin-bottom: 2rem;">The page is loading. If this doesn't resolve automatically, please refresh.</p>
                     <button onclick="clearAndReload()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; transition: transform 0.2s;">
@@ -191,11 +191,11 @@
             styles: document.querySelectorAll('link[href*="assets/css"]').length > 0
         };
         
-        console.log('Exotiq.ai Health Check:', checks);
+        console.log('exotiq Health Check:', checks);
         return checks;
     };
     
-    console.log('Exotiq.ai error recovery system loaded');
+    console.log('exotiq error recovery system loaded');
     
     // DISABLED: React loading debugging (interfering with normal loading)
     console.log('Error recovery system loaded - React will load normally');

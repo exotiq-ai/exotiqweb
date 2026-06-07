@@ -654,7 +654,7 @@ export default function FeaturesPage() {
     <div className="bg-dark-900 min-h-screen">
       <SEOHead
         title="Platform Features - Complete Fleet Management Solution"
-        description="Discover Exotiq.ai's powerful modules: MotorIQ for revenue optimization, Pulse for analytics, Book for direct bookings, Vault for compliance, and FleetCopilot for AI-powered operations. Built specifically for exotic fleet operators."
+        description="Discover exotiq's powerful modules: MotorIQ for revenue optimization, Pulse for analytics, Book for direct bookings, Vault for compliance, and FleetCopilot for AI-powered operations. Built specifically for exotic fleet operators."
         keywords="fleet management features, AI pricing engine, vehicle analytics, direct booking platform, fleet operations dashboard, Turo host tools, rental business automation"
         url="https://exotiq.ai/features"
         structuredData={[

@@ -148,9 +148,9 @@
         
         preloadCriticalImages() {
             const criticalImages = [
-                '/exotiq-logo-lockup.png',
-                '/exotiq-lockup-white-transparent.svg',
-                '/exotiq-lockup-black-transparent.svg'
+                '/favicon.svg',
+                '/brand/exotiq-lockup-horizontal-white.svg',
+                '/brand/exotiq-lockup-horizontal-black.svg'
             ];
             
             criticalImages.forEach(src => {
