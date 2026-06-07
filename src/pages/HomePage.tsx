@@ -11,7 +11,7 @@ import {
 import SkeletonLoader from '../components/SkeletonLoader';
 import { MobileContainer, MobileSection } from '../components/MobileOptimizations';
 import SEOHead from '../components/SEOHead';
-import { organizationSchema, softwareApplicationSchema, faqSchema } from '../data/structuredData';
+import { organizationSchema, softwareApplicationSchema, faqSchema, websiteSchema } from '../data/structuredData';
 
 // Import section components
 import HomeHeroSection from '../components/HomeHeroSection';
@@ -68,7 +68,7 @@ export default function HomePage() {
         description="exotiq is the AI command center for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Trusted by operators managing $120M+ in fleet assets."
         keywords="exotic car fleet management, luxury rental software, AI pricing optimization, Turo host tools, fleet analytics, rental business automation, exotic car rental platform"
         url="https://exotiq.ai"
-        structuredData={[organizationSchema, softwareApplicationSchema, faqSchema]}
+        structuredData={[websiteSchema, organizationSchema, softwareApplicationSchema, faqSchema]}
       />
       
       {/* 1. Hero Section - Dark gradient with dashboard screenshot */}

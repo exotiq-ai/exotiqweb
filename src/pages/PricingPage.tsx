@@ -4,6 +4,7 @@ import ROICalculator from '../components/pricing/ROICalculator';
 import FeatureComparison from '../components/pricing/FeatureComparison';
 import PricingFAQ from '../components/pricing/PricingFAQ';
 import SEOHead from '../components/SEOHead';
+import { pricingProductSchema, faqSchema, breadcrumbSchema } from '../data/structuredData';
 import { openPricingSalesCall, trackPricingCta } from '../utils/pricingCta';
 
 export default function PricingPage() {
@@ -18,6 +19,14 @@ export default function PricingPage() {
         title="Pricing — exotiq AI Fleet Management"
         description="Simple per-vehicle pricing for AI-powered fleet management. All features included. $39/vehicle/month for Pro, $29/vehicle/month for Business. 14-day free trial, no credit card required."
         canonical="https://exotiq.ai/pricing"
+        structuredData={[
+          pricingProductSchema,
+          faqSchema,
+          breadcrumbSchema([
+            { name: "Home", url: "https://exotiq.ai" },
+            { name: "Pricing", url: "https://exotiq.ai/pricing" }
+          ])
+        ]}
       />
 
       <div className="min-h-screen bg-black">

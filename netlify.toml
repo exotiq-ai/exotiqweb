@@ -1,11 +1,12 @@
 [build]
   publish = "dist"
-  # Production stays on the plain SPA build until the prerender pipeline is
-  # validated on a preview/branch deploy (see context overrides below).
-  command = "npm run build"
+  # Production runs the full static-prerender pipeline so every public route is
+  # served as crawlable HTML (real content + per-page meta/canonical/JSON-LD)
+  # for search engines and non-JS AI crawlers (GPTBot, ClaudeBot, PerplexityBot).
+  command = "npx playwright install chromium && npm run build:prerendered"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 # --- Prerender validation contexts -----------------------------------------
 # Deploy previews (PRs) and branch deploys run the full static-prerender
@@ -24,10 +25,10 @@
 [context.branch-deploy.environment]
   NODE_VERSION = "20"
 
-# To activate in production after validation, change the [build] command above
-# to: npx playwright install chromium && npm run build:prerendered
-
-# Crawler/bot prerendering: Netlify Prerender extension (site settings), not this file.
+# Production prerender is now ACTIVE (see [build] command above). The preview/
+# branch contexts below keep parity so prerender is validated on every deploy.
+# NOTE: if deploying from a LOCAL build instead of Netlify CI, run
+# `npm run build:prerendered` (NOT `npm run build`) or you ship the empty SPA shell.
 
 # Redirects - SPA fallback
 [[redirects]]

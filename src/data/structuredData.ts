@@ -56,19 +56,14 @@ export const softwareApplicationSchema = {
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web-based, iOS, Android",
   "offers": {
-    "@type": "Offer",
-    "price": "49",
+    "@type": "AggregateOffer",
     "priceCurrency": "USD",
-    "priceValidUntil": "2027-12-31",
+    "lowPrice": "29",
+    "highPrice": "39",
+    "offerCount": "3",
     "availability": "https://schema.org/InStock",
-    "description": "Starting at $39/vehicle/month — all features included"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "142",
-    "bestRating": "5",
-    "worstRating": "1"
+    "priceValidUntil": "2027-12-31",
+    "description": "Per-vehicle pricing, all features included: Pro $39/vehicle/mo (1–15 vehicles), Business $29/vehicle/mo (16–50), Enterprise for 51+. 14-day free trial, zero commission fees."
   },
   "featureList": [
     "AI-powered dynamic pricing optimization",
@@ -158,6 +153,65 @@ export const faqSchema = {
         "@type": "Answer",
         "text": "Our AI pricing engine analyzes market demand, competitor rates, seasonal patterns, and local events to automatically optimize your vehicle pricing for maximum revenue. It adjusts rates in real-time based on market conditions, learning from booking patterns and conversion rates to continuously improve pricing accuracy. The system monitors over 50 data points per vehicle to identify revenue opportunities."
       }
+    }
+  ]
+};
+
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "exotiq",
+  "url": "https://exotiq.ai",
+  "description": "The AI command center for exotic car rental operators.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "exotiq",
+    "url": "https://exotiq.ai"
+  },
+  "inLanguage": "en-US"
+};
+
+// Detailed, tiered pricing schema for /pricing. Prices mirror the source of
+// truth in src/data/pricingData.ts (Pro $39, Business $29, Enterprise custom).
+export const pricingProductSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "exotiq — AI Fleet Management Platform",
+  "description": "Per-vehicle AI fleet management software for exotic and luxury car rental operators. All features included on every plan, zero commission fees, 14-day free trial.",
+  "brand": {
+    "@type": "Brand",
+    "name": "exotiq"
+  },
+  "url": "https://exotiq.ai/pricing",
+  "image": "https://exotiq.ai/og-exotiq-ai-fleet.png",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Pro",
+      "price": "39",
+      "priceCurrency": "USD",
+      "priceValidUntil": "2027-12-31",
+      "availability": "https://schema.org/InStock",
+      "url": "https://exotiq.ai/pricing",
+      "description": "$39 per vehicle / month for fleets of 1–15 vehicles. All features included. 14-day free trial, no credit card required."
+    },
+    {
+      "@type": "Offer",
+      "name": "Business",
+      "price": "29",
+      "priceCurrency": "USD",
+      "priceValidUntil": "2027-12-31",
+      "availability": "https://schema.org/InStock",
+      "url": "https://exotiq.ai/pricing",
+      "description": "$29 per vehicle / month for fleets of 16–50 vehicles. All features included, volume pricing."
+    },
+    {
+      "@type": "Offer",
+      "name": "Enterprise",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://exotiq.ai/pricing",
+      "description": "Custom pricing for fleets of 51+ vehicles with dedicated support."
     }
   ]
 };
