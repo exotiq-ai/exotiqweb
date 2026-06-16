@@ -28,7 +28,7 @@ export const surveys: Record<string, SurveyData> = {
     color: 'primary',
     description: 'Help us understand the unique challenges of small fleet operators',
     estimatedTime: '5-7 minutes',
-    incentive: 'First 50 respondents get priority beta access + $25 Amazon gift card',
+    incentive: 'First 50 respondents get priority beta access',
     questions: [
       { id: 'fleet_size', type: 'radio', question: 'How many vehicles do you currently have in your fleet?', options: ['1 vehicle', '2 vehicles', '3 vehicles', '4 vehicles', '5 vehicles'], required: true },
       { id: 'platforms', type: 'checkbox', question: 'Which platforms do you currently use? (Select all that apply)', options: ['Turo', 'Getaround', 'HyreCar', 'Direct bookings', 'Other car-sharing platform', 'Traditional rental'], required: true },

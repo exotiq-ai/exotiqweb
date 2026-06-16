@@ -37,7 +37,7 @@ const SurveyThankYou: React.FC<SurveyThankYouProps> = ({ surveyType }) => {
               <div className="flex items-center justify-center space-x-2">
                 <DollarSign className="w-5 h-5 text-primary-500" />
                 <span className="font-dfaalt font-bold text-primary-600 dark:text-primary-300 text-center">
-                  First 50 respondents get priority beta access + $25 Amazon gift card
+                  First 50 respondents get priority beta access
                 </span>
               </div>
             </div>

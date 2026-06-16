@@ -6,32 +6,16 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const testimonials = [
   {
-    name: 'Michael R.',
-    initials: 'MR',
-    text: 'This is the first platform that treats us like the professionals we are. Exotiq understands we\'re running real businesses.',
-    role: 'Founder, Apex Luxury Rentals',
-    fleet: '28 vehicles',
+    name: 'Jay',
+    initials: 'J',
+    text: 'We need an integrated system that actually understands how we work. Exotiq gets it.',
+    company: 'Denver Exotic Rental Cars',
   },
   {
-    name: 'David K.',
-    initials: 'DK',
-    text: 'Exotiq saves me 10+ hours every week. That\'s time I can reinvest in scaling my fleet instead of drowning in tasks.',
-    role: 'CEO, Elite Auto Collective',
-    fleet: '14 vehicles',
-  },
-  {
-    name: 'Alex R.',
-    initials: 'AR',
-    text: 'Nothing truly supports the way P2P rental hosts operate. Exotiq looks like the first platform built for us.',
-    role: 'Professional Turo Host',
-    fleet: '12 vehicles',
-  },
-  {
-    name: 'Sarah M.',
-    initials: 'SM',
-    text: 'This will absolutely change the game. I have been waiting for something like this for years.',
-    role: 'Exotic Car Rental Owner',
-    fleet: '50+ vehicles',
+    name: 'Ed',
+    initials: 'E',
+    text: 'I tried three other platforms before Exotiq. None of them got it right. Exotiq did, from the start. I made the call to switch halfway through the demo, and a month later I am glad I did. The operational gains were immediate.',
+    company: 'Revel + Roam',
   },
 ];
 
@@ -182,7 +166,7 @@ const TestimonialsSection: React.FC = () => {
                     {testimonial.name}
                   </div>
                   <div className="font-inter text-sm text-gray-500 dark:text-gray-400">
-                    {testimonial.role} · {testimonial.fleet}
+                    {testimonial.company}
                   </div>
                 </div>
               </div>

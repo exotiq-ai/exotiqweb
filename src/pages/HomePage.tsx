@@ -5,8 +5,7 @@ import {
   Calendar,
   Sparkles,
   Award,
-  DollarSign,
-  Zap
+  DollarSign
 } from 'lucide-react';
 import SkeletonLoader from '../components/SkeletonLoader';
 import { MobileContainer, MobileSection } from '../components/MobileOptimizations';
@@ -64,8 +63,8 @@ export default function HomePage() {
   return (
     <div className="pt-16">
       <SEOHead
-        title="exotiq — The AI command center for exotic car rental operations"
-        description="exotiq is the AI command center for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Trusted by operators managing $120M+ in fleet assets."
+        title="exotiq: The AI command center for exotic car rental operations"
+        description="exotiq is the AI command center for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Built for operators across six US markets."
         keywords="exotic car fleet management, luxury rental software, AI pricing optimization, Turo host tools, fleet analytics, rental business automation, exotic car rental platform"
         url="https://exotiq.ai"
         structuredData={[websiteSchema, organizationSchema, softwareApplicationSchema, faqSchema]}
@@ -113,7 +112,7 @@ export default function HomePage() {
               </a>
             </div>
             <p className="font-inter text-sm text-gray-500 mt-6">
-              14-day free trial • No credit card required • See results in 48 hours
+              30-day founding trial • No credit card required • Your fleet loaded before you start
             </p>
           </div>
         </MobileContainer>
@@ -131,39 +130,39 @@ export default function HomePage() {
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center px-4 py-2 bg-accent-100 dark:bg-accent-500/20 rounded-full text-accent-700 dark:text-accent-400 font-semibold text-sm mb-6 border border-accent-200 dark:border-accent-500/30">
               <Sparkles className="w-4 h-4 mr-2" />
-              Early Adopter Program
+              FOUNDING OPERATOR PROGRAM
             </div>
             
             <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-white mb-6">
-              Shape the Future of Fleet Tech
+              Get in before the cohort closes.
             </h2>
             
             <p className="font-inter text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              An exclusive opportunity for industry leaders to shape the next generation of fleet technology.
+              30 days to run your fleet on Exotiq, on us. Go annual and get two months free, with your rate locked for life. The founding cohort closes soon.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl">
+                <div className="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Calendar className="w-6 h-6 text-primary-500" />
+                </div>
+                <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">
+                  30 Days On Us
+                </h3>
+                <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
+                  Run your full fleet on Exotiq, free
+                </p>
+              </div>
+              
               <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl">
                 <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <DollarSign className="w-6 h-6 text-green-500" />
                 </div>
                 <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">
-                  $25 Gift Card
+                  Two Months Free
                 </h3>
                 <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
-                  For qualified operators
-                </p>
-              </div>
-              
-              <div className="bg-gray-50 dark:bg-dark-800 p-6 rounded-xl">
-                <div className="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-6 h-6 text-primary-500" />
-                </div>
-                <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">
-                  Priority Beta Access
-                </h3>
-                <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
-                  First access to the platform
+                  When you go annual
                 </p>
               </div>
               
@@ -172,21 +171,23 @@ export default function HomePage() {
                   <Award className="w-6 h-6 text-accent-500" />
                 </div>
                 <h3 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-2">
-                  Launch Pricing Lock-In
+                  Rate Locked For Life
                 </h3>
                 <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
-                  Lock in current rates before 2027 increase
+                  Your founding rate never increases
                 </p>
               </div>
             </div>
             
-            <Link
-              to="/survey"
+            <a
+              href="https://calendly.com/hello-exotiq/15-minute-meeting"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center font-dfaalt font-semibold px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white rounded-xl transition-all duration-300 hover:scale-105"
             >
-              <span>Join the Early Adopter Program</span>
+              <span>See your fleet in Exotiq</span>
               <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
+            </a>
           </div>
         </MobileContainer>
       </MobileSection>

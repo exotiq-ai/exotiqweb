@@ -28,7 +28,7 @@ const modules = [
       { icon: BarChart3, text: 'Revenue Analytics' },
       { icon: Target, text: 'Profit Intelligence' }
     ],
-    metric: { value: '40%', label: 'Revenue Increase', change: 'in 90 days' }
+    metric: { value: 'Up to 30%', label: 'More Revenue', change: 'from smarter pricing' }
   },
   {
     id: 'pulse',
@@ -48,7 +48,7 @@ const modules = [
       { icon: Star, text: 'Performance Rankings' },
       { icon: Brain, text: 'Demand Forecasting' }
     ],
-    metric: { value: '89%', label: 'Utilization Rate', change: 'industry-leading' }
+    metric: { value: 'Live', label: 'Fleet Visibility', change: 'every car, one screen' }
   },
   {
     id: 'book',
@@ -68,7 +68,7 @@ const modules = [
       { icon: DollarSign, text: 'Zero Platform Fees' },
       { icon: TrendingUp, text: 'Customer Intelligence' }
     ],
-    metric: { value: '100%', label: 'Revenue Retention', change: 'vs 60-75%' }
+    metric: { value: 'Your', label: 'Customers, Your Data', change: 'no middleman fees' }
   },
   {
     id: 'vault',
@@ -88,7 +88,7 @@ const modules = [
       { icon: Shield, text: 'Insurance Tracker' },
       { icon: Calendar, text: 'Deadline Radar' }
     ],
-    metric: { value: '$47K', label: 'Avg Compliance Failure', change: 'sleep easier' }
+    metric: { value: 'Zero', label: 'Missed Deadlines', change: 'every document, tracked' }
   },
   {
     id: 'fleetcopilot',
@@ -100,7 +100,7 @@ const modules = [
     borderColor: 'border-emerald-400/30',
     iconBg: 'bg-emerald-500/20',
     iconColor: 'text-emerald-400',
-    description: 'Talk to it like a teammate. Voice commands, smart scheduling, condition-based estimates. The admin work that took hours now takes seconds.',
+    description: 'Meet Rari, your voice agent. Talk to it like a teammate. Voice commands, smart scheduling, condition-based estimates. The admin work that took hours now takes seconds.',
     screenshot: '/images/app-screenshots/fleetcopilot-ui.png',
     screenshotAlt: 'FleetCopilot AI assistant interface showing voice commands',
     features: [

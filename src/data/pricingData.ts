@@ -119,8 +119,8 @@ export const planDifferences: PlanDifference[] = [
 
 export const faqItems = [
   {
-    question: 'How does the 14-day free trial work?',
-    answer: 'Sign up with just your email — no credit card required. You get full access to every feature for 14 days. After the trial, your account switches to read-only until you subscribe. Your data is never deleted.',
+    question: 'How does the 30-day free trial work?',
+    answer: 'Sign up with just your email, no credit card required. You get full access to every feature for 30 days. After the trial, your account switches to read-only until you subscribe. Your data is never deleted.',
   },
   {
     question: 'How does pricing work?',
@@ -132,7 +132,7 @@ export const faqItems = [
   },
   {
     question: 'Are all features really included?',
-    answer: 'Yes. MotorIQ AI pricing, booking calendar, CRM, document vault, Stripe Connect payments, marketplace listing, and analytics — all included on every paid plan. No feature gates.',
+    answer: 'Yes. MotorIQ AI pricing, booking calendar, CRM, document vault, Stripe Connect payments, marketplace listing, and analytics, all included on every paid plan. No feature gates.',
   },
   {
     question: 'What happens after the trial ends?',

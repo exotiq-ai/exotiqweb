@@ -16,8 +16,8 @@ export default function PricingPage() {
   return (
     <>
       <SEOHead
-        title="Pricing — exotiq AI Fleet Management"
-        description="Simple per-vehicle pricing for AI-powered fleet management. All features included. $39/vehicle/month for Pro, $29/vehicle/month for Business. 14-day free trial, no credit card required."
+        title="Pricing: exotiq AI Fleet Management"
+        description="Simple per-vehicle pricing for AI-powered fleet management. All features included. $39/vehicle/month for Pro, $29/vehicle/month for Business. 30-day free trial, no credit card required."
         canonical="https://exotiq.ai/pricing"
         structuredData={[
           pricingProductSchema,
@@ -36,7 +36,7 @@ export default function PricingPage() {
             <div className="inline-flex items-center gap-2 bg-[#6BB8E5]/10 border border-[#6BB8E5]/30 rounded-full px-4 py-2 mb-6">
               <Zap className="w-4 h-4 text-[#6BB8E5]" aria-hidden="true" />
               <span className="font-montserrat text-sm text-[#6BB8E5] font-semibold">
-                14-Day Free Trial · No Credit Card Required
+                30-Day Free Trial · No Credit Card Required
               </span>
             </div>
 
@@ -48,7 +48,7 @@ export default function PricingPage() {
             </h1>
 
             <p className="font-montserrat text-lg sm:text-xl text-[#A0A0A0] max-w-2xl mx-auto mb-10 leading-relaxed">
-              $39/vehicle/month — everything you need to manage and grow your
+              $39/vehicle/month, everything you need to manage and grow your
               exotic rental fleet. Pay per vehicle, scale as you grow.
             </p>
 
@@ -56,7 +56,7 @@ export default function PricingPage() {
             <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-[#A0A0A0]">
               <div className="flex items-center gap-2">
                 <Shield className="w-5 h-5 text-[#6BB8E5]" />
-                <span className="font-montserrat text-sm">14-Day Free Trial</span>
+                <span className="font-montserrat text-sm">30-Day Free Trial</span>
               </div>
               <div className="flex items-center gap-2">
                 <Users className="w-5 h-5 text-[#6BB8E5]" />
@@ -165,7 +165,7 @@ export default function PricingPage() {
               Ready to Transform Your Fleet?
             </h2>
             <p className="font-montserrat text-lg text-[#A0A0A0] mb-10">
-              Join operators using AI to scale their fleet — book a demo to get
+              Join operators using AI to scale their fleet. Book a demo to get
               started.
             </p>
 

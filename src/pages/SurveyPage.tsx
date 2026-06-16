@@ -100,7 +100,7 @@ export default function SurveyPage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 dark:from-dark-900 dark:to-dark-800">
         <SEOHead
-          title="Fleet Management Survey — Help Shape exotiq"
+          title="Fleet Management Survey: Help Shape exotiq"
           description="Share your fleet management experience and help shape exotiq's development. Choose from surveys for small fleets (1-5 vehicles), scaling operations (6-50 vehicles), or exotic/luxury fleets."
           keywords="fleet management survey, Turo hosting feedback, vehicle rental insights, fleet operations research, exotiq development"
           url="https://exotiq.ai/survey"
@@ -114,17 +114,17 @@ export default function SurveyPage() {
           <div className="text-center mb-8 sm:mb-12">
             {/* Incentive Badge */}
             <div className="inline-flex items-center px-4 py-2 bg-accent-500/20 dark:bg-accent-500/30 rounded-full text-accent-600 dark:text-accent-400 font-semibold text-sm mb-6 border border-accent-500/30">
-              <span>🎁 Get $25 + Priority Beta Access</span>
+              <span>Founding Operator · Priority Beta Access</span>
             </div>
             
             <h1 className="font-dfaalt font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight">
-              Join the Early Adopter Program
+              Join the Founding Operator Program
             </h1>
             <p className="font-montserrat text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
               Share your fleet management experience and help shape the platform built for operators like you.
             </p>
             <p className="font-montserrat text-sm text-gray-500 dark:text-gray-400">
-              ⏱️ Takes only 5 minutes • Qualified operators receive a $25 gift card
+              Takes only 5 minutes • Help shape the platform built for operators like you
             </p>
           </div>
 

@@ -57,7 +57,7 @@ const modules = [
     longDescription: 'MotorIQ is your always-on revenue analyst. It watches competitor pricing, local events, weather patterns, and historical demand to adjust your rates in real-time. Set your floor, set your ceiling, and let AI maximize every booking.',
     screenshot: '/images/app-screenshots/motoriq-ui.png',
     screenshotAlt: 'MotorIQ dashboard showing price optimization and revenue analytics',
-    heroMetric: { value: '40%', label: 'Average Revenue Increase', sublabel: 'in 90 days' },
+    heroMetric: { value: 'Up to 30%', label: 'More Revenue', sublabel: 'from smarter pricing' },
     features: [
       { 
         icon: DollarSign, 
@@ -91,14 +91,7 @@ const modules = [
         description: 'Surfaces opportunities before you spot them. When to raise rates, which vehicles to add, and market gaps your competitors are ignoring.'
       }
     ],
-    whoItsFor: ['Fleet operators running 5+ vehicles', 'Hosts ready to stop guessing on pricing', 'Multi-market operators managing demand across locations'],
-    testimonial: {
-      quote: "MotorIQ increased our revenue by 40% in just 3 months. The AI pricing is scary accurate — it knows when to raise prices before we even realize demand is spiking.",
-      author: 'Sarah C.',
-      role: 'Fleet Owner',
-      company: 'Miami',
-      metric: '+40% Revenue'
-    }
+    whoItsFor: ['Fleet operators running 5+ vehicles', 'Hosts ready to stop guessing on pricing', 'Multi-market operators managing demand across locations']
   },
   {
     id: 'pulse',
@@ -114,7 +107,7 @@ const modules = [
     longDescription: 'Pulse turns scattered data into a single command center. See which vehicles are booked, which are sitting idle, where demand is heating up, and where your attention is needed. Your entire fleet, one screen, zero spreadsheets.',
     screenshot: '/images/app-screenshots/pulse-ui.png',
     screenshotAlt: 'Pulse analytics showing demand forecasts and calendar heatmap',
-    heroMetric: { value: '89%', label: 'Average Utilization Rate', sublabel: 'industry-leading' },
+    heroMetric: { value: 'Live', label: 'Fleet Visibility', sublabel: 'every car, one screen' },
     features: [
       { 
         icon: Eye, 
@@ -148,14 +141,7 @@ const modules = [
         description: 'Get notified the moment metrics slip below targets, demand spikes in your market, or a vehicle needs attention. Act on opportunities while they\'re still opportunities.'
       }
     ],
-    whoItsFor: ['Data-driven operators', 'Multi-vehicle fleet managers', 'Operators scaling beyond gut instinct'],
-    testimonial: {
-      quote: "Finally, I can see my entire operation at a glance. Pulse showed me which vehicles were underperforming. I sold two and increased my overall profit margin by 15%.",
-      author: 'Marcus R.',
-      role: 'Rental Entrepreneur',
-      company: 'Elite Car Share',
-      metric: '+15% Margin'
-    }
+    whoItsFor: ['Data-driven operators', 'Multi-vehicle fleet managers', 'Operators scaling beyond gut instinct']
   },
   {
     id: 'book',
@@ -171,7 +157,7 @@ const modules = [
     longDescription: 'Stop giving away 25-40% of every booking to platforms. Book is your command center for reservations, calendars, and customer relationships. Sync your calendars, track your best customers, and let MotorIQ pricing flow in automatically. Your customers, your data, your revenue.',
     screenshot: '/images/app-screenshots/book-ui.png',
     screenshotAlt: 'Book module showing direct booking interface',
-    heroMetric: { value: '100%', label: 'Revenue Retention', sublabel: 'vs 60-75% on marketplace platforms' },
+    heroMetric: { value: 'Your', label: 'Customers, Your Data', sublabel: 'no middleman fees' },
     features: [
       { 
         icon: Calendar, 
@@ -205,14 +191,7 @@ const modules = [
         description: 'Professional email templates with your logo, colors, and domain. Confirmations, reminders, and follow-ups that look like you spent $200K on custom software.'
       }
     ],
-    whoItsFor: ['Operators done paying platform fees', 'Hosts building a brand they own', 'Businesses ready to own the customer relationship'],
-    testimonial: {
-      quote: "We moved 60% of our bookings to direct within 30 days. That\'s an extra $14,000/month we were giving to Turo. Book paid for itself in one week.",
-      author: 'James P.',
-      role: 'Fleet Manager',
-      company: 'Scottsdale',
-      metric: '+$14K/month'
-    }
+    whoItsFor: ['Operators done paying platform fees', 'Hosts building a brand they own', 'Businesses ready to own the customer relationship']
   },
   {
     id: 'vault',
@@ -228,7 +207,7 @@ const modules = [
     longDescription: 'One lapsed insurance policy. One expired registration. One missing agreement. That\'s all it takes to turn a fender-bender into a lawsuit. Vault tracks every deadline, generates every document, and alerts you before anything slips. The stuff that can sink your business, handled automatically.',
     screenshot: '/images/app-screenshots/vault-ui.png',
     screenshotAlt: 'Vault compliance dashboard showing document management',
-    heroMetric: { value: '$47K', label: 'Average Cost of One Compliance Failure', sublabel: 'sleep easier' },
+    heroMetric: { value: 'Zero', label: 'Missed Deadlines', sublabel: 'every document, tracked' },
     features: [
       { 
         icon: FileText, 
@@ -262,14 +241,7 @@ const modules = [
         description: 'Verify licenses, run background checks, and store verification records. Know who\'s behind the wheel before you hand over the keys.'
       }
     ],
-    whoItsFor: ['Operators in regulated markets', 'Fleets with lender or insurance requirements', 'Anyone who\'s been burned by a missed deadline'],
-    testimonial: {
-      quote: "Vault caught an insurance expiration I would have missed. One claim on an uninsured vehicle could have bankrupted me. Worth every penny.",
-      author: 'Emma T.',
-      role: 'Operations Manager',
-      company: 'Luxury Fleet Rentals',
-      metric: '$50K+ Protected'
-    }
+    whoItsFor: ['Operators in regulated markets', 'Fleets with lender or insurance requirements', 'Anyone who\'s been burned by a missed deadline']
   },
   {
     id: 'fleetcopilot',
@@ -281,8 +253,8 @@ const modules = [
     borderColor: 'border-emerald-400/30',
     accentColor: 'text-emerald-400',
     iconBg: 'bg-emerald-500/20',
-    description: 'Your AI-powered operations assistant. Voice commands, smart scheduling, and intelligent task management.',
-    longDescription: 'FleetCopilot is mission control for your fleet. Talk to it like a teammate — ask questions, give commands, get answers. It coordinates pickups, manages turnarounds, and keeps your operation running smoothly. The admin work that used to take hours now takes seconds.',
+    description: 'Your AI-powered operations assistant, powered by Rari, the Exotiq voice agent. Voice commands, smart scheduling, and intelligent task management.',
+    longDescription: 'FleetCopilot is mission control for your fleet. Talk to Rari like a teammate, ask questions, give commands, get answers. It coordinates pickups, manages turnarounds, and keeps your operation running smoothly. The admin work that used to take hours now takes seconds.',
     screenshot: '/images/app-screenshots/fleetcopilot-ui.png',
     screenshotAlt: 'FleetCopilot AI assistant interface showing voice commands and task management',
     heroMetric: { value: '15+', label: 'Hours Saved Weekly', sublabel: 'per operator' },
@@ -296,7 +268,7 @@ const modules = [
       { 
         icon: MessageSquare, 
         title: 'Unified Inbox', 
-        description: 'Messages from Turo, Getaround, direct bookings — all in one place. Copilot drafts responses, flags urgent items, and makes sure nothing slips through the cracks.'
+        description: 'Messages from Turo, Getaround, direct bookings, all in one place. Copilot drafts responses, flags urgent items, and makes sure nothing slips through the cracks.'
       },
       { 
         icon: Route, 
@@ -319,14 +291,7 @@ const modules = [
         description: 'Automate check-in instructions, review requests, follow-ups, and reminders. Set it once, forget it forever. Copilot handles the repetitive stuff so you can focus on growth.'
       }
     ],
-    whoItsFor: ['Operators drowning in admin work', 'Teams coordinating multiple people', 'Anyone who\'d rather talk than type'],
-    testimonial: {
-      quote: "I was spending 3 hours a day on admin. FleetCopilot cut that to 30 minutes. The voice commands alone are worth it — I run my whole operation while driving between pickups.",
-      author: 'David K.',
-      role: 'Fleet Operator',
-      company: 'Denver',
-      metric: '85% Time Saved'
-    }
+    whoItsFor: ['Operators drowning in admin work', 'Teams coordinating multiple people', 'Anyone who\'d rather talk than type']
   }
 ];
 
@@ -568,42 +533,6 @@ const ModuleSection: React.FC<{ module: typeof modules[0]; index: number }> = ({
                   />
                 ))}
               </div>
-
-              {/* Testimonial */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.7 }}
-                className={`mt-6 p-5 rounded-xl bg-gradient-to-br ${module.bgGradient} border ${module.borderColor}`}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-1">
-                    <p className="font-inter text-gray-300 italic leading-relaxed mb-4">
-                      "{module.testimonial.quote}"
-                    </p>
-                    <div className="flex items-center justify-between flex-wrap gap-3">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 ${module.iconBg} rounded-full flex items-center justify-center`}>
-                          <span className={`font-dfaalt font-bold text-sm ${module.accentColor}`}>
-                            {module.testimonial.author.split(' ').map(n => n[0]).join('')}
-                          </span>
-                        </div>
-                        <div>
-                          <div className="font-dfaalt font-semibold text-white text-sm">
-                            {module.testimonial.author}
-                          </div>
-                          <div className="font-inter text-xs text-gray-400">
-                            {module.testimonial.role} · {module.testimonial.company}
-                          </div>
-                        </div>
-                      </div>
-                      <div className={`px-3 py-1.5 rounded-full ${module.iconBg} ${module.accentColor} font-dfaalt font-bold text-sm whitespace-nowrap`}>
-                        {module.testimonial.metric}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
 
@@ -685,7 +614,7 @@ export default function FeaturesPage() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/10 border border-primary-500/30 rounded-full text-primary-400 font-semibold text-sm mb-6"
             >
               <CheckCircle className="w-4 h-4 text-green-400" />
-              Trusted by operators managing over $120M in fleet assets
+              Built for operators across six US markets
             </motion.div>
 
             {/* Headline */}
@@ -709,8 +638,8 @@ export default function FeaturesPage() {
               className="font-inter text-xl text-gray-300 max-w-3xl mx-auto mb-10"
             >
               Five powerful modules working together. Operators see{' '}
-              <span className="text-primary-400 font-semibold">40% revenue increase</span> and{' '}
-              <span className="text-primary-400 font-semibold">85% less admin work</span> in 90 days.
+              <span className="text-primary-400 font-semibold">up to 30% more revenue</span> and{' '}
+              <span className="text-primary-400 font-semibold">hours back every week</span>.
             </motion.p>
 
             {/* Quick Nav Pills */}
@@ -793,7 +722,7 @@ export default function FeaturesPage() {
               Ready to Transform Your Fleet?
             </h2>
             <p className="font-inter text-xl text-gray-300 max-w-2xl mx-auto mb-10">
-              Join operators managing over $120M in fleet assets. See the platform in action with a personalized demo.
+              Built for operators across six US markets. See the platform in action with a personalized demo.
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
