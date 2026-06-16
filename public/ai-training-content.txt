@@ -293,7 +293,7 @@ FleetCopilot is exotiq's proprietary AI assistant that provides 24/7 operational
 - Ideal for: Large-scale and franchise operations
 
 ### Free Trial
-- 14-day free trial on all plans
+- 30-day free trial on all plans
 - No credit card required
 - Full access to every feature
 - Read-only mode after trial ends (data never deleted)
@@ -620,7 +620,7 @@ A: Most operators see positive ROI within 2-3 months through a combination of in
 A: Yes, monthly plans cancel anytime with no penalties. Annual plans are prepaid with 2 months free. No long-term contracts on any plan.
 
 **Q: Do you offer a free trial?**
-A: Yes, every plan includes a 14-day free trial with full access to all features — no credit card required. After the trial, your account switches to read-only until you subscribe. Your data is never deleted.
+A: Yes, every plan includes a 30-day free trial with full access to all features, no credit card required. After the trial, your account switches to read-only until you subscribe. Your data is never deleted.
 
 **Q: How does pricing compare to hiring staff?**
 A: exotiq costs $29–$39/vehicle/month (all features included) compared to $40,000-$60,000/year per staff member. FleetCopilot AI replaces 2-3 full-time employees, saving $80,000-$120,000 annually while providing 24/7 availability and unlimited capacity.

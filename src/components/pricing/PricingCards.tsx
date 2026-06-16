@@ -170,7 +170,7 @@ export default function PricingCards() {
 
                 {!isEnterprise && (
                   <p className="text-center font-montserrat text-[11px] text-white/40 mb-4">
-                    14 days free · No credit card required
+                    30 days free · No credit card required
                   </p>
                 )}
                 {isEnterprise && <div className="mb-4" />}
@@ -202,7 +202,7 @@ export default function PricingCards() {
         </div>
 
         <p className="text-center font-montserrat text-sm text-white/40 mt-8">
-          14 days free · No credit card · All features included
+          30 days free · No credit card · All features included
         </p>
       </div>
     </section>
