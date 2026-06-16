@@ -95,7 +95,7 @@ export const faqSchema = {
       "name": "How does exotiq differentiate from traditional fleet management software?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Unlike legacy tools that rely on static rules, exotiq utilizes Generative AI to proactively solve problems - negotiating claims, optimizing insurance usage, and predicting maintenance events before breakdowns occur, acting as a true autonomous co-pilot. Traditional fleet management software requires manual input and reactive decision-making, while exotiq automates 85% of operational tasks including pricing optimization, guest communications, and predictive maintenance."
+        "text": "Unlike legacy tools that rely on static rules, exotiq uses generative AI to proactively support operations, helping with claims, insurance usage, and maintenance planning before issues become breakdowns, acting as an operational co-pilot. Traditional fleet management software requires manual input and reactive decision-making, while exotiq is designed to automate much of the repetitive operational work including pricing optimization, guest communications, and predictive maintenance."
       }
     },
     {
@@ -111,7 +111,7 @@ export const faqSchema = {
       "name": "What specific operational tasks can the AI Autopilot automate?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Exotiq Autopilot automates over 85% of manual tasks, including guest vetting, check-in/check-out instructions, toll reimbursement processing, damage claim documentation, and automated review management. It also handles dynamic pricing adjustments, maintenance scheduling, insurance claim coordination, and 24/7 guest communication through our FleetCopilot AI assistant."
+        "text": "The Exotiq Autopilot automates much of the manual operational work, including guest vetting, check-in/check-out instructions, toll reimbursement processing, damage claim documentation, and automated review management. It also handles dynamic pricing adjustments, maintenance scheduling, insurance claim coordination, and 24/7 guest communication through our FleetCopilot AI assistant."
       }
     },
     {

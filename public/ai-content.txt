@@ -20,9 +20,9 @@ Turn wasted hours into revenue-generating time. Automate pricing, availability, 
 
 ## Key Features
 
-### FleetCopilot™ AI Assistant
+### FleetCopilot™ AI Assistant (voice agent: Rari)
 - 24/7 AI-powered fleet intelligence
-- Replaces 2-3 staff members
+- Designed to reduce the need for additional operational staff
 - Real-time pricing optimization
 - Automated guest communications
 - Predictive maintenance alerts
@@ -35,7 +35,7 @@ Turn wasted hours into revenue-generating time. Automate pricing, availability, 
 - Market analysis and insights
 
 ### Guest Support Automation
-- Handle 3x more bookings without additional staff
+- Handle more bookings without additional staff
 - Automated routine inquiries
 - Digital check-in instructions
 - VIP request escalation
@@ -57,7 +57,7 @@ Turn wasted hours into revenue-generating time. Automate pricing, availability, 
 
 ## Competitive Advantages
 - Built by operators for operators
-- No platform commissions (keep 100% of revenue)
+- No platform commissions on direct bookings (keep your full booking revenue)
 - AI-powered automation
 - Professional-grade tools
 - Scales without increasing payroll
@@ -72,7 +72,7 @@ Turn wasted hours into revenue-generating time. Automate pricing, availability, 
 ## Company Information
 - Website: https://exotiq.ai
 - Industry: Fleet Management Software / Automotive SaaS
-- Founded: 2025
+- Founded: 2024
 - Focus: Exotic car rental and peer-to-peer car sharing operations
 
 ## Contact

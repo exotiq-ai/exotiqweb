@@ -47,10 +47,10 @@ const FeaturesHero: React.FC = () => {
               className={`font-inter text-xl text-gray-300 mb-8 leading-relaxed transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '300ms' }}
             >
-              Operators using Exotiq increase revenue by{' '}
-              <span className="text-primary-400 font-semibold">40% in 90 days</span>{' '}
-              while cutting manual work by{' '}
-              <span className="text-primary-400 font-semibold">85%</span>.
+              Operators on Exotiq see{' '}
+              <span className="text-primary-400 font-semibold">up to 30% more revenue</span>{' '}
+              from smarter pricing, with{' '}
+              <span className="text-primary-400 font-semibold">hours of admin automated</span>.
             </p>
 
             {/* Single CTA */}

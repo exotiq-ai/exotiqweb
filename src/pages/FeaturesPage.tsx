@@ -153,7 +153,7 @@ const modules = [
     borderColor: 'border-emerald-500/30',
     accentColor: 'text-emerald-400',
     iconBg: 'bg-emerald-500/20',
-    description: 'Your own booking system. Capture 100% of revenue and build direct relationships with customers.',
+    description: 'Your own booking system. Keep your full booking revenue and build direct relationships with customers.',
     longDescription: 'Stop giving away 25-40% of every booking to platforms. Book is your command center for reservations, calendars, and customer relationships. Sync your calendars, track your best customers, and let MotorIQ pricing flow in automatically. Your customers, your data, your revenue.',
     screenshot: '/images/app-screenshots/book-ui.png',
     screenshotAlt: 'Book module showing direct booking interface',

@@ -91,7 +91,7 @@ const OldVsExotiqSection: React.FC = () => {
                 {[
                   { text: 'AI pricing maximizes revenue', desc: 'dynamic optimization', highlight: false },
                   { text: 'Predictive maintenance alerts', desc: 'prevent costly breakdowns', highlight: false },
-                  { text: '100% revenue retention', desc: 'zero platform commissions', highlight: true },
+                  { text: 'Keep your direct booking revenue', desc: 'zero platform commissions', highlight: true },
                   { text: '15+ hours saved weekly', desc: 'focus on growth', highlight: false },
                   { text: '24/7 AI communication', desc: 'instant guest responses', highlight: false }
                 ].map((item, index) => (

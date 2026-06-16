@@ -27,7 +27,7 @@ const modules = [
     icon: Globe,
     color: 'success',
     description: 'Direct Booking Platform',
-    benefit: '100% revenue retention'
+    benefit: 'No middleman fees'
   },
   {
     id: 'vault',
@@ -38,12 +38,12 @@ const modules = [
     benefit: 'Auto document management'
   },
   {
-    id: 'core',
-    name: 'Core',
+    id: 'fleetcopilot',
+    name: 'FleetCopilot',
     icon: Zap,
     color: 'primary',
-    description: 'Operations Center',
-    benefit: 'Unified workflow automation'
+    description: 'AI Operations Assistant',
+    benefit: 'Voice agent Rari, workflow automation'
   }
 ];
 
