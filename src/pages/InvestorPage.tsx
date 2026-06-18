@@ -3,15 +3,12 @@ import {
   ArrowRight,
   Calendar,
   ExternalLink,
-  CheckCircle,
-  Mail,
   TrendingUp,
   Shield,
   Zap,
   Users,
   Award,
   BarChart3,
-  MapPin,
   ChevronRight
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';

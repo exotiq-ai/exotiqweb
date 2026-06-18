@@ -45,7 +45,7 @@ class ApolloService {
 
   private canTrack(): boolean {
     this.checkCookieConsent(); // Refresh consent status
-    return this.isEnabled && this.config.cookieConsent && !this.isInitialized;
+    return Boolean(this.isEnabled && this.config.cookieConsent && !this.isInitialized);
   }
 
   /**
@@ -103,7 +103,7 @@ class ApolloService {
     } catch (error) {
       logger.error('Failed to initialize Apollo tracking', { error });
       this.trackEvent('apollo_init_error', {
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
         appId: this.config.appId,
         timestamp: new Date().toISOString()
       });
@@ -211,7 +211,7 @@ class ApolloService {
     return {
       enabled: this.isEnabled,
       initialized: this.isInitialized,
-      cookieConsent: this.config.cookieConsent,
+      cookieConsent: Boolean(this.config.cookieConsent),
       appId: this.config.appId
     };
   }

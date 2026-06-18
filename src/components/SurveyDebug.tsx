@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { SurveyService } from '../services/surveyService';
 import { supabase } from '../services/supabaseClient';
 import logger from '../utils/logger';

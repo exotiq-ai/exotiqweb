@@ -1,10 +1,11 @@
-import React, { forwardRef } from 'react';
+import { forwardRef, type CSSProperties } from 'react';
 import { BaseComponentProps, CardVariant } from '../../lib/types';
 
 export interface CardProps extends BaseComponentProps {
   variant?: CardVariant;
   padding?: 'none' | 'sm' | 'md' | 'lg';
   hover?: boolean;
+  style?: CSSProperties;
 }
 
 const Card = forwardRef<HTMLDivElement, CardProps>(({
@@ -12,6 +13,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(({
   padding = 'md',
   hover = false,
   className = '',
+  style,
   children
 }, ref) => {
   const baseClasses = 'rounded-xl transition-all duration-300';
@@ -40,7 +42,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(({
   };
   
   return (
-    <div ref={ref} className={`${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${hoverClasses} ${variantHoverEffects[variant]} ${className}`}>
+    <div ref={ref} style={style} className={`${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${hoverClasses} ${variantHoverEffects[variant]} ${className}`}>
       {children}
     </div>
   );

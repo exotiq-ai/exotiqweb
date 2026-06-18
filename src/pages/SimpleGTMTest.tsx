@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function SimpleGTMTest() {
   const [gtmStatus, setGtmStatus] = useState<string>('Checking...');

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Brain, MessageSquare, Settings, BarChart3 } from 'lucide-react';
 import ChatBotTest from '../components/ChatBot/ChatBotTest';
 import FleetCopilot from '../components/ChatBot/ChatBot';

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { MessageSquare, X, Zap } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { MessageSquare, Zap } from 'lucide-react';
 import FleetCopilot from './ChatBot';
 import { useChatBot } from '../../hooks/useChatBot';
 

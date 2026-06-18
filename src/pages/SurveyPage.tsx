@@ -1,12 +1,11 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { breadcrumbSchema } from '../data/structuredData';
-import { surveys, SurveyData, SurveyQuestion } from '../data/surveyData';
+import { surveys } from '../data/surveyData';
 import { SurveyService } from '../services/surveyService';
 import logger from '../utils/logger';
-import SurveyDebug from '../components/SurveyDebug';
 
 // Lazy load heavy components and icons
 const SurveyIcons = lazy(() => import('../components/SurveyIcons'));

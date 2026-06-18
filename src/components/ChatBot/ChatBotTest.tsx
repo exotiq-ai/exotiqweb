@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Bot, CheckCircle, XCircle, AlertTriangle, Loader, MessageSquare, Zap, Brain, Clock } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { CheckCircle, XCircle, AlertTriangle, Loader, Zap, Brain, Clock } from 'lucide-react';
 import { openAIService } from '../../services/openai';
 import { analyticsService } from '../../services/analytics';
 import { persistenceService } from '../../services/persistence';
 import logger from '../../utils/logger';
+
+const getErrorMessage = (error: unknown): string =>
+  error instanceof Error ? error.message : String(error);
 
 interface TestResult {
   name: string;
@@ -167,7 +170,7 @@ export default function ChatBotTest() {
       } catch (error) {
         updateTestResult(0, 3, {
           status: 'error',
-          message: `✗ Edge function unreachable: ${error.message}`
+          message: `✗ Edge function unreachable: ${getErrorMessage(error)}`
         });
       }
     }
@@ -199,8 +202,8 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(1, 0, {
         status: 'error',
-        message: `✗ AI request failed: ${error.message}`,
-        details: { error: error.message }
+        message: `✗ AI request failed: ${getErrorMessage(error)}`,
+        details: { error: getErrorMessage(error) }
       });
     }
 
@@ -222,7 +225,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(1, 1, {
         status: 'error',
-        message: `✗ Context test failed: ${error.message}`
+        message: `✗ Context test failed: ${getErrorMessage(error)}`
       });
     }
 
@@ -244,7 +247,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(1, 2, {
         status: 'error',
-        message: `✗ History test failed: ${error.message}`
+        message: `✗ History test failed: ${getErrorMessage(error)}`
       });
     }
 
@@ -267,7 +270,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(1, 3, {
         status: 'warning',
-        message: `⚠ Error handling test inconclusive: ${error.message}`
+        message: `⚠ Error handling test inconclusive: ${getErrorMessage(error)}`
       });
     }
 
@@ -292,7 +295,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(1, 4, {
         status: 'error',
-        message: `✗ Quality test failed: ${error.message}`
+        message: `✗ Quality test failed: ${getErrorMessage(error)}`
       });
     }
 
@@ -318,7 +321,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(2, 0, {
         status: 'error',
-        message: `✗ Analytics service error: ${error.message}`
+        message: `✗ Analytics service error: ${getErrorMessage(error)}`
       });
     }
 
@@ -341,7 +344,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(2, 1, {
         status: 'error',
-        message: `✗ Persistence service error: ${error.message}`
+        message: `✗ Persistence service error: ${getErrorMessage(error)}`
       });
     }
 
@@ -358,7 +361,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(2, 2, {
         status: 'error',
-        message: `✗ Session management error: ${error.message}`
+        message: `✗ Session management error: ${getErrorMessage(error)}`
       });
     }
 
@@ -375,7 +378,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(2, 3, {
         status: 'error',
-        message: `✗ Lead scoring error: ${error.message}`
+        message: `✗ Lead scoring error: ${getErrorMessage(error)}`
       });
     }
 
@@ -402,7 +405,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(3, 0, {
         status: 'error',
-        message: `✗ Performance test failed: ${error.message}`
+        message: `✗ Performance test failed: ${getErrorMessage(error)}`
       });
     }
 
@@ -427,7 +430,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(3, 1, {
         status: 'error',
-        message: `✗ Concurrent test failed: ${error.message}`
+        message: `✗ Concurrent test failed: ${getErrorMessage(error)}`
       });
     }
 
@@ -451,7 +454,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(3, 2, {
         status: 'warning',
-        message: `⚠ Memory test inconclusive: ${error.message}`
+        message: `⚠ Memory test inconclusive: ${getErrorMessage(error)}`
       });
     }
 
@@ -478,7 +481,7 @@ export default function ChatBotTest() {
     } catch (error) {
       updateTestResult(3, 3, {
         status: 'warning',
-        message: `⚠ Error recovery test inconclusive: ${error.message}`
+        message: `⚠ Error recovery test inconclusive: ${getErrorMessage(error)}`
       });
     }
 
@@ -533,7 +536,7 @@ export default function ChatBotTest() {
         {/* Test Results */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)]">
           <div className="space-y-6">
-            {testSuites.map((suite, suiteIndex) => (
+            {testSuites.map((suite) => (
               <div key={suite.name} className={`border rounded-xl p-4 ${getStatusColor(
                 suite.tests.every(t => t.status === 'success') ? 'success' :
                 suite.tests.some(t => t.status === 'error') ? 'error' :
@@ -550,7 +553,7 @@ export default function ChatBotTest() {
                 </div>
                 
                 <div className="space-y-2">
-                  {suite.tests.map((test, testIndex) => (
+                  {suite.tests.map((test) => (
                     <div key={test.name} className="flex items-center justify-between p-3 bg-white dark:bg-dark-700 rounded-lg">
                       <div className="flex items-center space-x-3">
                         {getStatusIcon(test.status)}

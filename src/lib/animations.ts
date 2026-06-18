@@ -18,11 +18,7 @@ export const getAnimationClasses = (
   direction?: AnimationDirection,
   config?: AnimationConfig
 ): string => {
-  const duration = config?.duration || 600;
-  const delay = config?.delay || 0;
-  const easing = config?.easing || 'cubic-bezier(0.4, 0, 0.2, 1)';
-  const distance = config?.distance || 30;
-
+  void config;
   const classes: string[] = [];
 
   switch (type) {

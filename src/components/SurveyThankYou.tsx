@@ -6,7 +6,7 @@ interface SurveyThankYouProps {
   surveyType: string | null;
 }
 
-const SurveyThankYou: React.FC<SurveyThankYouProps> = ({ surveyType }) => {
+const SurveyThankYou: React.FC<SurveyThankYouProps> = ({ surveyType: _surveyType }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-success-50 to-success-100 dark:from-success-900/20 dark:to-success-800/20 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">

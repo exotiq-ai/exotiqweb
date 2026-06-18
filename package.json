@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "build": "vite build",
     "generate:seo": "node scripts/generate-seo-artifacts.mjs",
     "prerender": "node scripts/prerender-public-routes.mjs",
     "verify:prerender": "node scripts/verify-prerendered-routes.mjs",
-    "build:prerendered": "npm run generate:seo && vite build && npm run prerender && npm run verify:prerender",
+    "build:prerendered": "npm run typecheck && npm run generate:seo && vite build && npm run prerender && npm run verify:prerender",
     "lint": "eslint .",
     "preview": "vite preview",
     "pre-deploy": "node scripts/pre-deployment-check.js",

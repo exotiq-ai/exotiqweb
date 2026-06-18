@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, Clock, DollarSign, BarChart3, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CheckCircle, Clock, DollarSign, BarChart3, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SurveyData, SurveyQuestion } from '../data/surveyData';
 
 interface SurveyFormProps {

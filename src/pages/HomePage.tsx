@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -39,9 +39,13 @@ export default function HomePage() {
     return () => clearTimeout(timer);
   }, []);
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   if (isLoading) {
     return (
-      <div className="pt-16">
+      <div>
         {/* Hero Skeleton */}
         <section className="min-h-screen flex items-center justify-center bg-dark-900">
           <MobileContainer>
@@ -61,7 +65,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="pt-16">
+    <div>
       <SEOHead
         title="exotiq: The AI command center for exotic car rental operations"
         description="exotiq is the AI command center for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Built for operators across six US markets."
@@ -71,7 +75,7 @@ export default function HomePage() {
       />
       
       {/* 1. Hero Section - Dark gradient with dashboard screenshot */}
-      <HomeHeroSection isVisible={isVisible} />
+      <HomeHeroSection isVisible={isVisible} scrollToSection={scrollToSection} />
 
       {/* 2. FleetCopilot™ AI Section - Product differentiator */}
       <FleetCopilotSection />

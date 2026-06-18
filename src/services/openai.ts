@@ -96,7 +96,7 @@ export class OpenAIService {
     }
   }
 
-  private getFallbackResponse(userMessage: string, userContext: UserContext): string {
+  private getFallbackResponse(userMessage: string, _userContext: UserContext): string {
     const message = userMessage.toLowerCase();
     
     // Simple keyword-based fallback responses
@@ -119,7 +119,7 @@ export class OpenAIService {
     return "Thanks for reaching out! I'm here to help with any fleet management questions. What would you like to know about Exotiq or fleet operations in general?";
   }
 
-  updateUserContext(sessionId: string, context: Partial<UserContext>): void {
+  updateUserContext(_sessionId: string, _context: Partial<UserContext>): void {
     // Context is now handled by the backend, but we can store it locally for reference
     // This method is kept for compatibility
   }

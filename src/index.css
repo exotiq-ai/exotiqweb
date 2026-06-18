@@ -403,7 +403,7 @@
   /* Skip to content link */
   .skip-link {
     position: absolute;
-    top: -40px;
+    top: -100px;
     left: 6px;
     background: #2563eb;
     color: white;

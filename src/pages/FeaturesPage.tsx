@@ -9,7 +9,6 @@ import {
   Zap,
   Bot,
   TrendingUp,
-  Brain,
   PieChart,
   Shield,
   DollarSign,
@@ -38,7 +37,7 @@ import {
   Wrench
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
-import { MobileSection, MobileContainer } from '../components/MobileOptimizations';
+import { MobileContainer } from '../components/MobileOptimizations';
 import { softwareApplicationSchema, breadcrumbSchema } from '../data/structuredData';
 
 // Enhanced module data with final copy
@@ -55,7 +54,7 @@ const modules = [
     iconBg: 'bg-blue-500/20',
     description: 'AI-powered dynamic pricing that analyzes 1,000+ data points to optimize every rental. Never leave money on the table again.',
     longDescription: 'MotorIQ is your always-on revenue analyst. It watches competitor pricing, local events, weather patterns, and historical demand to adjust your rates in real-time. Set your floor, set your ceiling, and let AI maximize every booking.',
-    screenshot: '/images/app-screenshots/motoriq-ui.png',
+    screenshot: '/images/app-screenshots/motoriq-ui-light.png',
     screenshotAlt: 'MotorIQ dashboard showing price optimization and revenue analytics',
     heroMetric: { value: 'Up to 30%', label: 'More Revenue', sublabel: 'from smarter pricing' },
     features: [
@@ -105,7 +104,7 @@ const modules = [
     iconBg: 'bg-orange-500/20',
     description: 'Real-time visibility into your entire fleet. See what\'s happening, predict what\'s coming, and make smarter decisions faster.',
     longDescription: 'Pulse turns scattered data into a single command center. See which vehicles are booked, which are sitting idle, where demand is heating up, and where your attention is needed. Your entire fleet, one screen, zero spreadsheets.',
-    screenshot: '/images/app-screenshots/pulse-ui.png',
+    screenshot: '/images/app-screenshots/pulse-ui-light.png',
     screenshotAlt: 'Pulse analytics showing demand forecasts and calendar heatmap',
     heroMetric: { value: 'Live', label: 'Fleet Visibility', sublabel: 'every car, one screen' },
     features: [
@@ -155,7 +154,7 @@ const modules = [
     iconBg: 'bg-emerald-500/20',
     description: 'Your own booking system. Keep your full booking revenue and build direct relationships with customers.',
     longDescription: 'Stop giving away 25-40% of every booking to platforms. Book is your command center for reservations, calendars, and customer relationships. Sync your calendars, track your best customers, and let MotorIQ pricing flow in automatically. Your customers, your data, your revenue.',
-    screenshot: '/images/app-screenshots/book-ui.png',
+    screenshot: '/images/app-screenshots/book-ui-light.png',
     screenshotAlt: 'Book module showing direct booking interface',
     heroMetric: { value: 'Your', label: 'Customers, Your Data', sublabel: 'no middleman fees' },
     features: [
@@ -205,7 +204,7 @@ const modules = [
     iconBg: 'bg-amber-500/20',
     description: 'Automated compliance management. Generate documents, track expirations, stay protected.',
     longDescription: 'One lapsed insurance policy. One expired registration. One missing agreement. That\'s all it takes to turn a fender-bender into a lawsuit. Vault tracks every deadline, generates every document, and alerts you before anything slips. The stuff that can sink your business, handled automatically.',
-    screenshot: '/images/app-screenshots/vault-ui.png',
+    screenshot: '/images/app-screenshots/vault-ui-light.png',
     screenshotAlt: 'Vault compliance dashboard showing document management',
     heroMetric: { value: 'Zero', label: 'Missed Deadlines', sublabel: 'every document, tracked' },
     features: [
@@ -255,7 +254,7 @@ const modules = [
     iconBg: 'bg-emerald-500/20',
     description: 'Your AI-powered operations assistant, powered by Rari, the Exotiq voice agent. Voice commands, smart scheduling, and intelligent task management.',
     longDescription: 'FleetCopilot is mission control for your fleet. Talk to Rari like a teammate, ask questions, give commands, get answers. It coordinates pickups, manages turnarounds, and keeps your operation running smoothly. The admin work that used to take hours now takes seconds.',
-    screenshot: '/images/app-screenshots/fleetcopilot-ui.png',
+    screenshot: '/images/app-screenshots/fleetcopilot-rari-ui-light.png',
     screenshotAlt: 'FleetCopilot AI assistant interface showing voice commands and task management',
     heroMetric: { value: '15+', label: 'Hours Saved Weekly', sublabel: 'per operator' },
     features: [
@@ -464,34 +463,28 @@ const ModuleSection: React.FC<{ module: typeof modules[0]; index: number }> = ({
                     </div>
                   </div>
                   
-                  {/* Screenshot - Scaled to fit full app view */}
-                  <div className="aspect-[16/10] bg-dark-900 overflow-hidden relative">
-                    <div className="absolute inset-0 flex items-center justify-center p-2">
-                      <img
-                        src={module.screenshot}
-                        alt={module.screenshotAlt}
-                        className="w-full h-full object-contain rounded-sm"
-                        style={{ 
-                          maxWidth: '100%',
-                          maxHeight: '100%',
-                        }}
-                        loading="lazy"
-                        decoding="async"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          target.parentElement!.innerHTML = `
-                            <div class="w-full h-full flex flex-col items-center justify-center text-gray-500 p-8">
-                              <svg class="w-16 h-16 mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                              </svg>
-                              <span class="text-sm font-medium">${module.name} Screenshot</span>
-                              <span class="text-xs mt-1 opacity-60">Coming Soon</span>
-                            </div>
-                          `;
-                        }}
-                      />
-                    </div>
+                  {/* Screenshot - frame hugs the screenshot's native ratio (no letterbox) */}
+                  <div className="relative bg-dark-900">
+                    <img
+                      src={module.screenshot}
+                      alt={module.screenshotAlt}
+                      className="block w-full h-auto select-none"
+                      loading="lazy"
+                      decoding="async"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        const parent = target.parentElement!;
+                        parent.innerHTML = `
+                          <div class="w-full flex flex-col items-center justify-center text-gray-500 p-8" style="min-height:320px">
+                            <svg class="w-16 h-16 mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-sm font-medium">${module.name} Screenshot</span>
+                            <span class="text-xs mt-1 opacity-60">Coming Soon</span>
+                          </div>
+                        `;
+                      }}
+                    />
                   </div>
                 </div>
               </div>

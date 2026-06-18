@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search, ArrowRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import BlogCard from '../components/blog/BlogCard';
-import { formatTaxonomyLabel } from '../lib/blog';
+import { formatTaxonomyLabel, getReadingTimeFromContent } from '../lib/blog';
 import { usePublishedBlogPosts } from '../hooks/useBlogData';
 
 export default function BlogPage() {
@@ -138,7 +138,7 @@ export default function BlogPage() {
               <span className="rounded-full bg-primary-50 px-2 py-1">
                 {featuredPost.funnelStage}
               </span>
-              <span>{featuredPost.readingTimeMinutes} min read</span>
+              <span>{getReadingTimeFromContent(featuredPost.bodyMarkdown)} min read</span>
               <span>{new Date(featuredPost.publishDate).toLocaleDateString()}</span>
             </div>
             <Link

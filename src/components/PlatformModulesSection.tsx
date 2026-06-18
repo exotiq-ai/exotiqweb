@@ -21,7 +21,7 @@ const modules = [
     iconBg: 'bg-blue-500/20',
     iconColor: 'text-blue-400',
     description: 'AI-powered dynamic pricing that watches competitor pricing, local events, and demand to adjust your rates in real-time. Set your floor, set your ceiling, let AI maximize every booking.',
-    screenshot: '/images/app-screenshots/motoriq-ui.png',
+    screenshot: '/images/app-screenshots/motoriq-ui-light.png',
     screenshotAlt: 'MotorIQ dashboard showing price optimization and revenue analytics',
     features: [
       { icon: DollarSign, text: 'AI Dynamic Pricing' },
@@ -41,7 +41,7 @@ const modules = [
     iconBg: 'bg-orange-500/20',
     iconColor: 'text-orange-400',
     description: 'Your entire fleet on one screen. See which vehicles are booked, which are sitting idle, where demand is heating up. Zero spreadsheets, zero guessing.',
-    screenshot: '/images/app-screenshots/pulse-ui.png',
+    screenshot: '/images/app-screenshots/pulse-ui-light.png',
     screenshotAlt: 'Pulse analytics showing demand forecasts and calendar heatmap',
     features: [
       { icon: Eye, text: 'Live Fleet Status' },
@@ -61,7 +61,7 @@ const modules = [
     iconBg: 'bg-emerald-500/20',
     iconColor: 'text-emerald-400',
     description: 'Stop giving away 25-40% of every booking. Unified calendar, customer intelligence, and MotorIQ pricing sync. Your customers, your data, your revenue.',
-    screenshot: '/images/app-screenshots/book-ui.png',
+    screenshot: '/images/app-screenshots/book-ui-light.png',
     screenshotAlt: 'Book module showing direct booking interface',
     features: [
       { icon: Calendar, text: 'Unified Calendar' },
@@ -81,7 +81,7 @@ const modules = [
     iconBg: 'bg-amber-500/20',
     iconColor: 'text-amber-400',
     description: 'One lapsed policy can sink your business. Vault tracks every deadline, generates every document, and alerts you before anything slips.',
-    screenshot: '/images/app-screenshots/vault-ui.png',
+    screenshot: '/images/app-screenshots/vault-ui-light.png',
     screenshotAlt: 'Vault compliance dashboard showing document management',
     features: [
       { icon: FileText, text: 'Auto Documentation' },
@@ -101,7 +101,7 @@ const modules = [
     iconBg: 'bg-emerald-500/20',
     iconColor: 'text-emerald-400',
     description: 'Meet Rari, your voice agent. Talk to it like a teammate. Voice commands, smart scheduling, condition-based estimates. The admin work that took hours now takes seconds.',
-    screenshot: '/images/app-screenshots/fleetcopilot-ui.png',
+    screenshot: '/images/app-screenshots/fleetcopilot-rari-ui-light.png',
     screenshotAlt: 'FleetCopilot AI assistant interface showing voice commands',
     features: [
       { icon: Mic, text: 'Voice Commands' },
@@ -115,7 +115,6 @@ const modules = [
 // Individual Module Card Component with scroll-triggered animation
 const ModuleCard: React.FC<{ module: typeof modules[0]; index: number; isReversed: boolean }> = ({ 
   module, 
-  index, 
   isReversed 
 }) => {
   const ref = React.useRef(null);
@@ -166,35 +165,29 @@ const ModuleCard: React.FC<{ module: typeof modules[0]; index: number; isReverse
                   </div>
                 </div>
                 
-                {/* Screenshot Image - Scaled to fit full app view */}
-                <div className="aspect-[16/10] bg-dark-900 overflow-hidden relative">
-                  <div className="absolute inset-0 flex items-center justify-center p-2">
-                    <img
-                      src={module.screenshot}
-                      alt={module.screenshotAlt}
-                      className="w-full h-full object-contain rounded-sm"
-                      style={{ 
-                        maxWidth: '100%',
-                        maxHeight: '100%',
-                      }}
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) => {
-                        // Fallback placeholder if image doesn't exist yet
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        target.parentElement!.innerHTML = `
-                          <div class="w-full h-full flex flex-col items-center justify-center text-gray-500 p-8">
-                            <svg class="w-16 h-16 mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            <span class="text-sm font-medium">${module.name} Screenshot</span>
-                            <span class="text-xs mt-1 opacity-60">Coming Soon</span>
-                          </div>
-                        `;
-                      }}
-                    />
-                  </div>
+                {/* Screenshot Image - frame hugs the screenshot's native ratio (no letterbox) */}
+                <div className="relative bg-dark-900">
+                  <img
+                    src={module.screenshot}
+                    alt={module.screenshotAlt}
+                    className="block w-full h-auto select-none"
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => {
+                      // Fallback placeholder if image doesn't exist yet
+                      const target = e.target as HTMLImageElement;
+                      const parent = target.parentElement!;
+                      parent.innerHTML = `
+                        <div class="w-full flex flex-col items-center justify-center text-gray-500 p-8" style="min-height:320px">
+                          <svg class="w-16 h-16 mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                          <span class="text-sm font-medium">${module.name} Screenshot</span>
+                          <span class="text-xs mt-1 opacity-60">Coming Soon</span>
+                        </div>
+                      `;
+                    }}
+                  />
                 </div>
               </div>
             </div>

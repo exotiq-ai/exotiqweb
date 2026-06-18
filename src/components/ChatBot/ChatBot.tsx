@@ -1,22 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  MessageSquare, 
-  X, 
-  Send, 
-  Bot, 
-  User, 
-  Calendar,
-  ExternalLink,
-  Loader,
-  Star,
-  TrendingUp,
-  Users,
-  Zap,
-  CheckCircle,
-  ArrowRight,
-  Phone,
-  Mail
-} from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { X, Bot } from 'lucide-react';
 import { openAIService } from '../../services/openai';
 import { analyticsService } from '../../services/analytics';
 import { persistenceService } from '../../services/persistence';
@@ -313,7 +296,7 @@ export default function FleetCopilot({ isOpen, onToggle, sessionId, isReturningU
     }
   };
 
-  const updateConversationFlow = (userMessage: string, aiResponse: string) => {
+  const updateConversationFlow = (userMessage: string, _aiResponse: string) => {
     const message = userMessage.toLowerCase();
     
     // Extract fleet size

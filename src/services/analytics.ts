@@ -111,14 +111,14 @@ class AnalyticsService {
     }, sessionId);
   }
 
-  trackMessage(sessionId: string, type: 'user' | 'bot', content: string, leadScore?: number): void {
+  trackMessage(sessionId: string, type: 'user' | 'bot' | 'action', content: string, leadScore?: number): void {
     const conversation = this.conversations.get(sessionId);
     if (!conversation) return;
 
     conversation.messageCount++;
     if (type === 'user') {
       conversation.userMessages++;
-    } else {
+    } else if (type === 'bot') {
       conversation.botMessages++;
     }
 
@@ -317,7 +317,8 @@ export const PerformanceMonitor = {
         const fidObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries();
           entries.forEach((entry) => {
-            const fid = entry.processingStart - entry.startTime;
+            const fidEntry = entry as PerformanceEventTiming;
+            const fid = fidEntry.processingStart - fidEntry.startTime;
             PerformanceMonitor.trackMetric('FID', fid);
             
             if (window.gtag) {

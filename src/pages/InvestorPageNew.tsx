@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import {
     TrendingUp,
     Users,
@@ -9,10 +8,8 @@ import {
     CheckCircle,
     Zap,
     Mail,
-    Building,
     Award,
     ExternalLink,
-    Phone,
     Shield,
     BarChart3,
     Rocket,

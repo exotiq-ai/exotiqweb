@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface SectionSkeletonProps {
   variant?: 'fleetcopilot' | 'testimonials' | 'features' | 'default';
 }
