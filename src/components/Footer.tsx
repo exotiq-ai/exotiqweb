@@ -31,7 +31,6 @@ export default function Footer() {
                 <Mail className="w-4 h-4" />
                 <span className="font-montserrat text-sm">hello@exotiq.ai</span>
               </a>
-              {/* TODO: confirm LinkedIn company URL with team */}
               <a
                 href="https://www.linkedin.com/company/exotiq-ai"
                 target="_blank"
@@ -59,6 +58,15 @@ export default function Footer() {
                 </Link>
                 <Link to="/pricing" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat text-sm leading-5">
                   Pricing
+                </Link>
+                <Link to="/solutions/exotic-car-rental-software" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat text-sm leading-5">
+                  Exotic Car Rental Software
+                </Link>
+                <Link to="/solutions/turo-host-software" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat text-sm leading-5">
+                  Turo Host Software
+                </Link>
+                <Link to="/compare/exotiq-vs-turo" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat text-sm leading-5">
+                  Compare exotiq
                 </Link>
                 <Link to="/about" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat text-sm leading-5">
                   About Us

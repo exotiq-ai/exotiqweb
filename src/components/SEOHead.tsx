@@ -30,6 +30,27 @@ function formatTitle(title: string): string {
   return `${title} | ${BRAND_NAME}`;
 }
 
+// The site is served from directory-style static files (e.g. /features/), so
+// Netlify 301-redirects the no-slash form. Canonical/OG/Twitter URLs must point
+// at the final, non-redirecting trailing-slash URL. Paths that reference a file
+// (with an extension) are left untouched.
+function toCanonicalUrl(value: string): string {
+  try {
+    const url = new URL(value);
+    const segments = url.pathname.split('/');
+    const last = segments[segments.length - 1];
+    if (last && last.includes('.')) {
+      return url.toString();
+    }
+    if (!url.pathname.endsWith('/')) {
+      url.pathname = `${url.pathname}/`;
+    }
+    return url.toString();
+  } catch {
+    return value;
+  }
+}
+
 export default function SEOHead({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
@@ -47,7 +68,7 @@ export default function SEOHead({
   structuredData
 }: SEOHeadProps) {
   const fullTitle = formatTitle(title);
-  const currentUrl = canonical || url;
+  const currentUrl = toCanonicalUrl(canonical || url);
 
   return (
     <Helmet>

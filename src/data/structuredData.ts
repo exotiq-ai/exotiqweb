@@ -4,7 +4,7 @@ export const organizationSchema = {
   "@type": "Organization",
   "name": "exotiq",
   "alternateName": "Exotiq",
-  "url": "https://exotiq.ai",
+  "url": "https://exotiq.ai/",
   "logo": "https://exotiq.ai/brand/exotiq-lockup-horizontal-white.svg",
   "description": "exotiq is the AI command center for exotic car rental operators. Optimize operations and maximize margins for rental fleet hosts.",
   "foundingDate": "2024-01-01",
@@ -28,7 +28,7 @@ export const organizationSchema = {
     "availableLanguage": "English"
   },
   "sameAs": [
-    "https://www.linkedin.com/company/driveexotiq",
+    "https://www.linkedin.com/company/exotiq-ai",
     "https://twitter.com/Exotiqai"
   ],
   "knowsAbout": [
@@ -52,7 +52,7 @@ export const softwareApplicationSchema = {
   "@type": "SoftwareApplication",
   "name": "exotiq",
   "description": "The AI command center for exotic car rental operators. Automates pricing, maintenance, and operations for vehicle rental businesses and Turo hosts.",
-  "url": "https://exotiq.ai",
+  "url": "https://exotiq.ai/",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web-based, iOS, Android",
   "offers": {
@@ -161,12 +161,12 @@ export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "exotiq",
-  "url": "https://exotiq.ai",
+  "url": "https://exotiq.ai/",
   "description": "The AI command center for exotic car rental operators.",
   "publisher": {
     "@type": "Organization",
     "name": "exotiq",
-    "url": "https://exotiq.ai"
+    "url": "https://exotiq.ai/"
   },
   "inLanguage": "en-US"
 };
@@ -182,7 +182,7 @@ export const pricingProductSchema = {
     "@type": "Brand",
     "name": "exotiq"
   },
-  "url": "https://exotiq.ai/pricing",
+  "url": "https://exotiq.ai/pricing/",
   "image": "https://exotiq.ai/og-exotiq-ai-fleet.png",
   "offers": [
     {
@@ -192,7 +192,7 @@ export const pricingProductSchema = {
       "priceCurrency": "USD",
       "priceValidUntil": "2027-12-31",
       "availability": "https://schema.org/InStock",
-      "url": "https://exotiq.ai/pricing",
+      "url": "https://exotiq.ai/pricing/",
       "description": "$39 per vehicle / month for fleets of 1–15 vehicles. All features included. 30-day free trial, no credit card required."
     },
     {
@@ -202,7 +202,7 @@ export const pricingProductSchema = {
       "priceCurrency": "USD",
       "priceValidUntil": "2027-12-31",
       "availability": "https://schema.org/InStock",
-      "url": "https://exotiq.ai/pricing",
+      "url": "https://exotiq.ai/pricing/",
       "description": "$29 per vehicle / month for fleets of 16–50 vehicles. All features included, volume pricing."
     },
     {
@@ -210,7 +210,7 @@ export const pricingProductSchema = {
       "name": "Enterprise",
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
-      "url": "https://exotiq.ai/pricing",
+      "url": "https://exotiq.ai/pricing/",
       "description": "Custom pricing for fleets of 51+ vehicles with dedicated support."
     }
   ]
@@ -224,6 +224,22 @@ export const breadcrumbSchema = (items: Array<{name: string, url: string}>) => (
     "position": index + 1,
     "name": item.name,
     "item": item.url
+  }))
+});
+
+// Builds a FAQPage schema from arbitrary question/answer pairs (e.g. a blog
+// post's `faqItems`). The visible FAQ content on the page must match these
+// entries to comply with Google's structured-data policy.
+export const faqPageSchema = (items: Array<{ question: string; answer: string }>) => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": items.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
   }))
 });
 

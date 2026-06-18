@@ -59,7 +59,7 @@ const FeaturesHero: React.FC = () => {
               style={{ transitionDelay: '400ms' }}
             >
               <a
-                href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+                href="https://calendly.com/hello-exotiq/15-minute-meeting"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-3 font-dfaalt font-semibold text-lg px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/30"

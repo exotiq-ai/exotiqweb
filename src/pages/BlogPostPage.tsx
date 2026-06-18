@@ -5,6 +5,7 @@ import SEOHead from '../components/SEOHead';
 import {
   formatTaxonomyLabel,
 } from '../lib/blog';
+import { breadcrumbSchema, faqPageSchema } from '../data/structuredData';
 import { mdxComponents } from '../components/blog/MdxComponents';
 import RariSummaryPanel from '../components/blog/RariSummaryPanel';
 import BlogShareBar from '../components/blog/BlogShareBar';
@@ -80,7 +81,7 @@ export default function BlogPostPage() {
     );
   }
 
-  const articleUrl = `https://exotiq.ai/blog/${post.slug}`;
+  const articleUrl = `https://exotiq.ai/blog/${post.slug}/`;
   const ctaConfig: Record<
     typeof post.ctaType,
     { label: string; href: string; external?: boolean }
@@ -104,7 +105,8 @@ export default function BlogPostPage() {
     },
   };
   const activeCta = ctaConfig[post.ctaType];
-  const schema = {
+  const faqItems = post.faqItems ?? [];
+  const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
@@ -128,6 +130,19 @@ export default function BlogPostPage() {
     image: post.ogImage || 'https://exotiq.ai/og-image.jpg',
     keywords: [post.primaryKeyword, ...post.secondaryKeywords].join(', '),
   };
+  const blogBreadcrumbSchema = breadcrumbSchema([
+    { name: 'Home', url: 'https://exotiq.ai/' },
+    { name: 'Blog', url: 'https://exotiq.ai/blog/' },
+    {
+      name: formatTaxonomyLabel(post.category),
+      url: `https://exotiq.ai/blog/category/${post.category}/`,
+    },
+    { name: post.title, url: articleUrl },
+  ]);
+  const schema: object[] = [blogPostingSchema, blogBreadcrumbSchema];
+  if (faqItems.length > 0) {
+    schema.push(faqPageSchema(faqItems));
+  }
 
   return (
     <div className={`pt-16 min-h-screen ${darkReadingMode ? 'bg-gray-950' : 'bg-[#fafafa]'}`}>
@@ -225,6 +240,34 @@ export default function BlogPostPage() {
               {post.bodyMarkdown}
             </ReactMarkdown>
           </div>
+
+          {faqItems.length > 0 ? (
+            <section
+              className={`mt-10 pt-8 border-t ${darkReadingMode ? 'border-gray-800' : 'border-gray-200'}`}
+              aria-labelledby="faq-heading"
+            >
+              <h2
+                id="faq-heading"
+                className={`font-dfaalt text-2xl mb-5 ${darkReadingMode ? 'text-white' : 'text-gray-900'}`}
+              >
+                Frequently asked questions
+              </h2>
+              <div className="space-y-5">
+                {faqItems.map((item) => (
+                  <div key={item.question}>
+                    <h3
+                      className={`font-dfaalt text-lg mb-1 ${darkReadingMode ? 'text-gray-100' : 'text-gray-900'}`}
+                    >
+                      {item.question}
+                    </h3>
+                    <p className={darkReadingMode ? 'text-gray-300' : 'text-gray-700'}>
+                      {item.answer}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           <div className={`mt-10 pt-8 border-t ${darkReadingMode ? 'border-gray-800' : 'border-gray-200'}`}>
             <h3 className={`font-dfaalt text-xl mb-2 ${darkReadingMode ? 'text-white' : 'text-gray-900'}`}>

@@ -26,6 +26,12 @@ export const STATIC_ROUTES = [
   { path: '/features', priority: 0.95, changefreq: 'weekly', type: 'page', wordTarget: 500 },
   { path: '/pricing', priority: 0.95, changefreq: 'weekly', type: 'page', wordTarget: 400 },
   { path: '/fleetcopilot', priority: 0.9, changefreq: 'weekly', type: 'page', wordTarget: 500 },
+  // Bottom-funnel comparison + category landing pages (demand capture).
+  { path: '/compare/best-exotic-car-rental-software', priority: 0.85, changefreq: 'weekly', type: 'page', wordTarget: 300 },
+  { path: '/compare/exotiq-vs-turo', priority: 0.85, changefreq: 'weekly', type: 'page', wordTarget: 300 },
+  { path: '/compare/exotiq-vs-hq-rental', priority: 0.85, changefreq: 'weekly', type: 'page', wordTarget: 300 },
+  { path: '/solutions/turo-host-software', priority: 0.85, changefreq: 'weekly', type: 'page', wordTarget: 300 },
+  { path: '/solutions/exotic-car-rental-software', priority: 0.85, changefreq: 'weekly', type: 'page', wordTarget: 300 },
   { path: '/about', priority: 0.7, changefreq: 'monthly', type: 'page', wordTarget: 250 },
   { path: '/contact', priority: 0.6, changefreq: 'monthly', type: 'page', wordTarget: 150 },
   { path: '/survey', priority: 0.5, changefreq: 'monthly', type: 'page', wordTarget: 150 },

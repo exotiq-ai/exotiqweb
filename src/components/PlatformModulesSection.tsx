@@ -351,7 +351,7 @@ const PlatformModulesSection: React.FC<PlatformModulesSectionProps> = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <a
-                  href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+                  href="https://calendly.com/hello-exotiq/15-minute-meeting"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-dfaalt font-semibold rounded-xl border border-white/20 hover:border-white/40 transition-all duration-300"

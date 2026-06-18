@@ -207,7 +207,7 @@ export default function HomePage() {
               Join the growing community of operators who are scaling smarter with Exotiq.
             </p>
             <a
-              href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+              href="https://calendly.com/hello-exotiq/15-minute-meeting"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center font-dfaalt font-semibold px-8 py-4 bg-white text-primary-600 hover:bg-gray-100 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"

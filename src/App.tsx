@@ -30,6 +30,15 @@ const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage'));
 const FleetCopilotDemoPage = React.lazy(() => import('./pages/FleetCopilotDemoPage'));
 const DMCAPage = React.lazy(() => import('./pages/DMCAPage'));
 const SMSTermsPage = React.lazy(() => import('./pages/SMSTermsPage'));
+const BestExoticCarRentalSoftwarePage = React.lazy(
+  () => import('./pages/compare/BestExoticCarRentalSoftwarePage')
+);
+const ExotiqVsTuroPage = React.lazy(() => import('./pages/compare/ExotiqVsTuroPage'));
+const ExotiqVsHqRentalPage = React.lazy(() => import('./pages/compare/ExotiqVsHqRentalPage'));
+const TuroHostSoftwarePage = React.lazy(() => import('./pages/solutions/TuroHostSoftwarePage'));
+const ExoticCarRentalSoftwarePage = React.lazy(
+  () => import('./pages/solutions/ExoticCarRentalSoftwarePage')
+);
 const BlogPage = React.lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = React.lazy(() => import('./pages/BlogPostPage'));
 const BlogCategoryPage = React.lazy(() => import('./pages/BlogCategoryPage'));
@@ -149,6 +158,20 @@ export default function App() {
                     <Route path="/survey" element={<SurveyPage />} />
                     <Route path="/investors" element={<InvestorPage />} />
                     <Route path="/fleetcopilot" element={<FleetCopilotDemoPage />} />
+                    <Route
+                      path="/compare/best-exotic-car-rental-software"
+                      element={<BestExoticCarRentalSoftwarePage />}
+                    />
+                    <Route path="/compare/exotiq-vs-turo" element={<ExotiqVsTuroPage />} />
+                    <Route path="/compare/exotiq-vs-hq-rental" element={<ExotiqVsHqRentalPage />} />
+                    <Route
+                      path="/solutions/turo-host-software"
+                      element={<TuroHostSoftwarePage />}
+                    />
+                    <Route
+                      path="/solutions/exotic-car-rental-software"
+                      element={<ExoticCarRentalSoftwarePage />}
+                    />
                     <Route path="/terms" element={<TermsAndConditionsPage />} />
                     <Route path="/privacy" element={<PrivacyPolicyPage />} />
                     <Route path="/cookies" element={<CookiePolicyPage />} />

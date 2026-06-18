@@ -17,7 +17,15 @@ const PUBLIC_DIR = join(__dirname, '..', 'public');
 const today = new Date().toISOString().slice(0, 10);
 
 function toUrl(route) {
-  const loc = route.path === '/' ? `${SITE_URL}/` : `${SITE_URL}${route.path}`;
+  // Emit trailing-slash locs so every entry resolves 200 with no redirect
+  // (Netlify serves directory-style files and 301s the no-slash form).
+  const path =
+    route.path === '/'
+      ? '/'
+      : route.path.endsWith('/')
+        ? route.path
+        : `${route.path}/`;
+  const loc = `${SITE_URL}${path}`;
   const lastmod = route.lastmod || today;
   return [
     '  <url>',

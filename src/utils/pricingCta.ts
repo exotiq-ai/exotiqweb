@@ -14,6 +14,9 @@ const EVENT_NAME = 'pricing_cta_click';
 /** Primary sales call booking link used across /pricing. */
 export const PRICING_SALES_CALENDLY = 'https://calendly.com/hello-exotiq/30min';
 
+/** Canonical 15-minute demo booking link used across marketing CTAs. */
+export const DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
+
 export function openPricingSalesCall(): void {
   if (typeof window === 'undefined') return;
   window.open(PRICING_SALES_CALENDLY, '_blank', 'noopener,noreferrer');

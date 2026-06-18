@@ -134,7 +134,17 @@ export const usePublishedBlogPost = (slug?: string) => {
             return;
           }
           if (supabasePost) {
-            setPost(supabasePost);
+            // Backfill structured-content fields that may not exist on older
+            // Supabase rows from the MDX source of truth, so FAQ schema/section
+            // render consistently regardless of the active content source.
+            const mergedPost: BlogDbPost = {
+              ...supabasePost,
+              faqItems:
+                supabasePost.faqItems && supabasePost.faqItems.length > 0
+                  ? supabasePost.faqItems
+                  : mdxPost?.faqItems,
+            };
+            setPost(mergedPost);
             setSource(BLOG_SOURCE_MODE === 'hybrid' ? 'hybrid' : 'supabase');
             setLoading(false);
             return;

@@ -48,7 +48,7 @@ export default function StickyCTABar() {
       <div className="relative px-4 py-3 flex items-center gap-3">
         {/* Primary CTA */}
         <a
-          href="https://calendly.com/hello-exotiq/15-minute-meeting?back=1&month=2025-07"
+          href="https://calendly.com/hello-exotiq/15-minute-meeting"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 flex items-center justify-center gap-2 px-5 py-3 bg-primary-500 active:bg-primary-600 text-white rounded-xl font-montserrat font-semibold text-sm transition-all duration-200 active:scale-[0.98] min-h-[52px] shadow-lg touch-manipulation"
