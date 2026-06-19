@@ -19,7 +19,7 @@ export default function Footer() {
               </Link>
             </div>
             <p className="font-montserrat text-gray-400 text-sm leading-snug max-w-md mb-3">
-              AI-powered fleet management for exotic car rental operators. Built by operators who scaled to 15+ vehicles.
+              AI-powered fleet management for exotic car rental operators. Built by operators who scaled their own exotic fleet.
             </p>
             
             {/* Contact - inline on mobile */}
@@ -109,7 +109,7 @@ export default function Footer() {
                     <Shield className="w-4 h-4 text-success-400 flex-shrink-0 mt-0.5" />
                     <div>
                       <div className="font-montserrat font-medium text-xs text-white mb-0.5">Enterprise Grade</div>
-                      <div className="font-montserrat text-xs text-gray-400 leading-snug">SOC 2 · GDPR · 256-bit</div>
+                      <div className="font-montserrat text-xs text-gray-400 leading-snug">Built on SOC 2 Type II and ISO 27001:2022 certified infrastructure.</div>
                     </div>
                   </div>
                 </div>

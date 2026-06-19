@@ -15,7 +15,7 @@ export default function AboutPage() {
     <div className="pt-16">
       <SEOHead
         title="About exotiq — Built by Fleet Operators, for Fleet Operators"
-        description="We built Exotiq because we lived the chaos ourselves. Every feature is built from real operational pain. Every automation targets hours we've personally lost."
+        description="We built exotiq because we lived the chaos ourselves. Every feature is built from real operational pain. Every automation targets hours we've personally lost."
         keywords="exotiq team, fleet management company, exotic car rental software, automotive SaaS startup, vehicle rental industry, fleet operations experts"
         url="https://exotiq.ai/about"
         structuredData={[
@@ -80,7 +80,10 @@ const HeroSection: React.FC = () => {
             {/* Origin Quote - Tighter, Punchier */}
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
               <p className="font-inter text-gray-300 italic leading-relaxed text-lg">
-                "We built Exotiq because we lived the chaos. Every feature exists because we felt the pain first.
+                "We built exotiq because we lived the chaos. Every feature exists because we felt the pain first.
+              </p>
+              <p className="font-inter text-gray-300 italic leading-relaxed text-lg mt-3">
+                Most operators start on Turo. exotiq is where you run the business once you outgrow side-hustle tools.
               </p>
               <p className="font-inter text-gray-300 italic leading-relaxed text-lg mt-3">
                 Steve Jobs was right — start with the customer experience and work backward. That's not a philosophy here. <span className="text-white font-medium">It's how we ship.</span>"
@@ -240,7 +243,7 @@ const ProblemSolutionSection: React.FC = () => {
             </div>
 
             <p className="font-inter text-gray-500 mt-6 text-sm italic">
-              Nothing purpose-built for operators managing 10-150+ high-value vehicles who refuse to compromise on service.
+              Nothing purpose-built for operators managing 10–150 high-value vehicles who refuse to compromise on service.
             </p>
           </div>
 

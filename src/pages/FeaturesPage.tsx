@@ -52,16 +52,16 @@ const modules = [
     borderColor: 'border-blue-500/30',
     accentColor: 'text-blue-400',
     iconBg: 'bg-blue-500/20',
-    description: 'AI-powered dynamic pricing that analyzes 1,000+ data points to optimize every rental. Never leave money on the table again.',
-    longDescription: 'MotorIQ is your always-on revenue analyst. It watches competitor pricing, local events, weather patterns, and historical demand to adjust your rates in real-time. Set your floor, set your ceiling, and let AI maximize every booking.',
+    description: 'AI-powered dynamic pricing that reads 50+ demand signals — events, competitor rates, weather, and history. Never leave money on the table again.',
+    longDescription: 'Pricing that knows a McLaren isn\'t a Mustang. MotorIQ is your always-on revenue analyst. It reads 50+ demand signals — events, competitor rates, weather, and history — to adjust your rates in real-time. Set your floor, set your ceiling, and let AI work every booking. Operators can see up to 30% more revenue — illustrative, varies by market and fleet.',
     screenshot: '/images/app-screenshots/motoriq-ui-light.png',
     screenshotAlt: 'MotorIQ dashboard showing price optimization and revenue analytics',
-    heroMetric: { value: 'Up to 30%', label: 'More Revenue', sublabel: 'from smarter pricing' },
+    heroMetric: { value: '50+', label: 'demand signals', sublabel: 'read per vehicle' },
     features: [
       { 
         icon: DollarSign, 
         title: 'AI Dynamic Pricing', 
-        description: 'Analyzes 1,000+ data points including demand, local events, competitor rates, and weather. Prices update automatically so you capture every dollar without lifting a finger.',
+        description: 'Reads 50+ demand signals — events, competitor rates, weather, and history. Prices update automatically so you capture every dollar without lifting a finger.',
         highlight: true
       },
       { 
@@ -90,7 +90,7 @@ const modules = [
         description: 'Surfaces opportunities before you spot them. When to raise rates, which vehicles to add, and market gaps your competitors are ignoring.'
       }
     ],
-    whoItsFor: ['Fleet operators running 5+ vehicles', 'Hosts ready to stop guessing on pricing', 'Multi-market operators managing demand across locations']
+    whoItsFor: ['Fleet operators running 5+ vehicles', 'Operators ready to stop guessing on pricing', 'Multi-market operators managing demand across locations']
   },
   {
     id: 'pulse',
@@ -153,7 +153,7 @@ const modules = [
     accentColor: 'text-emerald-400',
     iconBg: 'bg-emerald-500/20',
     description: 'Your own booking system. Keep your full booking revenue and build direct relationships with customers.',
-    longDescription: 'Stop giving away 25-40% of every booking to platforms. Book is your command center for reservations, calendars, and customer relationships. Sync your calendars, track your best customers, and let MotorIQ pricing flow in automatically. Your customers, your data, your revenue.',
+    longDescription: 'Stop handing platforms 25–40% of every booking. Book is your command center for reservations, calendars, and customer relationships. Sync your calendars, track your best customers, and let MotorIQ pricing flow in automatically. Your customers, your data, your revenue.',
     screenshot: '/images/app-screenshots/book-ui-light.png',
     screenshotAlt: 'Book module showing direct booking interface',
     heroMetric: { value: 'Your', label: 'Customers, Your Data', sublabel: 'no middleman fees' },
@@ -172,7 +172,7 @@ const modules = [
       { 
         icon: Filter, 
         title: 'Smart Segmentation', 
-        description: 'Filter customers by spend, booking frequency, or time since last rental. Target your $5K+ whales differently than one-time renters. Re-engage customers who haven\'t booked in 90 days.'
+        description: 'Filter customers by spend, booking frequency, or time since last rental. Target your highest-value renters differently than one-time renters. Re-engage customers who haven\'t booked in 90 days.'
       },
       { 
         icon: Zap, 
@@ -187,10 +187,10 @@ const modules = [
       { 
         icon: Mail, 
         title: 'Branded Communications', 
-        description: 'Professional email templates with your logo, colors, and domain. Confirmations, reminders, and follow-ups that look like you spent $200K on custom software.'
+        description: 'Professional email templates with your logo, colors, and domain. Confirmations, reminders, and follow-ups that look like enterprise software, without the enterprise bill.'
       }
     ],
-    whoItsFor: ['Operators done paying platform fees', 'Hosts building a brand they own', 'Businesses ready to own the customer relationship']
+    whoItsFor: ['Operators done paying platform fees', 'Operators building a brand they own', 'Businesses ready to own the customer relationship']
   },
   {
     id: 'vault',
@@ -252,11 +252,11 @@ const modules = [
     borderColor: 'border-emerald-400/30',
     accentColor: 'text-emerald-400',
     iconBg: 'bg-emerald-500/20',
-    description: 'Your AI-powered operations assistant, powered by Rari, the Exotiq voice agent. Voice commands, smart scheduling, and intelligent task management.',
+    description: 'Your AI-powered operations assistant, powered by Rari, the exotiq voice agent. Voice commands, smart scheduling, and intelligent task management.',
     longDescription: 'FleetCopilot is mission control for your fleet. Talk to Rari like a teammate, ask questions, give commands, get answers. It coordinates pickups, manages turnarounds, and keeps your operation running smoothly. The admin work that used to take hours now takes seconds.',
     screenshot: '/images/app-screenshots/fleetcopilot-rari-ui-light.png',
     screenshotAlt: 'FleetCopilot AI assistant interface showing voice commands and task management',
-    heroMetric: { value: '15+', label: 'Hours Saved Weekly', sublabel: 'per operator' },
+    heroMetric: { value: 'Midnight', label: 'admin, handled', sublabel: 'while you sleep' },
     features: [
       { 
         icon: Mic, 
@@ -577,7 +577,7 @@ export default function FeaturesPage() {
       <SEOHead
         title="Platform Features - Complete Fleet Management Solution"
         description="Discover exotiq's powerful modules: MotorIQ for revenue optimization, Pulse for analytics, Book for direct bookings, Vault for compliance, and FleetCopilot for AI-powered operations. Built specifically for exotic fleet operators."
-        keywords="fleet management features, AI pricing engine, vehicle analytics, direct booking platform, fleet operations dashboard, Turo host tools, rental business automation"
+        keywords="fleet management features, AI pricing engine, vehicle analytics, direct booking platform, fleet operations dashboard, rental business automation"
         url="https://exotiq.ai/features"
         structuredData={[
           softwareApplicationSchema,
@@ -607,7 +607,7 @@ export default function FeaturesPage() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/10 border border-primary-500/30 rounded-full text-primary-400 font-semibold text-sm mb-6"
             >
               <CheckCircle className="w-4 h-4 text-green-400" />
-              Built for operators across six US markets
+              Tampa · Miami · Denver · Scottsdale · Westlake Village
             </motion.div>
 
             {/* Headline */}
@@ -630,9 +630,7 @@ export default function FeaturesPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="font-inter text-xl text-gray-300 max-w-3xl mx-auto mb-10"
             >
-              Five powerful modules working together. Operators see{' '}
-              <span className="text-primary-400 font-semibold">up to 30% more revenue</span> and{' '}
-              <span className="text-primary-400 font-semibold">hours back every week</span>.
+              Five modules, one system — pricing, bookings, compliance, guest comms, and an AI co-pilot. The admin you do at midnight, automated.
             </motion.p>
 
             {/* Quick Nav Pills */}
@@ -715,20 +713,30 @@ export default function FeaturesPage() {
               Ready to Transform Your Fleet?
             </h2>
             <p className="font-inter text-xl text-gray-300 max-w-2xl mx-auto mb-10">
-              Built for operators across six US markets. See the platform in action with a personalized demo.
+              Built for operators across Tampa, Miami, Denver, Scottsdale, and Westlake Village. See the platform in action with a personalized demo.
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <a
-                  href="https://calendly.com/hello-exotiq/15-minute-meeting"
+                  href="https://app.exotiq.ai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center justify-center gap-3 font-dfaalt font-semibold text-lg px-10 py-5 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/30"
                 >
-                  <Calendar className="w-6 h-6" />
-                  <span>Book Your 15-Minute Demo</span>
+                  <span>Start Free Trial</span>
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <a
+                  href="https://calendly.com/hello-exotiq/15-minute-meeting"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center gap-3 font-dfaalt font-semibold text-lg px-10 py-5 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 rounded-xl border border-emerald-500/30 hover:border-emerald-500/50 transition-all duration-300"
+                >
+                  <Calendar className="w-6 h-6" />
+                  <span>Book a Demo</span>
                 </a>
               </motion.div>
             </div>
@@ -745,7 +753,7 @@ export default function FeaturesPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 text-green-500" />
-                <span className="font-inter text-sm">Custom setup included</span>
+                <span className="font-inter text-sm">We migrate your data</span>
               </div>
             </div>
           </motion.div>

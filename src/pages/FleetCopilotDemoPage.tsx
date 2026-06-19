@@ -26,7 +26,7 @@ export default function FleetCopilotDemoPage() {
       <SEOHead
         title="FleetCopilot™ AI Demo - Experience Voice AI for Fleet Management"
         description="Try FleetCopilot™ AI assistant live! Experience natural voice conversations about fleet management, pricing optimization, and operational challenges. Built specifically for vehicle rental operators."
-        keywords="FleetCopilot AI demo, voice AI assistant, fleet management AI, conversational AI, vehicle rental assistant, Turo host AI"
+        keywords="FleetCopilot AI demo, voice AI assistant, fleet management AI, conversational AI, vehicle rental assistant"
         url="https://exotiq.ai/fleetcopilot"
         structuredData={breadcrumbSchema([
           { name: "Home", url: "https://exotiq.ai" },
@@ -61,7 +61,7 @@ export default function FleetCopilotDemoPage() {
               Meet FleetCopilot™
             </h1>
             <p className="font-montserrat text-xl md:text-2xl opacity-90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Your AI assistant for fleet management. Try a live conversation about pricing, 
+              FleetCopilot, powered by Rari (your voice agent). Try a live conversation about pricing,
               maintenance, scaling, or any fleet operation challenge.
             </p>
             
@@ -185,14 +185,14 @@ export default function FleetCopilotDemoPage() {
           {/* Key Benefits */}
           <div className="bg-white dark:bg-dark-700 rounded-3xl p-8 md:p-12 mb-16 shadow-xl border border-gray-200 dark:border-dark-600">
             <h3 className="font-dfaalt font-bold text-2xl md:text-3xl text-gray-900 dark:text-white mb-8 text-center">
-              Why FleetCopilot™ Changes Everything
+              What FleetCopilot does for your week.
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <h4 className="font-dfaalt font-semibold text-lg text-gray-900 dark:text-white mb-4">Time Savings</h4>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-success-600 mt-1 flex-shrink-0" />
-                  <span className="font-montserrat text-gray-700 dark:text-gray-300">Saves 15+ hours per week on routine tasks</span>
+                  <span className="font-montserrat text-gray-700 dark:text-gray-300">Hands the admin back to your evenings.</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-success-600 mt-1 flex-shrink-0" />
@@ -207,7 +207,7 @@ export default function FleetCopilotDemoPage() {
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-success-600 mt-1 flex-shrink-0" />
-                  <span className="font-montserrat text-gray-700 dark:text-gray-300">Provides 24/7 guest support coverage</span>
+                  <span className="font-montserrat text-gray-700 dark:text-gray-300">Provides after-hours guest coverage</span>
                 </div>
               </div>
             </div>
@@ -241,7 +241,7 @@ export default function FleetCopilotDemoPage() {
                 <MessageSquare className="w-8 h-8 text-success-600" />
               </div>
               <h3 className="font-dfaalt font-semibold text-xl text-gray-900 dark:text-white mb-3">
-                24/7 Monitoring
+                After-Hours Monitoring
               </h3>
               <p className="font-montserrat text-gray-600 dark:text-gray-300 leading-relaxed">
                 Continuously monitors your fleet and alerts you to opportunities
@@ -280,7 +280,7 @@ export default function FleetCopilotDemoPage() {
             </Link>
           </div>
           <p className="font-montserrat text-sm opacity-75 mt-8">
-            Experience the future of fleet management with AI-powered automation
+            Run your fleet with an AI co-pilot that actually does the work.
           </p>
         </div>
       </section>

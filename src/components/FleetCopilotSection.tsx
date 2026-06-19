@@ -36,7 +36,7 @@ const PhoneMockup: React.FC = () => (
           {/* Chat interface */}
           <div className="space-y-3">
             <div className="bg-white rounded-xl p-3 max-w-[80%] border border-slate-100">
-              <p className="text-xs text-slate-700 font-inter">Good morning! Your fleet is 95% booked this week.</p>
+              <p className="text-xs text-slate-700 font-inter">3 pickups today. The 5 PM return is running late.</p>
             </div>
             <div className="bg-cyan-500 rounded-xl p-3 max-w-[80%] ml-auto">
               <p className="text-xs text-white font-inter">Show me today's schedule</p>
@@ -50,11 +50,11 @@ const PhoneMockup: React.FC = () => (
                 </div>
                 <div className="flex items-center gap-2 text-[10px] text-slate-600 font-inter">
                   <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
-                  <span>2 PM - Return: Porsche 911</span>
+                  <span>1 PM - Pickup: Lamborghini Huracán</span>
                 </div>
                 <div className="flex items-center gap-2 text-[10px] text-slate-600 font-inter">
                   <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
-                  <span>5 PM - Maintenance check</span>
+                  <span>5 PM - Return running late: Porsche 911</span>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@ const FleetCopilotSection: React.FC = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
             <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm text-cyan-400 font-medium font-inter">Meet FleetCopilot™ AI</span>
+            <span className="text-sm text-cyan-400 font-medium font-inter">FleetCopilot™ · powered by Rari</span>
           </div>
           
           {/* Headline */}
@@ -162,8 +162,8 @@ const FleetCopilotSection: React.FC = () => {
           
           {/* Description */}
           <p className="font-inter text-lg text-slate-400 max-w-2xl mx-auto mb-8">
-            FleetCopilot delivers the strategic capacity of a dedicated analyst, ops manager, 
-            and guest coordinator, without expanding your team.
+            FleetCopilot handles the analyst, ops, and guest work you don&apos;t have time for,
+            so the late-night admin runs itself.
           </p>
 
           {/* CTA Button */}

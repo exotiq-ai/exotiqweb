@@ -35,10 +35,10 @@ export const pricingTiers: PricingTier[] = [
       'Booking calendar & CRM',
       'Document vault with alerts',
       'Stripe Connect payments',
-      'Drive Exotiq marketplace listing',
       'Analytics & reports',
       'Chat support (24hr)',
       'Up to 2 locations',
+      'Bonus: listed on Drive Exotiq (as it launches)',
     ],
   },
   {
@@ -55,7 +55,6 @@ export const pricingTiers: PricingTier[] = [
     features: [
       'Priority chat + phone support',
       'Up to 5 locations',
-      'Featured marketplace listing',
       'White-glove onboarding & migration',
       'Advanced analytics & exports',
       'Team roles & permissions',
@@ -75,7 +74,6 @@ export const pricingTiers: PricingTier[] = [
     features: [
       'Custom AI model training',
       'Unlimited locations',
-      'Premium marketplace placement',
       'Dedicated success manager',
       'Custom integrations & API',
       'Quarterly business reviews',
@@ -93,7 +91,6 @@ export const allPlanFeatures = [
   'Customer CRM',
   'Document Vault',
   'Stripe Connect Payments',
-  'Drive Exotiq Marketplace',
   'Analytics & Reports',
   'Team Management',
   'Mobile Responsive',
@@ -110,7 +107,7 @@ export const planDifferences: PlanDifference[] = [
   { feature: 'Vehicles', pro: '1–15', business: '16–50', enterprise: '51+' },
   { feature: 'Locations', pro: 'Up to 2', business: 'Up to 5', enterprise: 'Unlimited' },
   { feature: 'Support', pro: 'Chat (24hr)', business: 'Priority + phone', enterprise: 'Dedicated (1hr)' },
-  { feature: 'Marketplace', pro: 'Listed', business: 'Featured', enterprise: 'Premium + priority leads' },
+  { feature: 'Marketplace', pro: 'As it launches', business: 'As it launches', enterprise: 'As it launches' },
   { feature: 'Onboarding', pro: 'Self-serve', business: 'White-glove', enterprise: 'Custom' },
   { feature: 'API Access', pro: false, business: false, enterprise: 'Full API' },
   { feature: 'Custom AI', pro: false, business: false, enterprise: 'Custom model training' },
@@ -120,7 +117,7 @@ export const planDifferences: PlanDifference[] = [
 export const faqItems = [
   {
     question: 'How does the 30-day free trial work?',
-    answer: 'Sign up with just your email, no credit card required. You get full access to every feature for 30 days. After the trial, your account switches to read-only until you subscribe. Your data is never deleted.',
+    answer: "Sign up with just your email — no credit card. You get full access to every feature for 30 days, and we'll help migrate your fleet. After the trial, pick a plan; your data is never deleted.",
   },
   {
     question: 'How does pricing work?',
@@ -132,11 +129,11 @@ export const faqItems = [
   },
   {
     question: 'Are all features really included?',
-    answer: 'Yes. MotorIQ AI pricing, booking calendar, CRM, document vault, Stripe Connect payments, marketplace listing, and analytics, all included on every paid plan. No feature gates.',
+    answer: 'Yes. MotorIQ AI pricing, booking calendar, CRM, document vault, Stripe Connect payments, and analytics, all included on every paid plan. No feature gates.',
   },
   {
     question: 'What happens after the trial ends?',
-    answer: "Read-only mode. You can still view your fleet and data, but can't create bookings, process payments, or use AI pricing until you subscribe.",
+    answer: "Your account switches to read-only — your fleet and data stay safe and are never deleted. Pick a plan whenever you're ready and everything is right where you left it.",
   },
   {
     question: 'Can I switch plans?',
@@ -148,20 +145,20 @@ export const faqItems = [
   },
   {
     question: 'What about the Drive Exotiq marketplace?',
-    answer: 'Every paid account is listed on Drive Exotiq (exotiq.rent). Business and Enterprise get featured placement with priority lead routing.',
+    answer: 'Bonus: every paid account will be listed on Drive Exotiq (exotiq.rent) as it launches.',
   },
 ];
 
 // ROI calculator defaults
 export const roiDefaults = {
   defaultFleetSize: 10,
-  defaultDailyRate: 1500,
+  defaultDailyRate: 1000,
   minDailyRate: 500,
   maxDailyRate: 2500,
   minFleetSize: 1,
   maxFleetSize: 50,
-  utilization: 52,
-  aiImprovementPercent: 18,
+  utilization: 45,
+  aiImprovementPercent: 9,
 };
 
 export const getPerVehicleCost = (fleetSize: number): number =>

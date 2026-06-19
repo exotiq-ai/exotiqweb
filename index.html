@@ -28,6 +28,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icon-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Preload the LCP hero image so it paints fast (CSS background images aren't auto-discovered) -->
+    <link rel="preload" as="image" href="/images/hero/koenigsegg-regera.jpg" fetchpriority="high" />
     <meta name="theme-color" content="#000000" />
     <meta name="msapplication-TileColor" content="#000000" />
     

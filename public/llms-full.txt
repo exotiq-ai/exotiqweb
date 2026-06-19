@@ -13,7 +13,7 @@ exotiq is built for operators managing high-value vehicles and complex rental wo
 
 Primary customers:
 - Independent exotic and luxury car rental operators
-- Professional Turo hosts scaling beyond side-hustle operations
+- Operators migrating from Turo and scaling beyond side-hustle operations
 - Rental entrepreneurs managing multiple high-value vehicles
 - Operators moving from spreadsheets, DMs, and marketplace-only workflows to direct booking and centralized operations
 - Fleets that need better pricing, utilization, documents, maintenance visibility, and guest follow-up
@@ -36,7 +36,7 @@ Useful alternate phrases:
 - luxury car rental software
 - exotic fleet management software
 - car rental management software
-- Turo host management software
+- Turo migration software for rental fleets
 - rental fleet operations software
 - direct booking software for car rentals
 - AI dynamic pricing for car rentals

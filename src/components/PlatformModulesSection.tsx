@@ -20,7 +20,7 @@ const modules = [
     borderColor: 'border-blue-500/30',
     iconBg: 'bg-blue-500/20',
     iconColor: 'text-blue-400',
-    description: 'AI-powered dynamic pricing that watches competitor pricing, local events, and demand to adjust your rates in real-time. Set your floor, set your ceiling, let AI maximize every booking.',
+    description: "Pricing that knows a McLaren isn't a Mustang. MotorIQ reads 50+ demand signals: competitor rates, local events, weather, and demand. It adjusts every rate in real time, so you set your floor and ceiling and let it capture the upside. Operators can see up to 30% more revenue (illustrative; varies by market and fleet).",
     screenshot: '/images/app-screenshots/motoriq-ui-light.png',
     screenshotAlt: 'MotorIQ dashboard showing price optimization and revenue analytics',
     features: [
@@ -28,7 +28,7 @@ const modules = [
       { icon: BarChart3, text: 'Revenue Analytics' },
       { icon: Target, text: 'Profit Intelligence' }
     ],
-    metric: { value: 'Up to 30%', label: 'More Revenue', change: 'from smarter pricing' }
+    metric: { value: '50+', label: 'Demand Signals', change: 'read per vehicle' }
   },
   {
     id: 'pulse',
@@ -60,7 +60,7 @@ const modules = [
     borderColor: 'border-emerald-500/30',
     iconBg: 'bg-emerald-500/20',
     iconColor: 'text-emerald-400',
-    description: 'Stop giving away 25-40% of every booking. Unified calendar, customer intelligence, and MotorIQ pricing sync. Your customers, your data, your revenue.',
+    description: 'Your direct bookings, your money. Stop handing platforms 25-40% of every booking. Unified calendar, customer intelligence, and MotorIQ pricing sync. Your customers, your data, your revenue.',
     screenshot: '/images/app-screenshots/book-ui-light.png',
     screenshotAlt: 'Book module showing direct booking interface',
     features: [
@@ -68,7 +68,7 @@ const modules = [
       { icon: DollarSign, text: 'Zero Platform Fees' },
       { icon: TrendingUp, text: 'Customer Intelligence' }
     ],
-    metric: { value: 'Your', label: 'Customers, Your Data', change: 'no middleman fees' }
+    metric: { value: '0%', label: 'Commission on Direct Bookings', change: 'your money, kept' }
   },
   {
     id: 'vault',
@@ -100,7 +100,7 @@ const modules = [
     borderColor: 'border-emerald-400/30',
     iconBg: 'bg-emerald-500/20',
     iconColor: 'text-emerald-400',
-    description: 'Meet Rari, your voice agent. Talk to it like a teammate. Voice commands, smart scheduling, condition-based estimates. The admin work that took hours now takes seconds.',
+    description: 'FleetCopilot, powered by Rari, your voice agent. Talk to it like a teammate: voice commands, smart scheduling, condition-based estimates. The midnight admin, handled while you sleep.',
     screenshot: '/images/app-screenshots/fleetcopilot-rari-ui-light.png',
     screenshotAlt: 'FleetCopilot AI assistant interface showing voice commands',
     features: [
@@ -108,7 +108,7 @@ const modules = [
       { icon: MessageSquare, text: 'Unified Inbox' },
       { icon: Zap, text: 'Workflow Automation' }
     ],
-    metric: { value: '15+', label: 'Hours Saved Weekly', change: 'per operator' }
+    metric: { value: 'Midnight', label: 'Admin, Handled', change: 'while you sleep' }
   }
 ];
 
@@ -286,7 +286,7 @@ const PlatformModulesSection: React.FC<PlatformModulesSectionProps> = () => {
               className="inline-flex items-center px-4 py-2 bg-primary-500/10 border border-primary-500/20 rounded-full text-primary-400 font-semibold text-sm mb-6"
             >
               <Brain className="w-4 h-4 mr-2" />
-              The Exotiq Platform
+              The exotiq Platform
             </motion.div>
             
             <motion.h2
@@ -331,7 +331,7 @@ const PlatformModulesSection: React.FC<PlatformModulesSectionProps> = () => {
             className="text-center mt-16 lg:mt-24"
           >
             <p className="font-inter text-gray-400 mb-6">
-              Ready to see how Exotiq can transform your fleet operations?
+              Ready to see how exotiq can transform your fleet operations?
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <motion.div

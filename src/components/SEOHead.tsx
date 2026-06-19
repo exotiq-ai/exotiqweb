@@ -54,7 +54,7 @@ function toCanonicalUrl(value: string): string {
 export default function SEOHead({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
-  keywords = "fleet management software, Turo hosting tools, vehicle rental automation, AI pricing optimization, car sharing platform, fleet analytics, rental business software, automotive SaaS, peer-to-peer car sharing, fleet operations",
+  keywords = "fleet management software, Turo migration, vehicle rental automation, AI pricing optimization, car sharing platform, fleet analytics, rental business software, automotive SaaS, peer-to-peer car sharing, fleet operations",
   image = "https://exotiq.ai/og-exotiq-ai-fleet.png",
   url = "https://exotiq.ai",
   type = "website",

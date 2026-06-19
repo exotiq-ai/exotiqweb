@@ -64,7 +64,7 @@ export default function PricingPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Zap className="w-5 h-5 text-[#6BB8E5]" />
-                <span className="font-montserrat text-sm">Setup in 15 Minutes</span>
+                <span className="font-montserrat text-sm">Set up in minutes</span>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ export default function PricingPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="bg-gradient-to-br from-[#6BB8E5]/20 to-[#4A9FCC]/10 border border-[#6BB8E5]/30 rounded-3xl p-8 sm:p-12">
               <h2 className="font-montserrat font-bold text-3xl sm:text-4xl text-white mb-4">
-                See Exotiq in Action
+                See exotiq in Action
               </h2>
               <p className="font-montserrat text-lg text-[#E0E0E0] mb-8 max-w-2xl mx-auto">
                 Book a 30-minute product demo. We&apos;ll walk through the
@@ -98,7 +98,7 @@ export default function PricingPage() {
                   onClick={() => goToSalesCall('mid_page_demo_cta')}
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6BB8E5] to-[#4A9FCC] text-black px-8 py-4 rounded-lg font-montserrat font-bold text-lg hover:shadow-xl hover:shadow-[#6BB8E5]/30 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6BB8E5] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
-                  Book a Demo
+                  Talk to Sales
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
@@ -111,7 +111,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Money-Back Guarantee */}
+        {/* Trust guarantees */}
         <section className="py-12 px-4 sm:px-6 lg:px-16 xl:px-20 bg-black border-y border-white/10">
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
@@ -119,10 +119,10 @@ export default function PricingPage() {
                 <Shield className="w-10 h-10 text-[#6BB8E5] flex-shrink-0" />
                 <div>
                   <h3 className="font-montserrat font-bold text-white mb-2">
-                    30-Day Money-Back Guarantee
+                    30-Day Free Trial
                   </h3>
                   <p className="font-montserrat text-sm text-[#A0A0A0]">
-                    Not seeing results? Get a full refund within 30 days.
+                    Full access for 30 days — no credit card. Your data is never deleted.
                   </p>
                 </div>
               </div>

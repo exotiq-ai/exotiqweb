@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { TrendingUp, DollarSign, Clock, Calculator } from 'lucide-react';
+import { TrendingUp, DollarSign, Calculator } from 'lucide-react';
 import { roiDefaults, getPerVehicleCost } from '../../data/pricingData';
 import { openPricingSalesCall, trackPricingCta } from '../../utils/pricingCta';
 
@@ -17,11 +17,6 @@ export default function ROICalculator() {
     const revenueIncrease = projectedRevenue - currentAnnualRevenue;
     const exotiqAnnualCost = fleetSize * getPerVehicleCost(fleetSize) * 12;
     const netAnnualGain = revenueIncrease - exotiqAnnualCost;
-    const roi = Math.round(revenueIncrease / exotiqAnnualCost);
-    const paybackDays = Math.max(
-      1,
-      Math.round((exotiqAnnualCost / revenueIncrease) * 365),
-    );
 
     return {
       currentAnnualRevenue,
@@ -29,8 +24,6 @@ export default function ROICalculator() {
       revenueIncrease,
       exotiqAnnualCost,
       netAnnualGain,
-      roi,
-      paybackDays,
     };
   }, [fleetSize, dailyRate]);
 
@@ -62,7 +55,7 @@ export default function ROICalculator() {
             Calculate Your ROI
           </h2>
           <p className="font-montserrat text-lg text-[#A0A0A0] max-w-2xl mx-auto">
-            See how AI pricing optimization impacts your bottom line
+            A conservative, illustrative estimate of what smarter pricing could add to your bottom line.
           </p>
         </div>
 
@@ -260,8 +253,7 @@ export default function ROICalculator() {
                   +{fmt(metrics.revenueIncrease)}
                 </p>
                 <p className="font-montserrat text-xs text-emerald-400/80 mt-1">
-                  {roiDefaults.aiImprovementPercent}% improvement from AI
-                  optimization
+                  {roiDefaults.aiImprovementPercent}% pricing uplift (illustrative)
                 </p>
               </div>
             </div>
@@ -272,7 +264,7 @@ export default function ROICalculator() {
                 <div className="flex items-center gap-2 mb-3">
                   <DollarSign className="w-5 h-5 text-[#FF5733]" />
                   <h4 className="font-montserrat text-sm font-semibold text-white">
-                    Exotiq Cost
+                    exotiq cost
                   </h4>
                 </div>
                 <p className="font-montserrat font-bold text-3xl text-[#FF5733]">
@@ -298,36 +290,17 @@ export default function ROICalculator() {
             </div>
           </div>
 
-          {/* Payback summary */}
-          <div className="bg-gradient-to-r from-[#6BB8E5]/10 to-[#4A9FCC]/10 border border-[#6BB8E5]/30 rounded-xl p-6 text-center">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <Clock className="w-8 h-8 text-[#6BB8E5]" />
-              <h3 className="font-montserrat font-bold text-2xl sm:text-3xl text-white">
-                Exotiq pays for itself in{' '}
-                <span className="text-[#6BB8E5]">
-                  {metrics.paybackDays} day
-                  {metrics.paybackDays !== 1 ? 's' : ''}
-                </span>
-              </h3>
-            </div>
-            <div className="grid grid-cols-2 gap-4 mt-6">
-              <div>
-                <p className="font-montserrat text-xs text-[#A0A0A0] mb-1">
-                  ROI
-                </p>
-                <p className="font-dfaalt font-bold text-4xl text-primary-500">
-                  {metrics.roi.toLocaleString()}x
-                </p>
-              </div>
-              <div>
-                <p className="font-montserrat text-xs text-[#A0A0A0] mb-1">
-                  Net Annual Gain
-                </p>
-                <p className="font-montserrat font-bold text-xl text-[#22C55E]">
-                  {fmt(metrics.netAnnualGain)}
-                </p>
-              </div>
-            </div>
+          {/* Net gain payoff */}
+          <div className="bg-gradient-to-r from-[#6BB8E5]/10 to-[#4A9FCC]/10 border border-[#6BB8E5]/30 rounded-xl p-6 sm:p-8 text-center">
+            <p className="font-montserrat text-xs sm:text-sm uppercase tracking-[0.18em] text-[#A0A0A0] mb-2">
+              Estimated net annual gain
+            </p>
+            <p className="font-dfaalt font-bold text-4xl sm:text-5xl text-[#22C55E]">
+              +{fmt(metrics.netAnnualGain)}
+            </p>
+            <p className="font-montserrat text-sm text-[#A0A0A0] mt-2">
+              after exotiq&apos;s cost · illustrative estimate
+            </p>
           </div>
 
           {/* CTA */}
@@ -341,14 +314,14 @@ export default function ROICalculator() {
                   meta: {
                     fleetSize,
                     dailyRate,
-                    projectedROI: metrics.roi,
+                    netAnnualGain: metrics.netAnnualGain,
                   },
                 });
                 openPricingSalesCall();
               }}
               className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6BB8E5] to-[#4A9FCC] text-black px-8 py-4 rounded-lg font-montserrat font-bold hover:shadow-xl hover:shadow-[#6BB8E5]/30 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6BB8E5] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
-              Book a Demo
+              Talk to Sales
             </button>
             <p className="font-montserrat text-xs text-[#A0A0A0] mt-3">
               We&apos;ll validate these projections with your actual fleet data
@@ -358,11 +331,10 @@ export default function ROICalculator() {
 
         {/* Disclaimer */}
         <p className="text-center font-montserrat text-xs text-[#A0A0A0] mt-6 max-w-3xl mx-auto">
-          Projections based on industry benchmarks:{' '}
-          {roiDefaults.utilization}% average utilization,{' '}
-          {roiDefaults.aiImprovementPercent}% revenue improvement from AI
-          pricing optimization. Individual results vary by market, fleet
-          composition, and operations.
+          Illustrative estimate only. Assumes {roiDefaults.utilization}% utilization
+          and a {roiDefaults.aiImprovementPercent}% pricing uplift. Your results depend
+          on your market, fleet mix, and operations. We&apos;ll validate against your real
+          numbers.
         </p>
       </div>
     </section>

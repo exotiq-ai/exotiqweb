@@ -101,7 +101,7 @@ export default function SurveyPage() {
         <SEOHead
           title="Fleet Management Survey: Help Shape exotiq"
           description="Share your fleet management experience and help shape exotiq's development. Choose from surveys for small fleets (1-5 vehicles), scaling operations (6-50 vehicles), or exotic/luxury fleets."
-          keywords="fleet management survey, Turo hosting feedback, vehicle rental insights, fleet operations research, exotiq development"
+          keywords="fleet management survey, Turo migration feedback, vehicle rental insights, fleet operations research, exotiq development"
           url="https://exotiq.ai/survey"
           structuredData={breadcrumbSchema([
             { name: "Home", url: "https://exotiq.ai" },

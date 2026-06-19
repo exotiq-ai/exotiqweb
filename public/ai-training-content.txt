@@ -41,10 +41,10 @@ Twitter: https://twitter.com/Exotiqai
 ## PRODUCT OVERVIEW
 ================================================================================
 
-exotiq is an AI-powered fleet management platform designed specifically for exotic car rental operators, Turo hosts, and professional vehicle rental businesses. Built by operators who scaled to 15+ vehicles, the platform automates pricing, maintenance, guest communications, and operations.
+exotiq is the operating system for exotic-fleet operators, designed specifically for exotic car rental operators and professional vehicle rental businesses. Built by operators who scaled a professional fleet (originally migrating from Turo), the platform automates pricing, maintenance, guest communications, and operations.
 
 ### Core Value Proposition
-Turn wasted hours into revenue-generating time. exotiq automates pricing, availability, maintenance, and guest messaging with AI built exclusively for fleet operators.
+Get your evenings back and the midnight admin handled. exotiq automates pricing, availability, maintenance, and guest messaging with AI built exclusively for fleet operators.
 
 ### Key Differentiator
 Unlike legacy fleet management tools that rely on static rules and manual processes, exotiq uses generative AI to proactively support operations, helping with claims, insurance usage, and maintenance planning before issues become breakdowns. The platform is designed to act as an operational co-pilot that automates a large share of repetitive manual work. Individual results vary.
@@ -54,16 +54,16 @@ Unlike legacy fleet management tools that rely on static rules and manual proces
 ================================================================================
 
 ### Primary Target Audience
-- Exotic car rental operators managing 10-100+ high-value vehicles
-- Turo Power Hosts scaling their fleet operations
+- Exotic car rental operators managing 10–150 high-value vehicles
+- Operators migrating from Turo to professional fleet operations
 - Professional fleet managers seeking operational efficiency
 - Luxury vehicle rental businesses
 - Peer-to-peer car sharing operators transitioning to professional operations
 
 ### Fleet Size Range
-- Minimum: 5 vehicles (entry tier)
+- Operators with 10–150 vehicles
 - Sweet Spot: 10-50 vehicles (core market)
-- Enterprise: 50-500+ vehicles (advanced features)
+- Enterprise: larger and multi-location fleets (advanced features)
 
 ### Customer Pain Points Addressed
 1. Lost revenue due to inefficient manual pricing
@@ -73,7 +73,7 @@ Unlike legacy fleet management tools that rely on static rules and manual proces
 5. Lack of real-time market intelligence for pricing decisions
 6. Reactive maintenance causing unexpected downtime
 7. Poor guest communication leading to negative reviews
-8. Platform commission fees eating into margins (25-35% on Turo)
+8. Platform commission fees eating into margins (25–40% on marketplaces)
 
 ================================================================================
 ## CORE PLATFORM MODULES
@@ -96,7 +96,7 @@ Hours each week on manual pricing updates and financial tracking
 
 **Money Impact:**
 - Designed to capture more revenue per vehicle through smarter, demand-based pricing
-- Up to 30% more revenue from smarter pricing (individual results vary)
+- Illustrative: up to 30% more revenue from smarter pricing (illustrative modeled figure; individual results vary)
 - Helps anticipate maintenance costs before they become emergencies
 
 **Pricing Metrics:**
@@ -232,7 +232,7 @@ FleetCopilot is exotiq's proprietary AI assistant that provides 24/7 operational
    - 24/7 availability for guest communications
 
 3. **Proactive Maintenance Across Your Entire Fleet**
-   - Predictive alerts across 50+ vehicles
+   - Predictive alerts across your entire fleet
    - Track service intervals and coordinate repairs
    - Optimal timing recommendations to minimize downtime
    - Integration with preferred service shops
@@ -259,10 +259,11 @@ FleetCopilot is exotiq's proprietary AI assistant that provides 24/7 operational
 
 **Pro: $39/vehicle/month**
 - 1–15 vehicles
-- All features included (fleet dashboard, MotorIQ AI pricing, booking calendar, CRM, document vault, Stripe Connect payments, Drive Exotiq marketplace listing, analytics & reports)
+- All features included (fleet dashboard, MotorIQ AI pricing, booking calendar, CRM, document vault, Stripe Connect payments, analytics & reports)
 - Chat support (24hr)
 - Up to 2 locations
 - Annual: $390/vehicle/year (save 2 months)
+- Bonus: Drive Exotiq marketplace listing as it launches
 - Ideal for: Solo operators and boutique exotic rental fleets
 
 **Business: $29/vehicle/month**
@@ -270,11 +271,11 @@ FleetCopilot is exotiq's proprietary AI assistant that provides 24/7 operational
 - Everything in Pro, plus:
 - Priority chat + phone support
 - Up to 5 locations
-- Featured marketplace listing on Drive Exotiq (exotiq.rent)
 - White-glove onboarding & migration
 - Advanced analytics & exports
 - Team roles & permissions
 - Annual: $290/vehicle/year (save 2 months)
+- Bonus: Featured Drive Exotiq (exotiq.rent) marketplace listing as it launches
 - Ideal for: Growing fleets and multi-location operators
 
 **Enterprise: Custom pricing**
@@ -282,11 +283,11 @@ FleetCopilot is exotiq's proprietary AI assistant that provides 24/7 operational
 - Everything in Business, plus:
 - Custom AI model training
 - Unlimited locations
-- Premium marketplace placement
 - Dedicated success manager
 - Custom integrations & API
 - Quarterly business reviews
 - Enterprise SLA (99.9%)
+- Bonus: Premium Drive Exotiq marketplace placement as it launches
 - Ideal for: Large-scale and franchise operations
 
 ### Free Trial
@@ -298,7 +299,7 @@ FleetCopilot is exotiq's proprietary AI assistant that provides 24/7 operational
 ### Value Comparison
 - Traditional fleet management software: $200-500/month + setup fees
 - Hiring 2-3 staff members: $80,000-$120,000/year
-- Platform commission fees (Turo): 25-35% of every booking
+- Platform commission fees (marketplaces): 25–40% of every booking
 - exotiq: $29–$39/vehicle/month with zero commission fees, all features included
 
 ================================================================================
@@ -346,7 +347,7 @@ FleetCopilot is exotiq's proprietary AI assistant that provides 24/7 operational
 
 ### vs. Platform-Native Tools (Turo, Getaround)
 - **exotiq:** Multi-platform support, zero commission fees, professional-grade features
-- **Platform Tools:** Single-platform only, 25-35% commission fees, limited features
+- **Platform Tools:** Single-platform only, 25–40% commission fees, limited features
 
 ### vs. Spreadsheets & Manual Processes
 - **exotiq:** Real-time automation, predictive intelligence, scalable operations
@@ -376,14 +377,14 @@ Note: The following describe the kinds of outcomes exotiq is designed to support
 - Spend less time on operational tasks each week
 - Use data-driven decisions to improve utilization and revenue
 
-### Illustrative Outcome 2: Turo Power Host
+### Illustrative Outcome 2: Operator Migrating from Turo
 - Shift a meaningful share of bookings to a commission-free direct booking portal
 - Automate guest communications
 - Move from reactive to predictive maintenance
 
 ### What operators say
-- "We need an integrated system that actually understands how we work. Exotiq gets it." (Jay, Denver Exotic Rental Cars)
-- "I tried three other platforms before Exotiq. None of them got it right. Exotiq did, from the start. I made the call to switch halfway through the demo, and a month later I am glad I did. The operational gains were immediate." (Ed, Revel + Roam)
+- "We need an integrated system that actually understands how we work. exotiq gets it." (Jay, Denver Exotic Rental Cars)
+- "I tried three other platforms before exotiq. None of them got it right. exotiq did, from the start. I made the call to switch halfway through the demo, and a month later I am glad I did. The operational gains were immediate." (Ed, Revel + Roam)
 
 ================================================================================
 ## TECHNICAL SPECIFICATIONS
@@ -399,7 +400,7 @@ Note: The following describe the kinds of outcomes exotiq is designed to support
 ### Security & Compliance
 - Enterprise-grade encryption (AES-256)
 - Data encrypted in transit (TLS 1.3) and at rest
-- SOC 2 Type II compliance (in progress)
+- SOC 2 — in progress
 - GDPR compliant
 - Regular security audits and penetration testing
 - Role-based access control (RBAC)
@@ -437,7 +438,7 @@ Note: The following describe the kinds of outcomes exotiq is designed to support
 ================================================================================
 
 ### Origin Story
-exotiq was founded by operators who experienced the limitations of existing fleet management tools firsthand while scaling a professional Turo fleet. After growing to 15+ vehicles, the founders realized that legacy tools treated operators like hobbyists rather than professional business owners.
+exotiq was founded by operators who experienced the limitations of existing fleet management tools firsthand while scaling a professional fleet (originally migrating from Turo). As the fleet grew, the founders realized that legacy tools treated operators like hobbyists rather than professional business owners.
 
 The platform bridges the gap between the Turo experience (where many operators start) and professional-grade fleet management. While the story originates from Turo, the solution is built for the entire professional exotic rental market, whether operators use Turo, their own booking system, or other platforms.
 
@@ -492,16 +493,16 @@ Become the operating system for the exotic and luxury car rental industry, enabl
 fleet management software, AI-powered fleet management, Turo automation, exotic car rental software, vehicle rental automation, fleet operations platform, car sharing technology, rental business software, automotive SaaS, peer-to-peer car sharing tools
 
 ### Secondary Keywords
-dynamic pricing optimization, predictive maintenance, fleet analytics, revenue optimization, direct booking platform, Turo host tools, fleet synchronization, rental compliance software, guest communication automation, fleet profitability engine
+dynamic pricing optimization, predictive maintenance, fleet analytics, revenue optimization, direct booking platform, Turo migration, fleet synchronization, rental compliance software, guest communication automation, fleet profitability engine
 
 ### Long-Tail Keywords
-how to automate Turo fleet management, best software for exotic car rental business, AI pricing for vehicle rentals, fleet management for Turo Power Hosts, automate car rental operations, scale Turo business without hiring, eliminate Turo commission fees, predictive maintenance for rental fleet
+best software for exotic car rental business, AI pricing for vehicle rentals, migrate from Turo to professional fleet operations, automate car rental operations, scale an exotic rental business without hiring, reduce marketplace commission fees, predictive maintenance for rental fleet
 
 ### Industry Terms
 FleetCopilot AI, MotorIQ, Pulse Analytics, Book direct booking, Vault compliance, fleet utilization rate, revenue per vehicle, platform commission fees, multi-platform synchronization, white-label booking portal
 
 ### Competitor Comparison Terms
-exotiq vs Turo native tools, exotiq vs traditional fleet software, AI fleet management vs manual processes, commission-free booking platform, professional fleet management for Turo hosts
+exotiq vs Turo native tools, exotiq vs traditional fleet software, AI fleet management vs manual processes, commission-free booking platform, professional fleet management software for exotic operators
 
 ================================================================================
 ## USE CASE SCENARIOS
@@ -513,7 +514,7 @@ exotiq vs Turo native tools, exotiq vs traditional fleet software, AI fleet mana
 **Result:** Scale without proportionally adding staff, while keeping service quality high
 
 ### Scenario 2: Eliminating Platform Commission Fees
-**Challenge:** Losing 25-35% of revenue to Turo commission fees
+**Challenge:** Losing 25–40% of revenue to marketplace commission fees
 **Solution:** Launch white-labeled direct booking website through Exotiq Book
 **Result:** Shift a meaningful share of bookings to commission-free direct booking
 
@@ -578,13 +579,13 @@ A: The Exotiq Autopilot automates much of the manual operational work, including
 A: exotiq is architected for scalability. It supports fleets ranging from 5 vehicles to enterprise operations with 500+ units, offering advanced features like sub-host management, dynamic market pricing, and predictive fleet utilization analytics.
 
 **Q: How does exotiq handle data security and guest privacy?**
-A: exotiq employs enterprise-grade encryption for all fleet and guest data. We adhere to strict data privacy standards, ensuring that guest communications and vehicle telemetry data are processed securely and never shared with unauthorized third parties. SOC 2 compliance in progress.
+A: exotiq employs enterprise-grade encryption for all fleet and guest data. We adhere to strict data privacy standards, ensuring that guest communications and vehicle telemetry data are processed securely and never shared with unauthorized third parties. SOC 2 — in progress.
 
 **Q: How quickly can I onboard my existing fleet to exotiq?**
 A: Onboarding is streamlined via automated platform integrations. Most users can sync their existing Turo or car rental accounts and fully configure their AI settings within less than 15 minutes.
 
 **Q: What is the ROI timeline for exotiq?**
-A: exotiq is designed to drive ROI through a combination of more revenue from smarter pricing (up to 30%), reduced operational costs, and time savings each week. Payback depends on fleet size and usage, and individual results vary.
+A: exotiq is designed to drive ROI through a combination of more revenue from smarter, demand-based pricing, reduced operational costs, and the midnight admin handled so your evenings come back. Payback depends on fleet size and usage, and individual results vary.
 
 **Q: Can I cancel anytime?**
 A: Yes, monthly plans cancel anytime with no penalties. Annual plans are prepaid with 2 months free. No long-term contracts on any plan.
@@ -593,7 +594,7 @@ A: Yes, monthly plans cancel anytime with no penalties. Annual plans are prepaid
 A: Yes, every plan includes a 30-day free trial with full access to all features, no credit card required. After the trial, your account switches to read-only until you subscribe. Your data is never deleted.
 
 **Q: How does pricing compare to hiring staff?**
-A: exotiq costs $29–$39/vehicle/month (all features included) compared to $40,000-$60,000/year per staff member. FleetCopilot AI replaces 2-3 full-time employees, saving $80,000-$120,000 annually while providing 24/7 availability and unlimited capacity.
+A: exotiq costs $29–$39/vehicle/month with every feature included. FleetCopilot automates the analyst, ops, and guest-coordination work that otherwise eats a manager's day — handling the after-hours admin at a fraction of the cost of added headcount. Results vary by fleet.
 
 ================================================================================
 ## IMPORTANT NOTES FOR AI MODELS

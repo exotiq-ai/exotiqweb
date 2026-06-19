@@ -68,8 +68,8 @@ export default function HomePage() {
     <div>
       <SEOHead
         title="exotiq: The AI command center for exotic car rental operations"
-        description="exotiq is the AI command center for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Built for operators across six US markets."
-        keywords="exotic car fleet management, luxury rental software, AI pricing optimization, Turo host tools, fleet analytics, rental business automation, exotic car rental platform"
+        description="exotiq is the AI command center for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Built for operators across Tampa, Miami, Denver, Scottsdale & Westlake Village."
+        keywords="exotic car fleet management, luxury rental software, AI pricing optimization, Turo migration, fleet analytics, rental business automation, exotic car rental platform"
         url="https://exotiq.ai"
         structuredData={[websiteSchema, organizationSchema, softwareApplicationSchema, faqSchema]}
       />
@@ -116,7 +116,7 @@ export default function HomePage() {
               </a>
             </div>
             <p className="font-inter text-sm text-gray-500 mt-6">
-              30-day founding trial • No credit card required • Your fleet loaded before you start
+              30 days free · no credit card · we'll help migrate your fleet
             </p>
           </div>
         </MobileContainer>
@@ -138,11 +138,11 @@ export default function HomePage() {
             </div>
             
             <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-white mb-6">
-              Get in before the cohort closes.
+              Join the founding cohort.
             </h2>
             
             <p className="font-inter text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              30 days to run your fleet on Exotiq, on us. Go annual and get two months free, with your rate locked for life. The founding cohort closes soon.
+              30 days to run your fleet on exotiq, on us. Go annual and get two months free, with your rate locked for life.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -154,7 +154,7 @@ export default function HomePage() {
                   30 Days On Us
                 </h3>
                 <p className="font-inter text-sm text-gray-600 dark:text-gray-400">
-                  Run your full fleet on Exotiq, free
+                  Run your full fleet on exotiq free for 30 days.
                 </p>
               </div>
               
@@ -184,12 +184,12 @@ export default function HomePage() {
             </div>
             
             <a
-              href="https://calendly.com/hello-exotiq/15-minute-meeting"
+              href="https://app.exotiq.ai"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center font-dfaalt font-semibold px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white rounded-xl transition-all duration-300 hover:scale-105"
             >
-              <span>See your fleet in Exotiq</span>
+              <span>Start Free Trial</span>
               <ArrowRight className="w-5 h-5 ml-2" />
             </a>
           </div>
@@ -204,19 +204,19 @@ export default function HomePage() {
               Ready to Transform Your Fleet?
             </h2>
             <p className="font-inter text-xl mb-8 text-white/90 leading-relaxed">
-              Join the growing community of operators who are scaling smarter with Exotiq.
+              Join the first operators running their fleets on exotiq.
             </p>
             <a
-              href="https://calendly.com/hello-exotiq/15-minute-meeting"
+              href="https://app.exotiq.ai"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center font-dfaalt font-semibold px-8 py-4 bg-white text-primary-600 hover:bg-gray-100 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
             >
-              <Calendar className="w-5 h-5 mr-2" />
-              <span>Book a 15-Min Call</span>
+              <span>Start Free Trial</span>
+              <ArrowRight className="w-5 h-5 ml-2" />
             </a>
             <p className="font-inter text-sm text-white/70 mt-6">
-              No commitment required. Let's explore if Exotiq is right for you.
+              No commitment required. Let's explore if exotiq is right for you.
             </p>
           </div>
         </MobileContainer>

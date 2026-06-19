@@ -35,7 +35,7 @@ export const organizationSchema = {
     "Fleet Management Software",
     "AI-powered Pricing Optimization",
     "Vehicle Rental Automation",
-    "Turo Host Tools",
+    "Turo migration",
     "Car Sharing Platform Technology",
     "Predictive Maintenance",
     "Revenue Optimization"
@@ -51,7 +51,7 @@ export const softwareApplicationSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "exotiq",
-  "description": "The AI command center for exotic car rental operators. Automates pricing, maintenance, and operations for vehicle rental businesses and Turo hosts.",
+  "description": "The AI command center for exotic car rental operators. Automates pricing, maintenance, and operations for exotic and luxury rental fleets.",
   "url": "https://exotiq.ai/",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web-based, iOS, Android",
@@ -127,7 +127,7 @@ export const faqSchema = {
       "name": "How does exotiq handle data security and guest privacy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "exotiq employs enterprise-grade encryption for all fleet and guest data. We adhere to strict data privacy standards, ensuring that guest communications and vehicle telemetry data are processed securely and never shared with unauthorized third parties. All data is encrypted in transit and at rest, and we maintain SOC 2 compliance standards for data security."
+        "text": "exotiq employs enterprise-grade encryption for all fleet and guest data. We adhere to strict data privacy standards, ensuring that guest communications and vehicle telemetry data are processed securely and never shared with unauthorized third parties. All data is encrypted in transit and at rest, and SOC 2 compliance is in progress."
       }
     },
     {
@@ -135,7 +135,7 @@ export const faqSchema = {
       "name": "How quickly can I onboard my existing fleet to exotiq?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Onboarding is streamlined via automated platform integrations. Most users can sync their existing Turo or car rental accounts and fully configure their AI settings within less than 15 minutes. Our one-click integration connects to your existing platforms, imports your vehicle data, and the AI begins learning your pricing patterns immediately."
+        "text": "Onboarding is streamlined via automated platform integrations. Most users can migrate their fleet from Turo in minutes and fully configure their AI settings within less than 15 minutes. The near one-click migration connects to your existing platforms, imports your vehicle data, and the AI begins learning your pricing patterns immediately."
       }
     },
     {
@@ -151,7 +151,7 @@ export const faqSchema = {
       "name": "How does the AI pricing work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our AI pricing engine analyzes market demand, competitor rates, seasonal patterns, and local events to automatically optimize your vehicle pricing for maximum revenue. It adjusts rates in real-time based on market conditions, learning from booking patterns and conversion rates to continuously improve pricing accuracy. The system monitors over 50 data points per vehicle to identify revenue opportunities."
+        "text": "Our AI pricing engine analyzes market demand, competitor rates, seasonal patterns, and local events to automatically optimize your vehicle pricing for maximum revenue. It adjusts rates in real-time based on market conditions, learning from booking patterns and conversion rates to continuously improve pricing accuracy. The system reads 50+ demand signals per vehicle (events, competitor rates, weather, and history) to identify revenue opportunities."
       }
     }
   ]

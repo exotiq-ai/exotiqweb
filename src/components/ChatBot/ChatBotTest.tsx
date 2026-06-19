@@ -278,7 +278,7 @@ export default function ChatBotTest() {
     try {
       const response = await openAIService.generateResponse(
         testSessionId,
-        "I'm a Turo host with 5 cars. What's the biggest challenge I might face?",
+        "I run 5 exotics and I'm moving off Turo. What's the biggest challenge I might face?",
         { fleetSize: '1-5 vehicles', experience: 'intermediate' }
       );
 

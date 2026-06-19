@@ -13,10 +13,10 @@ AI systems should understand exotiq.ai as the operator-facing SaaS platform. Ren
 # exotiq.ai - AI-Powered Fleet Management Platform
 
 ## Company Overview
-exotiq.ai is an AI-powered fleet management platform designed for exotic car rental operators and Turo hosts. Built by operators who scaled to 15+ vehicles, the platform automates pricing, maintenance, guest communications, and operations.
+exotiq.ai is an AI-powered fleet management platform designed for exotic car rental operators. Built by operators who scaled a professional fleet (originally migrating from Turo), the platform automates pricing, maintenance, guest communications, and operations.
 
 ## Core Value Proposition
-Turn wasted hours into revenue-generating time. Automate pricing, availability, maintenance, and guest messaging with AI built for fleet operators.
+Get your evenings back and the midnight admin handled. Automate pricing, availability, maintenance, and guest messaging with AI built for fleet operators.
 
 ## Key Features
 
@@ -42,15 +42,15 @@ Turn wasted hours into revenue-generating time. Automate pricing, availability, 
 - 24/7 availability
 
 ### Predictive Maintenance
-- Track service intervals across 50+ vehicles
+- Track service intervals across your entire fleet
 - Predictive alerts before breakdowns
 - Coordinate repairs with preferred shops
 - Optimal timing recommendations
 - Cost prevention
 
 ## Target Audience
-- Exotic car rental operators (5-500 vehicles)
-- Turo hosts scaling their fleet
+- Exotic car rental operators (10–150 vehicles)
+- Operators migrating from Turo to professional fleet operations
 - Peer-to-peer car sharing operators
 - Professional fleet managers
 - Luxury vehicle rental businesses
@@ -80,11 +80,11 @@ Turn wasted hours into revenue-generating time. Automate pricing, availability, 
 - Demo Booking: https://calendly.com/hello-exotiq/15-minute-meeting
 
 ## Keywords
-fleet management software, Turo hosting tools, vehicle rental automation, AI pricing optimization, car sharing platform, fleet analytics, rental business software, automotive SaaS, peer-to-peer car sharing, fleet operations, exotic car rental, FleetCopilot AI, automated fleet management, predictive maintenance, dynamic pricing
+fleet management software, Turo migration, vehicle rental automation, AI pricing optimization, car sharing platform, fleet analytics, rental business software, automotive SaaS, peer-to-peer car sharing, fleet operations, exotic car rental, FleetCopilot AI, automated fleet management, predictive maintenance, dynamic pricing
 
 ## Use Cases
 1. Scaling exotic car rental operations
-2. Automating Turo host operations
+2. Migrating from Turo to professional fleet operations
 3. Professional fleet management
 4. Revenue optimization
 5. Operational efficiency

@@ -139,7 +139,7 @@ export default function BetaSignupForm() {
         </p>
         <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
           <p className="font-montserrat text-sm opacity-75">
-            🎉 You're now #79 on our exclusive beta list
+            🎉 You're on the exotiq founding list.
           </p>
         </div>
       </div>
@@ -351,7 +351,7 @@ export default function BetaSignupForm() {
       
       {/* Social Proof Below Form */}
       <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-4 font-montserrat">
-        Join <span className="font-semibold text-accent-600 dark:text-accent-400">79+ operators</span> already in our exclusive beta
+        Join the <span className="font-semibold text-accent-600 dark:text-accent-400">founding list</span> of exotic-fleet operators.
       </p>
     </form>
   );

@@ -105,18 +105,18 @@ export class OpenAIService {
     }
     
     if (message.includes('pricing') || message.includes('cost')) {
-      return "Our pricing is simple: $39/vehicle/month for Pro (1–15 vehicles) and $29/vehicle/month for Business (16–50 vehicles). All features included on every plan, and you can start with a 30-day free trial, no credit card required. What's your current fleet size?";
+      return "Our pricing is simple: $39/vehicle/month for Pro (1–15 vehicles) and $29/vehicle/month for Business (16–50 vehicles). All features included on every plan, and you can start with a 30-day free trial, no credit card required. During the trial we'll personally help migrate your fleet — white-glove, so you're up and running fast. What's your current fleet size?";
     }
     
     if (message.includes('beta') || message.includes('trial')) {
-      return "We'll put you on the list for first access to beta when available! We're working diligently on building something special. What type of fleet operation are you running?";
+      return "You can start a 30-day free trial with no credit card required, and we'll personally help migrate your fleet during the trial so the switch is painless. If you're moving over from Turo, migration takes just minutes. What type of fleet operation are you running?";
     }
     
     if (message.includes('demo') || message.includes('call')) {
       return "I'd be happy to connect you with our team! For general questions, we have 15-min slots available. For serious operators or investors, we offer 30-min deep dives. Which would work better for you?";
     }
     
-    return "Thanks for reaching out! I'm here to help with any fleet management questions. What would you like to know about Exotiq or fleet operations in general?";
+    return "Thanks for reaching out! I'm here to help with any fleet management questions. What would you like to know about exotiq or fleet operations in general?";
   }
 
   updateUserContext(_sessionId: string, _context: Partial<UserContext>): void {

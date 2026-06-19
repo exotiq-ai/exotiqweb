@@ -7,7 +7,7 @@ exotiq helps exotic rental fleets manage pricing, bookings, customers, documents
 
 ## Primary audience
 - Independent exotic and luxury car rental operators
-- Turo hosts scaling past side-hustle operations
+- Operators migrating from Turo and scaling past side-hustle operations
 - Multi-vehicle rental entrepreneurs
 - Operators who want more direct bookings and cleaner fleet operations
 - Fleets that need better pricing, utilization, compliance, and guest messaging workflows

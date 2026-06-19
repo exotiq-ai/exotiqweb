@@ -20,7 +20,7 @@ const CALENDLY_URL = 'https://calendly.com/hello-exotiq/30min';
 
 function humanizeInvestorSubmitError(message: string): string {
   if (/23505|duplicate key|already exists|investor_contacts_email_key/i.test(message)) {
-    return 'We already have your email on file. If you need to update your information, reply to any Exotiq email or contact hello@exotiq.ai.';
+    return 'We already have your email on file. If you need to update your information, reply to any exotiq email or contact hello@exotiq.ai.';
   }
   return message;
 }
@@ -95,17 +95,15 @@ export default function InvestorPage() {
 
   const tractionStats = [
     { value: '5', label: 'Operators Signed', sublabel: 'Paid contracts live' },
-    { value: '$200M+', label: 'Fleet Value', sublabel: 'Under management' },
-    { value: '3 Cities', label: 'Markets Live', sublabel: 'Denver, Scottsdale, Miami' },
-    { value: '33%', label: 'Conversion Rate', sublabel: 'vs 3-5% industry avg' },
+    { value: '5', label: 'Markets Live', sublabel: 'Tampa, Miami, Denver, Scottsdale, Westlake Village' },
   ];
 
   return (
     <div className="pt-16">
       <SEOHead
-        title="Invest in Exotiq — The AI Command Center for Exotic Fleet Operations"
-        description="Exotiq is raising $2M to build the operating system for the $50B+ exotic car rental market. 5 operators signed, $200M+ fleet value managed, 3 markets live."
-        keywords="Exotiq investment, exotic car rental SaaS, fleet management startup, pre-seed round, SAFE note"
+        title="Invest in exotiq — The AI Command Center for Exotic Fleet Operations"
+        description="exotiq is raising $2M to build the operating system for exotic-fleet operators in the $50B+ exotic car rental market. 5 operators signed across 5 markets."
+        keywords="exotiq investment, exotic car rental SaaS, fleet management startup, pre-seed round, SAFE note"
         url="https://exotiq.ai/investors"
         noindex={false}
         structuredData={[
@@ -138,7 +136,7 @@ export default function InvestorPage() {
           </h1>
 
           <p className="font-inter text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Operators manage Lamborghini rentals on WhatsApp and spreadsheets. Exotiq replaces
+            Operators manage Lamborghini rentals on WhatsApp and spreadsheets. exotiq replaces
             all of it with AI-powered pricing, guest automation, and real-time fleet intelligence.
           </p>
 
@@ -198,9 +196,9 @@ export default function InvestorPage() {
               A $50B Market with Zero Purpose-Built Technology
             </h2>
             <p className="font-inter text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              The US luxury rental market is growing from $6B to $13B by 2032 at 8.6% CAGR.
+              $50B+ global TAM; the US market alone grows from $6B to $13B by 2032 (8.6% CAGR).
               The most premium rental experiences in the world are still run on personal phones
-              and five disconnected tools. Exotiq is the first platform built for this asset class.
+              and five disconnected tools. exotiq is the first platform built for this asset class.
             </p>
           </div>
 
@@ -209,7 +207,7 @@ export default function InvestorPage() {
               <TrendingUp className="w-8 h-8 text-primary-500 mb-4" />
               <h3 className="font-dfaalt font-bold text-lg text-white mb-2">Massive Market, Zero Software</h3>
               <p className="font-inter text-sm text-gray-400 leading-relaxed">
-                $50B+ global market growing at 8.6% annually. No incumbent has built for exotic
+                $50B+ global TAM growing at 8.6% annually. No incumbent has built for exotic
                 fleet operators. First-mover advantage is wide open.
               </p>
             </div>
@@ -225,8 +223,9 @@ export default function InvestorPage() {
               <Shield className="w-8 h-8 text-primary-500 mb-4" />
               <h3 className="font-dfaalt font-bold text-lg text-white mb-2">Built by an Operator</h3>
               <p className="font-inter text-sm text-gray-400 leading-relaxed">
-                Our founder scaled a top-1% Turo luxury fleet and discovered every gap firsthand.
-                Deep operator relationships across Denver, Scottsdale, and Miami.
+                Our founder scaled a luxury fleet from Turo to a direct-booking operation and
+                discovered every gap firsthand. Deep operator relationships across Tampa, Miami,
+                Denver, Scottsdale, and Westlake Village.
               </p>
             </div>
           </div>
@@ -245,40 +244,24 @@ export default function InvestorPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14">
             <div className="bg-dark-900 border border-dark-700 rounded-xl p-6 text-center">
-              <div className="font-dfaalt font-bold text-3xl text-primary-500 mb-1">2x</div>
-              <div className="font-inter text-sm text-gray-400">Utilization Increase</div>
+              <div className="font-dfaalt font-bold text-3xl text-primary-500 mb-1">5</div>
+              <div className="font-inter text-sm text-gray-400">Operators Signed</div>
             </div>
             <div className="bg-dark-900 border border-dark-700 rounded-xl p-6 text-center">
-              <div className="font-dfaalt font-bold text-3xl text-primary-500 mb-1">15+</div>
-              <div className="font-inter text-sm text-gray-400">Hours Saved / Week</div>
-            </div>
-            <div className="bg-dark-900 border border-dark-700 rounded-xl p-6 text-center">
-              <div className="font-dfaalt font-bold text-3xl text-primary-500 mb-1">&gt;90%</div>
-              <div className="font-inter text-sm text-gray-400">Customer Retention</div>
-            </div>
-            <div className="bg-dark-900 border border-dark-700 rounded-xl p-6 text-center">
-              <div className="font-dfaalt font-bold text-3xl text-primary-500 mb-1">85%</div>
-              <div className="font-inter text-sm text-gray-400">Gross Margin</div>
+              <div className="font-dfaalt font-bold text-3xl text-primary-500 mb-1">The midnight admin, handled</div>
+              <div className="font-inter text-sm text-gray-400">Pricing, guest messaging, and fleet ops on autopilot</div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6">
             <blockquote className="bg-dark-900 border border-dark-700 rounded-2xl p-8">
               <p className="font-inter text-gray-300 italic leading-relaxed mb-4">
-                "We need an integrated system that actually understands how we work. Exotiq gets it."
+                "We need an integrated system that actually understands how we work. exotiq gets it."
               </p>
               <footer className="font-inter text-sm text-gray-500">
-                <span className="font-semibold text-gray-400">Jay</span> &mdash; Denver Exotic Rental Cars
-              </footer>
-            </blockquote>
-            <blockquote className="bg-dark-900 border border-dark-700 rounded-2xl p-8">
-              <p className="font-inter text-gray-300 italic leading-relaxed mb-4">
-                "This will change the game. I've been waiting for something like this for years."
-              </p>
-              <footer className="font-inter text-sm text-gray-500">
-                <span className="font-semibold text-gray-400">Sara</span> &mdash; Zara Exotics
+                <span className="font-semibold text-gray-400">Jay</span> &middot; Denver Exotic Rental Cars &middot; Denver
               </footer>
             </blockquote>
           </div>
@@ -343,8 +326,9 @@ export default function InvestorPage() {
 
           <div className="text-center">
             <p className="font-inter text-sm text-gray-500 mb-6">
-              Capital already committed. Live on AngelList. Early investors get equity in both
-              the SaaS and the Drive Exotiq marketplace.
+              Early investors back the operating system for exotic-fleet operators.
+              <br />
+              Bonus: optionality on the Drive exotiq marketplace as it launches.
             </p>
             <a
               href={DECK_URL}
@@ -373,7 +357,7 @@ export default function InvestorPage() {
               {
                 name: 'Gregory Ringler',
                 role: 'Founder & CEO',
-                desc: 'Top-1% Turo host. Scaled luxury fleet. Operator-first founder.',
+                desc: 'Scaled a luxury fleet from Turo to a direct-booking operation. Operator-first founder.',
                 Icon: Users,
               },
               {

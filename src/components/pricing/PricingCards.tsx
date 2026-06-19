@@ -155,7 +155,7 @@ export default function PricingCards() {
                   onClick={() => handleCta(tier.id)}
                   aria-label={
                     isEnterprise
-                      ? 'Schedule a demo for the Enterprise plan'
+                      ? 'Talk to sales for the Enterprise plan'
                       : `Start free trial for the ${tier.name} plan`
                   }
                   className={`mb-2 w-full min-h-12 rounded-lg font-montserrat text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950 ${
@@ -164,13 +164,13 @@ export default function PricingCards() {
                       : 'bg-primary-500 text-dark-950 hover:bg-primary-400'
                   }`}
                 >
-                  {isEnterprise ? 'Schedule a Demo' : 'Start Free Trial'}
+                  {isEnterprise ? 'Talk to Sales' : 'Start Free Trial'}
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
                 {!isEnterprise && (
                   <p className="text-center font-montserrat text-[11px] text-white/40 mb-4">
-                    30 days free · No credit card required
+                    30 days free · no credit card · we&apos;ll help migrate your fleet
                   </p>
                 )}
                 {isEnterprise && <div className="mb-4" />}

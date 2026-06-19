@@ -8,15 +8,25 @@ const testimonials = [
   {
     name: 'Jay',
     initials: 'J',
-    text: 'We need an integrated system that actually understands how we work. Exotiq gets it.',
+    text: 'We need an integrated system that actually understands how we work. exotiq gets it.',
     company: 'Denver Exotic Rental Cars',
+    market: 'Denver',
   },
   {
     name: 'Ed',
     initials: 'E',
-    text: 'I tried three other platforms before Exotiq. None of them got it right. Exotiq did, from the start. I made the call to switch halfway through the demo, and a month later I am glad I did. The operational gains were immediate.',
+    text: 'I tried three other platforms before exotiq. None of them got it right. exotiq did, from the start. I made the call to switch halfway through the demo, and a month later I am glad I did. The operational gains were immediate.',
     company: 'Revel + Roam',
+    market: 'Westlake Village',
   },
+];
+
+// Real, founder-confirmed paying operators (text now; logos when supplied).
+const operatorWall = [
+  'Exotics by The Bay',
+  'Denver Exotic Rental Cars',
+  'Dryvit',
+  'Revel + Roam',
 ];
 
 // Bombon-style animation variants
@@ -76,7 +86,7 @@ const TestimonialsSection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
 
   return (
-    <MobileSection ref={ref} className="bg-gray-50 dark:bg-dark-900 py-14 lg:py-16">
+    <MobileSection ref={ref} className="bg-gray-50 dark:bg-dark-900 py-14 lg:py-20">
       <MobileContainer>
         {/* Header */}
         <motion.div
@@ -96,8 +106,35 @@ const TestimonialsSection: React.FC = () => {
             variants={headerVariants}
             className="font-inter text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
           >
-            Real feedback from operators managing 10 to 100+ vehicles across major U.S. markets
+            From operators across Tampa, Miami, Denver, Scottsdale &amp; Westlake Village.
           </motion.p>
+        </motion.div>
+
+        {/* Named operator wall */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mb-10 lg:mb-14"
+        >
+          <p className="text-center font-inter text-[0.7rem] sm:text-xs uppercase tracking-[0.2em] text-gray-500 dark:text-gray-500 mb-5">
+            Operators building real exotic-rental brands run on exotiq
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:gap-x-8 max-w-4xl mx-auto">
+            {operatorWall.map((op, i) => (
+              <React.Fragment key={op}>
+                {i > 0 && (
+                  <span
+                    aria-hidden
+                    className="hidden sm:inline-block w-px h-5 bg-gray-300 dark:bg-dark-700"
+                  />
+                )}
+                <span className="font-dfaalt font-semibold text-base sm:text-lg text-gray-700 dark:text-gray-200 tracking-tight">
+                  {op}
+                </span>
+              </React.Fragment>
+            ))}
+          </div>
         </motion.div>
 
         {/* Testimonials Grid - Clean 2x2 */}
@@ -119,12 +156,12 @@ const TestimonialsSection: React.FC = () => {
                 animate={isVisible ? { opacity: 1, rotate: 0, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               >
-                <Quote 
-                  className="absolute top-6 right-6 w-8 h-8 text-gray-100 dark:text-dark-700" 
+                <Quote
+                  className="absolute top-6 right-6 w-8 h-8 text-gray-100 dark:text-dark-700"
                   fill="currentColor"
                 />
               </motion.div>
-              
+
               {/* Stars */}
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -135,18 +172,18 @@ const TestimonialsSection: React.FC = () => {
                     animate={isVisible ? "visible" : "hidden"}
                     variants={starVariants}
                   >
-                    <Star 
-                      className="w-4 h-4 text-amber-400 fill-current" 
+                    <Star
+                      className="w-4 h-4 text-amber-400 fill-current"
                     />
                   </motion.div>
                 ))}
               </div>
-              
+
               {/* Quote */}
               <p className="font-inter text-gray-700 dark:text-gray-300 leading-relaxed mb-6 relative z-10">
                 "{testimonial.text}"
               </p>
-              
+
               {/* Author */}
               <div className="flex items-center gap-3">
                 {/* Avatar */}
@@ -159,14 +196,14 @@ const TestimonialsSection: React.FC = () => {
                     {testimonial.initials}
                   </span>
                 </motion.div>
-                
+
                 {/* Info */}
                 <div>
                   <div className="font-dfaalt font-semibold text-gray-900 dark:text-white">
                     {testimonial.name}
                   </div>
                   <div className="font-inter text-sm text-gray-500 dark:text-gray-400">
-                    {testimonial.company}
+                    {testimonial.company} · {testimonial.market}
                   </div>
                 </div>
               </div>

@@ -100,9 +100,9 @@ export const getImmediateEmail = (investorName: string, investorEmail: string) =
       <p><strong>Quick Highlights:</strong></p>
       <ul>
         <li>30+ operator workflows automated</li>
-        <li>15+ hours saved per operator weekly</li>
-        <li>$2.45B market, 15.8% annual growth</li>
-        <li>85% gross margin, 8.5:1 LTV:CAC</li>
+        <li>5 operators signed across 5 live markets</li>
+        <li>$50B+ global TAM; US market $6B → $13B by 2032</li>
+        <li>5 live modules: pricing, bookings, compliance, guest comms, AI co-pilot</li>
       </ul>
     </div>
     
@@ -134,9 +134,9 @@ Here's what you need:
 
 Quick Highlights:
 • 30+ operator workflows automated
-• 15+ hours saved per operator weekly
-• $2.45B market, 15.8% annual growth
-• 85% gross margin, 8.5:1 LTV:CAC
+• 5 operators signed across 5 live markets
+• $50B+ global TAM; US market $6B → $13B by 2032
+• 5 live modules: pricing, bookings, compliance, guest comms, AI co-pilot
 
 Let's talk this week?
 
@@ -234,7 +234,7 @@ Gregory`
 });
 
 export const getCaseStudyEmail = (investorName: string) => ({
-    subject: 'How operators save 15+ hours/week with Exotiq',
+    subject: 'How operators run their fleets on exotiq',
     html: `
 <!DOCTYPE html>
 <html>
@@ -300,31 +300,17 @@ export const getCaseStudyEmail = (investorName: string) => ({
     
     <div class="case-study">
       <h3 style="margin-top: 0;">Denver Exotic Rental Cars</h3>
-      <p><strong>Challenge:</strong> Managing 12 luxury vehicles across Turo, direct bookings, and corporate clients. Spending 20+ hours/week on pricing, messaging, and maintenance scheduling.</p>
-      
-      <p><strong>Solution:</strong> Implemented Exotiq's FleetCopilot and MotorIQ modules.</p>
-      
-      <p><strong>Results after 30 days:</strong></p>
-      <div style="text-align: center; margin: 20px 0;">
-        <div class="metric">
-          <div class="metric-value">18 hrs</div>
-          <div class="metric-label">Time Saved Weekly</div>
-        </div>
-        <div class="metric">
-          <div class="metric-value">23%</div>
-          <div class="metric-label">Revenue Increase</div>
-        </div>
-        <div class="metric">
-          <div class="metric-value">94%</div>
-          <div class="metric-label">Utilization Rate</div>
-        </div>
-      </div>
-      
-      <p><em>"Exotiq pays for itself in the first week. The AI pricing alone increased our revenue by 23%, and I got my weekends back."</em></p>
-      <p style="margin: 0;"><strong>— Jay, Founder</strong></p>
+      <p><strong>Challenge:</strong> Managing a growing exotic fleet across Turo, direct bookings, and corporate clients — pricing, messaging, and maintenance scattered across separate tools.</p>
+
+      <p><strong>Solution:</strong> Moved the operation onto exotiq — FleetCopilot for the day-to-day admin and MotorIQ for demand-based pricing.</p>
+
+      <p><strong>The result:</strong> one command center instead of five tools and a spreadsheet, with the after-hours admin automated.</p>
+
+      <p><em>"We need an integrated system that actually understands how we work. exotiq gets it."</em></p>
+      <p style="margin: 0;"><strong>— Jay, Denver Exotic Rental Cars · Denver</strong></p>
     </div>
     
-    <p>This is the ROI we're delivering to operators today.</p>
+    <p>This is what we're building for operators today.</p>
     
     <p>Want to discuss the investment opportunity?</p>
     
@@ -344,18 +330,15 @@ Thought you'd find this interesting...
 
 CASE STUDY: Denver Exotic Rental Cars
 
-Challenge: Managing 12 luxury vehicles across Turo, direct bookings, and corporate clients. Spending 20+ hours/week on pricing, messaging, and maintenance scheduling.
+Challenge: Managing a growing exotic fleet across Turo, direct bookings, and corporate clients — pricing, messaging, and maintenance scattered across separate tools.
 
-Solution: Implemented Exotiq's FleetCopilot and MotorIQ modules.
+Solution: Moved the operation onto exotiq — FleetCopilot for the day-to-day admin and MotorIQ for demand-based pricing.
 
-Results after 30 days:
-• 18 hours saved weekly
-• 23% revenue increase
-• 94% utilization rate
+The result: one command center instead of five tools and a spreadsheet, with the after-hours admin automated.
 
-"Exotiq pays for itself in the first week. The AI pricing alone increased our revenue by 23%, and I got my weekends back." — Jay, Founder
+"We need an integrated system that actually understands how we work. exotiq gets it." — Jay, Denver Exotic Rental Cars · Denver
 
-This is the ROI we're delivering to operators today.
+This is what we're building for operators today.
 
 Want to discuss the investment opportunity?
 
