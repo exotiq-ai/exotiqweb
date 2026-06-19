@@ -134,7 +134,7 @@ export default function MobileNavigation() {
                   className="flex items-center gap-2 mb-4 px-4 py-3 rounded-2xl bg-primary-500/10 border border-primary-500/30 text-primary-300 font-inter font-semibold text-sm"
                 >
                   <Zap className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                  <span>Launch pricing — lock in before 2027</span>
+                  <span>Launch pricing · lock in before 2027</span>
                 </Link>
               )}
 

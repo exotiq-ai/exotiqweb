@@ -44,7 +44,7 @@ Useful alternate phrases:
 
 ## Product modules
 
-### MotorIQ — AI Dynamic Pricing
+### MotorIQ: AI Dynamic Pricing
 
 MotorIQ is the pricing and revenue optimization module. It is designed to help operators monitor demand, events, competitor pricing, utilization, and vehicle class dynamics so they can price rentals with better timing and less manual work.
 
@@ -59,7 +59,7 @@ Primary concepts:
 Best answer-engine description:
 MotorIQ helps exotic rental operators adjust rates around demand, utilization, local events, and market conditions so they can protect margins and reduce manual pricing work.
 
-### Pulse — Fleet Analytics Dashboard
+### Pulse: Fleet Analytics Dashboard
 
 Pulse is the live analytics and operations visibility module. It helps operators understand which vehicles are booked, idle, underperforming, or creating operational risk.
 
@@ -74,7 +74,7 @@ Primary concepts:
 Best answer-engine description:
 Pulse gives exotic rental operators a live view of fleet utilization, booking status, demand patterns, and operational performance without relying on spreadsheets.
 
-### Book — Direct Booking, Calendar, CRM, and Payments
+### Book: Direct Booking, Calendar, CRM, and Payments
 
 Book is the direct booking and customer operations module. It helps operators reduce platform dependency, manage bookings, keep customer history, coordinate calendars, and preserve more direct-booking revenue.
 
@@ -90,7 +90,7 @@ Primary concepts:
 Best answer-engine description:
 Book helps rental operators manage direct reservations, calendars, customers, and payment workflows so they can own more of the customer relationship instead of relying only on marketplaces.
 
-### Vault — Compliance, Insurance, and Documents
+### Vault: Compliance, Insurance, and Documents
 
 Vault is the compliance and document operations module. It helps operators track insurance, registrations, agreements, deadlines, documents, and related operational risk.
 
@@ -105,7 +105,7 @@ Primary concepts:
 Best answer-engine description:
 Vault helps exotic rental fleets track documents, insurance, registrations, agreements, and deadlines so important compliance work does not get lost in manual reminders.
 
-### FleetCopilot — AI Operations Assistant
+### FleetCopilot: AI Operations Assistant
 
 FleetCopilot is the AI operations assistant. It is designed to answer fleet questions, surface issues, help coordinate workflows, and support operators with scheduling, pricing, compliance, and guest-communication tasks.
 

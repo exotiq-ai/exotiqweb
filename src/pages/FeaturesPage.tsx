@@ -52,8 +52,8 @@ const modules = [
     borderColor: 'border-blue-500/30',
     accentColor: 'text-blue-400',
     iconBg: 'bg-blue-500/20',
-    description: 'AI-powered dynamic pricing that reads 50+ demand signals — events, competitor rates, weather, and history. Never leave money on the table again.',
-    longDescription: 'Pricing that knows a McLaren isn\'t a Mustang. MotorIQ is your always-on revenue analyst. It reads 50+ demand signals — events, competitor rates, weather, and history — to adjust your rates in real-time. Set your floor, set your ceiling, and let AI work every booking. Operators can see up to 30% more revenue — illustrative, varies by market and fleet.',
+    description: 'AI-powered dynamic pricing that reads 50+ demand signals: events, competitor rates, weather, and history. Never leave money on the table again.',
+    longDescription: 'Pricing that knows a McLaren isn\'t a Mustang. MotorIQ is your always-on revenue analyst. It reads 50+ demand signals (events, competitor rates, weather, and history) to adjust your rates in real-time. Set your floor, set your ceiling, and let AI work every booking. Operators can see up to 30% more revenue. Illustrative, varies by market and fleet.',
     screenshot: '/images/app-screenshots/motoriq-ui-light.png',
     screenshotAlt: 'MotorIQ dashboard showing price optimization and revenue analytics',
     heroMetric: { value: '50+', label: 'demand signals', sublabel: 'read per vehicle' },
@@ -61,7 +61,7 @@ const modules = [
       { 
         icon: DollarSign, 
         title: 'AI Dynamic Pricing', 
-        description: 'Reads 50+ demand signals — events, competitor rates, weather, and history. Prices update automatically so you capture every dollar without lifting a finger.',
+        description: 'Reads 50+ demand signals: events, competitor rates, weather, and history. Prices update automatically so you capture every dollar without lifting a finger.',
         highlight: true
       },
       { 
@@ -153,7 +153,7 @@ const modules = [
     accentColor: 'text-emerald-400',
     iconBg: 'bg-emerald-500/20',
     description: 'Your own booking system. Keep your full booking revenue and build direct relationships with customers.',
-    longDescription: 'Stop handing platforms 25–40% of every booking. Book is your command center for reservations, calendars, and customer relationships. Sync your calendars, track your best customers, and let MotorIQ pricing flow in automatically. Your customers, your data, your revenue.',
+    longDescription: 'Stop handing platforms 25-40% of every booking. Book is your command center for reservations, calendars, and customer relationships. Sync your calendars, track your best customers, and let MotorIQ pricing flow in automatically. Your customers, your data, your revenue.',
     screenshot: '/images/app-screenshots/book-ui-light.png',
     screenshotAlt: 'Book module showing direct booking interface',
     heroMetric: { value: 'Your', label: 'Customers, Your Data', sublabel: 'no middleman fees' },
@@ -628,9 +628,9 @@ export default function FeaturesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-inter text-xl text-gray-300 max-w-3xl mx-auto mb-10"
+              className="font-inter text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed"
             >
-              Five modules, one system — pricing, bookings, compliance, guest comms, and an AI co-pilot. The admin you do at midnight, automated.
+              Five modules, one system: pricing, bookings, compliance, guest comms, and an AI co-pilot. The admin you do at midnight, automated.
             </motion.p>
 
             {/* Quick Nav Pills */}
@@ -677,7 +677,7 @@ export default function FeaturesPage() {
                 className="group inline-flex items-center justify-center gap-3 font-dfaalt font-semibold text-lg px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/30"
               >
                 <Calendar className="w-5 h-5" />
-                <span>Book Your Demo</span>
+                <span>Book a Demo</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <Link
@@ -709,10 +709,10 @@ export default function FeaturesPage() {
             transition={{ duration: 0.6 }}
             className="relative z-10 text-center"
           >
-            <h2 className="font-dfaalt font-bold text-4xl sm:text-5xl text-white mb-6">
-              Ready to Transform Your Fleet?
+            <h2 className="font-dfaalt font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 leading-tight">
+              Run your whole fleet from one system
             </h2>
-            <p className="font-inter text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+            <p className="font-inter text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
               Built for operators across Tampa, Miami, Denver, Scottsdale, and Westlake Village. See the platform in action with a personalized demo.
             </p>
 

@@ -274,7 +274,7 @@ export default function BlogPostPage() {
               About the author
             </h3>
             <p className={darkReadingMode ? 'text-gray-300' : 'text-gray-700'}>
-              <span className="font-semibold">{post.author.name}</span> — {post.author.role}
+              <span className="font-semibold">{post.author.name}</span> · {post.author.role}
             </p>
             <p className={`mt-1 ${darkReadingMode ? 'text-gray-400' : 'text-gray-600'}`}>
               {post.author.bio}

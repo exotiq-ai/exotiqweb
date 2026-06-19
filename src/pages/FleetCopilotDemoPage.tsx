@@ -35,7 +35,7 @@ export default function FleetCopilotDemoPage() {
       />
 
       {/* Header */}
-      <section className="py-12 bg-gradient-to-br from-accent-600 to-primary-500 text-white relative overflow-hidden">
+      <section className="pt-28 pb-20 lg:pt-32 lg:pb-28 bg-dark-900 text-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -54,15 +54,18 @@ export default function FleetCopilotDemoPage() {
           </Link>
 
           <div className="text-center">
-            <div className="flex items-center justify-center w-24 h-24 bg-white/20 backdrop-blur-sm rounded-2xl mx-auto mb-8 animate-pulse-subtle">
-              <Bot className="w-12 h-12 text-white" />
+            <div className="flex items-center justify-center w-24 h-24 bg-white/10 backdrop-blur-sm rounded-2xl mx-auto mb-8 animate-pulse-subtle ring-1 ring-white/15">
+              <Bot className="w-12 h-12 text-primary-500" />
             </div>
-            <h1 className="font-dfaalt font-bold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+            <div className="font-montserrat text-sm uppercase tracking-[0.2em] text-primary-500 mb-5">
+              Live Voice AI Demo
+            </div>
+            <h1 className="font-dfaalt font-bold text-4xl sm:text-5xl lg:text-6xl mb-6 leading-tight">
               Meet FleetCopilot™
             </h1>
-            <p className="font-montserrat text-xl md:text-2xl opacity-90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              FleetCopilot, powered by Rari (your voice agent). Try a live conversation about pricing,
-              maintenance, scaling, or any fleet operation challenge.
+            <p className="font-inter text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+              FleetCopilot is your fleet voice agent, powered by Rari. Start a live conversation
+              about pricing, maintenance, or scaling your fleet.
             </p>
             
             {/* Features */}
@@ -114,7 +117,7 @@ export default function FleetCopilotDemoPage() {
               {/* Conversation starters */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
                 <div className="bg-gray-50 dark:bg-dark-700 p-4 rounded-lg border border-gray-200 dark:border-dark-600">
-                  <div className="font-montserrat font-semibold text-sm text-gray-900 dark:text-white mb-1">Pricing</div>
+                  <div className="font-montserrat font-semibold text-sm text-gray-900 dark:text-white mb-1">💲 Pricing</div>
                   <div className="font-montserrat text-xs text-gray-600 dark:text-gray-400">"How should I price my Tesla?"</div>
                 </div>
                 <div className="bg-gray-50 dark:bg-dark-700 p-4 rounded-lg border border-gray-200 dark:border-dark-600">
@@ -173,12 +176,12 @@ export default function FleetCopilotDemoPage() {
               <Bot className="w-4 h-4 mr-2" />
               Powered by Advanced AI
             </div>
-            <h2 className="font-dfaalt font-bold text-3xl md:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6">
-              FleetCopilot™ in the Exotiq Platform
+            <h2 className="font-dfaalt font-bold text-4xl sm:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6">
+              FleetCopilot™ in the exotiq platform
             </h2>
-            <p className="font-montserrat text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-              FleetCopilot™ is integrated throughout the Exotiq platform, providing intelligent 
-              assistance for every aspect of your fleet management operation.
+            <p className="font-inter text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+              FleetCopilot™ is built into the exotiq platform, with intelligent assistance
+              across every part of your fleet operation.
             </p>
           </div>
 
@@ -254,12 +257,12 @@ export default function FleetCopilotDemoPage() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-primary-500 to-accent-600 text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
-          <h2 className="font-dfaalt font-bold text-3xl md:text-4xl lg:text-5xl mb-8">
-            Ready to Get FleetCopilot™ for Your Fleet?
+          <h2 className="font-dfaalt font-bold text-4xl sm:text-5xl lg:text-6xl mb-8">
+            Ready to put FleetCopilot™ to work?
           </h2>
-          <p className="font-montserrat text-xl md:text-2xl mb-10 opacity-90 max-w-4xl mx-auto leading-relaxed">
-            Experience the full Exotiq platform with FleetCopilot™ integrated into every aspect 
-            of your fleet management workflow.
+          <p className="font-inter text-lg mb-10 opacity-90 max-w-2xl mx-auto leading-relaxed">
+            Get the full exotiq platform with FleetCopilot™ built into every part
+            of your fleet workflow.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a

@@ -18,9 +18,9 @@ interface SEOHeadProps {
 }
 
 const BRAND_NAME = 'exotiq';
-const DEFAULT_TITLE = 'exotiq — The AI command center for exotic car rental operations';
+const DEFAULT_TITLE = 'exotiq: The operating system for exotic-car-fleet operators';
 const DEFAULT_DESCRIPTION =
-  'exotiq is the AI command center for exotic car rental operators. Automate pricing, maintenance, and operations. Keep 100% of your direct booking revenue.';
+  'exotiq is the operating system for exotic-car-fleet operators. Run pricing, maintenance, and daily operations from one place, and keep 100% of your direct booking revenue.';
 
 function formatTitle(title: string): string {
   const lower = title.toLowerCase();
@@ -54,7 +54,7 @@ function toCanonicalUrl(value: string): string {
 export default function SEOHead({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
-  keywords = "fleet management software, Turo migration, vehicle rental automation, AI pricing optimization, car sharing platform, fleet analytics, rental business software, automotive SaaS, peer-to-peer car sharing, fleet operations",
+  keywords = "exotic car fleet management software, exotic car rental operations, fleet operating system, AI fleet pricing, fleet maintenance automation, direct booking software, luxury car rental software, fleet analytics, Turo migration",
   image = "https://exotiq.ai/og-exotiq-ai-fleet.png",
   url = "https://exotiq.ai",
   type = "website",

@@ -36,7 +36,7 @@ KEY INFORMATION ABOUT EXOTIQ:
 - Built specifically for exotic and luxury fleet operators
 - Now onboarding founding operators with a 30-day free trial, no credit card required
 - Per-vehicle pricing: Pro $39/vehicle/month (1-15 vehicles), Business $29/vehicle/month (16-50), Enterprise custom for 51+. All features included on every plan, zero commission fees.
-- Live in 5 markets (Tampa, Miami, Denver, Scottsdale, Westlake Village). SOC 2 in progress. MotorIQ reads 50+ demand signals per vehicle. Drive Exotiq marketplace launching.
+- Live in 5 markets (Tampa, Miami, Denver, Scottsdale, Westlake Village). Built on SOC 2 Type II and ISO 27001:2022 certified infrastructure. MotorIQ reads 50+ demand signals per vehicle. Drive Exotiq marketplace listing as it launches.
 
 YOUR GOALS:
 1. Understand the user's fleet size and challenges
@@ -203,5 +203,5 @@ function getFallbackResponse(message: string, userContext: any): string {
     return "I'd be happy to connect you with our team! For general questions, we have 15-min slots available. For serious operators or investors, we offer 30-min deep dives. Which would work better for you?"
   }
   
-  return "Thanks for reaching out! I'm here to help with any fleet management questions. What would you like to know about Exotiq or fleet operations in general?"
+  return "Thanks for reaching out! I'm here to help with any fleet management questions. What would you like to know about exotiq or fleet operations in general?"
 }

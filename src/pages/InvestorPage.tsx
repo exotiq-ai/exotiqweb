@@ -101,7 +101,7 @@ export default function InvestorPage() {
   return (
     <div className="pt-16">
       <SEOHead
-        title="Invest in exotiq — The AI Command Center for Exotic Fleet Operations"
+        title="Invest in exotiq: The AI Command Center for Exotic Fleet Operations"
         description="exotiq is raising $2M to build the operating system for exotic-fleet operators in the $50B+ exotic car rental market. 5 operators signed across 5 markets."
         keywords="exotiq investment, exotic car rental SaaS, fleet management startup, pre-seed round, SAFE note"
         url="https://exotiq.ai/investors"
@@ -131,13 +131,13 @@ export default function InvestorPage() {
           </div>
 
           <h1 className="font-dfaalt font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-[1.1]">
-            The AI Command Center for the{' '}
-            <span className="text-primary-500">$50B+ Exotic Car Rental Market</span>
+            The AI command center for the{' '}
+            <span className="text-primary-500">$50B+ exotic car rental market</span>
           </h1>
 
-          <p className="font-inter text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Operators manage Lamborghini rentals on WhatsApp and spreadsheets. exotiq replaces
-            all of it with AI-powered pricing, guest automation, and real-time fleet intelligence.
+          <p className="font-inter text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Operators run Lamborghini rentals on WhatsApp and spreadsheets. exotiq replaces it
+            with AI-powered pricing, guest automation, and real-time fleet intelligence.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
@@ -168,9 +168,9 @@ export default function InvestorPage() {
       </section>
 
       {/* ─── TRACTION BAR ─── */}
-      <section className="py-16 bg-dark-800 border-y border-dark-700">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+      <section className="py-16 lg:py-20 bg-dark-800 border-y border-dark-700">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-8">
             {tractionStats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="font-dfaalt font-bold text-3xl sm:text-4xl text-white mb-1">
@@ -189,7 +189,7 @@ export default function InvestorPage() {
       </section>
 
       {/* ─── WHY NOW ─── */}
-      <section className="py-20 bg-dark-900">
+      <section className="py-20 lg:py-28 bg-dark-900">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="text-center mb-14">
             <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl text-white mb-4">
@@ -233,7 +233,7 @@ export default function InvestorPage() {
       </section>
 
       {/* ─── PROOF POINTS ─── */}
-      <section className="py-20 bg-dark-800">
+      <section className="py-20 lg:py-28 bg-dark-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="text-center mb-14">
             <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl text-white mb-4">
@@ -249,8 +249,8 @@ export default function InvestorPage() {
               <div className="font-dfaalt font-bold text-3xl text-primary-500 mb-1">5</div>
               <div className="font-inter text-sm text-gray-400">Operators Signed</div>
             </div>
-            <div className="bg-dark-900 border border-dark-700 rounded-xl p-6 text-center">
-              <div className="font-dfaalt font-bold text-3xl text-primary-500 mb-1">The midnight admin, handled</div>
+            <div className="bg-dark-900 border border-dark-700 rounded-xl p-6 text-center flex flex-col justify-center">
+              <div className="font-dfaalt font-bold text-xl sm:text-2xl text-primary-500 mb-1 leading-snug">The midnight admin, handled</div>
               <div className="font-inter text-sm text-gray-400">Pricing, guest messaging, and fleet ops on autopilot</div>
             </div>
           </div>
@@ -269,7 +269,7 @@ export default function InvestorPage() {
       </section>
 
       {/* ─── THE ROUND ─── */}
-      <section className="py-20 bg-dark-900">
+      <section className="py-20 lg:py-28 bg-dark-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="text-center mb-14">
             <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl text-white mb-4">
@@ -344,7 +344,7 @@ export default function InvestorPage() {
       </section>
 
       {/* ─── TEAM & BACKERS ─── */}
-      <section className="py-20 bg-dark-800">
+      <section className="py-20 lg:py-28 bg-dark-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="text-center mb-14">
             <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl text-white mb-4">
@@ -437,7 +437,7 @@ export default function InvestorPage() {
       </section>
 
       {/* ─── CTA / FORM ─── */}
-      <section id="form" className="py-24 bg-gradient-to-b from-dark-900 to-dark-800">
+      <section id="form" className="py-20 lg:py-28 bg-gradient-to-b from-dark-900 to-dark-800">
         <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
           <div className="text-center mb-10">
             <h2 className="font-dfaalt font-bold text-3xl sm:text-4xl text-white mb-4">

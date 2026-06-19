@@ -47,7 +47,7 @@ export default function ExoticCarRentalSoftwarePage() {
         },
         {
           question: 'How secure is my fleet and guest data?',
-          answer: 'exotiq uses enterprise-grade encryption for data in transit and at rest and follows strict data-privacy practices, with SOC 2 compliance in progress.',
+          answer: 'exotiq uses enterprise-grade encryption for data in transit and at rest and follows strict data-privacy practices. It is built on SOC 2 Type II and ISO 27001:2022 certified infrastructure.',
         },
       ]}
       ctaHeading="Operate your luxury fleet with confidence"

@@ -97,7 +97,7 @@ export default function SurveyPage() {
   // If no survey type or invalid survey, show survey selection
   if (!currentSurvey) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 dark:from-dark-900 dark:to-dark-800">
+      <div className="min-h-screen bg-gradient-to-br from-dark-900 to-dark-800">
         <SEOHead
           title="Fleet Management Survey: Help Shape exotiq"
           description="Share your fleet management experience and help shape exotiq's development. Choose from surveys for small fleets (1-5 vehicles), scaling operations (6-50 vehicles), or exotic/luxury fleets."
@@ -109,21 +109,21 @@ export default function SurveyPage() {
           ])}
         />
         
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 pt-24 pb-16 sm:pt-28 sm:pb-20">
-          <div className="text-center mb-8 sm:mb-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 pt-24 pb-20 sm:pt-28 sm:pb-28">
+          <div className="text-center mb-12 sm:mb-16">
             {/* Incentive Badge */}
-            <div className="inline-flex items-center px-4 py-2 bg-accent-500/20 dark:bg-accent-500/30 rounded-full text-accent-600 dark:text-accent-400 font-semibold text-sm mb-6 border border-accent-500/30">
+            <div className="inline-flex items-center px-4 py-2 bg-accent-500/20 rounded-full text-accent-400 font-semibold text-xs sm:text-sm tracking-wide uppercase mb-6 border border-accent-500/30">
               <span>Founding Operator · Priority Beta Access</span>
             </div>
-            
-            <h1 className="font-dfaalt font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight">
+
+            <h1 className="font-dfaalt font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-5 sm:mb-6 leading-tight">
               Join the Founding Operator Program
             </h1>
-            <p className="font-montserrat text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
-              Share your fleet management experience and help shape the platform built for operators like you.
+            <p className="font-montserrat text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-4">
+              Share how you run your fleet and help shape the platform built for operators like you.
             </p>
-            <p className="font-montserrat text-sm text-gray-500 dark:text-gray-400">
-              Takes only 5 minutes • Help shape the platform built for operators like you
+            <p className="font-montserrat text-sm text-gray-400">
+              Takes about 5 minutes.
             </p>
           </div>
 
@@ -132,28 +132,28 @@ export default function SurveyPage() {
               <Link
                 key={key}
                 to={`/survey?type=${key}`}
-                className="group bg-white dark:bg-dark-800 p-8 rounded-2xl border border-gray-200 dark:border-dark-700 hover:border-primary-300 dark:hover:border-primary-500 transition-all duration-200 hover:shadow-xl hover:scale-[1.02] flex flex-col"
+                className="group bg-dark-800 p-8 rounded-2xl border border-dark-700 hover:border-primary-500 transition-all duration-200 hover:shadow-xl hover:scale-[1.02] flex flex-col"
               >
                 <div className="text-center flex-1 flex flex-col">
                   {/* Consistent 64x64px icon container */}
-                  <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
-                    <Suspense fallback={<div className="w-8 h-8 bg-gray-300 rounded animate-pulse" />}>
+                  <div className="w-16 h-16 bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
+                    <Suspense fallback={<div className="w-8 h-8 bg-dark-700 rounded animate-pulse" />}>
                       <SurveyIcons type={key} />
                     </Suspense>
                   </div>
-                  
+
                   {/* Consistent h3 hierarchy */}
-                  <h3 className="font-dfaalt font-bold text-xl text-gray-900 dark:text-white mb-3 leading-tight">
+                  <h3 className="font-dfaalt font-bold text-xl text-white mb-3 leading-tight">
                     {survey.title}
                   </h3>
-                  
+
                   {/* Description with consistent spacing */}
-                  <p className="font-montserrat text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-1">
+                  <p className="font-montserrat text-base text-gray-300 mb-6 leading-relaxed flex-1">
                     {survey.description}
                   </p>
-                  
+
                   {/* CTA with consistent sizing */}
-                  <div className="flex items-center justify-center text-primary-500 dark:text-primary-400 group-hover:text-primary-600 dark:group-hover:text-primary-300 font-semibold">
+                  <div className="flex items-center justify-center text-primary-400 group-hover:text-primary-300 font-semibold">
                     <span className="text-base">Start Survey</span>
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>

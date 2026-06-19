@@ -14,7 +14,7 @@ export default function AboutPage() {
   return (
     <div className="pt-16">
       <SEOHead
-        title="About exotiq — Built by Fleet Operators, for Fleet Operators"
+        title="About exotiq: Built by Fleet Operators, for Fleet Operators"
         description="We built exotiq because we lived the chaos ourselves. Every feature is built from real operational pain. Every automation targets hours we've personally lost."
         keywords="exotiq team, fleet management company, exotic car rental software, automotive SaaS startup, vehicle rental industry, fleet operations experts"
         url="https://exotiq.ai/about"
@@ -53,7 +53,7 @@ const HeroSection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
 
   return (
-    <MobileSection ref={ref} className="bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 py-16 lg:py-20 overflow-hidden">
+    <MobileSection ref={ref} className="bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 pt-24 pb-20 lg:pt-28 lg:pb-28 overflow-hidden">
       {/* Subtle gradient accent */}
       <div className="absolute inset-0 opacity-30">
         <div 
@@ -68,13 +68,13 @@ const HeroSection: React.FC = () => {
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left - Copy */}
           <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="inline-flex items-center px-4 py-2 bg-primary-500/20 rounded-full text-primary-400 font-semibold text-sm mb-6 border border-primary-500/30">
+            <div className="inline-flex items-center px-4 py-2 bg-primary-500/20 rounded-full text-primary-400 font-semibold text-xs uppercase tracking-[0.18em] mb-6 border border-primary-500/30">
               <span>Our Story</span>
             </div>
-            
+
             <h1 className="font-dfaalt font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-8 leading-[1.1]">
-              Built in the Trenches,{' '}
-              <span className="text-primary-400">Not the Boardroom</span>
+              Built in the trenches.{' '}
+              <span className="text-primary-400">Not the boardroom.</span>
             </h1>
 
             {/* Origin Quote - Tighter, Punchier */}
@@ -86,10 +86,10 @@ const HeroSection: React.FC = () => {
                 Most operators start on Turo. exotiq is where you run the business once you outgrow side-hustle tools.
               </p>
               <p className="font-inter text-gray-300 italic leading-relaxed text-lg mt-3">
-                Steve Jobs was right — start with the customer experience and work backward. That's not a philosophy here. <span className="text-white font-medium">It's how we ship.</span>"
+                Steve Jobs had it right: start with the customer experience and work backward. That's not a philosophy here. <span className="text-white font-medium">It's how we ship.</span>"
               </p>
               <p className="font-dfaalt font-semibold text-white mt-4 text-sm">
-                — Gregory Ringler, Founder & CEO
+                Gregory Ringler, Founder & CEO
               </p>
             </div>
           </div>
@@ -104,7 +104,7 @@ const HeroSection: React.FC = () => {
             <div className="relative">
               <img
                 src="/images/about/gregory-s8-desktop.jpg"
-                alt="Gregory Ringler, Founder of Exotiq"
+                alt="Gregory Ringler, Founder of exotiq"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                 decoding="async"
@@ -128,7 +128,7 @@ const MissionSection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
 
   return (
-    <MobileSection ref={ref} className="bg-dark-black py-12 lg:py-14">
+    <MobileSection ref={ref} className="bg-dark-black py-20 lg:py-24">
       <MobileContainer>
         <div className="max-w-4xl mx-auto text-center">
           <div 
@@ -192,14 +192,14 @@ const ProblemSolutionSection: React.FC = () => {
   ];
 
   return (
-    <MobileSection ref={ref} className="bg-dark-900 py-16 lg:py-20">
+    <MobileSection ref={ref} className="bg-dark-900 py-20 lg:py-28">
       <MobileContainer>
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 
             className={`font-dfaalt font-bold text-3xl sm:text-4xl text-white mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           >
-            The Story Behind Exotiq
+            The Story Behind exotiq
           </h2>
         </div>
 
@@ -243,7 +243,7 @@ const ProblemSolutionSection: React.FC = () => {
             </div>
 
             <p className="font-inter text-gray-500 mt-6 text-sm italic">
-              Nothing purpose-built for operators managing 10–150 high-value vehicles who refuse to compromise on service.
+              Nothing purpose-built for operators managing 10-150 high-value vehicles who refuse to compromise on service.
             </p>
           </div>
 
@@ -333,9 +333,9 @@ const WhyDifferentSection: React.FC = () => {
   };
 
   return (
-    <MobileSection ref={ref} className="bg-dark-800 py-14 lg:py-16">
+    <MobileSection ref={ref} className="bg-dark-800 py-20 lg:py-28">
       <MobileContainer>
-        <div className="text-center mb-10">
+        <div className="text-center mb-12">
           <h2 
             className={`font-dfaalt font-bold text-3xl sm:text-4xl text-white mb-3 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           >
@@ -386,17 +386,17 @@ const GratitudeSection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
 
   return (
-    <MobileSection ref={ref} className="bg-dark-800 py-12 lg:py-16">
+    <MobileSection ref={ref} className="bg-dark-900 py-20 lg:py-28">
       <MobileContainer>
-        <div 
+        <div
           className={`max-w-3xl mx-auto text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
           <div className="inline-flex items-center justify-center w-12 h-12 bg-rose-500/10 rounded-full mb-6 border border-rose-500/20">
             <Heart className="w-6 h-6 text-rose-400" />
           </div>
-          
+
           <p className="font-inter text-xl sm:text-2xl text-gray-300 leading-relaxed italic">
-            "To every operator juggling spreadsheets at midnight, chasing down renters, and wondering if there's a better way —
+            "To every operator juggling spreadsheets at midnight, chasing down renters, and wondering if there's a better way:
           </p>
           <p className="font-dfaalt font-bold text-2xl sm:text-3xl text-white mt-4">
             there is. We built it for you."
@@ -412,21 +412,21 @@ const FounderCTASection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, once: true });
 
   return (
-    <MobileSection ref={ref} className="bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 py-16 lg:py-20">
+    <MobileSection ref={ref} className="bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 py-20 lg:py-28">
       <MobileContainer>
         <div className="max-w-3xl mx-auto text-center">
-          <h2 
+          <h2
             className={`font-dfaalt font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           >
-            Let's Talk Fleet
+            Talk Fleet, Operator to Operator
           </h2>
-          <p 
+          <p
             className={`font-inter text-lg text-gray-400 mb-2 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '100ms' }}
           >
             Gregory Ringler · Founder & CEO
           </p>
-          <p 
+          <p
             className={`font-inter text-xl text-gray-300 mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '150ms' }}
           >

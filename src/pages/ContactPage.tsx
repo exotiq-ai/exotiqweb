@@ -90,7 +90,7 @@ export default function ContactPage() {
   return (
     <div className="pt-16">
       <SEOHead
-        title="Contact exotiq — Get in Touch with Our Team"
+        title="Contact exotiq: Get in Touch with Our Team"
         description="Contact exotiq for beta access, partnerships, investor relations, or support. We respond to general inquiries within 24-48 hours and partnership inquiries same day."
         keywords="contact exotiq, fleet management support, beta access request, partnership inquiry, investor relations, customer support"
         url="https://exotiq.ai/contact"
@@ -101,14 +101,16 @@ export default function ContactPage() {
       />
       
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-dark-800 dark:to-dark-900">
+      <section className="pt-12 pb-20 lg:pt-16 lg:pb-28 bg-gradient-to-br from-dark-800 to-dark-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 text-center">
-          <h1 className="font-dfaalt font-bold text-5xl md:text-6xl text-gray-900 dark:text-white mb-6 animate-slide-up">
+          <p className="font-poppins font-semibold text-sm uppercase tracking-widest text-primary-400 mb-4 animate-slide-up">
+            Contact
+          </p>
+          <h1 className="font-dfaalt font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 animate-slide-up">
             Let's Connect
           </h1>
-          <p className="font-montserrat text-xl text-gray-600 dark:text-gray-300 mb-8 animate-slide-up" style={{ animationDelay: '100ms' }}>
-            Ready to transform your fleet management? Have questions about Exotiq? 
-            We'd love to hear from you.
+          <p className="font-inter text-lg text-gray-300 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '100ms' }}>
+            Questions about exotiq, partnerships, or getting started? Tell us about your fleet and we will get back to you fast.
           </p>
         </div>
       </section>
@@ -116,7 +118,7 @@ export default function ContactPage() {
       {/* Contact Form & Info */}
       <section className="py-20 bg-white dark:bg-dark-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Contact Form */}
             <div className="bg-gray-50 dark:bg-dark-800 p-8 rounded-2xl animate-slide-up">
               <h2 className="font-dfaalt font-bold text-3xl text-gray-900 dark:text-white mb-6">

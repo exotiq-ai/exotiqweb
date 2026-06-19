@@ -31,7 +31,7 @@ export default function PricingPage() {
 
       <div className="min-h-screen bg-black">
         {/* Hero */}
-        <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-16 xl:px-20 bg-gradient-to-b from-black to-[#1B1B1B]">
+        <section className="pt-28 pb-16 lg:pt-32 lg:pb-20 px-4 sm:px-6 lg:px-16 xl:px-20 bg-gradient-to-b from-black to-[#1B1B1B]">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-[#6BB8E5]/10 border border-[#6BB8E5]/30 rounded-full px-4 py-2 mb-6">
               <Zap className="w-4 h-4 text-[#6BB8E5]" aria-hidden="true" />
@@ -48,8 +48,8 @@ export default function PricingPage() {
             </h1>
 
             <p className="font-montserrat text-lg sm:text-xl text-[#A0A0A0] max-w-2xl mx-auto mb-10 leading-relaxed">
-              $39/vehicle/month, everything you need to manage and grow your
-              exotic rental fleet. Pay per vehicle, scale as you grow.
+              One per-vehicle price, everything included. Pay for the cars you run
+              and scale as your fleet grows.
             </p>
 
             {/* Trust Indicators */}
@@ -80,16 +80,15 @@ export default function PricingPage() {
         <FeatureComparison />
 
         {/* Book a Demo CTA */}
-        <section className="py-20 px-4 sm:px-6 lg:px-16 xl:px-20 bg-gradient-to-b from-black to-[#1B1B1B]">
+        <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-16 xl:px-20 bg-gradient-to-b from-black to-[#1B1B1B]">
           <div className="max-w-4xl mx-auto text-center">
             <div className="bg-gradient-to-br from-[#6BB8E5]/20 to-[#4A9FCC]/10 border border-[#6BB8E5]/30 rounded-3xl p-8 sm:p-12">
               <h2 className="font-montserrat font-bold text-3xl sm:text-4xl text-white mb-4">
                 See exotiq in Action
               </h2>
               <p className="font-montserrat text-lg text-[#E0E0E0] mb-8 max-w-2xl mx-auto">
-                Book a 30-minute product demo. We&apos;ll walk through the
-                platform, discuss your fleet, and help you choose the right
-                plan.
+                Book a 30-minute demo. We&apos;ll walk the platform, talk through
+                your fleet, and help you pick the right plan.
               </p>
 
               <div className="flex flex-col items-center justify-center gap-4">
@@ -112,7 +111,7 @@ export default function PricingPage() {
         </section>
 
         {/* Trust guarantees */}
-        <section className="py-12 px-4 sm:px-6 lg:px-16 xl:px-20 bg-black border-y border-white/10">
+        <section className="py-16 lg:py-20 px-4 sm:px-6 lg:px-16 xl:px-20 bg-black border-y border-white/10">
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
               <div className="flex items-start gap-4">
@@ -122,7 +121,7 @@ export default function PricingPage() {
                     30-Day Free Trial
                   </h3>
                   <p className="font-montserrat text-sm text-[#A0A0A0]">
-                    Full access for 30 days — no credit card. Your data is never deleted.
+                    Full access for 30 days, no credit card. Your data is never deleted.
                   </p>
                 </div>
               </div>
@@ -159,14 +158,14 @@ export default function PricingPage() {
         <PricingFAQ />
 
         {/* Final CTA */}
-        <section className="py-20 px-4 sm:px-6 lg:px-16 xl:px-20 bg-gradient-to-t from-black to-[#1B1B1B]">
+        <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-16 xl:px-20 bg-gradient-to-t from-black to-[#1B1B1B]">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-6">
               Ready to Transform Your Fleet?
             </h2>
             <p className="font-montserrat text-lg text-[#A0A0A0] mb-10">
-              Join operators using AI to scale their fleet. Book a demo to get
-              started.
+              Join operators using AI to run and grow their fleet. Book a demo to
+              get started.
             </p>
 
             <button

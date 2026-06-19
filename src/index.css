@@ -35,6 +35,13 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
+
+  /* Dark brand canvas so the fixed glass navbar never floats over a white gap,
+     and transparent top-padding wrappers read as brand-dark on every route. */
+  html,
+  body {
+    background-color: #05070a;
+  }
   
   /* Better focus indicators for accessibility */
   *:focus-visible {

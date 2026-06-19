@@ -6,7 +6,7 @@ export const organizationSchema = {
   "alternateName": "Exotiq",
   "url": "https://exotiq.ai/",
   "logo": "https://exotiq.ai/brand/exotiq-lockup-horizontal-white.svg",
-  "description": "exotiq is the AI command center for exotic car rental operators. Optimize operations and maximize margins for rental fleet hosts.",
+  "description": "exotiq is the operating system for exotic-car-fleet operators. Run pricing, maintenance, and daily operations from one place, and keep more of every booking.",
   "foundingDate": "2024-01-01",
   "founders": [
     {
@@ -51,7 +51,7 @@ export const softwareApplicationSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "exotiq",
-  "description": "The AI command center for exotic car rental operators. Automates pricing, maintenance, and operations for exotic and luxury rental fleets.",
+  "description": "The operating system for exotic-car-fleet operators. Runs pricing, maintenance, and daily operations for exotic and luxury rental fleets.",
   "url": "https://exotiq.ai/",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web-based, iOS, Android",
@@ -103,7 +103,7 @@ export const faqSchema = {
       "name": "Does exotiq support multi-platform fleet synchronization?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Exotiq provides real-time synchronization across Turo, Getaround, and private direct-booking websites. This unified inventory management prevents double-bookings and centralizes financial analytics into a single dashboard. All pricing updates, availability changes, and booking confirmations sync automatically across all platforms in real-time."
+        "text": "Yes. exotiq provides real-time synchronization across Turo, Getaround, and private direct-booking websites. This unified inventory management prevents double-bookings and centralizes financial analytics into a single dashboard. All pricing updates, availability changes, and booking confirmations sync automatically across all platforms in real-time."
       }
     },
     {
@@ -111,7 +111,7 @@ export const faqSchema = {
       "name": "What specific operational tasks can the AI Autopilot automate?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Exotiq Autopilot automates much of the manual operational work, including guest vetting, check-in/check-out instructions, toll reimbursement processing, damage claim documentation, and automated review management. It also handles dynamic pricing adjustments, maintenance scheduling, insurance claim coordination, and 24/7 guest communication through our FleetCopilot AI assistant."
+        "text": "The exotiq Autopilot automates much of the manual operational work, including guest vetting, check-in/check-out instructions, toll reimbursement processing, damage claim documentation, and automated review management. It also handles dynamic pricing adjustments, maintenance scheduling, insurance claim coordination, and 24/7 guest communication through our FleetCopilot AI assistant."
       }
     },
     {
@@ -119,7 +119,7 @@ export const faqSchema = {
       "name": "Is exotiq suitable for scaling from a side-hustle to an enterprise fleet?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Exotiq is architected for scalability. It supports fleets ranging from 5 vehicles to enterprise operations with 500+ units, offering advanced features like sub-host management, dynamic market pricing, and predictive fleet utilization analytics. Our tiered pricing grows with your business, and the AI automation ensures you can scale operations without proportionally increasing your payroll."
+        "text": "exotiq is architected for scalability. It supports fleets from 10 to 150 vehicles, offering advanced features like sub-host management, dynamic market pricing, and predictive fleet utilization analytics. Our tiered pricing grows with your business, and the AI automation ensures you can scale operations without proportionally increasing your payroll."
       }
     },
     {
@@ -127,7 +127,7 @@ export const faqSchema = {
       "name": "How does exotiq handle data security and guest privacy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "exotiq employs enterprise-grade encryption for all fleet and guest data. We adhere to strict data privacy standards, ensuring that guest communications and vehicle telemetry data are processed securely and never shared with unauthorized third parties. All data is encrypted in transit and at rest, and SOC 2 compliance is in progress."
+        "text": "exotiq employs enterprise-grade encryption for all fleet and guest data. We adhere to strict data privacy standards, ensuring that guest communications and vehicle telemetry data are processed securely and never shared with unauthorized third parties. All data is encrypted in transit and at rest, and exotiq is built on SOC 2 Type II and ISO 27001:2022 certified infrastructure."
       }
     },
     {

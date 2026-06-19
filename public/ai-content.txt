@@ -49,7 +49,7 @@ Get your evenings back and the midnight admin handled. Automate pricing, availab
 - Cost prevention
 
 ## Target Audience
-- Exotic car rental operators (10–150 vehicles)
+- Exotic car rental operators (10-150 vehicles)
 - Operators migrating from Turo to professional fleet operations
 - Peer-to-peer car sharing operators
 - Professional fleet managers
