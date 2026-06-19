@@ -70,11 +70,13 @@ export default function Header() {
       {/* Mobile Navigation Component */}
       <MobileNavigation />
 
-      {/* Scroll scrim: masks hero text bleeding through the gap above the floating pill */}
+      {/* Always-on top scrim: gives the floating pill one consistent dark backdrop
+          that fades into whatever hero sits below, so there is no hard tonal seam
+          between the dark page canvas and a slightly-lighter hero gradient. */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none fixed top-0 inset-x-0 z-40 hidden lg:block h-20 bg-gradient-to-b from-dark-950 via-dark-950/80 to-transparent transition-opacity duration-300 ${
-          isScrolled ? 'opacity-100' : 'opacity-0'
+        className={`pointer-events-none fixed top-0 inset-x-0 z-40 hidden lg:block bg-gradient-to-b from-[#05070a] via-[#05070a]/80 to-transparent transition-all duration-300 ${
+          isScrolled ? 'h-24 via-[#05070a]/90' : 'h-28'
         }`}
       />
 
@@ -84,7 +86,7 @@ export default function Header() {
           className={`mx-auto max-w-5xl grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-full border transition-all duration-300 ease-out ${
             isScrolled
               ? 'bg-dark-900/70 border-white/10 ring-1 ring-white/5 shadow-lg shadow-black/30 backdrop-blur-xl backdrop-saturate-150 px-4 py-2'
-              : 'bg-dark-900/30 border-transparent shadow-none backdrop-blur-md px-5 py-2.5'
+              : 'bg-dark-900/50 border-white/8 ring-1 ring-white/[0.03] shadow-md shadow-black/20 backdrop-blur-lg px-5 py-2.5'
           }`}
         >
           {/* Left: Logo — full lockup morphs to mark on scroll */}
