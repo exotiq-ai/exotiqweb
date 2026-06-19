@@ -67,8 +67,8 @@ export default function HomePage() {
   return (
     <div>
       <SEOHead
-        title="exotiq: The AI command center for exotic car rental operations"
-        description="exotiq is the AI command center for exotic car rental operators. Automate pricing, maintenance, and guest messaging. Built for operators across Tampa, Miami, Denver, Scottsdale & Westlake Village."
+        title="exotiq: The agentic operating system for exotic rental fleets"
+        description="exotiq is the agentic operating system for exotic rental fleets. Run pricing, bookings, compliance, and guest comms from one platform, not five."
         keywords="exotic car fleet management, luxury rental software, AI pricing optimization, Turo migration, fleet analytics, rental business automation, exotic car rental platform"
         url="https://exotiq.ai"
         structuredData={[websiteSchema, organizationSchema, softwareApplicationSchema, faqSchema]}

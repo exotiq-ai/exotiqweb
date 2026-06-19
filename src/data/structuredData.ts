@@ -162,13 +162,21 @@ export const websiteSchema = {
   "@type": "WebSite",
   "name": "exotiq",
   "url": "https://exotiq.ai/",
-  "description": "The AI command center for exotic car rental operators.",
+  "description": "The agentic operating system for exotic rental fleets.",
   "publisher": {
     "@type": "Organization",
     "name": "exotiq",
     "url": "https://exotiq.ai/"
   },
-  "inLanguage": "en-US"
+  "inLanguage": "en-US",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://exotiq.ai/blog/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
 };
 
 // Detailed, tiered pricing schema for /pricing. Prices mirror the source of

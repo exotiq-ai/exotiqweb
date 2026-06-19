@@ -46,7 +46,7 @@ Useful alternate phrases:
 
 ### MotorIQ: AI Dynamic Pricing
 
-MotorIQ is the pricing and revenue optimization module. It is designed to help operators monitor demand, events, competitor pricing, utilization, and vehicle class dynamics so they can price rentals with better timing and less manual work.
+MotorIQ is the pricing and revenue optimization module. It reads 50+ demand signals (competitor pricing, local events, weather, utilization, seasonality, and historical demand) so operators can price rentals with better timing and less manual work.
 
 Primary concepts:
 - AI dynamic pricing

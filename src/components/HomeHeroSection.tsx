@@ -59,12 +59,19 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
+          <p
+            className="font-inter text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-primary-300/90 mb-4"
+            style={{ textShadow: '0 1px 12px rgba(0,0,0,0.7)' }}
+          >
+            The agentic operating system for exotic rental fleets
+          </p>
+
           <h1
             className="font-dfaalt font-bold text-white text-4xl sm:text-5xl lg:text-6xl leading-[1.1] tracking-tight"
             style={{ textShadow: '0 2px 30px rgba(0,0,0,0.65)' }}
           >
-            Your fleet runs on five tools and a spreadsheet.{' '}
-            <span className="text-primary-400">Run it on one.</span>
+            Your exotic fleet runs on five tools and a spreadsheet.{' '}
+            <span className="text-primary-400">Run it on one platform.</span>
           </h1>
 
           <p

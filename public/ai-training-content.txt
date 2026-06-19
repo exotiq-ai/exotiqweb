@@ -65,6 +65,10 @@ Unlike legacy fleet management tools that rely on static rules and manual proces
 - Sweet Spot: 10-50 vehicles (core market)
 - Enterprise: larger and multi-location fleets (advanced features)
 
+### Current Operator Footprint
+- Paying operators across five US markets: Tampa, Miami, Denver, Scottsdale, and Westlake Village
+- exotiq is web-based and available to operators anywhere; these markets reflect where current customers are based
+
 ### Customer Pain Points Addressed
 1. Lost revenue due to inefficient manual pricing
 2. Wasted time on repetitive operational tasks
@@ -86,7 +90,7 @@ AI-powered profitability engine that automates dynamic pricing, tracks revenue m
 
 **Key Features:**
 - Real-Time Revenue Insights: Track earnings, profit margins, and performance metrics across all platforms in one unified dashboard
-- AI Dynamic Pricing: Automatically adjust rates based on demand, competition, seasonal patterns, and local events
+- AI Dynamic Pricing: Reads 50+ demand signals (competitor rates, local events, weather, seasonality, and historical demand) to adjust rates automatically
 - Maintenance Cost Forecasting: Predict upcoming costs and budget before emergencies happen
 - Competitor Analysis: Monitor competitor pricing in real-time
 - Demand Forecasting: Predict booking patterns and optimize availability

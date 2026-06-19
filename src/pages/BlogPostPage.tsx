@@ -123,11 +123,11 @@ export default function BlogPostPage() {
       name: 'exotiq',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://exotiq.ai/logo.png',
+        url: 'https://exotiq.ai/icon-512.png',
       },
     },
     mainEntityOfPage: articleUrl,
-    image: post.ogImage || 'https://exotiq.ai/og-image.jpg',
+    image: post.ogImage || 'https://exotiq.ai/og-exotiq-ai-fleet.png',
     keywords: [post.primaryKeyword, ...post.secondaryKeywords].join(', '),
   };
   const blogBreadcrumbSchema = breadcrumbSchema([
