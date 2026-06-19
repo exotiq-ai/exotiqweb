@@ -14,20 +14,20 @@ export default function BlogTagPage() {
   }
 
   return (
-    <div className="pt-24 min-h-screen bg-[#05070a]">
+    <div className="pt-16 min-h-screen bg-gray-50">
       <SEOHead
-        title={`${formatTaxonomyLabel(tag)} Tag | exotiq Journal`}
-        description={`Posts tagged ${formatTaxonomyLabel(tag)} from the exotiq editorial team.`}
+        title={`${formatTaxonomyLabel(tag)} Tag | Exotiq Blog`}
+        description={`Posts tagged ${formatTaxonomyLabel(tag)} from the Exotiq editorial team.`}
         url={`https://exotiq.ai/blog/tag/${tag}`}
         noindex={filtered.length < 5}
       />
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <Link to="/blog" className="text-sm text-primary-400 font-semibold hover:text-primary-300 transition-colors">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Link to="/blog" className="text-sm text-primary-600 font-semibold">
           Back to all posts
         </Link>
-        <h1 className="font-dfaalt text-4xl text-white mt-3 mb-3">Tag: {formatTaxonomyLabel(tag)}</h1>
-        <p className="text-gray-400 mb-8">
+        <h1 className="font-dfaalt text-4xl text-gray-900 mt-3 mb-3">Tag: {formatTaxonomyLabel(tag)}</h1>
+        <p className="text-gray-700 mb-8">
           This tag becomes indexable after it reaches depth and quality thresholds.
         </p>
 
@@ -41,3 +41,4 @@ export default function BlogTagPage() {
     </div>
   );
 }
+

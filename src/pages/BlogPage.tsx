@@ -57,38 +57,38 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="pt-16 min-h-screen bg-[#05070a]">
+    <div className="pt-16 min-h-screen bg-[#fafafa]">
       <SEOHead
-        title="Exotiq Blog - Fleet Growth Playbooks, AI Ops, and Profitability Guides"
-        description="Read tactical guides on rental fleet operations, pricing optimization, and AI automation. Built for operators scaling with Exotiq."
+        title="exotiq Blog - Fleet Growth Playbooks, AI Ops, and Profitability Guides"
+        description="Read tactical guides on rental fleet operations, pricing optimization, and AI automation. Built for operators scaling with exotiq."
         url="https://exotiq.ai/blog"
         canonical="https://exotiq.ai/blog"
         type="blog"
         structuredData={collectionSchema}
       />
 
-      <section className="border-b border-white/10 bg-dark-900">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-14 md:pt-28 md:pb-16">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3">exotiq Journal</p>
-          <h1 className="font-dfaalt text-4xl md:text-5xl text-white leading-tight mb-4 tracking-tight">
+      <section className="border-b border-gray-200/80 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-14">
+          <p className="text-sm font-semibold text-primary-600 mb-3 tracking-wide">exotiq Journal</p>
+          <h1 className="font-dfaalt text-4xl md:text-5xl text-gray-900 leading-tight mb-4 tracking-tight">
             Tactical playbooks for modern fleet operators
           </h1>
-          <p className="font-inter text-lg text-gray-300 max-w-3xl leading-8">
+          <p className="font-inter text-lg text-gray-700 max-w-3xl leading-8">
             Learn pricing strategy, automation workflows, and growth systems you can
             use this week to run a tighter operation.
           </p>
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col gap-4 mb-8">
           <div className="relative max-w-lg w-full">
-            <Search className="w-4 h-4 text-gray-500 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search by topic, keyword, or tactic..."
-              className="w-full rounded-xl border border-white/10 bg-dark-800 py-3 pl-10 pr-4 text-sm text-gray-200 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-xl border border-gray-200 bg-white py-3 pl-10 pr-4 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
@@ -98,8 +98,8 @@ export default function BlogPage() {
               onClick={() => setActiveCategory('all')}
               className={`rounded-full px-3 py-2 text-sm font-semibold whitespace-nowrap transition-all duration-200 active:scale-[0.98] ${
                 activeCategory === 'all'
-                  ? 'bg-primary text-dark-900'
-                  : 'bg-dark-800 border border-white/10 text-gray-300 hover:bg-white/5 hover:-translate-y-0.5'
+                  ? 'bg-primary-600 text-white'
+                  : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:-translate-y-0.5'
               }`}
             >
               All
@@ -110,8 +110,8 @@ export default function BlogPage() {
                 onClick={() => setActiveCategory(category)}
                 className={`rounded-full px-3 py-2 text-sm font-semibold whitespace-nowrap transition-all duration-200 active:scale-[0.98] ${
                   activeCategory === category
-                    ? 'bg-primary text-dark-900'
-                    : 'bg-dark-800 border border-white/10 text-gray-300 hover:bg-white/5 hover:-translate-y-0.5'
+                    ? 'bg-primary-600 text-white'
+                    : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:-translate-y-0.5'
                 }`}
               >
                 {formatTaxonomyLabel(category)}
@@ -122,20 +122,20 @@ export default function BlogPage() {
         </div>
 
         {loading ? (
-          <div className="rounded-xl border border-white/10 bg-dark-800 p-8 text-center text-gray-400">
+          <div className="rounded-xl border border-gray-200 bg-white p-8 text-center text-gray-500">
             Loading articles...
           </div>
         ) : null}
 
         {!loading && featuredPost ? (
-          <article className="rounded-2xl border border-white/10 bg-gradient-to-br from-dark-800 to-primary/5 p-6 md:p-8 mb-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-2">Featured</p>
-            <h2 className="font-dfaalt text-3xl text-white mb-3 tracking-tight">
+          <article className="rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-blue-50/40 p-6 md:p-8 mb-8">
+            <p className="text-sm font-semibold text-primary-600 mb-2 tracking-wide">Featured</p>
+            <h2 className="font-dfaalt text-3xl text-gray-900 mb-3 tracking-tight">
               {featuredPost.title}
             </h2>
-            <p className="text-gray-300 font-inter mb-5 leading-8">{featuredPost.excerpt}</p>
-            <div className="flex flex-wrap items-center gap-3 text-xs text-gray-400 mb-6 border-t border-white/10 pt-4">
-              <span className="rounded-full bg-primary/10 text-primary px-2 py-1">
+            <p className="text-gray-700 font-inter mb-5 leading-8">{featuredPost.excerpt}</p>
+            <div className="flex flex-wrap items-center gap-3 text-xs text-gray-600 mb-6 border-t border-gray-100 pt-4">
+              <span className="rounded-full bg-primary-50 px-2 py-1">
                 {featuredPost.funnelStage}
               </span>
               <span>{getReadingTimeFromContent(featuredPost.bodyMarkdown)} min read</span>
@@ -143,7 +143,7 @@ export default function BlogPage() {
             </div>
             <Link
               to={`/blog/${featuredPost.slug}`}
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-dark-900 font-semibold hover:bg-primary/90 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98]"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary-600 px-4 py-2.5 text-white font-semibold hover:bg-primary-700 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98]"
             >
               Read featured article
               <ArrowRight className="w-4 h-4" />
@@ -158,7 +158,7 @@ export default function BlogPage() {
         </div>
 
         {!loading && filteredPosts.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-white/15 bg-dark-800 p-8 text-center text-gray-400">
+          <div className="rounded-xl border border-dashed border-gray-300 bg-white p-8 text-center text-gray-600">
             No posts match this search yet. Try a broader keyword.
           </div>
         ) : null}

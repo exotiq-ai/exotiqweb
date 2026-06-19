@@ -20,12 +20,19 @@ const secondaryNav = [
   { name: 'Contact', href: '/contact' },
 ];
 
+// Routes that render on a light background — the floating pill flips to a
+// light-glass treatment with dark text/logo so it stays legible.
+const lightRoutePrefixes = ['/blog', '/privacy', '/terms', '/cookies', '/dmca', '/sms-terms', '/admin'];
+
 export default function Header() {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
 
   const isActive = (path: string) => location.pathname === path;
   const showLaunchChip = location.pathname !== '/pricing';
+  const isLightPage = lightRoutePrefixes.some(
+    (prefix) => location.pathname === prefix || location.pathname.startsWith(`${prefix}/`)
+  );
 
   useEffect(() => {
     let frame = 0;
@@ -61,33 +68,50 @@ export default function Header() {
   const linkClasses = (active: boolean) =>
     `inline-flex h-9 items-center rounded-full px-3.5 text-sm font-inter font-medium transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70 ${
       active
-        ? 'text-primary-300 bg-primary-500/10'
-        : 'text-gray-200 hover:text-white hover:bg-white/5'
+        ? isLightPage
+          ? 'text-primary-700 bg-primary-500/12'
+          : 'text-primary-300 bg-primary-500/10'
+        : isLightPage
+          ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-900/[0.06]'
+          : 'text-gray-200 hover:text-white hover:bg-white/5'
     }`;
+
+  const pillSurface = isScrolled
+    ? isLightPage
+      ? 'bg-white/85 border-gray-200/80 ring-1 ring-gray-900/5 shadow-lg shadow-gray-900/10 backdrop-blur-xl backdrop-saturate-150 px-4 py-2'
+      : 'bg-dark-900/70 border-white/10 ring-1 ring-white/5 shadow-lg shadow-black/30 backdrop-blur-xl backdrop-saturate-150 px-4 py-2'
+    : isLightPage
+      ? 'bg-white/75 border-gray-200/70 shadow-sm shadow-gray-900/5 backdrop-blur-md px-5 py-2.5'
+      : 'bg-dark-900/30 border-transparent shadow-none backdrop-blur-md px-5 py-2.5';
+
+  const logoLockup = isLightPage
+    ? '/brand/exotiq-lockup-horizontal-black.svg'
+    : '/brand/exotiq-lockup-horizontal-white.svg';
+  const logoMark = isLightPage
+    ? '/brand/exotiq-mark-black.svg'
+    : '/brand/exotiq-mark-white.svg';
 
   return (
     <>
       {/* Mobile Navigation Component */}
       <MobileNavigation />
 
-      {/* Always-on top scrim: gives the floating pill one consistent dark backdrop
-          that fades into whatever hero sits below, so there is no hard tonal seam
-          between the dark page canvas and a slightly-lighter hero gradient. */}
+      {/* Top scrim: on dark pages it is always on, giving the pill one consistent dark
+          backdrop and removing the at-rest seam between the dark canvas and a lighter
+          hero. On light pages it stays scroll-triggered so the top reads clean white. */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none fixed top-0 inset-x-0 z-40 hidden lg:block bg-gradient-to-b from-[#05070a] via-[#05070a]/80 to-transparent transition-all duration-300 ${
-          isScrolled ? 'h-24 via-[#05070a]/90' : 'h-28'
+        className={`pointer-events-none fixed top-0 inset-x-0 z-40 hidden lg:block bg-gradient-to-b to-transparent transition-all duration-300 ${
+          isLightPage
+            ? `h-20 from-white via-white/80 ${isScrolled ? 'opacity-100' : 'opacity-0'}`
+            : `from-[#05070a] via-[#05070a]/80 opacity-100 ${isScrolled ? 'h-24' : 'h-28'}`
         }`}
       />
 
       {/* Desktop Floating Glass Pill */}
       <header className="fixed top-0 inset-x-0 z-50 hidden lg:block px-4 pt-3">
         <div
-          className={`mx-auto max-w-5xl grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-full border transition-all duration-300 ease-out ${
-            isScrolled
-              ? 'bg-dark-900/70 border-white/10 ring-1 ring-white/5 shadow-lg shadow-black/30 backdrop-blur-xl backdrop-saturate-150 px-4 py-2'
-              : 'bg-dark-900/50 border-white/8 ring-1 ring-white/[0.03] shadow-md shadow-black/20 backdrop-blur-lg px-5 py-2.5'
-          }`}
+          className={`mx-auto max-w-5xl grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-full border transition-all duration-300 ease-out ${pillSurface}`}
         >
           {/* Left: Logo — full lockup morphs to mark on scroll */}
           <Link
@@ -101,7 +125,7 @@ export default function Header() {
               }`}
             >
               <img
-                src="/brand/exotiq-lockup-horizontal-white.svg"
+                src={logoLockup}
                 alt="exotiq"
                 width={94}
                 height={32}
@@ -110,7 +134,7 @@ export default function Header() {
                 }`}
               />
               <img
-                src="/brand/exotiq-mark-white.svg"
+                src={logoMark}
                 alt=""
                 aria-hidden="true"
                 width={32}
@@ -163,7 +187,7 @@ export default function Header() {
                 to="/pricing"
                 tabIndex={isScrolled ? -1 : 0}
                 aria-hidden={isScrolled}
-                className={`inline-flex h-7 items-center gap-1.5 overflow-hidden rounded-full border bg-primary-500/10 text-xs font-inter font-semibold text-primary-300 whitespace-nowrap transition-all duration-300 ease-out hover:bg-primary-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70 ${
+                className={`inline-flex h-7 items-center gap-1.5 overflow-hidden rounded-full border bg-primary-500/10 text-xs font-inter font-semibold ${isLightPage ? 'text-primary-700' : 'text-primary-300'} whitespace-nowrap transition-all duration-300 ease-out hover:bg-primary-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70 ${
                   isScrolled
                     ? 'max-w-0 px-0 mr-0 opacity-0 scale-95 -translate-x-1 border-transparent pointer-events-none'
                     : 'max-w-[170px] px-3 mr-3 opacity-100 scale-100 border-primary-500/30'

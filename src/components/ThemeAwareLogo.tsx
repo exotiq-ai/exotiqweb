@@ -4,6 +4,8 @@ interface ThemeAwareLogoProps {
   className?: string;
   alt?: string;
   size?: 'header' | 'footer' | 'mobile' | 'loading';
+  /** Force the dark (black) lockup for use on light backgrounds. */
+  forLightBg?: boolean;
 }
 
 /** Horizontal lockup viewBox 708×240 */
@@ -12,15 +14,18 @@ const LOCKUP_ASPECT = 708 / 240;
 export default function ThemeAwareLogo({
   className = '',
   alt = 'exotiq',
-  size = 'header'
+  size = 'header',
+  forLightBg = false
 }: ThemeAwareLogoProps) {
   const { theme } = useTheme();
 
-  const logoSrc = size === 'footer'
-    ? '/brand/exotiq-lockup-horizontal-white.svg'
-    : theme === 'dark'
+  const logoSrc = forLightBg
+    ? '/brand/exotiq-lockup-horizontal-black.svg'
+    : size === 'footer'
       ? '/brand/exotiq-lockup-horizontal-white.svg'
-      : '/brand/exotiq-lockup-horizontal-black.svg';
+      : theme === 'dark'
+        ? '/brand/exotiq-lockup-horizontal-white.svg'
+        : '/brand/exotiq-lockup-horizontal-black.svg';
 
   const sizeClasses = {
     header: 'logo-optimized logo-header logo-hover',

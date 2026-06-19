@@ -5,10 +5,20 @@ import ThemeAwareLogo from './ThemeAwareLogo';
 
 const MOBILE_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
 
+// Routes that render on a light background — the floating pill flips to a
+// light-glass treatment with dark logo/controls so it stays legible.
+const lightRoutePrefixes = ['/blog', '/privacy', '/terms', '/cookies', '/dmca', '/sms-terms', '/admin'];
+
 export default function MobileNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  // While the overlay is open the pill sits on the dark backdrop, so treat it as a dark surface.
+  const isLightPage =
+    !isMenuOpen &&
+    lightRoutePrefixes.some(
+      (prefix) => location.pathname === prefix || location.pathname.startsWith(`${prefix}/`)
+    );
 
   const navigation = [
     { name: 'Home', href: '/', icon: Home },
@@ -80,9 +90,9 @@ export default function MobileNavigation() {
       {/* Scroll scrim: masks content bleeding through the gap above the floating pill */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none fixed top-0 inset-x-0 z-40 h-16 bg-gradient-to-b from-dark-950 via-dark-950/80 to-transparent transition-opacity duration-300 lg:hidden ${
-          isScrolled ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`pointer-events-none fixed top-0 inset-x-0 z-40 h-16 bg-gradient-to-b to-transparent transition-opacity duration-300 lg:hidden ${
+          isLightPage ? 'from-white via-white/80' : 'from-dark-950 via-dark-950/80'
+        } ${isScrolled ? 'opacity-100' : 'opacity-0'}`}
       />
 
       {/* Mobile Floating Glass Pill */}
@@ -90,26 +100,32 @@ export default function MobileNavigation() {
         <div
           className={`flex justify-between items-center rounded-full border backdrop-blur-xl px-4 py-2 transition-all duration-300 ${
             isMenuOpen || isScrolled
-              ? 'bg-dark-900/80 border-dark-700/60 shadow-lg'
-              : 'bg-dark-900/30 border-transparent shadow-none'
+              ? isLightPage
+                ? 'bg-white/85 border-gray-200/80 shadow-lg shadow-gray-900/10'
+                : 'bg-dark-900/80 border-dark-700/60 shadow-lg'
+              : isLightPage
+                ? 'bg-white/75 border-gray-200/70 shadow-sm shadow-gray-900/5'
+                : 'bg-dark-900/30 border-transparent shadow-none'
           }`}
         >
           {/* Logo */}
           <Link to="/" className="flex items-center group" aria-label="exotiq home">
-            <ThemeAwareLogo size="mobile" />
+            <ThemeAwareLogo size="mobile" forLightBg={isLightPage} />
           </Link>
 
           {/* Mobile Controls */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70"
+            className={`p-2 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70 ${
+              isLightPage ? 'bg-gray-900/[0.06] hover:bg-gray-900/10' : 'bg-white/5 hover:bg-white/10'
+            }`}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6 text-gray-100" />
+              <X className={`w-6 h-6 ${isLightPage ? 'text-gray-700' : 'text-gray-100'}`} />
             ) : (
-              <Menu className="w-6 h-6 text-gray-100" />
+              <Menu className={`w-6 h-6 ${isLightPage ? 'text-gray-700' : 'text-gray-100'}`} />
             )}
           </button>
         </div>
