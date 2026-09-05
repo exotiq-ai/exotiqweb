@@ -2,182 +2,85 @@ import { useState, useEffect } from 'react';
 import { Cookie, Settings, X, Check } from 'lucide-react';
 import { apolloService } from '../services/apollo';
 import logger from '../utils/logger';
+import {
+  readConsent,
+  writeConsent,
+  consentIsDurable,
+  type CookiePreferences,
+} from '../utils/consentStore';
+import { applyTrackingConsent } from '../utils/trackers';
 
-interface CookiePreferences {
-  essential: boolean;
-  functional: boolean;
-  analytics: boolean;
-  marketing: boolean;
-  timestamp: number | null;
-}
+const DEFAULT_PREFERENCES: CookiePreferences = {
+  essential: true,
+  functional: false,
+  analytics: false,
+  marketing: false,
+  timestamp: null,
+};
 
 export default function CookieConsentBanner() {
   const [showBanner, setShowBanner] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showStatus, setShowStatus] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
-  const [preferences, setPreferences] = useState<CookiePreferences>({
-    essential: true,
-    functional: false,
-    analytics: false,
-    marketing: false,
-    timestamp: null
-  });
+  const [preferences, setPreferences] = useState<CookiePreferences>(DEFAULT_PREFERENCES);
 
-  // Load preferences on mount
+  // Decide on the client only. Rendering the banner during prerender ships a
+  // visible-but-inert banner in the static HTML, which a visitor taps before
+  // React has mounted and the handlers exist.
   useEffect(() => {
-    try {
-      // Clear old preferences if domain changed
-      const currentDomain = window.location.hostname;
-      const savedDomain = localStorage.getItem('exotiq_domain');
-      
-      if (savedDomain && savedDomain !== currentDomain) {
-        // Domain changed, clear old preferences
-        localStorage.removeItem('exotiq_cookie_preferences');
-        localStorage.removeItem('exotiq_analytics_events');
-        setShowBanner(true);
-      }
-      
-      // Save current domain
-      localStorage.setItem('exotiq_domain', currentDomain);
-      
-      const savedPreferences = localStorage.getItem('exotiq_cookie_preferences');
-      if (savedPreferences) {
-        try {
-          const parsed = JSON.parse(savedPreferences);
-          setPreferences(parsed);
-          applyPreferences(parsed);
-        } catch (error) {
-          // Invalid JSON, clear and show banner
-          localStorage.removeItem('exotiq_cookie_preferences');
-          setShowBanner(true);
-        }
-      } else {
-        // Show banner for first-time visitors
-        setShowBanner(true);
-      }
-    } catch (error) {
-      // localStorage blocked, show banner
-      logger.warn('localStorage blocked, showing cookie banner', { error });
+    const saved = readConsent();
+    if (saved) {
+      setPreferences(saved);
+      applyPreferences(saved);
+    } else {
       setShowBanner(true);
     }
   }, []);
 
   const savePreferences = (newPreferences: CookiePreferences) => {
-    try {
-      const prefsWithTimestamp = {
-        ...newPreferences,
-        timestamp: Date.now()
-      };
-      
-      localStorage.setItem('exotiq_cookie_preferences', JSON.stringify(prefsWithTimestamp));
-      setPreferences(prefsWithTimestamp);
-      applyPreferences(prefsWithTimestamp);
-    } catch (error) {
-      // localStorage blocked, continue without saving
-      logger.warn('localStorage blocked, preferences not saved', { error });
-      setPreferences(newPreferences);
-      applyPreferences(newPreferences);
+    const stored = writeConsent(newPreferences);
+    setPreferences(stored);
+    applyPreferences(stored);
+
+    if (!consentIsDurable()) {
+      // Cookies AND localStorage are both unavailable (locked-down in-app
+      // browser). The choice holds for this page view; say so rather than
+      // silently re-prompting on the next load.
+      logger.warn('Consent could not be persisted; honouring choice for this page view only');
     }
   };
 
   const applyPreferences = (prefs: CookiePreferences) => {
-    // Apply analytics cookies
-    if (prefs.analytics) {
-      loadGoogleAnalytics();
-      loadMixpanel();
-    } else {
-      disableAnalytics();
-    }
+    applyTrackingConsent(prefs);
 
-    // Apply marketing cookies
+    if (prefs.analytics) enableGtagConsent('analytics_storage', true);
+    else enableGtagConsent('analytics_storage', false);
+
     if (prefs.marketing) {
-      loadMarketingCookies();
+      enableGtagConsent('ad_storage', true);
+      enableApolloTracking(true);
     } else {
-      disableMarketing();
-    }
-
-    // Apply functional cookies
-    if (prefs.functional) {
-      enableFunctionalFeatures();
+      enableGtagConsent('ad_storage', false);
+      enableApolloTracking(false);
     }
   };
 
-  const loadGoogleAnalytics = () => {
-    if (typeof window !== 'undefined' && !window.gtag) {
-      try {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_MEASUREMENT_ID || 'GA_MEASUREMENT_ID'}`;
-        document.head.appendChild(script);
-
-        window.dataLayer = window.dataLayer || [];
-        function gtag(...args: any[]) { window.dataLayer.push(args); }
-        window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', import.meta.env.VITE_GA_MEASUREMENT_ID || 'GA_MEASUREMENT_ID', {
-          anonymize_ip: true,
-          cookie_flags: window.location.protocol === 'https:' ? 'SameSite=None;Secure' : 'SameSite=Lax'
-        });
-      } catch (error) {
-        logger.warn('Failed to load Google Analytics', { error });
-      }
-    }
-  };
-
-  const loadMixpanel = () => {
-    if (typeof window !== 'undefined' && !(window as any).mixpanel && import.meta.env.VITE_MIXPANEL_TOKEN) {
-      // Mixpanel implementation would go here
-      logger.debug('Mixpanel analytics enabled');
-    }
-  };
-
-  const loadMarketingCookies = () => {
-    // Facebook Pixel, Google Ads, LinkedIn Insight Tag implementation
-    logger.debug('Marketing cookies enabled');
-    
-    // Initialize Apollo tracking if marketing cookies are enabled
+  const enableGtagConsent = (key: 'analytics_storage' | 'ad_storage', granted: boolean) => {
+    if (typeof window === 'undefined' || !window.gtag) return;
     try {
-      apolloService.updateCookieConsent(true);
+      window.gtag('consent', 'update', { [key]: granted ? 'granted' : 'denied' });
     } catch (error) {
-      logger.warn('Failed to initialize Apollo tracking', { error });
+      logger.warn('Failed to update Google consent mode', { key, error });
     }
   };
 
-  const disableAnalytics = () => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      try {
-        window.gtag('consent', 'update', {
-          'analytics_storage': 'denied'
-        });
-      } catch (error) {
-        logger.warn('Failed to disable analytics', { error });
-      }
-    }
-  };
-
-  const disableMarketing = () => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      try {
-        window.gtag('consent', 'update', {
-          'ad_storage': 'denied'
-        });
-      } catch (error) {
-        logger.warn('Failed to disable marketing', { error });
-      }
-    }
-    
-    // Disable Apollo tracking if marketing cookies are disabled
+  const enableApolloTracking = (consent: boolean) => {
     try {
-      apolloService.updateCookieConsent(false);
+      apolloService.updateCookieConsent(consent);
     } catch (error) {
-      logger.warn('Failed to disable Apollo tracking', { error });
+      logger.warn('Failed to update Apollo tracking consent', { consent, error });
     }
-  };
-
-  const enableFunctionalFeatures = () => {
-    // Enable preference saving, theme persistence, etc.
-    logger.debug('Functional cookies enabled');
   };
 
   const acceptAll = () => {
@@ -262,7 +165,7 @@ export default function CookieConsentBanner() {
     <>
       {/* Cookie Consent Banner */}
       {showBanner && (
-        <div className="fixed bottom-0 left-0 right-0 bg-dark-900 text-white p-4 sm:p-6 z-50 shadow-2xl transform transition-transform duration-300">
+        <div data-prerender-strip className="fixed bottom-0 left-0 right-0 bg-dark-900 text-white p-4 sm:p-6 z-50 shadow-2xl transform transition-transform duration-300">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 lg:gap-6">
             <div className="flex items-start space-x-4 flex-1">
               <Cookie className="w-6 h-6 text-accent-400 flex-shrink-0 mt-1" />
@@ -301,7 +204,7 @@ export default function CookieConsentBanner() {
 
       {/* Cookie Preferences Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div data-prerender-strip className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-dark-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
             {/* Modal Header */}
             <div className="p-6 sm:p-8 border-b border-gray-200 dark:border-dark-700">

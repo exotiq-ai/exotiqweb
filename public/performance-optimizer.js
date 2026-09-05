@@ -282,7 +282,6 @@
                     // Warn if memory usage is high
                     if (memory.usedJSHeapSize / memory.jsHeapSizeLimit > 0.8) {
                         console.warn('⚠️ High memory usage detected');
-                        this.triggerCleanup();
                     }
                 }, 30000); // Check every 30 seconds
             }
@@ -298,33 +297,19 @@
         },
         
         setupCleanup() {
-            // Clean up on page unload
-            window.addEventListener('beforeunload', () => {
-                this.triggerCleanup();
-            });
-            
-            // Clean up on visibility change
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) {
-                    this.triggerCleanup();
-                }
-            });
-        },
-        
-        triggerCleanup() {
-            // Clear any intervals or timeouts
-            const highestTimeoutId = setTimeout(() => {}, 0);
-            for (let i = 0; i < highestTimeoutId; i++) {
-                clearTimeout(i);
-            }
-            
-            // Clear any intervals
-            const highestIntervalId = setInterval(() => {}, 0);
-            for (let i = 0; i < highestIntervalId; i++) {
-                clearInterval(i);
-            }
-            
-            console.log('🧹 Memory cleanup triggered');
+            // Intentionally empty.
+            //
+            // This previously bound a "cleanup" to beforeunload and to every
+            // visibilitychange where document.hidden was true. That cleanup
+            // looped clearTimeout()/clearInterval() over every possible timer
+            // id, destroying EVERY pending timer on the page — React
+            // transitions, framer-motion, the chatbot, debounces — not just
+            // its own. In an in-app browser (Instagram/Facebook)
+            // visibilitychange fires constantly, so the page was repeatedly
+            // stripped of its timers and appeared to break.
+            //
+            // Owners must clear their own timers; a global sweep can never
+            // know what it is destroying.
         }
     };
     
@@ -349,8 +334,7 @@
     // Global performance object
     window.exotiqPerformance = {
         monitor: performanceMonitor,
-        getMetrics: () => performanceMonitor.getMetrics(),
-        triggerCleanup: () => memoryOptimizer.triggerCleanup()
+        getMetrics: () => performanceMonitor.getMetrics()
     };
     
 })();

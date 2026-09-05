@@ -10,6 +10,7 @@ import CookieConsentBanner from './components/CookieConsentBanner';
 import LoadingSpinner from './components/LoadingSpinner';
 import ThemeAwareLogo from './components/ThemeAwareLogo';
 import RouteScrollManager from './components/RouteScrollManager';
+import RouteAnalytics from './components/RouteAnalytics';
 import AdminAuthGuard from './components/AdminAuthGuard';
 import { PerformanceMonitor } from './services/analytics';
 
@@ -145,6 +146,7 @@ export default function App() {
         <AccessibilityProvider>
           <Router>
             <RouteScrollManager />
+            <RouteAnalytics />
             <div className="App">
               <Header />
               <main id="main-content">
