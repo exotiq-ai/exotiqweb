@@ -16,21 +16,68 @@
         };
     }
     
+    // Recovery reloads are capped. An unconditional reload-on-error retries the
+    // exact request that just failed, so a chunk that keeps failing (flaky
+    // mobile / in-app browser) reloads the page forever.
+    var RELOAD_FLAG = 'exotiq_recovery_reloads';
+    var MAX_RELOADS = 1;
+
+    function reloadAttempts() {
+        try {
+            return parseInt(sessionStorage.getItem(RELOAD_FLAG) || '0', 10) || 0;
+        } catch (error) {
+            // sessionStorage can throw outright in locked-down in-app browsers.
+            // Without a counter we cannot prove we are not looping, so decline.
+            return MAX_RELOADS;
+        }
+    }
+
+    function recordReloadAttempt() {
+        try {
+            sessionStorage.setItem(RELOAD_FLAG, String(reloadAttempts() + 1));
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    // Clear the counter once the app has actually mounted.
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            var root = document.querySelector('#root');
+            if (root && root.children.length) {
+                try { sessionStorage.removeItem(RELOAD_FLAG); } catch (error) { /* noop */ }
+            }
+        }, 2000);
+    });
+
     // Error recovery system - ONLY for actual critical errors
     window.addEventListener('error', function(e) {
-        console.error('JavaScript error detected:', e.message);
-        
+        // e.message is absent for cross-origin script and resource errors;
+        // reading .includes() off it would throw inside the error handler.
+        var message = (e && e.message) || '';
+        console.error('JavaScript error detected:', message);
+
         // ONLY trigger for actual critical errors that break the page
-        if (e.message.includes('Failed to load module script') || 
-            e.message.includes('MIME type') ||
-            e.message.includes('module script')) {
+        if (message.indexOf('Failed to load module script') !== -1 ||
+            message.indexOf('MIME type') !== -1 ||
+            message.indexOf('module script') !== -1) {
+
+            if (reloadAttempts() >= MAX_RELOADS) {
+                console.warn('Module load failed again after a recovery reload; not reloading.');
+                showFallbackPage();
+                return;
+            }
+
             console.warn('Critical module loading error detected, attempting recovery...');
-            
-            // Show recovery message
+            if (!recordReloadAttempt()) {
+                console.warn('Cannot track reload attempts; not reloading.');
+                showFallbackPage();
+                return;
+            }
+
             showRecoveryMessage();
-            
-            // Reload after delay
-            setTimeout(() => {
+            setTimeout(function() {
                 console.log('Attempting page reload...');
                 window.location.reload();
             }, 3000);
@@ -57,13 +104,14 @@
         // Let the cookie system work normally
         console.log('Mobile device detected - cookie system will work normally');
         
-        // Check for localStorage issues
+        // Blocked localStorage is expected in private mode and in-app browsers.
+        // Consent falls back to a cookie and then to memory, so this is not a
+        // loading failure and must not raise a recovery banner.
         setTimeout(() => {
             try {
                 localStorage.getItem('test');
             } catch (error) {
-                console.warn('localStorage blocked on mobile, showing recovery...');
-                showRecoveryMessage();
+                console.info('localStorage unavailable; consent falls back to cookie storage.');
             }
         }, 1000);
         
@@ -133,22 +181,14 @@
             return;
         }
         
-        // Clear problematic cookies/localStorage for mobile
-        if (isMobile()) {
-            console.log('Clearing problematic cookies for mobile recovery...');
-            try {
-                // Clear localStorage
-                localStorage.clear();
-                // Clear sessionStorage
-                sessionStorage.clear();
-                // Clear cookies
-                document.cookie.split(";").forEach(function(c) { 
-                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
-                });
-            } catch (error) {
-                console.warn('Could not clear storage:', error);
-            }
+        // Only take over a page that genuinely rendered nothing.
+        var root = document.querySelector('#root');
+        if (root && root.children.length) {
+            return;
         }
+
+        // Storage is deliberately NOT cleared here: it holds the visitor's
+        // consent record, and wiping it re-prompts them on every recovery.
         
         document.body.innerHTML = `
             <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">

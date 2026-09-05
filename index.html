@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     
+    <!-- Google Consent Mode v2 defaults. Must run BEFORE the GTM container so
+         no tag can set an analytics/ad cookie until the visitor consents; the
+         consent banner flips these to "granted" via gtag('consent','update'). -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'denied',
+        personalization_storage: 'denied',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+    </script>
+
     <!-- Google Tag Manager -->
     <script>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -33,10 +51,6 @@
     <link rel="preload" as="image" href="/images/hero/koenigsegg-regera.jpg" fetchpriority="high" />
     <meta name="theme-color" content="#000000" />
     <meta name="msapplication-TileColor" content="#000000" />
-    
-    <!-- Pixel 9 Pro Chrome Fix — deferred so it no longer blocks first paint
-         (executes in order, before DOMContentLoaded and the app module). -->
-    <script src="/pixel-chrome-fix.js" defer></script>
     
     <!-- Performance & Compatibility Systems (deferred, order preserved) -->
     <script src="/browser-compatibility.js" defer></script>

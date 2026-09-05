@@ -98,15 +98,11 @@
     if (browserInfo.isMobile) {
         console.log('📱 Mobile optimizations applied');
 
-        // Prevent double-tap zoom
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function (event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
+        // Double-tap zoom is prevented by `touch-action: manipulation` below.
+        // A touchend preventDefault() handler was used here previously; it also
+        // cancelled the synthesized click, so any tap landing within 300ms of a
+        // previous tap silently did nothing — which made the cookie banner
+        // impossible to dismiss for anyone who tapped it twice.
 
         // Improve touch scrolling (wait for body to be available)
         if (document.body) {

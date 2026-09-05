@@ -123,6 +123,27 @@ async function renderRoute(page, baseUrl, route) {
   await page.waitForTimeout(400);
 
   const data = await page.evaluate(() => {
+    // Strip client-only overlays (the consent banner) before snapshotting.
+    // Prerendering them ships a visible-but-inert banner in the static HTML:
+    // it paints immediately, but its buttons have no handlers until the app
+    // bundle mounts, so an early tap does nothing.
+    document.querySelectorAll('[data-prerender-strip]').forEach((el) => el.remove());
+
+    // Drop tag-manager/analytics <script> elements that were injected at
+    // RUNTIME during this render. Baking them into the static HTML puts them
+    // ahead of the shell's own inline scripts — GTM's bootstrap inserts its
+    // tag before the first script in <head>, which would land it in front of
+    // the Consent Mode defaults and let tags fire before consent is known.
+    // The shell re-injects them on load, in the right order.
+    document
+      .querySelectorAll(
+        'script[src*="googletagmanager.com"],' +
+          'script[src*="connect.facebook.net"],' +
+          'script[src*="google-analytics.com"],' +
+          'script[src*="i.posthog.com"]',
+      )
+      .forEach((el) => el.remove());
+
     const main = document.querySelector('#main-content');
     return {
       html: document.documentElement.outerHTML,
