@@ -34,7 +34,14 @@ declare global {
 const DEFAULT_META_PIXEL_ID = '2060347114601720';
 const META_PIXEL_ID =
   (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || DEFAULT_META_PIXEL_ID;
-const POSTHOG_KEY = import.meta.env.VITE_PUBLIC_POSTHOG_KEY as string | undefined;
+// Committed for the same reason as the pixel ID above: production is a local
+// build, so Netlify env vars are never read. A PostHog *project* key (phc_) is
+// a public client-side token — it ships in the bundle by design and is not a
+// secret. Personal API keys (phx_) are secrets and must never appear here.
+// Region verified against the key: us.i.posthog.com answers, eu returns 404.
+const DEFAULT_POSTHOG_KEY = 'phc_mNUjg58cEcEzMp8d4DCxi7XZU24ZpY9QJwpm2hYJak4N';
+const POSTHOG_KEY =
+  (import.meta.env.VITE_PUBLIC_POSTHOG_KEY as string | undefined) || DEFAULT_POSTHOG_KEY;
 const POSTHOG_HOST =
   (import.meta.env.VITE_PUBLIC_POSTHOG_HOST as string | undefined) || 'https://us.i.posthog.com';
 
