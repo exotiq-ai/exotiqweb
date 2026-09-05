@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { trackConversion } from '../../utils/trackers';
 import { X, Bot } from 'lucide-react';
 import { openAIService } from '../../services/openai';
 import { analyticsService } from '../../services/analytics';
@@ -360,6 +361,10 @@ export default function FleetCopilot({ isOpen, onToggle, sessionId, isReturningU
     analyticsService.trackAction(sessionId, action, { url });
 
     if (url) {
+      if (url.includes('calendly.com')) {
+        // window.open bypasses the delegated anchor listener in RouteAnalytics.
+        trackConversion('calendar_booking', { location: 'chatbot', page: window.location.pathname });
+      }
       window.open(url, '_blank');
     }
 

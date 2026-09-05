@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { trackBetaSignup, trackContactForm } from '../components/Analytics';
+import { trackConversion } from '../utils/trackers';
 
 interface FormSubmissionState {
   isSubmitting: boolean;
@@ -56,11 +57,18 @@ export function useFormSubmission() {
         console.info('[Form submission]', 'success', { formType, result });
       }
       
-      // Track analytics events
+      // Track analytics events. This runs only after the server confirmed
+      // success, so a conversion is never reported for a failed submission.
+      // Note: no e-mail or other personal data is passed to the ad platforms.
       if (formType === 'beta') {
-        trackBetaSignup(formData.email || '');
+        trackBetaSignup();
+        trackConversion('beta_signup', { fleet_size: formData.fleetSize });
       } else if (formType === 'contact') {
         trackContactForm(formData.subject || 'general');
+        trackConversion('contact_form', {
+          subject: formData.subject || 'general',
+          fleet_size: formData.fleetSize,
+        });
       }
       
       setState({ isSubmitting: false, isSubmitted: true, error: null });

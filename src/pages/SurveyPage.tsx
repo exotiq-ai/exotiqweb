@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
+import { trackConversion } from '../utils/trackers';
 import { useSearchParams, Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
@@ -47,6 +48,17 @@ export default function SurveyPage() {
     }
   };
 
+  // sessionStorage throws outright in locked-down in-app browsers. Unguarded,
+  // that exception escaped before the survey was ever submitted, silently
+  // losing the response while still showing the visitor a thank-you page.
+  const readSessionId = (): string => {
+    try {
+      return sessionStorage.getItem('exotiq_session_id') || 'unknown';
+    } catch {
+      return 'unavailable';
+    }
+  };
+
   const handleSubmit = async () => {
     try {
       // Scroll to top to show thank you message
@@ -58,7 +70,7 @@ export default function SurveyPage() {
         responses,
         timestamp: new Date().toISOString(),
         userAgent: navigator.userAgent,
-        sessionId: sessionStorage.getItem('exotiq_session_id') || 'unknown'
+        sessionId: readSessionId()
       };
 
       logger.debug('Submitting survey data', { surveyType, responseCount: Object.keys(responses).length });
@@ -76,6 +88,11 @@ export default function SurveyPage() {
             response_count: Object.keys(responses).length
           });
         }
+
+        trackConversion('survey_complete', {
+          survey_type: surveyType,
+          response_count: Object.keys(responses).length,
+        });
       }
     } catch (error) {
       logger.error('Error submitting survey', { error });

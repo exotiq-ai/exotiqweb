@@ -1,7 +1,7 @@
 import { Check, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { pricingTiers, APP_URL } from '../../data/pricingData';
-import { PRICING_SALES_CALENDLY, trackPricingCta } from '../../utils/pricingCta';
+import { PRICING_SALES_CALENDLY, trackDemoBooking, trackPricingCta } from '../../utils/pricingCta';
 
 export default function PricingCards() {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -16,6 +16,7 @@ export default function PricingCards() {
     });
 
     if (tierId === 'enterprise') {
+      trackDemoBooking(`pricing_card_${tierId}`, { tier: tierId, billing });
       window.open(PRICING_SALES_CALENDLY, '_blank', 'noopener,noreferrer');
     } else {
       window.open(APP_URL, '_blank', 'noopener,noreferrer');

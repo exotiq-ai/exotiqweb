@@ -176,6 +176,49 @@ export async function trackPostHogPageView(): Promise<void> {
   }
 }
 
+/* ----------------------------------------------------------- Conversions */
+
+/**
+ * The conversion vocabulary already used by services/analytics.ts, extended
+ * with the survey. Keeping one list means Meta, PostHog and GA cannot drift
+ * apart on what counts as a conversion.
+ */
+export type ConversionType =
+  | 'beta_signup'
+  | 'contact_form'
+  | 'calendar_booking'
+  | 'survey_complete';
+
+/** Meta standard events. Standard (not custom) so Ads Manager can optimise. */
+const META_EVENT: Record<ConversionType, string> = {
+  beta_signup: 'CompleteRegistration',
+  contact_form: 'Lead',
+  calendar_booking: 'Schedule',
+  survey_complete: 'SubmitApplication',
+};
+
+/**
+ * Reports a conversion to every consented tracker.
+ *
+ * NEVER pass personal data in `props`. It reaches Meta and PostHog verbatim,
+ * and Meta's terms (like Google's) prohibit sending raw identifiers. Advanced
+ * Matching, if it is ever wanted, requires SHA-256 hashing through fbq('init').
+ */
+export function trackConversion(
+  type: ConversionType,
+  props?: Record<string, unknown>,
+): void {
+  trackMetaEvent(META_EVENT[type], props);
+
+  if (posthogOptedIn) {
+    void ensurePostHog()
+      .then((posthog) => posthog?.capture(type, props))
+      .catch(() => {
+        /* analytics must never break a form submission */
+      });
+  }
+}
+
 /* ---------------------------------------------------------------- Router */
 
 /**

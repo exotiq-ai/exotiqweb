@@ -9,6 +9,8 @@
 //
 // To rename the event downstream, change `EVENT_NAME` only.
 
+import { trackConversion } from './trackers';
+
 const EVENT_NAME = 'pricing_cta_click';
 
 /** Primary sales call booking link used across /pricing. */
@@ -17,8 +19,21 @@ export const PRICING_SALES_CALENDLY = 'https://calendly.com/hello-exotiq/30min';
 /** Canonical 15-minute demo booking link used across marketing CTAs. */
 export const DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
 
-export function openPricingSalesCall(): void {
+/**
+ * Reports a demo/sales-call booking click as a conversion.
+ *
+ * This fires on the CLICK, not on a confirmed booking — Calendly is a third
+ * party and the page never learns whether the visitor completed it. Treat it
+ * as strong intent. A true booked-meeting signal would need Calendly webhooks
+ * feeding Meta's Conversions API server-side.
+ */
+export function trackDemoBooking(location: string, meta?: Record<string, unknown>): void {
+  trackConversion('calendar_booking', { location, ...meta });
+}
+
+export function openPricingSalesCall(location = 'pricing_sales_call'): void {
   if (typeof window === 'undefined') return;
+  trackDemoBooking(location);
   window.open(PRICING_SALES_CALENDLY, '_blank', 'noopener,noreferrer');
 }
 

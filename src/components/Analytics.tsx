@@ -88,11 +88,13 @@ export const trackEvent = (eventName: string, parameters?: Record<string, any>) 
   }
 };
 
-export const trackBetaSignup = (userEmail: string) => {
+// Takes no argument by design. It used to forward the signup e-mail address to
+// Google Analytics, which breaches Google's own terms on personal data and
+// needlessly widened the GDPR surface.
+export const trackBetaSignup = () => {
   trackEvent('beta_signup', {
     event_category: 'engagement',
-    event_label: 'beta_form_submission',
-    user_email: userEmail
+    event_label: 'beta_form_submission'
   });
 };
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Cookie, Settings, X, Check } from 'lucide-react';
+import { Cookie, X, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { apolloService } from '../services/apollo';
 import logger from '../utils/logger';
 import {
@@ -36,6 +37,9 @@ export default function CookieConsentBanner() {
     } else {
       setShowBanner(true);
     }
+    // Mount-only: this reads the stored decision once. Re-running it on every
+    // applyPreferences identity change would re-apply consent on each render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const savePreferences = (newPreferences: CookiePreferences) => {
@@ -163,39 +167,51 @@ export default function CookieConsentBanner() {
 
   return (
     <>
-      {/* Cookie Consent Banner */}
+      {/* Cookie Consent Banner.
+          Deliberately compact: this sits over the fold for cold paid traffic,
+          so it states the essentials in one line and keeps all three choices
+          on a single row. Touch targets stay at the 44px minimum. */}
       {showBanner && (
-        <div data-prerender-strip className="fixed bottom-0 left-0 right-0 bg-dark-900 text-white p-4 sm:p-6 z-50 shadow-2xl transform transition-transform duration-300">
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 lg:gap-6">
-            <div className="flex items-start space-x-4 flex-1">
-              <Cookie className="w-6 h-6 text-accent-400 flex-shrink-0 mt-1" />
-              <div className="flex-1">
-                <h3 className="font-dfaalt font-bold text-lg mb-2">We use cookies to enhance your experience</h3>
-                <p className="font-montserrat text-sm opacity-90 leading-relaxed">
-                  We use essential cookies for functionality and optional cookies for analytics and marketing. 
-                  You can customize your preferences anytime.
-                </p>
-              </div>
+        <div
+          data-prerender-strip
+          role="dialog"
+          aria-label="Cookie consent"
+          className="fixed bottom-0 inset-x-0 z-50 bg-dark-900/95 backdrop-blur-md border-t border-white/10 shadow-2xl px-4 py-3 sm:px-6 sm:py-4"
+          style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
+        >
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+            <div className="flex items-start gap-3 flex-1 min-w-0">
+              <Cookie className="w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" />
+              <p className="font-montserrat text-[13px] sm:text-sm leading-snug text-gray-200">
+                We use essential cookies to run the site, and optional ones for analytics
+                and marketing.{' '}
+                <Link
+                  to="/cookies"
+                  className="underline underline-offset-2 text-white hover:text-accent-400 transition-colors"
+                >
+                  Cookie policy
+                </Link>
+              </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+
+            <div className="flex items-center gap-2 flex-shrink-0">
               <button
                 onClick={() => setShowModal(true)}
-                className="font-poppins font-bold text-xs uppercase tracking-wide px-4 py-3 border border-gray-600 text-white hover:bg-gray-800 rounded-lg transition-colors min-h-[44px] flex items-center justify-center space-x-2"
+                className="font-poppins font-semibold text-[11px] uppercase tracking-wide px-2 py-2 min-h-[44px] text-gray-300 hover:text-white transition-colors"
               >
-                <Settings className="w-4 h-4" />
-                <span>Customize</span>
+                Customize
               </button>
               <button
                 onClick={acceptEssentialOnly}
-                className="font-poppins font-bold text-xs uppercase tracking-wide px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors min-h-[44px]"
+                className="flex-1 sm:flex-none font-poppins font-bold text-[11px] uppercase tracking-wide px-3 py-2 min-h-[44px] border border-gray-600 hover:border-gray-400 text-white rounded-lg transition-colors whitespace-nowrap"
               >
-                Essential Only
+                Essential only
               </button>
               <button
                 onClick={acceptAll}
-                className="font-poppins font-bold text-xs uppercase tracking-wide px-4 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors min-h-[44px]"
+                className="flex-1 sm:flex-none font-poppins font-bold text-[11px] uppercase tracking-wide px-3 py-2 min-h-[44px] bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors whitespace-nowrap"
               >
-                Accept All
+                Accept all
               </button>
             </div>
           </div>

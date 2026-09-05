@@ -1,4 +1,5 @@
 import React from 'react';
+import { DEMO_CALENDLY } from '../utils/pricingCta';
 import { motion, useInView } from 'framer-motion';
 import { MobileSection, MobileContainer } from './MobileOptimizations';
 import { Brain, TrendingUp, PieChart, Globe, Shield, Bot, DollarSign, BarChart3, Target, Eye, Star, MessageSquare, Calendar, FileText, ArrowRight, Mic, Zap } from 'lucide-react';
@@ -351,7 +352,7 @@ const PlatformModulesSection: React.FC<PlatformModulesSectionProps> = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <a
-                  href="https://calendly.com/hello-exotiq/15-minute-meeting"
+                  href={DEMO_CALENDLY}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-dfaalt font-semibold rounded-xl border border-white/20 hover:border-white/40 transition-all duration-300"
