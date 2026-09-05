@@ -1,0 +1,21 @@
+# Header rules for exotiq.ai.
+#
+# These live here, NOT in netlify.toml. Production is deployed by uploading a
+# local dist/ ("drop" deploy), and Netlify only reads configuration from inside
+# the uploaded folder — netlify.toml sits in the repo root and is ignored, which
+# is why its header block has never reached production. Files under public/ are
+# copied into dist/ by Vite, so this one does apply.
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-XSS-Protection: 1; mode=block
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Vite emits content-hashed filenames here, so these are safe to pin.
+# Deliberately NOT applied to root-level scripts (/error-recovery.js and
+# friends): those filenames never change, and pinning them for a year would
+# make any future fix to them undeployable.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

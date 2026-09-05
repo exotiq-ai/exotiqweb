@@ -60,11 +60,12 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-  for = "*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-    Content-Type = "application/javascript"
+# NOTE: a "*.js" immutable rule used to live here. It also matched the
+# UNHASHED root scripts (/error-recovery.js, /browser-compatibility.js,
+# /performance-optimizer.js) and would have pinned them in browser caches for a
+# year, making any fix to them undeployable. Hashed assets are covered by the
+# "/assets/*" rule above. Header rules that must reach production live in
+# public/_headers — see the comment at the top of that file.
 
 [[headers]]
   for = "*.css"
