@@ -25,7 +25,15 @@ declare global {
   }
 }
 
-const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID as string | undefined;
+// exotiq.ai is deployed by uploading a locally built dist/, so Netlify's own
+// environment variables are never read at build time. A committed default is
+// therefore the only value that reliably survives a deploy. A Meta Pixel ID is
+// public by design — it is visible in the page source of every site using it —
+// so committing it discloses nothing. The env var still wins where one is set
+// (previews, a future CI build).
+const DEFAULT_META_PIXEL_ID = '2060347114601720';
+const META_PIXEL_ID =
+  (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || DEFAULT_META_PIXEL_ID;
 const POSTHOG_KEY = import.meta.env.VITE_PUBLIC_POSTHOG_KEY as string | undefined;
 const POSTHOG_HOST =
   (import.meta.env.VITE_PUBLIC_POSTHOG_HOST as string | undefined) || 'https://us.i.posthog.com';
