@@ -129,13 +129,15 @@ For issues or questions, reference:
 
 Phones (< 1024px) get a dedicated portrait crop of `koenigsegg-regera.jpg`
 (2560×1707) instead of the landscape cover crop, so the car actually reads on
-a 390px screen. Source rectangle: x 1040→2210, y 0→1707 (1170×1707). Served at
+a 390px screen. Source rectangle: x 1040→2210, y 430→1707 (1170×1277; the
+ceiling above y 430 is never displayed because the stage is bottom-anchored).
+Served at
 780w (2×) and 1170w (3×) as WebP with JPEG fallbacks. Regenerate with:
 
 ```bash
 cd public/images/hero
 # sips takes HEIGHT then WIDTH; --cropOffset takes Y then X
-sips -s format png koenigsegg-regera.jpg --cropOffset 0 1040 -c 1707 1170 --out /tmp/regera-mobile-1170.png
+sips -s format png koenigsegg-regera.jpg --cropOffset 430 1040 -c 1277 1170 --out /tmp/regera-mobile-1170.png
 sips -s format png --resampleWidth 780 /tmp/regera-mobile-1170.png --out /tmp/regera-mobile-780.png
 cwebp -q 80 -m 6 /tmp/regera-mobile-1170.png -o koenigsegg-regera-mobile-1170.webp
 cwebp -q 80 -m 6 /tmp/regera-mobile-780.png  -o koenigsegg-regera-mobile-780.webp

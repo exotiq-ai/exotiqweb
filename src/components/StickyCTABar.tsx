@@ -5,21 +5,27 @@ import { CONSENT_EVENT, readConsent } from '../utils/consentStore';
 
 const TRIAL_URL = 'https://app.exotiq.ai';
 const DEMO_URL = 'https://calendly.com/hello-exotiq/15-minute-meeting';
-/** The home hero (HomeHeroSection) and its orange button. */
+/** The home hero (HomeHeroSection): its orange button and the car stage under it. */
 const HERO_ID = 'home-hero';
 const HERO_CTA_ID = 'hero-primary-cta';
-/** Roughly the bar's own height: the hero must clear this much of the viewport bottom before the bar covers it. */
+const HERO_STAGE_ID = 'hero-stage';
+/** Roughly the bar's own height: the car must clear this much of the viewport bottom before the bar covers it. */
 const BAR_CLEARANCE = 80;
+/** The hero button must be this far above the viewport before the bar appears, so a 1px scroll never flips it. */
+const CTA_HYSTERESIS = 120;
 /** Pages without the hero: plain scroll threshold. */
 const FALLBACK_SCROLL_Y = 800;
+/** Dispatched by MobileNavigation when the menu opens/closes (it also sets body[data-menu-open]). */
+export const MENU_EVENT = 'exotiq:menu';
 
 /**
  * Mobile-only sticky action bar. Continues the hero's hierarchy — one orange
- * trial button, a quiet demo alternative — and appears only after the hero's
- * own button AND the car have left the viewport, so it never covers the
- * composition and there is never a second orange target on screen. Stays
- * hidden while the cookie banner owns the bottom edge (no consent decision
- * yet) and while the footer is in view.
+ * trial button, a quiet demo alternative — and appears only once the hero's
+ * own button is well above the viewport AND the car has cleared the strip the
+ * bar covers, so it never sits on the photograph and there is never a second
+ * orange target on screen. Stays hidden while the cookie banner owns the
+ * bottom edge (no consent decision yet), while the mobile menu is open (the
+ * menu has its own orange button) and while the footer is in view.
  */
 export default function StickyCTABar() {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,18 +38,18 @@ export default function StickyCTABar() {
       frame = 0;
       const hero = document.getElementById(HERO_ID);
       const cta = document.getElementById(HERO_CTA_ID);
+      const stage = document.getElementById(HERO_STAGE_ID);
       const footer = document.querySelector('footer');
       const viewport = window.innerHeight;
-      // Two conditions: the hero's own orange button has scrolled off the top
-      // (never two orange targets on screen) and the hero's bottom edge, i.e.
-      // the car, has cleared the strip the bar will cover.
-      const ctaGone = cta ? cta.getBoundingClientRect().bottom < 0 : true;
-      const heroCleared = hero
-        ? hero.getBoundingClientRect().bottom <= viewport - BAR_CLEARANCE
-        : window.scrollY > FALLBACK_SCROLL_Y;
-      const pastHero = ctaGone && heroCleared;
+      const ctaGone = cta ? cta.getBoundingClientRect().bottom < -CTA_HYSTERESIS : true;
+      const carCleared = stage
+        ? stage.getBoundingClientRect().bottom <= viewport - BAR_CLEARANCE
+        : hero
+          ? hero.getBoundingClientRect().bottom <= viewport - BAR_CLEARANCE
+          : window.scrollY > FALLBACK_SCROLL_Y;
       const footerInView = footer ? footer.getBoundingClientRect().top < viewport : false;
-      setIsVisible(consentDecided && pastHero && !footerInView);
+      const menuOpen = document.body.dataset.menuOpen === 'true';
+      setIsVisible(consentDecided && ctaGone && carCleared && !footerInView && !menuOpen);
     };
     const schedule = () => {
       if (!frame) frame = window.requestAnimationFrame(evaluate);
@@ -57,10 +63,12 @@ export default function StickyCTABar() {
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule);
     window.addEventListener(CONSENT_EVENT, onConsent);
+    window.addEventListener(MENU_EVENT, schedule);
     return () => {
       window.removeEventListener('scroll', schedule);
       window.removeEventListener('resize', schedule);
       window.removeEventListener(CONSENT_EVENT, onConsent);
+      window.removeEventListener(MENU_EVENT, schedule);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
@@ -82,7 +90,7 @@ export default function StickyCTABar() {
         <a
           href={withAttribution(TRIAL_URL)}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           onClick={() =>
             trackEngagement('sticky_cta_click', { location: 'mobile_sticky_primary', action: 'start_trial' })
           }

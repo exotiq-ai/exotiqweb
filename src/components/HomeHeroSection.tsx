@@ -8,10 +8,12 @@ const HERO_IMG = '/images/hero/koenigsegg-regera.jpg';
 
 /**
  * Mobile (< lg) hero photograph: a portrait cut of the same Regera frame,
- * source rectangle x 1040–2210 × y 0–1707 of the 2560×1707 master (1170×1707),
- * served at 2× (780w) and 3× (1170w). The rear wheel is fully in frame, the
- * tail bleeds off the left edge and the nose keeps a little air on the right.
- * Recipe (sips + cwebp) lives in public/images/hero/README.md.
+ * source rectangle x 1040–2210 × y 430–1707 of the 2560×1707 master
+ * (1170×1277 — the studio ceiling above y 430 is never on screen because the
+ * stage is bottom-anchored), served at 2× (780w) and 3× (1170w). The rear
+ * wheel is fully in frame, the tail bleeds off the left edge and the nose
+ * keeps a little air on the right. Recipe (sips + cwebp) lives in
+ * public/images/hero/README.md.
  */
 const HERO_IMG_MOBILE = {
   webp780: '/images/hero/koenigsegg-regera-mobile-780.webp',
@@ -19,7 +21,7 @@ const HERO_IMG_MOBILE = {
   jpg780: '/images/hero/koenigsegg-regera-mobile-780.jpg',
   jpg1170: '/images/hero/koenigsegg-regera-mobile-1170.jpg',
   width: 1170,
-  height: 1707,
+  height: 1277,
 } as const;
 
 /**
@@ -164,31 +166,32 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
 
     {/* Mobile: a faint studio light behind the copy so the top storey is a lit room, not a flat slab */}
     <div
-      className="absolute inset-x-0 top-0 h-[70vh] lg:hidden pointer-events-none"
+      className="absolute inset-x-0 top-0 h-[60vh] lg:hidden pointer-events-none"
       style={{
         background:
-          'radial-gradient(120% 70% at 18% 0%, rgba(255,241,224,0.09) 0%, rgba(255,241,224,0.035) 32%, rgba(5,7,10,0) 68%)',
+          'radial-gradient(120% 70% at 18% 10%, rgba(255,241,224,0.16) 0%, rgba(255,241,224,0.06) 36%, rgba(5,7,10,0) 70%)',
       }}
     />
 
     {/* Mobile copy + action. Solid ground, left-aligned, nothing under the cookie banner. */}
     <div className="hero-copy relative z-10 w-full px-5 pt-28 pb-4 sm:px-8 sm:pt-32 lg:hidden">
       <div className="sm:max-w-lg">
-        <h1 className="font-dfaalt font-bold text-white text-[length:clamp(1.75rem,8.75vw,2.125rem)] sm:text-5xl leading-[1.1] sm:leading-[1.05] tracking-tight">
+        {/* The payoff gets its own line: a block accent never dangles "Run it" off a white line. */}
+        <h1 className="font-dfaalt font-bold text-white text-[length:clamp(1.75rem,8.2vw,2rem)] sm:text-5xl leading-[1.1] sm:leading-[1.05] tracking-tight">
           Five tools and a spreadsheet?{' '}
-          <span className="text-primary-400">Run it on one platform.</span>
+          <span className="block text-primary-400">Run it on one platform.</span>
         </h1>
 
         <p className="mt-5 font-inter text-[length:clamp(1rem,4.36vw,1.0625rem)] leading-[1.53] sm:text-lg sm:leading-relaxed text-gray-300 text-pretty">
-          Pricing, bookings, compliance, and guest comms. AI does the admin you used to do at
-          midnight.
+          Pricing, bookings, compliance, and guest comms for your exotic fleet. AI does the admin
+          you used to do at midnight.
         </p>
 
         <a
           id="hero-primary-cta"
           href={withAttribution(TRIAL_URL)}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           onClick={trackMobileTrial}
           className="mt-7 flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-accent-500 active:bg-accent-600 font-dfaalt font-bold text-[19px] leading-none text-white shadow-[0_12px_32px_-10px_rgba(241,90,41,0.55),inset_0_1px_0_rgba(255,255,255,0.16)] transition-[transform,background-color] duration-150 ease-out active:scale-[0.985] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070a]"
         >
@@ -200,10 +203,10 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
         <ul
           data-hero="reassurance"
           role="list"
-          className="mt-3 flex flex-wrap items-center justify-center gap-x-1.5 font-inter text-[13px] leading-[18px] font-medium text-gray-400"
+          className="mt-3 flex flex-wrap items-center justify-center gap-x-1 min-[360px]:gap-x-1.5 font-inter text-[13px] leading-[18px] font-medium text-gray-400"
         >
           {REASSURANCE.map((item, index) => (
-            <li key={item} className="flex items-center gap-x-1.5 whitespace-nowrap">
+            <li key={item} className="flex items-center gap-x-1 min-[360px]:gap-x-1.5 whitespace-nowrap">
               {index > 0 && <span aria-hidden="true">·</span>}
               {item}
             </li>
@@ -227,7 +230,7 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
     {/* Mobile: the car. A flex sibling that fills whatever the copy leaves of the first viewport
         (never less than roof-to-wheels), photograph bottom-anchored 32px above the section edge so
         the wheels clear the cookie banner on first visit. Wall and floor dissolve into page black. */}
-    <div className="hero-stage relative w-full overflow-hidden pointer-events-none lg:hidden" aria-hidden="true">
+    <div id="hero-stage" className="hero-stage relative w-full overflow-hidden pointer-events-none lg:hidden" aria-hidden="true">
       <picture className="absolute inset-x-0 top-0 bottom-8 block">
         <source
           type="image/webp"
@@ -289,9 +292,15 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
             linear-gradient(to right, rgba(5,7,10,0.55) 0, rgba(5,7,10,0) 18%);
         }
       }
-      /* Landscape phones: a width-fitted car would be 2x too tall for the viewport,
-         so show the middle of the frame (roof to floor) in a shorter band instead. */
+      /* Landscape phones: the sm: type scale is width-based, so pull the copy back to the
+         phone scale here or the orange button lands below a 390px-tall fold. A width-fitted
+         car would be 2x too tall for the viewport, so show the middle of the frame (roof to
+         floor) in a shorter band instead. */
       @media (max-width: 1023.98px) and (max-height: 500px) and (orientation: landscape) {
+        .hero-copy { padding-top: 5rem; }
+        .hero-copy h1 { font-size: 1.75rem; line-height: 1.1; }
+        .hero-copy p { font-size: 1rem; line-height: 1.5; margin-top: 0.75rem; }
+        .hero-copy #hero-primary-cta { margin-top: 1rem; }
         .hero-stage { flex: 0 0 auto; min-height: 44vw; }
         .hero-stage picture { bottom: 0; }
         .hero-stage img { object-position: 50% 82%; }

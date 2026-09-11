@@ -56,8 +56,10 @@ const AccessibilityControls: React.FC = () => {
   }, [isOpen]);
 
   // Escape closes; Tab cycles inside the dialog (aria-modal promises as much).
+  // Registered on the document, not the dialog, so Escape still works after a
+  // tap on non-interactive text has moved focus to <body>.
   const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
+    (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         event.preventDefault();
         closePanel();
@@ -74,13 +76,19 @@ const AccessibilityControls: React.FC = () => {
       if (event.shiftKey && (active === first || !dialogRef.current.contains(active))) {
         event.preventDefault();
         last.focus();
-      } else if (!event.shiftKey && active === last) {
+      } else if (!event.shiftKey && (active === last || !dialogRef.current.contains(active))) {
         event.preventDefault();
         first.focus();
       }
     },
     [closePanel],
   );
+
+  useEffect(() => {
+    if (!isOpen) return;
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, handleKeyDown]);
 
   return (
     <>
@@ -106,7 +114,7 @@ const AccessibilityControls: React.FC = () => {
       {/* Accessibility panel: a bottom sheet below lg, the floating card next to the gear at lg+.
           z-[60] keeps the sheet above the cookie banner and the pill header (both z-50). */}
       {isOpen && (
-        <div className="fixed inset-0 z-[60] lg:z-40" onKeyDown={handleKeyDown}>
+        <div className="fixed inset-0 z-[60] lg:z-40">
           {/* Backdrop */}
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={closePanel} />
 

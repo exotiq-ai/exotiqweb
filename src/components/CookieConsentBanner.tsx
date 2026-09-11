@@ -167,7 +167,7 @@ export default function CookieConsentBanner() {
               {/* Below lg: one line with the policy link inline, so the banner stays ~90px
                   and the hero's car keeps its wheels above it on the first visit. It also
                   stacks under the mobile menu overlay (z-40) and the accessibility sheet (z-60). */}
-              <p className="lg:hidden font-inter text-[13px] leading-[18px] text-gray-200 truncate">
+              <p className="lg:hidden font-inter text-[13px] leading-[18px] text-gray-200 text-pretty">
                 Essential cookies only unless you opt in.{' '}
                 <Link to="/cookies" className="underline underline-offset-2 text-white">
                   Cookie policy
@@ -195,13 +195,13 @@ export default function CookieConsentBanner() {
               </button>
               <button
                 onClick={acceptEssentialOnly}
-                className="flex-1 sm:flex-none sm:px-4 h-11 rounded-lg border border-white/15 bg-white/10 active:bg-white/20 font-inter text-[13px] font-semibold text-white transition-colors whitespace-nowrap"
+                className="flex-1 sm:flex-none sm:px-4 h-11 rounded-lg border border-white/40 bg-white/10 active:bg-white/20 font-inter text-[13px] font-semibold text-white transition-colors whitespace-nowrap"
               >
                 Essential only
               </button>
               <button
                 onClick={acceptAll}
-                className="flex-1 sm:flex-none sm:px-4 h-11 rounded-lg border border-white/15 bg-white/10 active:bg-white/20 font-inter text-[13px] font-semibold text-white transition-colors whitespace-nowrap"
+                className="flex-1 sm:flex-none sm:px-4 h-11 rounded-lg border border-white/40 bg-white/10 active:bg-white/20 font-inter text-[13px] font-semibold text-white transition-colors whitespace-nowrap"
               >
                 Accept all
               </button>

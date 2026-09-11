@@ -4,6 +4,7 @@ import { Menu, X, Home, BarChart3, Users, Mail, TrendingUp, Building, BookOpen, 
 import ThemeAwareLogo from './ThemeAwareLogo';
 import { trackEngagement, withAttribution } from '../utils/trackers';
 import { useAccessibility } from './AccessibilityProvider';
+import { MENU_EVENT } from './StickyCTABar';
 
 const MOBILE_TRIAL_URL = 'https://app.exotiq.ai';
 const MOBILE_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
@@ -76,16 +77,22 @@ export default function MobileNavigation() {
     };
   }, []);
 
-  // Prevent body scroll when menu is open
+  // Prevent body scroll when menu is open, and tell the sticky CTA bar (it hides
+  // while the menu is open so there is never a second orange button on screen).
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.dataset.menuOpen = 'true';
     } else {
       document.body.style.overflow = 'unset';
+      delete document.body.dataset.menuOpen;
     }
-    
+    window.dispatchEvent(new CustomEvent(MENU_EVENT, { detail: { open: isMenuOpen } }));
+
     return () => {
       document.body.style.overflow = 'unset';
+      delete document.body.dataset.menuOpen;
+      window.dispatchEvent(new CustomEvent(MENU_EVENT, { detail: { open: false } }));
     };
   }, [isMenuOpen]);
 
@@ -118,26 +125,42 @@ export default function MobileNavigation() {
           </Link>
 
           {/* Mobile Controls */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`p-2 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70 ${
-              isLightPage ? 'bg-gray-900/[0.06] hover:bg-gray-900/10' : 'bg-white/5 hover:bg-white/10'
-            }`}
-            aria-label="Toggle menu"
-            aria-expanded={isMenuOpen}
-          >
-            {isMenuOpen ? (
-              <X className={`w-6 h-6 ${isLightPage ? 'text-gray-700' : 'text-gray-100'}`} />
-            ) : (
-              <Menu className={`w-6 h-6 ${isLightPage ? 'text-gray-700' : 'text-gray-100'}`} />
+          <div className="flex items-center gap-1">
+            {/* Accessibility settings live in the pill while the menu is open (the floating gear is
+                desktop-only). Always in view — the menu panel can scroll below the fold. */}
+            {isMenuOpen && (
+              <button
+                type="button"
+                onClick={handleAccessibilityClick}
+                aria-label="Accessibility settings"
+                aria-haspopup="dialog"
+                className="p-2 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center bg-white/5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70"
+              >
+                <Settings className="w-5 h-5 text-gray-100" aria-hidden="true" />
+              </button>
             )}
-          </button>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`p-2 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70 ${
+                isLightPage ? 'bg-gray-900/[0.06] hover:bg-gray-900/10' : 'bg-white/5 hover:bg-white/10'
+              }`}
+              aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+            >
+              {isMenuOpen ? (
+                <X className={`w-6 h-6 ${isLightPage ? 'text-gray-700' : 'text-gray-100'}`} />
+              ) : (
+                <Menu className={`w-6 h-6 ${isLightPage ? 'text-gray-700' : 'text-gray-100'}`} />
+              )}
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay. z-[45]: above the sticky CTA bar (z-40) and the cookie banner (z-30),
+          below the pill (z-50) and the accessibility sheet (z-60). */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
+        <div className="fixed inset-0 z-[45] lg:hidden">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
@@ -191,7 +214,7 @@ export default function MobileNavigation() {
               <a
                 href={withAttribution(MOBILE_TRIAL_URL)}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 onClick={handleTrialClick}
                 className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-accent-500 active:bg-accent-600 font-dfaalt font-bold text-[19px] leading-none text-white shadow-lg shadow-accent-500/25 transition-[transform,background-color] duration-150 ease-out active:scale-[0.985] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900"
               >
@@ -213,17 +236,6 @@ export default function MobileNavigation() {
               <p className="mt-5 pt-5 border-t border-dark-700/60 font-inter text-xs text-gray-400 text-center">
                 Built by automotive enthusiasts, for automotive enthusiasts.
               </p>
-
-              {/* Accessibility settings (the floating gear is desktop-only). Kept below the CTA so it never pushes it down. */}
-              <button
-                type="button"
-                aria-haspopup="dialog"
-                onClick={handleAccessibilityClick}
-                className="mt-2 flex w-full min-h-[44px] items-center justify-center gap-2 rounded-xl font-inter text-sm text-gray-400 hover:text-white active:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70"
-              >
-                <Settings className="w-4 h-4" aria-hidden="true" />
-                <span>Accessibility settings</span>
-              </button>
             </div>
           </div>
         </div>
