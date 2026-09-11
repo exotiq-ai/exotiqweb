@@ -1,9 +1,53 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { MobileContainer } from './MobileOptimizations';
+import { trackEngagement, withAttribution } from '../utils/trackers';
 
-/** Hero background. Koenigsegg Regera in a dark studio (5107×3405). */
+/** Desktop hero background. Koenigsegg Regera in a dark studio (2560×1707). */
 const HERO_IMG = '/images/hero/koenigsegg-regera.jpg';
+
+/**
+ * Mobile (< lg) hero photograph: a portrait cut of the same Regera frame,
+ * source rectangle x 1040–2210 × y 0–1707 of the 2560×1707 master (1170×1707),
+ * served at 2× (780w) and 3× (1170w). The rear wheel is fully in frame, the
+ * tail bleeds off the left edge and the nose keeps a little air on the right.
+ * Recipe (sips + cwebp) lives in public/images/hero/README.md.
+ */
+const HERO_IMG_MOBILE = {
+  webp780: '/images/hero/koenigsegg-regera-mobile-780.webp',
+  webp1170: '/images/hero/koenigsegg-regera-mobile-1170.webp',
+  jpg780: '/images/hero/koenigsegg-regera-mobile-780.jpg',
+  jpg1170: '/images/hero/koenigsegg-regera-mobile-1170.jpg',
+  width: 1170,
+  height: 1707,
+} as const;
+
+/**
+ * Media query for the mobile photograph. It must match Tailwind's `lg`
+ * breakpoint (min-width: 1024px) exactly, with no gap at fractional widths,
+ * and index.html's preload uses the same string.
+ */
+const MOBILE_MEDIA = '(max-width: 1023.98px)';
+
+/**
+ * The <img> fallback when no <source> matches (i.e. at lg and up). A 1×1
+ * transparent GIF, so a desktop browser never downloads the mobile asset even
+ * though the element sits in a display:none subtree (hidden <img>s still fetch).
+ */
+const BLANK_GIF =
+  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+/**
+ * React 18 forwards unknown *lowercase* attributes to the DOM; the camelCase
+ * `fetchPriority` prop only exists in React 19 (18 warns and drops it).
+ */
+const FETCH_PRIORITY_HIGH = { fetchpriority: 'high' } as const;
+
+const TRIAL_URL = 'https://app.exotiq.ai';
+const DEMO_URL = 'https://calendly.com/hello-exotiq/15-minute-meeting';
+
+/** Objection-killers under the trial button. A list, so screen readers announce three items, not one run-on line. */
+const REASSURANCE = ['30 days free', 'No credit card', 'Migration help'] as const;
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -13,11 +57,29 @@ interface HomeHeroSectionProps {
   scrollToSection: (id: string) => void;
 }
 
+const trackMobileTrial = () =>
+  trackEngagement('hero_cta_click', { location: 'mobile_hero_primary', action: 'start_trial' });
+const trackMobileDemo = () =>
+  trackEngagement('hero_cta_click', { location: 'mobile_hero_demo_link', action: 'schedule_demo' });
+
+/**
+ * Below lg the hero is two storeys on a solid #05070a ground, both in normal
+ * flow: copy + one orange action on top, then the car parked in the dark,
+ * bottom-anchored and feathered into the page black. Because the car is a
+ * flex sibling of the copy (not an overlay), text can never sit on the
+ * photograph — a taller copy block (large type, landscape, text zoom) pushes
+ * the car down instead. Nothing here is gated on `isVisible`: the H1 and the
+ * car are the LCP candidates and paint on the first frame. At lg and up the
+ * markup after the mobile blocks is the original desktop hero, unchanged.
+ */
 const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
-  <section className="relative min-h-screen flex items-center overflow-hidden bg-[#05070a]">
-    {/* Car image with a slow cinematic zoom */}
+  <section
+    id="home-hero"
+    className="hero-shell relative min-h-screen flex flex-col lg:flex-row lg:items-center overflow-hidden bg-[#05070a]"
+  >
+    {/* Desktop: car image with a slow cinematic zoom */}
     <div
-      className="hero-kenburns absolute inset-0 bg-cover bg-[position:62%_center] sm:bg-[position:58%_center] will-change-transform"
+      className="hero-kenburns absolute inset-0 hidden lg:block bg-cover bg-[position:62%_center] sm:bg-[position:58%_center] will-change-transform"
       style={{ backgroundImage: `url('${HERO_IMG}')` }}
     />
 
@@ -29,14 +91,6 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
           'linear-gradient(100deg, rgba(5,7,10,0.95) 0%, rgba(5,7,10,0.74) 30%, rgba(5,7,10,0.30) 54%, rgba(5,7,10,0.04) 78%, transparent 100%)',
       }}
     />
-    {/* Mobile: vertical scrim — dark behind the headline and the CTAs, car visible in the middle */}
-    <div
-      className="absolute inset-0 lg:hidden pointer-events-none"
-      style={{
-        background:
-          'linear-gradient(to bottom, rgba(5,7,10,0.58) 0%, transparent 26%), linear-gradient(to top, rgba(5,7,10,0.96) 6%, rgba(5,7,10,0.72) 30%, rgba(5,7,10,0.12) 56%, transparent 72%)',
-      }}
-    />
     {/* Top + bottom darkening for nav clearance and grounding (desktop) */}
     <div
       className="absolute inset-0 pointer-events-none hidden lg:block"
@@ -46,13 +100,9 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
       }}
     />
 
-    {/* Film grain */}
-    <div
-      className="absolute inset-0 opacity-[0.05] mix-blend-soft-light pointer-events-none"
-      style={{ backgroundImage: GRAIN, backgroundSize: '180px 180px' }}
-    />
-
-    <div className="relative z-10 w-full">
+    {/* Desktop copy — the original hero block, unchanged. It comes first in the DOM so the
+        first <h1> a 1280px-wide prerender sees is the visible one. */}
+    <div className="relative z-10 w-full hidden lg:block">
       <MobileContainer>
         <div
           className={`max-w-xl text-center lg:text-left mx-auto lg:mx-0 transition-all duration-700 ease-out ${
@@ -112,10 +162,146 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({ isVisible }) => (
       </MobileContainer>
     </div>
 
+    {/* Mobile: a faint studio light behind the copy so the top storey is a lit room, not a flat slab */}
+    <div
+      className="absolute inset-x-0 top-0 h-[70vh] lg:hidden pointer-events-none"
+      style={{
+        background:
+          'radial-gradient(120% 70% at 18% 0%, rgba(255,241,224,0.09) 0%, rgba(255,241,224,0.035) 32%, rgba(5,7,10,0) 68%)',
+      }}
+    />
+
+    {/* Mobile copy + action. Solid ground, left-aligned, nothing under the cookie banner. */}
+    <div className="hero-copy relative z-10 w-full px-5 pt-28 pb-4 sm:px-8 sm:pt-32 lg:hidden">
+      <div className="sm:max-w-lg">
+        <h1 className="font-dfaalt font-bold text-white text-[length:clamp(1.75rem,8.75vw,2.125rem)] sm:text-5xl leading-[1.1] sm:leading-[1.05] tracking-tight">
+          Five tools and a spreadsheet?{' '}
+          <span className="text-primary-400">Run it on one platform.</span>
+        </h1>
+
+        <p className="mt-5 font-inter text-[length:clamp(1rem,4.36vw,1.0625rem)] leading-[1.53] sm:text-lg sm:leading-relaxed text-gray-300 text-pretty">
+          Pricing, bookings, compliance, and guest comms. AI does the admin you used to do at
+          midnight.
+        </p>
+
+        <a
+          id="hero-primary-cta"
+          href={withAttribution(TRIAL_URL)}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={trackMobileTrial}
+          className="mt-7 flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-accent-500 active:bg-accent-600 font-dfaalt font-bold text-[19px] leading-none text-white shadow-[0_12px_32px_-10px_rgba(241,90,41,0.55),inset_0_1px_0_rgba(255,255,255,0.16)] transition-[transform,background-color] duration-150 ease-out active:scale-[0.985] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070a]"
+        >
+          Start Free Trial
+          <ArrowRight className="h-5 w-5" aria-hidden="true" />
+        </a>
+
+        {/* Microcopy for the button above it. Items never break internally; only between items on very narrow phones. */}
+        <ul
+          data-hero="reassurance"
+          role="list"
+          className="mt-3 flex flex-wrap items-center justify-center gap-x-1.5 font-inter text-[13px] leading-[18px] font-medium text-gray-400"
+        >
+          {REASSURANCE.map((item, index) => (
+            <li key={item} className="flex items-center gap-x-1.5 whitespace-nowrap">
+              {index > 0 && <span aria-hidden="true">·</span>}
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <a
+          data-hero="demo"
+          href={DEMO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={trackMobileDemo}
+          className="mt-1 flex min-h-[44px] w-full items-center justify-center font-inter text-[15px] leading-5 font-medium text-white/85 active:text-white transition-colors duration-150 touch-manipulation focus-visible:outline-none focus-visible:rounded-lg focus-visible:ring-2 focus-visible:ring-primary-400/70"
+        >
+          Or&nbsp;
+          <span className="underline underline-offset-4 decoration-white/35">book a 15-minute demo</span>
+        </a>
+      </div>
+    </div>
+
+    {/* Mobile: the car. A flex sibling that fills whatever the copy leaves of the first viewport
+        (never less than roof-to-wheels), photograph bottom-anchored 32px above the section edge so
+        the wheels clear the cookie banner on first visit. Wall and floor dissolve into page black. */}
+    <div className="hero-stage relative w-full overflow-hidden pointer-events-none lg:hidden" aria-hidden="true">
+      <picture className="absolute inset-x-0 top-0 bottom-8 block">
+        <source
+          type="image/webp"
+          media={MOBILE_MEDIA}
+          srcSet={`${HERO_IMG_MOBILE.webp780} 780w, ${HERO_IMG_MOBILE.webp1170} 1170w`}
+          sizes="100vw"
+        />
+        <source
+          type="image/jpeg"
+          media={MOBILE_MEDIA}
+          srcSet={`${HERO_IMG_MOBILE.jpg780} 780w, ${HERO_IMG_MOBILE.jpg1170} 1170w`}
+          sizes="100vw"
+        />
+        <img
+          src={BLANK_GIF}
+          width={HERO_IMG_MOBILE.width}
+          height={HERO_IMG_MOBILE.height}
+          alt=""
+          className="block h-full w-full object-cover object-bottom"
+          {...FETCH_PRIORITY_HIGH}
+        />
+      </picture>
+      <div className="hero-stage-fade absolute inset-0" />
+    </div>
+
+    {/* Film grain */}
+    <div
+      className="absolute inset-0 opacity-[0.05] mix-blend-soft-light pointer-events-none"
+      style={{ backgroundImage: GRAIN, backgroundSize: '180px 180px' }}
+    />
+
     <style>{`
       .hero-kenburns { animation: heroZoom 28s ease-in-out infinite alternate; transform-origin: 60% 55%; }
       @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.07); } }
       @media (prefers-reduced-motion: reduce) { .hero-kenburns { animation: none; } }
+
+      /* ---- Mobile / tablet (< lg) ------------------------------------------------
+         The section is a column: copy, then the car. svh keeps the first paint
+         stable under Safari's collapsing toolbar (the vh line is the fallback).
+         The photograph is width-fitted and bottom-anchored, so the car's position
+         is a linear function of the viewport width: roof ~63vw and tyre contact
+         ~26vw above the image bottom, which itself sits 32px above the stage edge.
+         Every gradient below is written in those terms, so the feather lands in
+         the same place on every phone: the wall dissolves ~40px above the roof,
+         the floor reflection sinks into black, and the cut tail on the left edge
+         drops into shadow. The stage grows to fill the first viewport and never
+         shrinks below roof-to-wheels. */
+      @media (max-width: 1023.98px) {
+        .hero-shell { min-height: 100vh; min-height: 100svh; }
+        .hero-stage { flex: 1 0 auto; min-height: calc(72vw + 32px); }
+        .hero-stage-fade {
+          background:
+            linear-gradient(to bottom, #05070a 0, rgba(5,7,10,0.6) 20px, rgba(5,7,10,0) 48px),
+            linear-gradient(to top,
+              rgba(5,7,10,0) calc(66vw + 32px), rgba(5,7,10,0.5) calc(72vw + 32px),
+              rgba(5,7,10,0.85) calc(78vw + 32px), #05070a calc(88vw + 32px)),
+            linear-gradient(to top,
+              #05070a 0, #05070a 32px, rgba(5,7,10,0.85) 44px, rgba(5,7,10,0.35) 60px, rgba(5,7,10,0) 80px),
+            linear-gradient(to right, rgba(5,7,10,0.55) 0, rgba(5,7,10,0) 18%);
+        }
+      }
+      /* Landscape phones: a width-fitted car would be 2x too tall for the viewport,
+         so show the middle of the frame (roof to floor) in a shorter band instead. */
+      @media (max-width: 1023.98px) and (max-height: 500px) and (orientation: landscape) {
+        .hero-stage { flex: 0 0 auto; min-height: 44vw; }
+        .hero-stage picture { bottom: 0; }
+        .hero-stage img { object-position: 50% 82%; }
+        .hero-stage-fade {
+          background:
+            linear-gradient(to bottom, #05070a 0, rgba(5,7,10,0) 24%),
+            linear-gradient(to top, #05070a 0, rgba(5,7,10,0) 12%),
+            linear-gradient(to right, rgba(5,7,10,0.55) 0, rgba(5,7,10,0) 18%);
+        }
+      }
     `}</style>
   </section>
 );

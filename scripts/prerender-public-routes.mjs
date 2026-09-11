@@ -102,7 +102,9 @@ async function renderRoute(page, baseUrl, route) {
 
   // Best-effort wait for a route H1 (most pages have one).
   await page
-    .waitForSelector('main#main-content h1', { timeout: 8000 })
+    // ':visible' — the home hero renders a mobile <h1> and a desktop <h1>, one hidden by CSS;
+    // Playwright otherwise resolves the first match and waits 8s for a display:none element.
+    .waitForSelector('main#main-content h1:visible', { timeout: 8000 })
     .catch(() => {});
 
   // Wait until the lazy route has replaced the Suspense "Loading..." fallback

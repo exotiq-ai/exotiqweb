@@ -67,8 +67,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Preload the LCP hero image so it paints fast (CSS background images aren't auto-discovered) -->
-    <link rel="preload" as="image" href="/images/hero/koenigsegg-regera.jpg" fetchpriority="high" />
+    <!-- Preload the LCP hero image so it paints fast. Two media-scoped preloads: a phone
+         never downloads the 669 KB desktop JPG and desktop never downloads the mobile crop.
+         The media query must equal the one in HomeHeroSection's <picture>. -->
+    <link rel="preload" as="image" type="image/webp" media="(max-width: 1023.98px)"
+      imagesrcset="/images/hero/koenigsegg-regera-mobile-780.webp 780w, /images/hero/koenigsegg-regera-mobile-1170.webp 1170w"
+      imagesizes="100vw" fetchpriority="high" />
+    <link rel="preload" as="image" media="(min-width: 1024px)" href="/images/hero/koenigsegg-regera.jpg" fetchpriority="high" />
     <meta name="theme-color" content="#000000" />
     <meta name="msapplication-TileColor" content="#000000" />
     

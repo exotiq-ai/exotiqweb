@@ -158,13 +158,22 @@ export default function CookieConsentBanner() {
           data-prerender-strip
           role="dialog"
           aria-label="Cookie consent"
-          className="fixed bottom-0 inset-x-0 z-50 bg-dark-900/95 backdrop-blur-md border-t border-white/10 shadow-2xl px-4 py-3 sm:px-6 sm:py-4"
+          className="fixed bottom-0 inset-x-0 z-30 lg:z-50 bg-dark-900/95 backdrop-blur-md border-t border-white/10 shadow-2xl px-4 pt-2.5 sm:px-6 sm:py-4"
           style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
         >
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
             <div className="flex items-start gap-3 flex-1 min-w-0">
-              <Cookie className="w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" />
-              <p className="font-montserrat text-[13px] sm:text-sm leading-snug text-gray-200">
+              <Cookie className="hidden lg:block w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" />
+              {/* Below lg: one line with the policy link inline, so the banner stays ~90px
+                  and the hero's car keeps its wheels above it on the first visit. It also
+                  stacks under the mobile menu overlay (z-40) and the accessibility sheet (z-60). */}
+              <p className="lg:hidden font-inter text-[13px] leading-[18px] text-gray-200 truncate">
+                Essential cookies only unless you opt in.{' '}
+                <Link to="/cookies" className="underline underline-offset-2 text-white">
+                  Cookie policy
+                </Link>
+              </p>
+              <p className="hidden lg:block font-montserrat sm:text-sm leading-snug text-gray-200">
                 We use essential cookies to run the site, and optional ones for analytics
                 and marketing.{' '}
                 <Link
@@ -176,7 +185,29 @@ export default function CookieConsentBanner() {
               </p>
             </div>
 
-            <div className="flex items-center gap-2 flex-shrink-0">
+            {/* Below lg: equal-weight, neutral choices — nothing here competes with the hero's orange button. */}
+            <div className="flex lg:hidden items-center gap-2 flex-shrink-0">
+              <button
+                onClick={() => setShowModal(true)}
+                className="h-11 px-2 font-inter text-[13px] font-medium text-gray-300 active:text-white transition-colors"
+              >
+                Customize
+              </button>
+              <button
+                onClick={acceptEssentialOnly}
+                className="flex-1 sm:flex-none sm:px-4 h-11 rounded-lg border border-white/15 bg-white/10 active:bg-white/20 font-inter text-[13px] font-semibold text-white transition-colors whitespace-nowrap"
+              >
+                Essential only
+              </button>
+              <button
+                onClick={acceptAll}
+                className="flex-1 sm:flex-none sm:px-4 h-11 rounded-lg border border-white/15 bg-white/10 active:bg-white/20 font-inter text-[13px] font-semibold text-white transition-colors whitespace-nowrap"
+              >
+                Accept all
+              </button>
+            </div>
+
+            <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
               <button
                 onClick={() => setShowModal(true)}
                 className="font-poppins font-semibold text-[11px] uppercase tracking-wide px-2 py-2 min-h-[44px] text-gray-300 hover:text-white transition-colors"

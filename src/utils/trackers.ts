@@ -410,6 +410,62 @@ export function trackConversion(
   withPostHog((posthog) => posthog.capture(type, props));
 }
 
+/* ----------------------------------------------------------- Attribution */
+
+/** Ad-click identifiers worth carrying from the landing URL into the app's signup URL. */
+const ATTRIBUTION_KEYS = [
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_content',
+  'utm_term',
+  'fbclid',
+  'gclid',
+  'ttclid',
+] as const;
+const ATTRIBUTION_STORAGE_KEY = 'exotiq_attribution';
+
+/**
+ * Appends the visit's ad-click identifiers (utm_*, fbclid, gclid, ttclid) to
+ * an outbound first-party URL, so a trial started from a mobile CTA can be
+ * stitched back to the ad in PostHog/Meta. The identifiers are remembered for
+ * the session because client-side navigation drops them from the address
+ * bar. Never throws; returns the URL untouched when there is nothing to add.
+ */
+export function withAttribution(url: string): string {
+  if (typeof window === 'undefined') return url;
+  try {
+    const found: Record<string, string> = {};
+    try {
+      const stored = JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY) ?? '{}');
+      for (const key of ATTRIBUTION_KEYS) {
+        if (typeof stored?.[key] === 'string') found[key] = stored[key];
+      }
+    } catch {
+      /* storage blocked — the current URL is still checked below */
+    }
+    const params = new URLSearchParams(window.location.search);
+    for (const key of ATTRIBUTION_KEYS) {
+      const value = params.get(key);
+      if (value) found[key] = value;
+    }
+    const keys = Object.keys(found);
+    if (keys.length === 0) return url;
+    try {
+      sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(found));
+    } catch {
+      /* storage blocked — still forward what the current URL carries */
+    }
+    const target = new URL(url);
+    for (const key of keys) {
+      if (!target.searchParams.has(key)) target.searchParams.set(key, found[key]);
+    }
+    return target.toString();
+  } catch {
+    return url;
+  }
+}
+
 /* ---------------------------------------------------------------- Router */
 
 /**

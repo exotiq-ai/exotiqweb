@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { Settings, Eye, Type, Zap, X } from 'lucide-react';
 import { useAccessibility } from './AccessibilityProvider';
 
+/** Below lg the panel is a bottom sheet opened from the mobile menu, not from a floating gear. */
+const MOBILE_MEDIA = '(max-width: 1023.98px)';
+
+const FOCUSABLE =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 const AccessibilityControls: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const {
     highContrast,
     toggleHighContrast,
@@ -11,7 +16,71 @@ const AccessibilityControls: React.FC = () => {
     toggleReducedMotion,
     fontSize,
     setFontSize,
+    isPanelOpen: isOpen,
+    closePanel,
+    togglePanel,
   } = useAccessibility();
+  const gearRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const wasOpen = useRef(false);
+
+  // Move focus into the dialog when it opens and hand it back when it closes.
+  // Below lg the opener (a row in the mobile menu) has already unmounted, so
+  // focus returns to the menu button instead of dropping to <body>.
+  useEffect(() => {
+    if (isOpen) {
+      wasOpen.current = true;
+      closeButtonRef.current?.focus();
+      return;
+    }
+    if (!wasOpen.current) return;
+    wasOpen.current = false;
+    const gear = gearRef.current;
+    const target =
+      gear && gear.getClientRects().length > 0
+        ? gear
+        : document.querySelector<HTMLElement>('button[aria-label="Toggle menu"]');
+    target?.focus();
+  }, [isOpen]);
+
+  // The sheet covers the page on phones, so the page must not scroll behind it.
+  // Desktop keeps its current behaviour (the floating card never locked scroll).
+  useEffect(() => {
+    if (!isOpen || !window.matchMedia(MOBILE_MEDIA).matches) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isOpen]);
+
+  // Escape closes; Tab cycles inside the dialog (aria-modal promises as much).
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closePanel();
+        return;
+      }
+      if (event.key !== 'Tab' || !dialogRef.current) return;
+      const focusable = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
+        (element) => element.getClientRects().length > 0,
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey && (active === first || !dialogRef.current.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    },
+    [closePanel],
+  );
 
   return (
     <>
@@ -20,35 +89,47 @@ const AccessibilityControls: React.FC = () => {
         Skip to main content
       </a>
 
-      {/* Accessibility toggle button */}
+      {/* Accessibility toggle button. Desktop only: on phones it sat in the thumb zone
+          beside the hero's orange CTA, so the same panel is reached from the mobile
+          menu ("Accessibility settings") instead. */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 z-50 p-3 bg-primary-500 hover:bg-primary-600 text-white rounded-full shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+        ref={gearRef}
+        onClick={togglePanel}
+        className="hidden lg:block fixed bottom-4 right-4 z-50 p-3 bg-primary-500 hover:bg-primary-600 text-white rounded-full shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         aria-label="Accessibility controls"
         aria-expanded={isOpen}
+        aria-haspopup="dialog"
       >
         <Settings className="w-6 h-6" />
       </button>
 
-      {/* Accessibility panel - Now works on all devices */}
+      {/* Accessibility panel: a bottom sheet below lg, the floating card next to the gear at lg+.
+          z-[60] keeps the sheet above the cookie banner and the pill header (both z-50). */}
       {isOpen && (
-        <div className="fixed inset-0 z-40">
+        <div className="fixed inset-0 z-[60] lg:z-40" onKeyDown={handleKeyDown}>
           {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
-          />
-          
-          {/* Panel - Responsive positioning */}
-          <div className="fixed bottom-20 right-4 w-80 max-w-[calc(100vw-2rem)] bg-white dark:bg-dark-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-dark-700 overflow-hidden">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={closePanel} />
+
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="accessibility-panel-title"
+            className="fixed inset-x-0 bottom-0 w-full max-h-[90vh] overflow-y-auto rounded-t-2xl lg:inset-x-auto lg:bottom-20 lg:right-4 lg:w-80 lg:max-w-[calc(100vw-2rem)] lg:max-h-none lg:overflow-hidden lg:rounded-2xl bg-white dark:bg-dark-800 shadow-2xl border border-gray-200 dark:border-dark-700"
+            style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+          >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-dark-700">
-              <h3 className="font-dfaalt font-bold text-lg text-gray-900 dark:text-white">
+              <h3
+                id="accessibility-panel-title"
+                className="font-dfaalt font-bold text-lg text-gray-900 dark:text-white"
+              >
                 Accessibility
               </h3>
               <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors"
+                ref={closeButtonRef}
+                onClick={closePanel}
+                className="p-2 min-w-[44px] lg:min-w-0 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors"
                 aria-label="Close accessibility panel"
               >
                 <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />

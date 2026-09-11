@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, BarChart3, Users, Mail, TrendingUp, Building, BookOpen, Tag, Zap } from 'lucide-react';
+import { Menu, X, Home, BarChart3, Users, Mail, TrendingUp, Building, BookOpen, Tag, Zap, ArrowRight, Settings } from 'lucide-react';
 import ThemeAwareLogo from './ThemeAwareLogo';
-import { trackEngagement } from '../utils/trackers';
+import { trackEngagement, withAttribution } from '../utils/trackers';
+import { useAccessibility } from './AccessibilityProvider';
 
+const MOBILE_TRIAL_URL = 'https://app.exotiq.ai';
 const MOBILE_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
 
 // Routes that render on a light background — the floating pill flips to a
@@ -14,6 +16,7 @@ export default function MobileNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { openPanel: openAccessibilityPanel } = useAccessibility();
   // While the overlay is open the pill sits on the dark backdrop, so treat it as a dark surface.
   const isLightPage =
     !isMenuOpen &&
@@ -34,9 +37,19 @@ export default function MobileNavigation() {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const handleTrialClick = () => {
+    trackEngagement('header_cta_click', { location: 'mobile_menu_start_trial', action: 'start_trial' });
+    setIsMenuOpen(false);
+  };
+
   const handleDemoClick = () => {
     trackEngagement('header_cta_click', { location: 'mobile_menu_book_demo', action: 'schedule_demo' });
     setIsMenuOpen(false);
+  };
+
+  const handleAccessibilityClick = () => {
+    setIsMenuOpen(false);
+    openAccessibilityPanel();
   };
 
   // Close menu when route changes
@@ -174,21 +187,43 @@ export default function MobileNavigation() {
                 })}
               </nav>
 
-              {/* CTA Button */}
+              {/* CTA: the same hierarchy as the hero and the sticky bar — one orange trial button, a quiet demo link */}
+              <a
+                href={withAttribution(MOBILE_TRIAL_URL)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleTrialClick}
+                className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-accent-500 active:bg-accent-600 font-dfaalt font-bold text-[19px] leading-none text-white shadow-lg shadow-accent-500/25 transition-[transform,background-color] duration-150 ease-out active:scale-[0.985] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900"
+              >
+                Start Free Trial
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              </a>
               <a
                 href={MOBILE_DEMO_CALENDLY}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleDemoClick}
-                className="w-full font-poppins font-bold text-sm uppercase tracking-wide px-6 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full transition-all duration-200 active:scale-95 min-h-[52px] shadow-lg flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70"
+                className="mt-1 flex min-h-[44px] w-full items-center justify-center font-inter text-[15px] leading-5 font-medium text-white/85 active:text-white transition-colors focus-visible:outline-none focus-visible:rounded-lg focus-visible:ring-2 focus-visible:ring-primary-400/70"
               >
-                Book a Demo
+                Or&nbsp;
+                <span className="underline underline-offset-4 decoration-white/35">book a 15-minute demo</span>
               </a>
 
               {/* Additional Info */}
               <p className="mt-5 pt-5 border-t border-dark-700/60 font-inter text-xs text-gray-400 text-center">
                 Built by automotive enthusiasts, for automotive enthusiasts.
               </p>
+
+              {/* Accessibility settings (the floating gear is desktop-only). Kept below the CTA so it never pushes it down. */}
+              <button
+                type="button"
+                aria-haspopup="dialog"
+                onClick={handleAccessibilityClick}
+                className="mt-2 flex w-full min-h-[44px] items-center justify-center gap-2 rounded-xl font-inter text-sm text-gray-400 hover:text-white active:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70"
+              >
+                <Settings className="w-4 h-4" aria-hidden="true" />
+                <span>Accessibility settings</span>
+              </button>
             </div>
           </div>
         </div>

@@ -7,7 +7,6 @@ import {
   Award,
   DollarSign
 } from 'lucide-react';
-import SkeletonLoader from '../components/SkeletonLoader';
 import { MobileContainer, MobileSection } from '../components/MobileOptimizations';
 import SEOHead from '../components/SEOHead';
 import { organizationSchema, softwareApplicationSchema, faqSchema, websiteSchema } from '../data/structuredData';
@@ -22,47 +21,22 @@ import StickyCTABar from '../components/StickyCTABar';
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // The hero paints on the first frame (no simulated loading state — it only
+  // delayed LCP); the desktop copy's fade-in runs once we're mounted.
   useEffect(() => {
-    // Simulate initial loading
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      setIsVisible(true);
-    }, 300);
-
-    return () => clearTimeout(timer);
+    const frame = window.requestAnimationFrame(() => setIsVisible(true));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  if (isLoading) {
-    return (
-      <div>
-        {/* Hero Skeleton */}
-        <section className="min-h-screen flex items-center justify-center bg-dark-900">
-          <MobileContainer>
-            <div className="text-center">
-              <SkeletonLoader className="h-8 w-64 mx-auto mb-6" />
-              <SkeletonLoader className="h-16 w-full max-w-4xl mx-auto mb-4" />
-              <SkeletonLoader className="h-6 w-96 mx-auto mb-8" />
-              <div className="flex justify-center space-x-4">
-                <SkeletonLoader className="h-12 w-40" />
-                <SkeletonLoader className="h-12 w-32" />
-              </div>
-            </div>
-          </MobileContainer>
-        </section>
-      </div>
-    );
-  }
 
   return (
     <div>

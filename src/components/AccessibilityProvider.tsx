@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import logger from '../utils/logger';
 
 interface AccessibilityContextType {
@@ -10,6 +10,11 @@ interface AccessibilityContextType {
   setFontSize: (size: 'normal' | 'large' | 'xlarge') => void;
   focusVisible: boolean;
   setFocusVisible: (visible: boolean) => void;
+  /** The accessibility settings panel. Opened from the desktop gear button or the mobile menu. */
+  isPanelOpen: boolean;
+  openPanel: () => void;
+  closePanel: () => void;
+  togglePanel: () => void;
 }
 
 const AccessibilityContext = createContext<AccessibilityContextType | undefined>(undefined);
@@ -19,6 +24,12 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
   const [reducedMotion, setReducedMotion] = useState(false);
   const [fontSize, setFontSize] = useState<'normal' | 'large' | 'xlarge'>('normal');
   const [focusVisible, setFocusVisible] = useState(false);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  // Stable identities: AccessibilityControls keys effects on these, so they
+  // must not change when an unrelated preference re-renders the provider.
+  const openPanel = useCallback(() => setIsPanelOpen(true), []);
+  const closePanel = useCallback(() => setIsPanelOpen(false), []);
+  const togglePanel = useCallback(() => setIsPanelOpen((open) => !open), []);
 
   // Initialize accessibility preferences
   useEffect(() => {
@@ -134,11 +145,12 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
         case 'Tab':
           setFocusVisibleHandler(true);
           break;
-        case 'Escape':
+        case 'Escape': {
           // Close modals, dropdowns, etc.
           const escapeEvent = new CustomEvent('accessibility:escape');
           window.dispatchEvent(escapeEvent);
           break;
+        }
       }
     };
 
@@ -164,6 +176,10 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
     setFontSize: setFontSizeHandler,
     focusVisible,
     setFocusVisible: setFocusVisibleHandler,
+    isPanelOpen,
+    openPanel,
+    closePanel,
+    togglePanel,
   };
 
   return (
