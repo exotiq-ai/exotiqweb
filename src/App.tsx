@@ -11,6 +11,7 @@ import LoadingSpinner from './components/LoadingSpinner';
 import ThemeAwareLogo from './components/ThemeAwareLogo';
 import RouteScrollManager from './components/RouteScrollManager';
 import RouteAnalytics from './components/RouteAnalytics';
+import { trackEngagement } from './utils/trackers';
 import AdminAuthGuard from './components/AdminAuthGuard';
 import { PerformanceMonitor } from './services/analytics';
 
@@ -22,6 +23,7 @@ const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 const SurveyPage = React.lazy(() => import('./pages/SurveyPage'));
 const InvestorPage = React.lazy(() => import('./pages/InvestorPage'));
+const DemoBookedPage = React.lazy(() => import('./pages/DemoBookedPage'));
 const TestPage = React.lazy(() => import('./pages/TestPage'));
 const GTMTestPage = React.lazy(() => import('./pages/GTMTestPage'));
 const SimpleGTMTest = React.lazy(() => import('./pages/SimpleGTMTest'));
@@ -65,17 +67,7 @@ const PageLoadingFallback = () => (
 const NotFoundRoute = () => {
   useEffect(() => {
     document.title = 'Page Not Found | exotiq';
-    if (typeof window !== 'undefined') {
-      const w = window as typeof window & {
-        dataLayer?: Array<Record<string, unknown>>;
-      };
-      if (w.dataLayer) {
-        w.dataLayer.push({
-          event: '404_view',
-          path: window.location.pathname,
-        });
-      }
-    }
+    trackEngagement('page_not_found', { path: window.location.pathname });
   }, []);
 
   return (
@@ -159,6 +151,7 @@ export default function App() {
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/survey" element={<SurveyPage />} />
                     <Route path="/investors" element={<InvestorPage />} />
+                    <Route path="/thanks/demo" element={<DemoBookedPage />} />
                     <Route path="/fleetcopilot" element={<FleetCopilotDemoPage />} />
                     <Route
                       path="/compare/best-exotic-car-rental-software"

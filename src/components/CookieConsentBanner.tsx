@@ -56,27 +56,9 @@ export default function CookieConsentBanner() {
   };
 
   const applyPreferences = (prefs: CookiePreferences) => {
+    // Google Consent Mode, GA4, Meta Pixel and PostHog all react in one place.
     applyTrackingConsent(prefs);
-
-    if (prefs.analytics) enableGtagConsent('analytics_storage', true);
-    else enableGtagConsent('analytics_storage', false);
-
-    if (prefs.marketing) {
-      enableGtagConsent('ad_storage', true);
-      enableApolloTracking(true);
-    } else {
-      enableGtagConsent('ad_storage', false);
-      enableApolloTracking(false);
-    }
-  };
-
-  const enableGtagConsent = (key: 'analytics_storage' | 'ad_storage', granted: boolean) => {
-    if (typeof window === 'undefined' || !window.gtag) return;
-    try {
-      window.gtag('consent', 'update', { [key]: granted ? 'granted' : 'denied' });
-    } catch (error) {
-      logger.warn('Failed to update Google consent mode', { key, error });
-    }
+    enableApolloTracking(prefs.marketing);
   };
 
   const enableApolloTracking = (consent: boolean) => {

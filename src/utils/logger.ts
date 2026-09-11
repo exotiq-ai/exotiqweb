@@ -31,14 +31,10 @@ class Logger {
         break;
     }
 
-    // Send to analytics in production
-    if (this.isProduction && window.gtag) {
-      window.gtag('event', `log_${level}`, {
-        event_category: 'Logging',
-        event_label: message,
-        value: level === 'error' ? 1 : 0
-      });
-    }
+    // Deliberately NOT forwarded to Google Analytics. Every info/debug line
+    // used to become a `log_<level>` GA event, which floods the event quota
+    // and can leak context strings into reports. Errors reach GA via the
+    // 'exception' event in errorBoundary.tsx.
 
     // Send errors to error tracking service (if configured)
     if (level === 'error' && this.isProduction) {

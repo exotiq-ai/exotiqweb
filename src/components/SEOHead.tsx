@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 interface SEOHeadProps {
@@ -69,6 +70,19 @@ export default function SEOHead({
 }: SEOHeadProps) {
   const fullTitle = formatTitle(title);
   const currentUrl = toCanonicalUrl(canonical || url);
+
+  // Belt and braces for the document title. react-helmet-async 2.0.5 writes
+  // the head correctly on a hard load (which is what the prerender captures
+  // and what crawlers see) but, once a route's <Helmet> has unmounted, it
+  // never writes again for the rest of the session: every client-side
+  // navigation keeps the previous page's title and drops every data-rh tag.
+  // Setting the title directly keeps the tab, browser history, and the
+  // page_title on GA4 / PostHog pageviews correct until that is fixed.
+  useEffect(() => {
+    if (typeof document !== 'undefined' && document.title !== fullTitle) {
+      document.title = fullTitle;
+    }
+  }, [fullTitle]);
 
   return (
     <Helmet>

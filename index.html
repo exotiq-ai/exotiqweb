@@ -21,6 +21,26 @@
         security_storage: 'granted',
         wait_for_update: 500
       });
+      // Returning visitor: replay the stored decision NOW, synchronously,
+      // from the first-party consent cookie (see src/utils/consentStore.ts).
+      // Waiting for React to mount and re-apply it costs more than the
+      // 500ms wait_for_update on slow mobile, and a Google tag that times out
+      // keeps treating a consented visitor as denied for that pageview.
+      try {
+        var m = document.cookie.match(/(?:^|;\s*)exotiq_consent=([^;]*)/);
+        if (m) {
+          var p = JSON.parse(decodeURIComponent(m[1]));
+          var s = function (on) { return on === true ? 'granted' : 'denied'; };
+          gtag('consent', 'update', {
+            analytics_storage: s(p.analytics),
+            ad_storage: s(p.marketing),
+            ad_user_data: s(p.marketing),
+            ad_personalization: s(p.marketing),
+            functionality_storage: s(p.functional),
+            personalization_storage: s(p.functional)
+          });
+        }
+      } catch (e) {}
     </script>
 
     <!-- Google Tag Manager -->

@@ -2,6 +2,9 @@
 
 interface ImportMetaEnv {
   readonly VITE_GA_MEASUREMENT_ID?: string;
+  readonly VITE_META_PIXEL_ID?: string;
+  readonly VITE_PUBLIC_POSTHOG_KEY?: string;
+  readonly VITE_PUBLIC_POSTHOG_HOST?: string;
   readonly VITE_SUPABASE_URL?: string;
   readonly VITE_SUPABASE_ANON_KEY?: string;
   readonly VITE_BLOG_CONTENT_SOURCE?: 'hybrid' | 'supabase' | 'mdx';

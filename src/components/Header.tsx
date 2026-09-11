@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Zap } from 'lucide-react';
 import MobileNavigation from './MobileNavigation';
+import { trackEngagement } from '../utils/trackers';
 
 const HEADER_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
 
@@ -53,16 +54,7 @@ export default function Header() {
   }, []);
 
   const trackHeaderDemoClick = () => {
-    if (typeof window === 'undefined') return;
-    const w = window as typeof window & {
-      dataLayer?: Array<Record<string, unknown>>;
-    };
-    w.dataLayer = w.dataLayer || [];
-    w.dataLayer.push({
-      event: 'header_cta_click',
-      location: 'header_book_demo',
-      action: 'schedule_demo',
-    });
+    trackEngagement('header_cta_click', { location: 'header_book_demo', action: 'schedule_demo' });
   };
 
   const linkClasses = (active: boolean) =>

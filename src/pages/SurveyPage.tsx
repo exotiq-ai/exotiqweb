@@ -81,14 +81,6 @@ export default function SurveyPage() {
       if (success) {
         logger.info('Survey submitted successfully', { surveyType });
         
-        // Track analytics if available
-        if (window.gtag) {
-          window.gtag('event', 'survey_completed', {
-            survey_type: surveyType,
-            response_count: Object.keys(responses).length
-          });
-        }
-
         trackConversion('survey_complete', {
           survey_type: surveyType,
           response_count: Object.keys(responses).length,

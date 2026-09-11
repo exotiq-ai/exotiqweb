@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Home, BarChart3, Users, Mail, TrendingUp, Building, BookOpen, Tag, Zap } from 'lucide-react';
 import ThemeAwareLogo from './ThemeAwareLogo';
+import { trackEngagement } from '../utils/trackers';
 
 const MOBILE_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
 
@@ -34,17 +35,7 @@ export default function MobileNavigation() {
   const isActive = (path: string) => location.pathname === path;
 
   const handleDemoClick = () => {
-    if (typeof window !== 'undefined') {
-      const w = window as typeof window & {
-        dataLayer?: Array<Record<string, unknown>>;
-      };
-      w.dataLayer = w.dataLayer || [];
-      w.dataLayer.push({
-        event: 'header_cta_click',
-        location: 'mobile_menu_book_demo',
-        action: 'schedule_demo',
-      });
-    }
+    trackEngagement('header_cta_click', { location: 'mobile_menu_book_demo', action: 'schedule_demo' });
     setIsMenuOpen(false);
   };
 

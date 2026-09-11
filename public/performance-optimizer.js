@@ -233,13 +233,10 @@
         },
         
         optimizeThirdPartyScripts() {
-            // Optimize Google Analytics
-            if (window.gtag) {
-                window.gtag('config', 'GA_MEASUREMENT_ID', {
-                    send_page_view: false, // We'll send manually for better control
-                    transport_type: 'beacon'
-                });
-            }
+            // Intentionally empty. This used to push
+            // gtag('config', 'GA_MEASUREMENT_ID') with a literal placeholder
+            // ID into the dataLayer on every load. GA4 is configured in
+            // src/utils/trackers.ts; nothing here should touch it.
         },
         
         setupResourceHints() {

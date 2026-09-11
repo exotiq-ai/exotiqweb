@@ -1,15 +1,13 @@
 // Lightweight pricing CTA tracker.
 //
 // Why a dedicated helper:
-// - Centralizes the GTM `dataLayer.push` shape so every CTA reports
-//   the same event name and properties (e.g. `pricing_cta_click`).
+// - Centralizes the event shape so every CTA reports the same event name
+//   and properties (`pricing_cta_click`) to GA4 and PostHog.
 // - Stays SSR-safe (no-op when `window` is unavailable).
-// - Avoids tying the pricing page to a heavier analytics dependency
-//   while still feeding GA4/GTM-based dashboards.
 //
 // To rename the event downstream, change `EVENT_NAME` only.
 
-import { trackConversion } from './trackers';
+import { trackConversion, trackEngagement } from './trackers';
 
 const EVENT_NAME = 'pricing_cta_click';
 
@@ -52,23 +50,6 @@ export interface PricingCtaPayload {
 
 export function trackPricingCta(payload: PricingCtaPayload): void {
   if (typeof window === 'undefined') return;
-
-  const w = window as typeof window & {
-    dataLayer?: Array<Record<string, unknown>>;
-    gtag?: (...args: unknown[]) => void;
-  };
-
-  try {
-    w.dataLayer = w.dataLayer || [];
-    w.dataLayer.push({
-      event: EVENT_NAME,
-      ...payload,
-    });
-
-    if (typeof w.gtag === 'function') {
-      w.gtag('event', EVENT_NAME, payload as unknown as Record<string, unknown>);
-    }
-  } catch {
-    // Analytics failures must never break the user experience.
-  }
+  const { meta, ...rest } = payload;
+  trackEngagement(EVENT_NAME, { ...rest, ...(meta ?? {}) });
 }

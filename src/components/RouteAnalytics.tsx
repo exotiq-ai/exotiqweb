@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { trackConversion, trackRouteChange } from '../utils/trackers';
+import { loadGoogleAnalytics, trackConversion, trackRouteChange } from '../utils/trackers';
 
 /**
  * Sends a pageview to every consented tracker on client-side navigation, and
@@ -12,12 +12,19 @@ import { trackConversion, trackRouteChange } from '../utils/trackers';
  * in the capture phase also means a handler that calls preventDefault or
  * stopPropagation further down cannot hide the conversion.
  *
- * The initial pageview is skipped: the Meta Pixel sends one on init and
- * PostHog sends one on opt-in, so counting it here would double it.
+ * The initial pageview is skipped: GA4 sends one on config, the Meta Pixel
+ * sends one on init and PostHog sends one on opt-in, so counting it here
+ * would double it.
  */
 export default function RouteAnalytics() {
   const location = useLocation();
   const isFirstRender = useRef(true);
+
+  // GA4 runs under Consent Mode (defaults denied in index.html), so it is
+  // loaded unconditionally like the GTM container; consent gates its cookies.
+  useEffect(() => {
+    loadGoogleAnalytics();
+  }, []);
 
   useEffect(() => {
     if (isFirstRender.current) {
