@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, BarChart3, Users, Mail, TrendingUp, Building, BookOpen, Tag, Zap } from 'lucide-react';
+import { Menu, X, Home, BarChart3, Users, Mail, TrendingUp, Building, BookOpen, Tag, Zap, ArrowRight, Settings } from 'lucide-react';
 import ThemeAwareLogo from './ThemeAwareLogo';
-import { trackEngagement } from '../utils/trackers';
+import { trackEngagement, withAttribution } from '../utils/trackers';
+import { useAccessibility } from './AccessibilityProvider';
+import { MENU_EVENT } from './StickyCTABar';
 
+const MOBILE_TRIAL_URL = 'https://app.exotiq.ai';
 const MOBILE_DEMO_CALENDLY = 'https://calendly.com/hello-exotiq/15-minute-meeting';
 
 // Routes that render on a light background — the floating pill flips to a
@@ -14,6 +17,7 @@ export default function MobileNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { openPanel: openAccessibilityPanel } = useAccessibility();
   // While the overlay is open the pill sits on the dark backdrop, so treat it as a dark surface.
   const isLightPage =
     !isMenuOpen &&
@@ -34,9 +38,19 @@ export default function MobileNavigation() {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const handleTrialClick = () => {
+    trackEngagement('header_cta_click', { location: 'mobile_menu_start_trial', action: 'start_trial' });
+    setIsMenuOpen(false);
+  };
+
   const handleDemoClick = () => {
     trackEngagement('header_cta_click', { location: 'mobile_menu_book_demo', action: 'schedule_demo' });
     setIsMenuOpen(false);
+  };
+
+  const handleAccessibilityClick = () => {
+    setIsMenuOpen(false);
+    openAccessibilityPanel();
   };
 
   // Close menu when route changes
@@ -63,16 +77,22 @@ export default function MobileNavigation() {
     };
   }, []);
 
-  // Prevent body scroll when menu is open
+  // Prevent body scroll when menu is open, and tell the sticky CTA bar (it hides
+  // while the menu is open so there is never a second orange button on screen).
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.dataset.menuOpen = 'true';
     } else {
       document.body.style.overflow = 'unset';
+      delete document.body.dataset.menuOpen;
     }
-    
+    window.dispatchEvent(new CustomEvent(MENU_EVENT, { detail: { open: isMenuOpen } }));
+
     return () => {
       document.body.style.overflow = 'unset';
+      delete document.body.dataset.menuOpen;
+      window.dispatchEvent(new CustomEvent(MENU_EVENT, { detail: { open: false } }));
     };
   }, [isMenuOpen]);
 
@@ -105,26 +125,42 @@ export default function MobileNavigation() {
           </Link>
 
           {/* Mobile Controls */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`p-2 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70 ${
-              isLightPage ? 'bg-gray-900/[0.06] hover:bg-gray-900/10' : 'bg-white/5 hover:bg-white/10'
-            }`}
-            aria-label="Toggle menu"
-            aria-expanded={isMenuOpen}
-          >
-            {isMenuOpen ? (
-              <X className={`w-6 h-6 ${isLightPage ? 'text-gray-700' : 'text-gray-100'}`} />
-            ) : (
-              <Menu className={`w-6 h-6 ${isLightPage ? 'text-gray-700' : 'text-gray-100'}`} />
+          <div className="flex items-center gap-1">
+            {/* Accessibility settings live in the pill while the menu is open (the floating gear is
+                desktop-only). Always in view — the menu panel can scroll below the fold. */}
+            {isMenuOpen && (
+              <button
+                type="button"
+                onClick={handleAccessibilityClick}
+                aria-label="Accessibility settings"
+                aria-haspopup="dialog"
+                className="p-2 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center bg-white/5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70"
+              >
+                <Settings className="w-5 h-5 text-gray-100" aria-hidden="true" />
+              </button>
             )}
-          </button>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`p-2 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70 ${
+                isLightPage ? 'bg-gray-900/[0.06] hover:bg-gray-900/10' : 'bg-white/5 hover:bg-white/10'
+              }`}
+              aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+            >
+              {isMenuOpen ? (
+                <X className={`w-6 h-6 ${isLightPage ? 'text-gray-700' : 'text-gray-100'}`} />
+              ) : (
+                <Menu className={`w-6 h-6 ${isLightPage ? 'text-gray-700' : 'text-gray-100'}`} />
+              )}
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay. z-[45]: above the sticky CTA bar (z-40) and the cookie banner (z-30),
+          below the pill (z-50) and the accessibility sheet (z-60). */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
+        <div className="fixed inset-0 z-[45] lg:hidden">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
@@ -174,15 +210,26 @@ export default function MobileNavigation() {
                 })}
               </nav>
 
-              {/* CTA Button */}
+              {/* CTA: the same hierarchy as the hero and the sticky bar — one orange trial button, a quiet demo link */}
+              <a
+                href={withAttribution(MOBILE_TRIAL_URL)}
+                target="_blank"
+                rel="noopener"
+                onClick={handleTrialClick}
+                className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-accent-500 active:bg-accent-600 font-dfaalt font-bold text-[19px] leading-none text-white shadow-lg shadow-accent-500/25 transition-[transform,background-color] duration-150 ease-out active:scale-[0.985] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900"
+              >
+                Start Free Trial
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              </a>
               <a
                 href={MOBILE_DEMO_CALENDLY}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleDemoClick}
-                className="w-full font-poppins font-bold text-sm uppercase tracking-wide px-6 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full transition-all duration-200 active:scale-95 min-h-[52px] shadow-lg flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/70"
+                className="mt-1 flex min-h-[44px] w-full items-center justify-center font-inter text-[15px] leading-5 font-medium text-white/85 active:text-white transition-colors focus-visible:outline-none focus-visible:rounded-lg focus-visible:ring-2 focus-visible:ring-primary-400/70"
               >
-                Book a Demo
+                Or&nbsp;
+                <span className="underline underline-offset-4 decoration-white/35">book a 15-minute demo</span>
               </a>
 
               {/* Additional Info */}

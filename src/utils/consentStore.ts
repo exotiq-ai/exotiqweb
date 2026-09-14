@@ -20,6 +20,8 @@ export interface CookiePreferences {
 
 export const CONSENT_COOKIE = 'exotiq_consent';
 export const CONSENT_STORAGE_KEY = 'exotiq_cookie_preferences';
+/** Dispatched on window whenever a consent decision is written (detail: the record). */
+export const CONSENT_EVENT = 'exotiq:consent';
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 180; // 180 days
 
 /** Last-resort mirror: keeps consent stable for the rest of the page view. */
@@ -97,6 +99,13 @@ export function writeConsent(prefs: CookiePreferences): CookiePreferences {
   memoryConsent = record;
   writeCookie(record);
   writeStorage(record);
+  if (typeof window !== 'undefined') {
+    try {
+      window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: record }));
+    } catch {
+      /* listeners are a convenience; consent itself is already stored */
+    }
+  }
   return record;
 }
 
