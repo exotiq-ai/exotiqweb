@@ -29,7 +29,9 @@ export default {
     extend: {
       fontFamily: {
         // Official Brand Typography - DriveExotiq Brand Guidelines
-        'dfaalt': ['Dfaalt', 'Manrope', 'Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        // Self-hosted (see @font-face in src/index.css). The two "Fallback" faces are
+        // metric-matched local fonts that only show while Dfaalt is in flight.
+        'dfaalt': ['Dfaalt', 'Dfaalt Fallback', 'Dfaalt Fallback Android', 'Manrope', 'Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'], // Body copy (upgraded from Montserrat)
         'montserrat': ['Inter', 'Montserrat', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'], // Legacy alias -> Inter
         'mono': ['JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', 'monospace'],

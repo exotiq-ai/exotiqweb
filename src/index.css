@@ -2,6 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------ Brand display face
+   Dfaalt, self-hosted. Bold and SemiBold are the only cuts the brand owns and the
+   only weights `font-dfaalt` is ever used with. (Until 2026-09 no @font-face
+   existed, so every heading silently rendered in Manrope.) font-display: swap,
+   paired with the metric-matched fallbacks below so the swap does not reflow. */
+@font-face {
+  font-family: 'Dfaalt';
+  src: url('/fonts/FHDfaalt-Bold.woff2') format('woff2'), url('/fonts/FHDfaalt-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Dfaalt';
+  src: url('/fonts/FHDfaalt-SemiBold.woff2') format('woff2'), url('/fonts/FHDfaalt-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallbacks shown only while Dfaalt is in flight (or if it never arrives): a local
+   grotesque scaled to Dfaalt's average advance width and given its vertical metrics
+   (ascent 1.00em, descent 0.20em, no line gap), measured in-browser against the real
+   woff, so the fallback wraps on the same words and the swap moves nothing. */
+@font-face {
+  font-family: 'Dfaalt Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Helvetica Bold'), local('Helvetica-Bold');
+  font-weight: 600 700;
+  size-adjust: 96.6%;
+  ascent-override: 103.5%;
+  descent-override: 20.7%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Dfaalt Fallback Android';
+  src: local('Roboto Bold'), local('Roboto-Bold');
+  font-weight: 600 700;
+  size-adjust: 103.5%;
+  ascent-override: 96.6%;
+  descent-override: 19.3%;
+  line-gap-override: 0%;
+}
+
 /* Mobile-specific optimizations */
 @layer base {
   /* Improve touch targets on mobile */

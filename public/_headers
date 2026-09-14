@@ -19,3 +19,7 @@
 # make any future fix to them undeployable.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Self-hosted brand fonts: unversioned filenames, so a change means a rename.
+/fonts/*
+  Cache-Control: public, max-age=31536000
