@@ -45,7 +45,7 @@ export default function PrivacyPolicyPage() {
         <div className="legal-container">
           <div className="legal-meta">
             <span><strong>Effective Date:</strong> January 1, 2026</span>
-            <span><strong>Last Updated:</strong> June 6, 2026</span>
+            <span><strong>Last Updated:</strong> October 6, 2026</span>
           </div>
         </div>
       </div>
@@ -136,6 +136,36 @@ export default function PrivacyPolicyPage() {
                     <td>Phone numbers, message content</td>
                   </tr>
                   <tr>
+                    <td>Google (Analytics, Tag Manager, Fonts)</td>
+                    <td>Website analytics and measurement</td>
+                    <td>IP address, device and page-view data. Analytics cookies only with your consent; before you choose, limited cookieless measurement pings</td>
+                  </tr>
+                  <tr>
+                    <td>Meta Platforms (Meta Pixel)</td>
+                    <td>Ad measurement and optimization</td>
+                    <td>Page views, conversion events and device identifiers. Only with your marketing consent, never when Global Privacy Control is on</td>
+                  </tr>
+                  <tr>
+                    <td>PostHog</td>
+                    <td>Product and website analytics</td>
+                    <td>Page views, clicks and device data. Only with your analytics consent</td>
+                  </tr>
+                  <tr>
+                    <td>Apollo.io</td>
+                    <td>Sales intelligence and visitor identification</td>
+                    <td>Browsing activity and device identifiers. Only with your marketing consent, never when Global Privacy Control is on</td>
+                  </tr>
+                  <tr>
+                    <td>Calendly</td>
+                    <td>Demo scheduling</td>
+                    <td>Name, email and meeting details when you book</td>
+                  </tr>
+                  <tr>
+                    <td>Netlify</td>
+                    <td>Website hosting</td>
+                    <td>Standard server logs, including IP address</td>
+                  </tr>
+                  <tr>
                     <td>Telematics providers*</td>
                     <td>Vehicle tracking</td>
                     <td>Vehicle ID, account credentials</td>
@@ -148,7 +178,7 @@ export default function PrivacyPolicyPage() {
             <h3>Section 3.2. SMS Consent Data</h3>
             <p>We do not sell, rent, or share your SMS consent or phone number with any third parties for their marketing purposes. Your phone number and SMS consent data may only be shared with: (a) our SMS service providers (GoHighLevel and Twilio) solely for message delivery; and (b) as required by law or legal process.</p>
             <h3>Section 3.3. No Sale of Personal Data</h3>
-            <p>Exotiq does not sell, rent, or trade personal information to third parties for marketing purposes.</p>
+            <p>Exotiq does not sell personal information for money and does not rent or trade it. With your consent, our website tags (the Meta Pixel and the Apollo tracker) send browsing data to those providers for ad measurement and sales intelligence. Some state laws treat that as "sharing" for cross-context behavioral advertising. You can turn it off any time in Cookie Settings in the footer, and we honor Global Privacy Control automatically. See the <a href="/cookies">Cookie Policy</a>.</p>
 
             <h2>Article IV: Data Security</h2>
             <p>We implement commercially reasonable security measures including: encryption of data at rest and in transit (TLS 1.2+); row-level security (RLS) policies ensuring data isolation between customers; secure API authentication; regular security assessments; and encrypted document storage for Vault.</p>

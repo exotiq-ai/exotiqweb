@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import SEOHead from '../components/SEOHead';
 import { breadcrumbSchema } from '../data/structuredData';
 import { useTheme } from '../contexts/ThemeContext';
+import { openCookieSettings } from '../utils/consentStore';
 
 export default function CookiePolicyPage() {
   const { theme } = useTheme();
@@ -45,7 +46,7 @@ export default function CookiePolicyPage() {
         <div className="legal-container">
           <div className="legal-meta">
             <span><strong>Effective Date:</strong> January 1, 2026</span>
-            <span><strong>Last Updated:</strong> June 6, 2026</span>
+            <span><strong>Last Updated:</strong> October 6, 2026</span>
           </div>
         </div>
       </div>
@@ -54,116 +55,67 @@ export default function CookiePolicyPage() {
         <div className="legal-container">
           <article className="legal-document">
 
-            <p>This Cookie Policy explains how Exotiq Inc. uses cookies and similar technologies on exotiq.ai, app.exotiq.ai, and driveexotiq.com.</p>
+            <p>This Cookie Policy explains how Exotiq Inc., doing business as Drive Exotiq, uses cookies and similar technologies (local storage, session storage and pixels). This version lists, from testing, what <strong>exotiq.ai</strong> (our website) sets and loads. The Command Center (app.exotiq.ai) and Drive Exotiq (book.exotiq.rent) also use strictly necessary cookies for sign-in, security and checkout; a complete list for those sites is being added.</p>
 
             <h2>Article I: What Are Cookies</h2>
-            <p>Cookies are small text files placed on your device when you visit a website. They enable core functionality, remember preferences, and provide usage analytics.</p>
+            <p>Cookies are small text files placed on your device when you visit a website. Similar technologies, such as local storage and session storage in your browser, and tracking pixels, do the same jobs. We call all of them "cookies" in this policy.</p>
 
-            <h2>Article II: Cookies We Use</h2>
+            <h2>Article II: What exotiq.ai Sets and Loads</h2>
 
-            <h3>Section 2.1. Strictly Necessary</h3>
+            <h3>Section 2.1. Strictly Necessary (always on)</h3>
             <div className="legal-table-wrapper">
               <table className="legal-table">
                 <thead>
-                  <tr>
-                    <th>Cookie</th>
-                    <th>Purpose</th>
-                    <th>Duration</th>
-                  </tr>
+                  <tr><th>Name</th><th>Purpose</th><th>Duration</th></tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Session authentication</td>
-                    <td>Maintains login and session security</td>
-                    <td>Session / 30 days</td>
-                  </tr>
-                  <tr>
-                    <td>CSRF protection</td>
-                    <td>Prevents cross-site request forgery</td>
-                    <td>Session</td>
-                  </tr>
-                  <tr>
-                    <td>Load balancing</td>
-                    <td>Distributes traffic for performance</td>
-                    <td>Session</td>
-                  </tr>
-                  <tr>
-                    <td>Cookie consent</td>
-                    <td>Stores your cookie preferences</td>
-                    <td>12 months</td>
-                  </tr>
+                  <tr><td>exotiq_consent (cookie)</td><td>Remembers your cookie choices</td><td>180 days</td></tr>
+                  <tr><td>exotiq_cookie_preferences (local storage)</td><td>Backup copy of your cookie choices</td><td>Until you clear it</td></tr>
+                  <tr><td>exotiq_performance_metrics (local storage)</td><td>Page-load timings kept on your device to help the page load quickly. Not sent to us</td><td>Until you clear it</td></tr>
+                  <tr><td>exotiq_high_contrast, exotiq_reduced_motion, exotiq_font_size (local storage)</td><td>Your accessibility settings, saved only if you change them</td><td>Until you clear it</td></tr>
                 </tbody>
               </table>
             </div>
 
-            <h3>Section 2.2. Functional (require consent)</h3>
+            <h3>Section 2.2. Analytics (only with your consent)</h3>
             <div className="legal-table-wrapper">
               <table className="legal-table">
                 <thead>
-                  <tr>
-                    <th>Cookie</th>
-                    <th>Purpose</th>
-                    <th>Duration</th>
-                  </tr>
+                  <tr><th>Provider and name</th><th>Purpose</th><th>Duration</th></tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>User preferences</td>
-                    <td>UI preferences, dashboard layout</td>
-                    <td>12 months</td>
-                  </tr>
-                  <tr>
-                    <td>Language/locale</td>
-                    <td>Regional formatting preferences</td>
-                    <td>12 months</td>
-                  </tr>
-                  <tr>
-                    <td>Recent activity</td>
-                    <td>Quick access to recent items</td>
-                    <td>Session</td>
-                  </tr>
+                  <tr><td>Google Analytics 4: _ga, _ga_E5GG9Y4151</td><td>Counts visits and shows which pages are used</td><td>Up to 13 months</td></tr>
+                  <tr><td>PostHog: ph_phc_…_posthog (cookie, local and session storage)</td><td>Product and website analytics: pages viewed, clicks, conversions</td><td>12 months</td></tr>
                 </tbody>
               </table>
             </div>
 
-            <h3>Section 2.3. Analytics (require consent)</h3>
+            <h3>Section 2.3. Marketing (only with your consent, and never when Global Privacy Control is on)</h3>
             <div className="legal-table-wrapper">
               <table className="legal-table">
                 <thead>
-                  <tr>
-                    <th>Cookie</th>
-                    <th>Purpose</th>
-                    <th>Duration</th>
-                  </tr>
+                  <tr><th>Provider and name</th><th>Purpose</th><th>Duration</th></tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Page views</td>
-                    <td>Tracks pages visited</td>
-                    <td>24 months</td>
-                  </tr>
-                  <tr>
-                    <td>Feature usage</td>
-                    <td>Records feature frequency</td>
-                    <td>24 months</td>
-                  </tr>
-                  <tr>
-                    <td>Performance</td>
-                    <td>Measures load times and errors</td>
-                    <td>24 months</td>
-                  </tr>
+                  <tr><td>Meta Pixel: _fbp, _fbc</td><td>Measures and improves our Meta (Facebook and Instagram) ads. Meta receives page views and conversion events such as a booked demo or a submitted form</td><td>90 days</td></tr>
+                  <tr><td>Apollo website tracker: apolloAnonId and related storage; __cf_bm (set by apollo.io)</td><td>Sales intelligence: helps us understand which companies visit our site</td><td>Up to 12 months; __cf_bm is short-lived</td></tr>
+                  <tr><td>exotiq_attribution (session storage)</td><td>Remembers campaign identifiers (utm_*, fbclid, gclid, ttclid) in the web address so we can credit the right ad when you start a trial</td><td>Until you close the tab</td></tr>
                 </tbody>
               </table>
             </div>
 
-            <h3>Section 2.4. Cookies We Do Not Use</h3>
-            <p>Exotiq does not use advertising, cross-site tracking, social media tracking, retargeting, or third-party advertising network cookies. We do not serve ads or share cookie data with advertisers.</p>
+            <h3>Section 2.4. Functional</h3>
+            <p>exotiq.ai does not currently set functional cookies beyond those in Section 2.1.</p>
 
-            <h2>Article III: Your Choices</h2>
-            <p>The cookie consent banner allows you to accept all, reject non-essential, or customize by category. Change preferences anytime via "Cookie Settings" in the footer. Most browsers also allow cookie management through their settings.</p>
+            <h3>Section 2.5. Third-Party Requests Before You Choose</h3>
+            <p>Before you make a choice, your browser contacts Google Tag Manager and Google Analytics. In that state Google Analytics runs in a limited mode that sets no cookies and sends basic measurement pings, and Google sees your IP address as it would on any web request. Your browser also loads typefaces from Google Fonts. We plan to host our fonts ourselves and, for visitors in the EEA and UK, to load no Google tags until you consent.</p>
+
+            <h2>Article III: Advertising, Sharing and Your Choices</h2>
+            <p>With your consent, the Meta Pixel and the Apollo tracker send browsing information to Meta and Apollo. Under some state privacy laws that is "sharing" for cross-context behavioral advertising or "targeted advertising". We do not do it without your consent.</p>
+            <p>You can change your choices at any time with <button type="button" className="underline" onClick={openCookieSettings}>Cookie Settings</button> (also in the footer of every page). If your browser sends a Global Privacy Control signal, we treat it as a request to keep advertising and sharing off, and we apply it automatically. Your browser's own settings also let you delete or block cookies. Withdrawing consent stops new collection; cookies already set stay until they expire or you delete them.</p>
 
             <h2>Article IV: State and International Disclosures</h2>
-            <p>California residents: CCPA/CPRA rights apply. We do not sell cookie data. Colorado, Virginia, Connecticut residents: we do not use cookies for targeted advertising. EEA/UK visitors: non-essential cookies placed only with prior consent per the ePrivacy Directive and GDPR.</p>
+            <p>California residents: CCPA/CPRA rights apply. We do not sell personal information for money. The consent-based sharing described in Article III is the only sharing for advertising we do, and you can turn it off as described. Colorado, Virginia and Connecticut residents: the same choice applies to targeted advertising. EEA/UK visitors: we ask for your consent before non-essential cookies and storage, subject to Section 2.5.</p>
 
             <h2>Contact</h2>
             <p><strong>Email:</strong> <a href="mailto:privacy@exotiq.ai">privacy@exotiq.ai</a></p>

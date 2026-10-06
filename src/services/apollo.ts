@@ -1,5 +1,6 @@
 // Apollo tracking service for lead generation and sales intelligence
 import logger from '../utils/logger';
+import { hasGlobalPrivacyControl } from '../utils/consentStore';
 
 export interface ApolloConfig {
   appId: string;
@@ -35,7 +36,7 @@ class ApolloService {
       const saved = localStorage.getItem('exotiq_cookie_preferences');
       if (saved) {
         const preferences = JSON.parse(saved);
-        this.config.cookieConsent = preferences.marketing === true;
+        this.config.cookieConsent = preferences.marketing === true && !hasGlobalPrivacyControl();
         this.isEnabled = this.config.enabled && this.config.cookieConsent;
       }
     } catch (error) {
@@ -188,7 +189,7 @@ class ApolloService {
    * Update cookie consent status
    */
   updateCookieConsent(consent: boolean): void {
-    this.config.cookieConsent = consent;
+    this.config.cookieConsent = consent && !hasGlobalPrivacyControl();
     this.isEnabled = this.config.enabled && this.config.cookieConsent;
     
     if (this.isEnabled && !this.isInitialized) {

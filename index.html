@@ -31,6 +31,8 @@
         if (m) {
           var p = JSON.parse(decodeURIComponent(m[1]));
           var s = function (on) { return on === true ? 'granted' : 'denied'; };
+          // Global Privacy Control always switches advertising consent off.
+          if (navigator.globalPrivacyControl === true) p.marketing = false;
           gtag('consent', 'update', {
             analytics_storage: s(p.analytics),
             ad_storage: s(p.marketing),

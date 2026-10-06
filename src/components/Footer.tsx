@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, Linkedin, Shield } from 'lucide-react';
 import ThemeAwareLogo from './ThemeAwareLogo';
+import { openCookieSettings } from '../utils/consentStore';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -141,6 +142,13 @@ export default function Footer() {
                 <Link to="/sms-terms" className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat">
                   SMS Terms
                 </Link>
+                <button
+                  type="button"
+                  onClick={openCookieSettings}
+                  className="text-gray-400 hover:text-primary-500 transition-colors font-montserrat"
+                >
+                  Cookie Settings
+                </button>
               </nav>
             </div>
             <p className="font-montserrat text-xs text-gray-400">

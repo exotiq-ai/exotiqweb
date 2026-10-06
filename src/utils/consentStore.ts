@@ -22,7 +22,32 @@ export const CONSENT_COOKIE = 'exotiq_consent';
 export const CONSENT_STORAGE_KEY = 'exotiq_cookie_preferences';
 /** Dispatched on window whenever a consent decision is written (detail: the record). */
 export const CONSENT_EVENT = 'exotiq:consent';
+/** Window event that asks the consent UI to reopen the preferences dialog (footer "Cookie Settings"). */
+export const OPEN_COOKIE_SETTINGS_EVENT = 'exotiq:open-cookie-settings';
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 180; // 180 days
+
+/** True when the browser sends the Global Privacy Control opt-out preference signal. */
+export function hasGlobalPrivacyControl(): boolean {
+  try {
+    return typeof navigator !== 'undefined' && (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * The consent that is actually applied. Global Privacy Control is an opt-out of
+ * advertising and "sharing", so it always switches the marketing category off,
+ * whatever was stored or clicked.
+ */
+export function effectiveConsent<T extends { marketing: boolean }>(prefs: T): T {
+  return hasGlobalPrivacyControl() && prefs.marketing ? { ...prefs, marketing: false } : prefs;
+}
+
+/** Reopen the cookie preferences dialog from anywhere (footer link, privacy page). */
+export function openCookieSettings(): void {
+  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent(OPEN_COOKIE_SETTINGS_EVENT));
+}
 
 /** Last-resort mirror: keeps consent stable for the rest of the page view. */
 let memoryConsent: CookiePreferences | null = null;
