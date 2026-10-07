@@ -3,6 +3,16 @@
 Date: 2026-10-06 · Owner: Gregory Ringler · Status: PLAN (Phase A is being built on branch `fix/legal-accuracy-2026-10`; nothing here is deployed until Gregory drops a new `dist`).
 Not legal advice. Items marked **COUNSEL** need a lawyer's answer before they ship.
 
+## Decisions recorded (2026-10-07)
+
+| Question | Decision | Why |
+|---|---|---|
+| Apollo on the website | **Removed.** Gregory uses Apollo's Chrome extension for lead gen, which puts nothing on our site. The website tracker was a separate script, enabled by `VITE_ENABLE_APOLLO=true` in the local `.env`. It is now `false`, and its disclosures are gone from the Cookie and Privacy pages | One less third party and one less disclosure. If you ever want visitor identification, say so and it comes back with its disclosure |
+| Meta Pixel in the US | **Stays opt-in** until counsel clears the California wiretap (CIPA) question. First-party analytics (PostHog) may move to default-on in the US in Phase B | The pixel is the only tracker with real litigation exposure. PostHog plus Meta Conversions API on lead forms recovers most of the ad signal |
+| Counsel | Default to the existing MKT-14 engagement unless you say otherwise | Not answered; non-blocking |
+| driveexotiq.com | Live, separate property on Cloudflare. See section 5 | — |
+| Copyright Office filing | Later; kept on your to-do | — |
+
 ## 1. What the site really does today (measured, not assumed)
 
 Measured with Playwright against a fresh browser on 2026-10-06, production-equivalent build.
@@ -60,11 +70,24 @@ You lose some signal staying opt-in in the interim. Phase B's cookieless measure
 
 ## 5. Where Cloudflare fits
 
-Today DNS is on NS1 and the site is served by Netlify. Cloudflare is not in the path.
+**exotiq.ai:** DNS is on NS1 and the site is served by Netlify. Cloudflare is not in the path.
+**driveexotiq.com:** already on Cloudflare (nameservers and proxy) in front of Netlify, and already running Cloudflare Web Analytics, which its Cookie Policy describes as setting no analytics cookies. So Cloudflare is in use today, just not on this site.
 
 - **Cloudflare Web Analytics** can be added as a single script without moving DNS. By Cloudflare's published description it sets no cookies and keeps no per-visitor identifiers, so it works as a consent-free sanity baseline for traffic counts. I will re-check Cloudflare's docs before wiring it.
 - **Zaraz, geo detection and a WAF** only work if Cloudflare proxies the domain. That means moving nameservers off NS1/Netlify DNS. That is a risky change for a hand-dropped site and buys little today, since PostHog and GA4 already cover analytics.
-- **Recommendation:** add the Web Analytics beacon in Phase B if you want a second opinion on traffic. Do not move DNS. For geo, use the cheaper options in section 6.
+- **Recommendation:** add the Web Analytics beacon to exotiq.ai in Phase B, as driveexotiq.com already does. Do not move exotiq.ai's DNS. For geo, use the cheaper options in section 6, or reuse Cloudflare's country header on driveexotiq.com, which is already proxied.
+
+## 5a. What driveexotiq.com already does well (port these to exotiq.ai in Phase B)
+
+Measured 2026-10-07: first visit sets no cookies and no storage; the only third party is Cloudflare Insights; Global Privacy Control makes no difference before consent because nothing loads. Its Cookie Policy states, and its page structure matches:
+- Opt-in with accept, reject, and customize, plus a working footer "Cookie Settings".
+- PostHog identifier **kept in memory only**, with no cookie and no persistent storage. exotiq.ai sets a 12-month PostHog cookie.
+- Google Analytics cookies configured to **90 days**. exotiq.ai uses Google's default, about 13 months.
+- Meta Pixel on **separate** marketing consent, independent of analytics consent.
+- A server-side Google `generate_lead` event after a successful form save, using the consented client ID. This is the same pattern as the Conversions API step.
+- Campaign labels kept in the tab for up to 30 minutes, only with analytics consent.
+
+Phase B tasks that follow: switch exotiq.ai's PostHog to in-memory persistence, set the GA cookie lifetime to 90 days, and match the consent record format.
 
 ## 6. Phases
 

@@ -72,9 +72,17 @@ Phase A edits on exotiq.ai that you do not need to touch: footer Cookie Settings
 
 3.10 **DMCA.** No Copyright Office registration exists (Gregory's to-do). Page unpublished until it does. Agent name still a placeholder.
 
-3.11 **Domains.** Pages reference `driveexotiq.com`; the renter app is `book.exotiq.rent`. The signed ToS retires the 2026-09-08 driveexotiq.com website terms. Open: is driveexotiq.com still live, and should it redirect? Each policy's "applies to" list must name only live domains.
+3.11 **Domains. RESOLVED: driveexotiq.com is live and is a separate property.** It is a community and waitlist site ("Good Cars. Better Company."), on Cloudflare, with its own legal pages: `/terms` (Website Terms, updated 2026-09-08), `/privacy`, `/cookies`, `/dmca`, `/sms`. It says the marketplace is "upcoming" at exotiq.rent, takes no bookings or payments, and runs a stricter, better-documented cookie model than exotiq.ai (see the tracking plan §5a). Four properties therefore exist: exotiq.ai, driveexotiq.com, book.exotiq.rent, app.exotiq.ai. Contradictions against it:
+- **Two Cookie, Privacy, SMS and DMCA documents under the same names.** The signed ToS §1.4 incorporates "the Drive Exotiq Cookie Policy" etc. without a URL. driveexotiq.com publishes documents with those names, and exotiq.ai publishes company-wide ones. Pick one canonical set. Recommendation: exotiq.ai hosts the canonical documents, each with a per-property inventory section, and driveexotiq.com's pages redirect to them. Needs your decision and the driveexotiq.com owner (the Astro build in `DriveExotiq-Astra`, not verified).
+- **SMS URL:** driveexotiq.com uses `/sms`, exotiq.ai uses `/sms-terms`. The plan adds `/sms` as an alias on exotiq.ai.
+- **Website Terms arbitration:** driveexotiq.com's Terms also use AAA arbitration in Delaware with a class waiver for consumers, conflicting with ToS §22 the same way exotiq.ai's do. Whether the signed ToS supersedes them must be stated on both sites.
+- **DMCA:** driveexotiq.com's page also shows the `[DMCA Designated Agent]` placeholder.
+- **Consent record:** `driveexotiq_cookie_consent` (local storage, no expiry) vs `exotiq_consent` cookie (180 days). Not a legal conflict; note it when the policies describe retention of choices.
+- **Exotiq.rent vs book.exotiq.rent:** driveexotiq.com names exotiq.rent as the marketplace; the renter app is book.exotiq.rent. Confirm the canonical renter host.
 
 3.12 **Operator template.** Operator Terms §8.1 "No Legal Document Templates" conflicts with any plan for Exotiq to supply a rental-agreement template. Open item with Gregory; do not change §8.1 yet.
+
+3.13 **Apollo.** Removed from exotiq.ai's website (decision 2026-10-07). Do not list Apollo as a website sub-processor. If the app uses Apollo for anything else, that belongs in the master sub-processor list under its own purpose.
 
 ## 4. What I need you to do on the renter-app side
 

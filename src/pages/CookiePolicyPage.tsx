@@ -98,7 +98,6 @@ export default function CookiePolicyPage() {
                 </thead>
                 <tbody>
                   <tr><td>Meta Pixel: _fbp, _fbc</td><td>Measures and improves our Meta (Facebook and Instagram) ads. Meta receives page views and conversion events such as a booked demo or a submitted form</td><td>90 days</td></tr>
-                  <tr><td>Apollo website tracker: apolloAnonId and related storage; __cf_bm (set by apollo.io)</td><td>Sales intelligence: helps us understand which companies visit our site</td><td>Up to 12 months; __cf_bm is short-lived</td></tr>
                   <tr><td>exotiq_attribution (session storage)</td><td>Remembers campaign identifiers (utm_*, fbclid, gclid, ttclid) in the web address so we can credit the right ad when you start a trial</td><td>Until you close the tab</td></tr>
                 </tbody>
               </table>
@@ -111,7 +110,7 @@ export default function CookiePolicyPage() {
             <p>Before you make a choice, your browser contacts Google Tag Manager and Google Analytics. In that state Google Analytics runs in a limited mode that sets no cookies and sends basic measurement pings, and Google sees your IP address as it would on any web request. Your browser also loads typefaces from Google Fonts. We plan to host our fonts ourselves and, for visitors in the EEA and UK, to load no Google tags until you consent.</p>
 
             <h2>Article III: Advertising, Sharing and Your Choices</h2>
-            <p>With your consent, the Meta Pixel and the Apollo tracker send browsing information to Meta and Apollo. Under some state privacy laws that is "sharing" for cross-context behavioral advertising or "targeted advertising". We do not do it without your consent.</p>
+            <p>With your consent, the Meta Pixel sends browsing information to Meta. Under some state privacy laws that is "sharing" for cross-context behavioral advertising or "targeted advertising". We do not do it without your consent.</p>
             <p>You can change your choices at any time with <button type="button" className="underline" onClick={openCookieSettings}>Cookie Settings</button> (also in the footer of every page). If your browser sends a Global Privacy Control signal, we treat it as a request to keep advertising and sharing off, and we apply it automatically. Your browser's own settings also let you delete or block cookies. Withdrawing consent stops new collection; cookies already set stay until they expire or you delete them.</p>
 
             <h2>Article IV: State and International Disclosures</h2>

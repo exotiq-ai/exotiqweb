@@ -15,8 +15,8 @@ These need your hands, an account login, or a decision. Claude cannot do them.
    - Writing the contract the operator signs with the renter pulls Exotiq closer to being "the rental company", which is exactly what ToS §3.1/§3.2 and the Addendum §1.1 say Exotiq is not. It could weaken the platform-not-rental-company position.
    - A template that indemnifies Exotiq against the operator's own renters is a contract between operator and renter; the renter is not a party to your Terms, so the protection has to come from your operator-side indemnity (§15.1) and the Addendum, not from the template.
    Safer middle path to put to counsel: keep operators supplying their own rental agreements, and require them by contract to include a short list of mandatory clauses (Drive Exotiq ToS acknowledgment, damage and loss allocation, insurance, no claims against Exotiq). Exotiq publishes the clause list, not a full contract. I will draft that clause list for counsel when you say go.
-5. **Meta Pixel and Apollo.** Is Apollo visitor identification in use? Meta Pixel in the US: opt-out or opt-in? (Details in `TRACKING_AND_CONSENT_PLAN_2026-10.md` §7.)
-6. **Counsel.** Which engagement covers privacy and cookies: MKT-14, or a separate review? The plan has two **COUNSEL** questions (CIPA exposure for the Meta Pixel, and cookieless analytics in the EU/UK).
+5. **Meta Pixel and Apollo. DECIDED 2026-10-07:** Apollo's website tracker removed (you use the extension). Meta Pixel stays opt-in until counsel answers the wiretap question. Nothing needed from you.
+6. **Counsel.** Defaulting to MKT-14 unless you say otherwise. The plan has two **COUNSEL** questions (CIPA exposure for the Meta Pixel, and cookieless analytics in the EU/UK).
 
 ## A2P text-message registration (your hands, in the SMS provider's console)
 
