@@ -28,7 +28,8 @@ const TestPage = React.lazy(() => import('./pages/TestPage'));
 const GTMTestPage = React.lazy(() => import('./pages/GTMTestPage'));
 const SimpleGTMTest = React.lazy(() => import('./pages/SimpleGTMTest'));
 const CookiePolicyPage = React.lazy(() => import('./pages/CookiePolicyPage'));
-const TermsAndConditionsPage = React.lazy(() => import('./pages/TermsAndConditionsPage'));
+const LegalHubPage = React.lazy(() => import('./pages/LegalHubPage'));
+const WebsiteTermsPage = React.lazy(() => import('./pages/WebsiteTermsPage'));
 const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage'));
 const FleetCopilotDemoPage = React.lazy(() => import('./pages/FleetCopilotDemoPage'));
 const DMCAPage = React.lazy(() => import('./pages/DMCAPage'));
@@ -167,7 +168,8 @@ export default function App() {
                       path="/solutions/exotic-car-rental-software"
                       element={<ExoticCarRentalSoftwarePage />}
                     />
-                    <Route path="/terms" element={<TermsAndConditionsPage />} />
+                    <Route path="/terms" element={<LegalHubPage />} />
+                    <Route path="/website-terms" element={<WebsiteTermsPage />} />
                     <Route path="/privacy" element={<PrivacyPolicyPage />} />
                     <Route path="/cookies" element={<CookiePolicyPage />} />
                     <Route path="/dmca" element={<DMCAPage />} />
