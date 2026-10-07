@@ -10,11 +10,11 @@ The signed ToS §1.4 incorporates documents by exact title, so page titles must 
 
 | Public title (exact) | doc_id | version | Canonical URL | Notes |
 |---|---|---|---|---|
-| Terms (hub, not a contract) | none | none | exotiq.ai/terms | Anchors `#renter-terms`, `#operator-terms`. Stripe's single Terms URL |
-| Drive Exotiq Terms of Service | `terms` | 2.0.0 | book.exotiq.rent/terms | Signed. Never mirrored |
-| Exotiq Command Center Platform Agreement | `operator-terms` | next = **2.0.0** | exotiq.ai/operator-terms | See §3.4: v1 already exists |
+| Terms and Agreements (hub, not a contract) | none | none | exotiq.ai/terms | **BUILT** on branch `feat/legal-hub`. Anchors `#renter-terms`, `#operator-terms` land from a cold load. Stripe's single Terms URL. URLs and versions live in `src/data/legalDocuments.ts` |
+| Drive Exotiq Terms of Service | `terms` | 2.0.0 | exotiq.rent/terms (redirects to book.exotiq.rent/terms) | Signed. Never mirrored. The hub links the public exotiq.rent address; both hosts appear in the signed ToS |
+| Exotiq Command Center Platform Agreement | `operator-terms` | live = Sept 16, 2026 text; next = **2.0.0** | app.exotiq.ai/terms (live today) | The hub links it; no copy on exotiq.ai. See §3.4 |
 | Drive Exotiq Marketplace Addendum | `operator-marketplace-addendum` | 1.0.0 (counsel-gated) | exotiq.ai/marketplace-addendum | Operators accept on first listing |
-| Website Terms of Use | `website-terms` | 2.0.0 | exotiq.ai/website-terms | Moved off `/terms` |
+| Website Terms of Use | `website-terms` | 2.0.0 | exotiq.ai/website-terms | **MOVED** off `/terms` on `feat/legal-hub`; its circular "separate Terms" link now points to the hub cards. Arbitration clause (Article VI) untouched, still needs counsel (§3.5) |
 | Exotiq Privacy Policy | `privacy` | 2.0.0 | exotiq.ai/privacy | Master. Stripe's Privacy URL |
 | Drive Exotiq Privacy Notice | `renter-privacy` | follow renter app | book.exotiq.rent/privacy | Must agree with the master |
 | Drive Exotiq Cookie Policy | `cookies` | 2.0.0 | exotiq.ai/cookies | Company-wide, all sites |
@@ -49,7 +49,7 @@ Phase A edits on exotiq.ai that you do not need to touch: footer Cookie Settings
 
 3.3 **Fee language.** Operator Terms §2.2 describes a 10% renter-side fee plus 10% host-side fee, 20% total. The Lovable handback sets one Service fee (exact gross-up) plus operator-side taxes, and the ToS requires "Service fee", never "booking fee". §2.2 is stale and also uses "renter-side fee … added to booking total", which is junk-fee language. Rewrite to match ToS §8.1 and the handback.
 
-3.4 **The operator agreement already exists.** The "new" Command Center Platform Agreement in the hub handoff is a revision of the existing Terms and Conditions (19 Articles, last updated 2026-06-14, found at `Downloads/Exotiq_App_Legal_Suite_2026-06-14/terms_2026-06-14.html` and the earlier Word version in `Downloads/files (3)/`). Existing operators accepted it in the app. So: treat it as `operator-terms/1.0.0`; the revision is `2.0.0` and requires re-assent. **Open for the backend/Lovable:** how is operator assent recorded today, and who builds the re-assent prompt in app.exotiq.ai.
+3.4 **The operator agreement already exists and is live.** The "new" Command Center Platform Agreement in the hub handoff is a revision of the existing Terms and Conditions, **served today at app.exotiq.ai/terms, Effective and Last Updated September 16, 2026** (about 4,100 words, 19 Articles). It supersedes the June 14 copy in `Downloads/Exotiq_App_Legal_Suite_2026-06-14/`. The September revision changed pricing, trial, and vehicle-count terms (Article V) but left §2.2 (fees), §4.5 (renter data) and §8.1 (no templates) as described in 3.2, 3.3 and 3.12 below. Existing operators accepted it in the app. So: treat it as `operator-terms/1.0.0`; the revision is `2.0.0` and requires re-assent. **Open for the backend/Lovable:** how is operator assent recorded today, and who builds the re-assent prompt in app.exotiq.ai.
 
 3.5 **Three arbitration regimes.** Renter ToS §22: consumer arbitration, county venue, opt-out. Operator Terms §18: AAA Commercial, Delaware, individual only (fine for B2B). Live Website Terms Article VI: AAA Commercial plus class waiver for consumers, which conflicts with §22. Resolution: the July Website Terms draft §16 (defer to ToS §22 for renters; Delaware courts otherwise). Counsel to confirm retirement of the live Article VI.
 
@@ -78,7 +78,7 @@ Phase A edits on exotiq.ai that you do not need to touch: footer Cookie Settings
 - **Website Terms arbitration:** driveexotiq.com's Terms also use AAA arbitration in Delaware with a class waiver for consumers, conflicting with ToS §22 the same way exotiq.ai's do. Whether the signed ToS supersedes them must be stated on both sites.
 - **DMCA:** driveexotiq.com's page also shows the `[DMCA Designated Agent]` placeholder.
 - **Consent record:** `driveexotiq_cookie_consent` (local storage, no expiry) vs `exotiq_consent` cookie (180 days). Not a legal conflict; note it when the policies describe retention of choices.
-- **Exotiq.rent vs book.exotiq.rent:** driveexotiq.com names exotiq.rent as the marketplace; the renter app is book.exotiq.rent. Confirm the canonical renter host.
+- **exotiq.rent vs book.exotiq.rent: RESOLVED.** exotiq.rent is the public renter-booking address and redirects to book.exotiq.rent, where the renter app is served. Gregory confirmed driveexotiq.com will point to it in marketing copy. The hub links exotiq.rent.
 
 3.12 **Operator template.** Operator Terms §8.1 "No Legal Document Templates" conflicts with any plan for Exotiq to supply a rental-agreement template. Open item with Gregory; do not change §8.1 yet.
 
