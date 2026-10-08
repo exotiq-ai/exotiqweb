@@ -3,7 +3,7 @@ import SEOHead from '../components/SEOHead';
 import { breadcrumbSchema } from '../data/structuredData';
 import { useTheme } from '../contexts/ThemeContext';
 
-export default function TermsAndConditionsPage() {
+export default function WebsiteTermsPage() {
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -26,10 +26,11 @@ export default function TermsAndConditionsPage() {
         title="Website Terms of Use - Exotiq Inc."
         description="Terms governing access to exotiq.ai and driveexotiq.com. Read Exotiq's website terms of use, intellectual property rights, disclaimers, and dispute resolution."
         keywords="Exotiq terms of use, website terms, legal terms, exotiq.ai terms, driveexotiq terms"
-        url="https://exotiq.ai/terms"
+        url="https://exotiq.ai/website-terms"
         structuredData={breadcrumbSchema([
           { name: "Home", url: "https://exotiq.ai" },
-          { name: "Terms of Use", url: "https://exotiq.ai/terms" }
+          { name: "Terms", url: "https://exotiq.ai/terms" },
+          { name: "Website Terms of Use", url: "https://exotiq.ai/website-terms" }
         ])}
       />
 
@@ -45,7 +46,7 @@ export default function TermsAndConditionsPage() {
         <div className="legal-container">
           <div className="legal-meta">
             <span><strong>Effective Date:</strong> January 1, 2026</span>
-            <span><strong>Last Updated:</strong> June 6, 2026</span>
+            <span><strong>Last Updated:</strong> October 7, 2026</span>
           </div>
         </div>
       </div>
@@ -54,7 +55,7 @@ export default function TermsAndConditionsPage() {
         <div className="legal-container">
           <article className="legal-document">
 
-            <p>These Website Terms of Use govern your access to exotiq.ai and driveexotiq.com (collectively, the &quot;Websites&quot;). These do not govern the Exotiq Command Center (app.exotiq.ai), which has separate <a href="/terms">Terms and Conditions</a>.</p>
+            <p>These Website Terms of Use govern your access to exotiq.ai and driveexotiq.com (collectively, the &quot;Websites&quot;). These do not govern the Exotiq Command Center (app.exotiq.ai), which is governed by the <a href="/terms#operator-terms">Exotiq Command Center Platform Agreement</a>, or a booking made through Drive Exotiq, which is governed by the <a href="/terms#renter-terms">Drive Exotiq Terms of Service</a>. See the <a href="/terms">Terms and Agreements</a> page.</p>
 
             <h2>Article I: Informational Content Disclaimer</h2>
             <p>Content on the Websites, including product descriptions, pricing, and availability, is for general informational purposes only. Nothing constitutes a binding offer. Performance and ROI claims are illustrative, not guarantees. AI feature descriptions represent current or planned functionality. Third-party references are for context only.</p>
