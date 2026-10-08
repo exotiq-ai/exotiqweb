@@ -7,6 +7,9 @@ import {
   readConsent,
   writeConsent,
   consentIsDurable,
+  effectiveConsent,
+  hasGlobalPrivacyControl,
+  OPEN_COOKIE_SETTINGS_EVENT,
   type CookiePreferences,
 } from '../utils/consentStore';
 import { applyTrackingConsent } from '../utils/trackers';
@@ -42,8 +45,23 @@ export default function CookieConsentBanner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Footer "Cookie Settings" (and the privacy pages) reopen the preferences dialog
+  // at any time, with the visitor's current choices shown.
+  useEffect(() => {
+    const open = () => {
+      setPreferences(effectiveConsent(readConsent() ?? DEFAULT_PREFERENCES));
+      setShowBanner(false);
+      setShowModal(true);
+    };
+    window.addEventListener(OPEN_COOKIE_SETTINGS_EVENT, open);
+    return () => window.removeEventListener(OPEN_COOKIE_SETTINGS_EVENT, open);
+  }, []);
+
+  const gpcActive = hasGlobalPrivacyControl();
+
   const savePreferences = (newPreferences: CookiePreferences) => {
-    const stored = writeConsent(newPreferences);
+    // Global Privacy Control forces marketing off; record what is really applied.
+    const stored = writeConsent(effectiveConsent(newPreferences));
     setPreferences(stored);
     applyPreferences(stored);
 
@@ -107,6 +125,7 @@ export default function CookieConsentBanner() {
 
   const togglePreference = (category: keyof Omit<CookiePreferences, 'timestamp'>) => {
     if (category === 'essential') return; // Can't disable essential
+    if (category === 'marketing' && gpcActive) return; // Global Privacy Control keeps this off
     
     setPreferences(prev => ({
       ...prev,
@@ -271,10 +290,12 @@ export default function CookieConsentBanner() {
                       </div>
                       <button
                         onClick={() => togglePreference(category.id)}
-                        disabled={category.required}
+                        disabled={category.required || (category.id === 'marketing' && gpcActive)}
+                        aria-pressed={preferences[category.id]}
+                        aria-label={`${category.title.replace(/^\S+\s/, '')}: ${preferences[category.id] ? 'on' : 'off'}`}
                         className={`relative w-12 h-6 rounded-full transition-colors min-w-[48px] ${
                           preferences[category.id] ? 'bg-primary-500' : 'bg-gray-300 dark:bg-dark-600'
-                        } ${category.required ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:opacity-80'}`}
+                        } ${category.required || (category.id === 'marketing' && gpcActive) ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:opacity-80'}`}
                       >
                         <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${
                           preferences[category.id] ? 'translate-x-6' : 'translate-x-0'
@@ -284,6 +305,12 @@ export default function CookieConsentBanner() {
                     {category.required && (
                       <p className="text-sm text-red-600 dark:text-red-400">
                         Required for basic website functionality
+                      </p>
+                    )}
+                    {category.id === 'marketing' && gpcActive && (
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        Your browser is sending a Global Privacy Control signal, so advertising and
+                        sharing stay off. We honor it automatically.
                       </p>
                     )}
                   </div>

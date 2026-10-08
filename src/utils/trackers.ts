@@ -18,7 +18,7 @@
  *   loaded until the visitor has consented (marketing / analytics respectively).
  */
 
-import type { CookiePreferences } from './consentStore';
+import { effectiveConsent, hasGlobalPrivacyControl, readConsent, type CookiePreferences } from './consentStore';
 import logger from './logger';
 
 type Fbq = ((...args: unknown[]) => void) & {
@@ -452,7 +452,10 @@ export function withAttribution(url: string): string {
     const keys = Object.keys(found);
     if (keys.length === 0) return url;
     try {
-      sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(found));
+      // Remembering campaign identifiers across pages is marketing storage: only with consent.
+      if (readConsent()?.marketing && !hasGlobalPrivacyControl()) {
+        sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(found));
+      }
     } catch {
       /* storage blocked — still forward what the current URL carries */
     }
@@ -472,7 +475,9 @@ export function withAttribution(url: string): string {
  * Single entry point used by the consent banner. Applies the visitor's choice
  * to every tag we control, in both directions.
  */
-export function applyTrackingConsent(prefs: CookiePreferences): void {
+export function applyTrackingConsent(chosen: CookiePreferences): void {
+  // Global Privacy Control always wins over a stored or clicked "marketing" choice.
+  const prefs = effectiveConsent(chosen);
   applyGoogleConsent(prefs);
 
   posthogEnabled = prefs.analytics;
